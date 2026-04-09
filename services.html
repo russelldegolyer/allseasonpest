@@ -25,13 +25,13 @@
     .page-wrap {
       max-width: 980px;
       margin: 0 auto;
-      padding: 42px 20px 70px;
+      padding: 34px 20px 70px;
     }
 
     .top-bar {
       display: flex;
       justify-content: center;
-      margin-bottom: 26px;
+      margin-bottom: 24px;
     }
 
     .back-link {
@@ -59,94 +59,8 @@
       box-shadow: 0 0 18px rgba(255, 43, 43, 0.1);
     }
 
-    .hero-card {
-      position: relative;
-      max-width: 760px;
-      margin: 0 auto 34px;
-      padding: 32px 28px;
-      text-align: center;
-      border-radius: 20px;
-      border: 1px solid rgba(255, 255, 255, 0.08);
-      background:
-        linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.015)),
-        radial-gradient(circle at top center, rgba(255, 43, 43, 0.10), rgba(255, 43, 43, 0) 58%),
-        #0a0a0a;
-      box-shadow:
-        0 0 0 1px rgba(255,255,255,0.02) inset,
-        0 14px 40px rgba(0,0,0,0.45);
-    }
-
-    .hero-title {
-      color: #ff2b2b;
-      text-transform: uppercase;
-      letter-spacing: 2px;
-      font-size: 0.92rem;
-      font-weight: 700;
-      margin-bottom: 14px;
-    }
-
-    .hero-card h1 {
-      font-size: clamp(1.9rem, 4vw, 2.8rem);
-      line-height: 1.08;
-      margin-bottom: 16px;
-      font-weight: 700;
-    }
-
-    .hero-card p {
-      max-width: 640px;
-      margin: 0 auto;
-      color: #ededed;
-      font-size: 1rem;
-      line-height: 1.85;
-    }
-
-    .jump-links {
-      max-width: 860px;
-      margin: 0 auto 28px;
-      display: flex;
-      justify-content: center;
-      gap: 12px;
-      flex-wrap: wrap;
-    }
-
-    .jump-links a {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      min-width: 200px;
-      padding: 13px 16px;
-      border-radius: 12px;
-      border: 1px solid rgba(255, 255, 255, 0.1);
-      background:
-        linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.015)),
-        #0a0a0a;
-      color: #ffffff;
-      text-decoration: none;
-      text-transform: uppercase;
-      font-size: 0.82rem;
-      font-weight: 700;
-      letter-spacing: 1.3px;
-      transition: border-color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
-    }
-
-    .jump-links a:hover {
-      border-color: rgba(255, 43, 43, 0.55);
-      transform: translateY(-2px);
-      box-shadow: 0 0 18px rgba(255, 43, 43, 0.1);
-    }
-
     .service-card {
       position: relative;
-      background:
-        radial-gradient(
-          340px circle at var(--mouse-x, 50%) var(--mouse-y, 50%),
-          rgba(255, 43, 43, 0.16),
-          rgba(255, 43, 43, 0.08) 20%,
-          rgba(255, 43, 43, 0.03) 36%,
-          rgba(255, 43, 43, 0) 60%
-        ),
-        #0a0a0a;
-      border: 1px solid #1f1f1f;
       border-radius: 20px;
       padding: 30px 26px;
       margin-bottom: 20px;
@@ -156,38 +70,10 @@
     }
 
     .service-card:hover {
-      border-color: rgba(255, 43, 43, 0.45);
       transform: translateY(-2px);
-      box-shadow: 0 0 20px rgba(255, 43, 43, 0.08);
-    }
-
-    .service-card.roach-card {
-      background:
-        radial-gradient(
-          420px circle at var(--mouse-x, 50%) var(--mouse-y, 50%),
-          rgba(255, 43, 43, 0.24),
-          rgba(255, 43, 43, 0.13) 20%,
-          rgba(255, 43, 43, 0.06) 36%,
-          rgba(255, 43, 43, 0.01) 52%,
-          rgba(255, 43, 43, 0) 66%
-        ),
-        linear-gradient(180deg, rgba(255, 43, 43, 0.04), rgba(255, 43, 43, 0.01)),
-        #090909;
-      border: 1px solid rgba(255, 43, 43, 0.28);
-      box-shadow:
-        0 0 0 1px rgba(255, 43, 43, 0.05) inset,
-        0 0 28px rgba(255, 43, 43, 0.08);
-    }
-
-    .service-card.roach-card:hover {
-      border-color: rgba(255, 43, 43, 0.48);
-      box-shadow:
-        0 0 0 1px rgba(255, 43, 43, 0.06) inset,
-        0 0 36px rgba(255, 43, 43, 0.12);
     }
 
     .service-kicker {
-      color: #ff2b2b;
       text-transform: uppercase;
       letter-spacing: 1.8px;
       font-size: 0.78rem;
@@ -206,16 +92,11 @@
     }
 
     .service-card p {
-      color: #f1f1f1;
       font-size: 1rem;
       line-height: 1.8;
       position: relative;
       z-index: 1;
       margin-bottom: 14px;
-    }
-
-    .service-card strong {
-      color: #ffffff;
     }
 
     .service-grid {
@@ -229,19 +110,10 @@
 
     .mini-box {
       border-radius: 14px;
-      border: 1px solid rgba(255,255,255,0.07);
-      background: rgba(255,255,255,0.02);
       padding: 16px 16px;
     }
 
-    .roach-card .mini-box {
-      border: 1px solid rgba(255, 43, 43, 0.14);
-      background: rgba(255, 43, 43, 0.035);
-      box-shadow: 0 0 0 1px rgba(255, 43, 43, 0.03) inset;
-    }
-
     .mini-label {
-      color: #ff2b2b;
       text-transform: uppercase;
       letter-spacing: 1.3px;
       font-size: 0.74rem;
@@ -253,7 +125,224 @@
       margin: 0;
       font-size: 0.95rem;
       line-height: 1.7;
-      color: #f0f0f0;
+    }
+
+    /* RED - GENERAL PEST */
+    .theme-red {
+      background:
+        radial-gradient(
+          340px circle at var(--mouse-x, 50%) var(--mouse-y, 50%),
+          rgba(255, 43, 43, 0.16),
+          rgba(255, 43, 43, 0.08) 20%,
+          rgba(255, 43, 43, 0.03) 36%,
+          rgba(255, 43, 43, 0) 60%
+        ),
+        #0a0a0a;
+      border: 1px solid #1f1f1f;
+    }
+
+    .theme-red:hover {
+      border-color: rgba(255, 43, 43, 0.45);
+      box-shadow: 0 0 20px rgba(255, 43, 43, 0.08);
+    }
+
+    .theme-red .service-kicker,
+    .theme-red .mini-label {
+      color: #ff2b2b;
+    }
+
+    .theme-red p,
+    .theme-red h2,
+    .theme-red .mini-box p {
+      color: #f1f1f1;
+    }
+
+    .theme-red .mini-box {
+      border: 1px solid rgba(255,255,255,0.07);
+      background: rgba(255,255,255,0.02);
+    }
+
+    /* SILVER - RODENT */
+    .theme-silver {
+      background:
+        radial-gradient(
+          340px circle at var(--mouse-x, 50%) var(--mouse-y, 50%),
+          rgba(190, 190, 190, 0.16),
+          rgba(190, 190, 190, 0.08) 20%,
+          rgba(190, 190, 190, 0.03) 36%,
+          rgba(190, 190, 190, 0) 60%
+        ),
+        #0a0a0a;
+      border: 1px solid rgba(170, 170, 170, 0.18);
+    }
+
+    .theme-silver:hover {
+      border-color: rgba(210, 210, 210, 0.42);
+      box-shadow: 0 0 20px rgba(190, 190, 190, 0.08);
+    }
+
+    .theme-silver .service-kicker,
+    .theme-silver .mini-label {
+      color: #d3d3d3;
+    }
+
+    .theme-silver p,
+    .theme-silver h2,
+    .theme-silver .mini-box p {
+      color: #f1f1f1;
+    }
+
+    .theme-silver .mini-box {
+      border: 1px solid rgba(210,210,210,0.10);
+      background: rgba(255,255,255,0.025);
+    }
+
+    /* GREEN - MOSQUITO */
+    .theme-green {
+      background:
+        radial-gradient(
+          340px circle at var(--mouse-x, 50%) var(--mouse-y, 50%),
+          rgba(46, 204, 113, 0.16),
+          rgba(46, 204, 113, 0.08) 20%,
+          rgba(46, 204, 113, 0.03) 36%,
+          rgba(46, 204, 113, 0) 60%
+        ),
+        #0a0a0a;
+      border: 1px solid rgba(46, 204, 113, 0.16);
+    }
+
+    .theme-green:hover {
+      border-color: rgba(46, 204, 113, 0.42);
+      box-shadow: 0 0 20px rgba(46, 204, 113, 0.09);
+    }
+
+    .theme-green .service-kicker,
+    .theme-green .mini-label {
+      color: #41d97d;
+    }
+
+    .theme-green p,
+    .theme-green h2,
+    .theme-green .mini-box p {
+      color: #f1f1f1;
+    }
+
+    .theme-green .mini-box {
+      border: 1px solid rgba(65,217,125,0.10);
+      background: rgba(65,217,125,0.03);
+    }
+
+    /* ORANGE - TICK & FLEA */
+    .theme-orange {
+      background:
+        radial-gradient(
+          340px circle at var(--mouse-x, 50%) var(--mouse-y, 50%),
+          rgba(255, 145, 0, 0.18),
+          rgba(255, 145, 0, 0.09) 20%,
+          rgba(255, 145, 0, 0.03) 36%,
+          rgba(255, 145, 0, 0) 60%
+        ),
+        #0a0a0a;
+      border: 1px solid rgba(255, 145, 0, 0.16);
+    }
+
+    .theme-orange:hover {
+      border-color: rgba(255, 145, 0, 0.44);
+      box-shadow: 0 0 20px rgba(255, 145, 0, 0.10);
+    }
+
+    .theme-orange .service-kicker,
+    .theme-orange .mini-label {
+      color: #ffae42;
+    }
+
+    .theme-orange p,
+    .theme-orange h2,
+    .theme-orange .mini-box p {
+      color: #f1f1f1;
+    }
+
+    .theme-orange .mini-box {
+      border: 1px solid rgba(255,174,66,0.10);
+      background: rgba(255,174,66,0.03);
+    }
+
+    /* BROWN - GERMAN ROACH */
+    .theme-brown {
+      background:
+        radial-gradient(
+          420px circle at var(--mouse-x, 50%) var(--mouse-y, 50%),
+          rgba(139, 90, 43, 0.24),
+          rgba(139, 90, 43, 0.13) 20%,
+          rgba(139, 90, 43, 0.06) 36%,
+          rgba(139, 90, 43, 0.01) 52%,
+          rgba(139, 90, 43, 0) 66%
+        ),
+        linear-gradient(180deg, rgba(139, 90, 43, 0.05), rgba(139, 90, 43, 0.015)),
+        #090909;
+      border: 1px solid rgba(139, 90, 43, 0.30);
+      box-shadow:
+        0 0 0 1px rgba(139, 90, 43, 0.05) inset,
+        0 0 28px rgba(139, 90, 43, 0.08);
+    }
+
+    .theme-brown:hover {
+      border-color: rgba(166, 112, 62, 0.52);
+      box-shadow:
+        0 0 0 1px rgba(139, 90, 43, 0.06) inset,
+        0 0 36px rgba(139, 90, 43, 0.12);
+    }
+
+    .theme-brown .service-kicker,
+    .theme-brown .mini-label {
+      color: #c48a57;
+    }
+
+    .theme-brown p,
+    .theme-brown h2,
+    .theme-brown .mini-box p {
+      color: #f2eee9;
+    }
+
+    .theme-brown .mini-box {
+      border: 1px solid rgba(196,138,87,0.14);
+      background: rgba(139, 90, 43, 0.05);
+      box-shadow: 0 0 0 1px rgba(196,138,87,0.03) inset;
+    }
+
+    /* BLUE - WEED */
+    .theme-blue {
+      background:
+        radial-gradient(
+          340px circle at var(--mouse-x, 50%) var(--mouse-y, 50%),
+          rgba(52, 152, 219, 0.18),
+          rgba(52, 152, 219, 0.09) 20%,
+          rgba(52, 152, 219, 0.03) 36%,
+          rgba(52, 152, 219, 0) 60%
+        ),
+        #0a0a0a;
+      border: 1px solid rgba(52, 152, 219, 0.16);
+    }
+
+    .theme-blue:hover {
+      border-color: rgba(52, 152, 219, 0.44);
+      box-shadow: 0 0 20px rgba(52, 152, 219, 0.10);
+    }
+
+    .theme-blue .service-kicker,
+    .theme-blue .mini-label {
+      color: #59b7ff;
+    }
+
+    .theme-blue p,
+    .theme-blue h2,
+    .theme-blue .mini-box p {
+      color: #f1f1f1;
+    }
+
+    .theme-blue .mini-box {
+      border: 1px solid rgba(89,183,255,0.10);
+      background: rgba(89,183,255,0.03);
     }
 
     .bottom-cta {
@@ -304,43 +393,11 @@
 
     @media (max-width: 768px) {
       .page-wrap {
-        padding: 28px 16px 50px;
+        padding: 26px 16px 50px;
       }
 
       .top-bar {
-        margin-bottom: 20px;
-      }
-
-      .hero-card {
-        padding: 24px 18px;
-        margin-bottom: 24px;
-        border-radius: 16px;
-      }
-
-      .hero-title {
-        font-size: 0.76rem;
-        letter-spacing: 1.4px;
-        margin-bottom: 10px;
-      }
-
-      .hero-card h1 {
-        margin-bottom: 12px;
-      }
-
-      .hero-card p {
-        font-size: 0.94rem;
-        line-height: 1.8;
-      }
-
-      .jump-links {
-        gap: 10px;
-        margin-bottom: 20px;
-      }
-
-      .jump-links a {
-        min-width: 100%;
-        font-size: 0.76rem;
-        padding: 12px 14px;
+        margin-bottom: 18px;
       }
 
       .service-card {
@@ -389,26 +446,7 @@
       <a class="back-link" href="home.html">Back to Home</a>
     </div>
 
-    <section class="hero-card">
-      <div class="hero-title">All Season Pest Control</div>
-      <h1>Services That We Offer</h1>
-      <p>
-        We offer recurring pest control and specialty treatment options designed
-        to protect the home, reduce pest pressure, and give customers dependable
-        service they can count on.
-      </p>
-    </section>
-
-    <nav class="jump-links">
-      <a href="#general-pest-control">General Pest Control</a>
-      <a href="#rodent-control">Rodent Control</a>
-      <a href="#mosquito-treatment">Mosquito Treatment</a>
-      <a href="#tick-flea-treatment">Tick &amp; Flea Treatment</a>
-      <a href="#german-roach-treatment">German Roach Treatment</a>
-      <a href="#weed-control">Weed Control</a>
-    </nav>
-
-    <section id="general-pest-control" class="service-card">
+    <section class="service-card theme-red">
       <div class="service-kicker">Core Service</div>
       <h2>General Pest Control</h2>
       <p>
@@ -439,7 +477,7 @@
       </div>
     </section>
 
-    <section id="rodent-control" class="service-card">
+    <section class="service-card theme-silver">
       <div class="service-kicker">Monitoring + Control</div>
       <h2>Rodent Control</h2>
       <p>
@@ -470,7 +508,7 @@
       </div>
     </section>
 
-    <section id="mosquito-treatment" class="service-card">
+    <section class="service-card theme-green">
       <div class="service-kicker">Seasonal Treatment</div>
       <h2>Mosquito Treatment</h2>
       <p>
@@ -501,7 +539,7 @@
       </div>
     </section>
 
-    <section id="tick-flea-treatment" class="service-card">
+    <section class="service-card theme-orange">
       <div class="service-kicker">Targeted Outdoor Service</div>
       <h2>Tick &amp; Flea Treatment</h2>
       <p>
@@ -532,7 +570,7 @@
       </div>
     </section>
 
-    <section id="german-roach-treatment" class="service-card roach-card">
+    <section class="service-card theme-brown">
       <div class="service-kicker">Specialized Treatment</div>
       <h2>German Roach Treatment</h2>
       <p>
@@ -564,7 +602,7 @@
       </div>
     </section>
 
-    <section id="weed-control" class="service-card">
+    <section class="service-card theme-blue">
       <div class="service-kicker">Lawn + Property Service</div>
       <h2>Weed Control</h2>
       <p>
