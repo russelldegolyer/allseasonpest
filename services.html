@@ -161,6 +161,31 @@
       box-shadow: 0 0 20px rgba(255, 43, 43, 0.08);
     }
 
+    .service-card.roach-card {
+      background:
+        radial-gradient(
+          420px circle at var(--mouse-x, 50%) var(--mouse-y, 50%),
+          rgba(255, 43, 43, 0.24),
+          rgba(255, 43, 43, 0.13) 20%,
+          rgba(255, 43, 43, 0.06) 36%,
+          rgba(255, 43, 43, 0.01) 52%,
+          rgba(255, 43, 43, 0) 66%
+        ),
+        linear-gradient(180deg, rgba(255, 43, 43, 0.04), rgba(255, 43, 43, 0.01)),
+        #090909;
+      border: 1px solid rgba(255, 43, 43, 0.28);
+      box-shadow:
+        0 0 0 1px rgba(255, 43, 43, 0.05) inset,
+        0 0 28px rgba(255, 43, 43, 0.08);
+    }
+
+    .service-card.roach-card:hover {
+      border-color: rgba(255, 43, 43, 0.48);
+      box-shadow:
+        0 0 0 1px rgba(255, 43, 43, 0.06) inset,
+        0 0 36px rgba(255, 43, 43, 0.12);
+    }
+
     .service-kicker {
       color: #ff2b2b;
       text-transform: uppercase;
@@ -180,28 +205,13 @@
       z-index: 1;
     }
 
-    .service-card p,
-    .service-card li {
+    .service-card p {
       color: #f1f1f1;
       font-size: 1rem;
       line-height: 1.8;
       position: relative;
       z-index: 1;
-    }
-
-    .service-card p {
       margin-bottom: 14px;
-    }
-
-    .service-card ul {
-      padding-left: 20px;
-      margin: 8px 0 16px;
-      position: relative;
-      z-index: 1;
-    }
-
-    .service-card li {
-      margin-bottom: 6px;
     }
 
     .service-card strong {
@@ -222,6 +232,12 @@
       border: 1px solid rgba(255,255,255,0.07);
       background: rgba(255,255,255,0.02);
       padding: 16px 16px;
+    }
+
+    .roach-card .mini-box {
+      border: 1px solid rgba(255, 43, 43, 0.14);
+      background: rgba(255, 43, 43, 0.035);
+      box-shadow: 0 0 0 1px rgba(255, 43, 43, 0.03) inset;
     }
 
     .mini-label {
@@ -337,8 +353,7 @@
         letter-spacing: 1.4px;
       }
 
-      .service-card p,
-      .service-card li {
+      .service-card p {
         font-size: 0.95rem;
         line-height: 1.72;
       }
@@ -385,18 +400,21 @@
     </section>
 
     <nav class="jump-links">
-      <a href="#general-pests">General Pests</a>
+      <a href="#general-pest-control">General Pest Control</a>
       <a href="#rodent-control">Rodent Control</a>
-      <a href="#specialty-pests">Specialty Pests</a>
+      <a href="#mosquito-treatment">Mosquito Treatment</a>
+      <a href="#tick-flea-treatment">Tick &amp; Flea Treatment</a>
+      <a href="#german-roach-treatment">German Roach Treatment</a>
+      <a href="#weed-control">Weed Control</a>
     </nav>
 
-    <section id="general-pests" class="service-card">
+    <section id="general-pest-control" class="service-card">
       <div class="service-kicker">Core Service</div>
-      <h2>General Pests</h2>
+      <h2>General Pest Control</h2>
       <p>
-        Our general pest service is designed to help control common household
-        pests through thorough exterior treatment and targeted interior service
-        when needed.
+        Our general pest service is built for common pest pressure around the
+        home and is designed to help keep pest activity down through consistent,
+        dependable treatment.
       </p>
       <p>
         This service typically targets pests such as ants, spiders, roaches,
@@ -409,7 +427,7 @@
           <div class="mini-label">Typical Coverage</div>
           <p>
             Exterior foundation treatment with interior treatment as needed based
-            on pest activity and customer concerns.
+            on pest activity, pressure, and customer concerns.
           </p>
         </div>
         <div class="mini-box">
@@ -426,20 +444,20 @@
       <h2>Rodent Control</h2>
       <p>
         Our rodent control service focuses on reducing and monitoring rodent
-        activity through strategic placement of bait stations and ongoing
-        service as needed.
+        activity through strategic bait placement and ongoing follow-up where
+        needed.
       </p>
       <p>
-        Service may include inspection of active areas, exterior baiting, and
-        recommendations to help reduce conditions that contribute to rodent
-        problems around the home.
+        Service may include inspection of active areas, exterior bait stations,
+        and recommendations to help reduce conditions that contribute to rodent
+        pressure around the home.
       </p>
 
       <div class="service-grid">
         <div class="mini-box">
           <div class="mini-label">Service Focus</div>
           <p>
-            Ongoing control, activity reduction, monitoring, and follow-up based
+            Ongoing monitoring, activity reduction, baiting, and follow-up based
             on the level of rodent pressure.
           </p>
         </div>
@@ -452,35 +470,126 @@
       </div>
     </section>
 
-    <section id="specialty-pests" class="service-card">
-      <div class="service-kicker">Specialized Treatment</div>
-      <h2>Specialty Pests</h2>
+    <section id="mosquito-treatment" class="service-card">
+      <div class="service-kicker">Seasonal Treatment</div>
+      <h2>Mosquito Treatment</h2>
       <p>
-        Some pest issues require a more focused treatment plan than standard
-        recurring service. Our specialty services are built for pest problems
-        that need more targeted attention.
+        Our mosquito treatments are designed to help reduce mosquito pressure in
+        the yard so you can enjoy outdoor areas more comfortably during the
+        warmer months.
       </p>
-
-      <ul>
-        <li>German roach treatments</li>
-        <li>Mosquito treatments</li>
-        <li>Tick and flea treatments</li>
-        <li>Weed control</li>
-      </ul>
+      <p>
+        Treatment is typically focused on shaded foliage, harborage areas, and
+        other outdoor zones where mosquitoes like to rest and build up.
+      </p>
 
       <div class="service-grid">
         <div class="mini-box">
           <div class="mini-label">Best For</div>
           <p>
-            Properties dealing with more persistent or seasonal pest pressure
-            that falls outside standard general pest service.
+            Homes with patios, backyards, pets, outdoor gatherings, or heavy
+            mosquito pressure during the season.
           </p>
         </div>
         <div class="mini-box">
           <div class="mini-label">Service Approach</div>
           <p>
-            Treatment plans may vary depending on pest type, severity of
-            activity, and property conditions.
+            Seasonal recurring treatments aimed at reducing biting pressure,
+            resting populations, and outdoor mosquito activity.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section id="tick-flea-treatment" class="service-card">
+      <div class="service-kicker">Targeted Outdoor Service</div>
+      <h2>Tick &amp; Flea Treatment</h2>
+      <p>
+        Tick and flea treatments are designed for properties dealing with biting
+        pests in the yard, around pet areas, or in outdoor spaces where activity
+        tends to build up.
+      </p>
+      <p>
+        These treatments focus on helping reduce active populations and improving
+        control in the areas where ticks and fleas are most likely to be found.
+      </p>
+
+      <div class="service-grid">
+        <div class="mini-box">
+          <div class="mini-label">Best For</div>
+          <p>
+            Homes with pets, shaded yards, wildlife traffic, or recurring tick
+            and flea activity outside.
+          </p>
+        </div>
+        <div class="mini-box">
+          <div class="mini-label">Important Note</div>
+          <p>
+            Results can vary depending on pet activity, wildlife presence, and
+            surrounding property conditions.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section id="german-roach-treatment" class="service-card roach-card">
+      <div class="service-kicker">Specialized Treatment</div>
+      <h2>German Roach Treatment</h2>
+      <p>
+        German roach problems usually require a more aggressive and targeted
+        treatment plan than standard pest control. This service is built for
+        active infestations that need more focused attention.
+      </p>
+      <p>
+        Treatment may include detailed inspection, targeted crack-and-crevice
+        applications, baiting, and follow-up service depending on the level of
+        activity and conditions inside the home.
+      </p>
+
+      <div class="service-grid">
+        <div class="mini-box">
+          <div class="mini-label">Best For</div>
+          <p>
+            Active german roach infestations that need more than routine
+            recurring service.
+          </p>
+        </div>
+        <div class="mini-box">
+          <div class="mini-label">Important Note</div>
+          <p>
+            Success depends heavily on severity, sanitation, clutter levels, and
+            cooperation with preparation recommendations.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section id="weed-control" class="service-card">
+      <div class="service-kicker">Lawn + Property Service</div>
+      <h2>Weed Control</h2>
+      <p>
+        Our weed control service is designed to help reduce unwanted weed growth
+        and improve the overall appearance of the lawn and property.
+      </p>
+      <p>
+        Treatment plans may vary based on the season, weed pressure, and overall
+        condition of the turf, but the goal stays the same: cleaner, more
+        controlled outdoor spaces.
+      </p>
+
+      <div class="service-grid">
+        <div class="mini-box">
+          <div class="mini-label">Best For</div>
+          <p>
+            Properties dealing with visible weed pressure in the lawn, along
+            edges, or throughout the yard.
+          </p>
+        </div>
+        <div class="mini-box">
+          <div class="mini-label">Service Approach</div>
+          <p>
+            Targeted treatments built around seasonality, weed pressure, and the
+            condition of the property.
           </p>
         </div>
       </div>
@@ -488,8 +597,8 @@
 
     <section class="bottom-cta">
       <p>
-        Need help choosing the right plan? Reach out and we can point you in the
-        right direction.
+        Need help choosing the right service? Reach out and we can point you in
+        the right direction.
       </p>
 
       <div class="cta-row">
