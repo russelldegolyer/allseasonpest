@@ -71,22 +71,8 @@
       min-height: 84px;
       display: flex;
       align-items: center;
-      justify-content: space-between;
-      gap: 20px;
-    }
-
-    .brand {
-      display: flex;
-      align-items: center;
-      gap: 14px;
-      min-width: 0;
-      flex-shrink: 0;
-    }
-
-    .brand img {
-      height: 54px;
-      width: auto;
-      object-fit: contain;
+      justify-content: center;
+      gap: 28px;
     }
 
     .desktop-nav {
@@ -112,7 +98,8 @@
       display: flex;
       align-items: center;
       gap: 12px;
-      flex-shrink: 0;
+      position: absolute;
+      right: 16px;
     }
 
     .phone-pill {
@@ -192,25 +179,21 @@
       margin-bottom: 28px;
     }
 
-    .hero-banner-wrap {
-      margin-bottom: 24px;
+    .hero-logo-wrap {
       display: flex;
       justify-content: center;
-      overflow: hidden;
+      align-items: center;
+      margin: 0 auto 28px;
+      padding: 10px 0;
     }
 
-    .hero-banner {
-      font-weight: 900;
-      text-transform: uppercase;
-      letter-spacing: 0.02em;
-      font-size: clamp(60px, 12vw, 150px);
-      line-height: 0.9;
-      color: #fff;
-      transform: scaleY(1.06);
-      text-shadow:
-        0 0 1px rgba(255,255,255,0.3),
-        0 10px 40px rgba(0,0,0,0.45);
-      display: inline-block;
+    .hero-logo {
+      width: min(760px, 92vw);
+      height: auto;
+      object-fit: contain;
+      filter:
+        drop-shadow(0 10px 34px rgba(0,0,0,0.55))
+        drop-shadow(0 0 10px rgba(255,255,255,0.04));
     }
 
     .hero-title {
@@ -554,6 +537,14 @@
         display: block;
       }
 
+      .header-inner {
+        justify-content: flex-end;
+      }
+
+      .header-actions {
+        position: static;
+      }
+
       .grid-4 {
         grid-template-columns: repeat(2, minmax(0, 1fr));
       }
@@ -579,12 +570,12 @@
         min-height: 76px;
       }
 
-      .brand img {
-        height: 46px;
-      }
-
       .hero {
         padding: 42px 0 56px;
+      }
+
+      .hero-logo {
+        width: min(640px, 95vw);
       }
 
       .hero-title {
@@ -616,10 +607,6 @@
 
   <header class="site-header">
     <div class="container header-inner">
-      <a href="#top" class="brand" aria-label="All Season Pest Control home">
-        <img src="logo.png" alt="All Season Pest Control logo" />
-      </a>
-
       <nav class="desktop-nav" aria-label="Main navigation">
         <a href="#top">Home</a>
         <a href="#services">Services</a>
@@ -654,8 +641,8 @@
         <div class="hero-inner">
           <div class="hero-kicker">Jonesboro, Arkansas Pest Control</div>
 
-          <div class="hero-banner-wrap">
-            <div class="hero-banner">ALL SEASON</div>
+          <div class="hero-logo-wrap">
+            <img src="logo.png" alt="All Season Pest Control logo" class="hero-logo" />
           </div>
 
           <h1 class="hero-title">
@@ -933,8 +920,7 @@
           </div>
 
           <p class="contact-note">
-            Fastest way to reach us is by call or text. If you want, you can later add a form here too,
-            but for now this is cleaner than a fake empty form.
+            Fastest way to reach us is by call or text.
           </p>
         </div>
       </div>
