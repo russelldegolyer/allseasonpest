@@ -3,12 +3,30 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Services | All Season Pest Control</title>
+  <title>Process | All Season Pest Control</title>
+  <meta
+    name="description"
+    content="Learn what it’s like to become a customer with All Season Pest Control in Jonesboro, Arkansas."
+  />
   <style>
+    :root {
+      --bg: #000000;
+      --panel: #0b0b0b;
+      --panel-2: #111111;
+      --text: #ffffff;
+      --muted: #cfcfcf;
+      --red: #ff2a2a;
+      --red-deep: #b30000;
+      --line: rgba(255, 42, 42, 0.55);
+      --glow: 0 0 22px rgba(255, 42, 42, 0.22);
+      --glow-strong: 0 0 30px rgba(255, 42, 42, 0.3);
+      --radius: 24px;
+      --radius-sm: 18px;
+      --max: 1180px;
+    }
+
     * {
       box-sizing: border-box;
-      margin: 0;
-      padding: 0;
     }
 
     html {
@@ -16,706 +34,811 @@
     }
 
     body {
-      background: #000000;
-      color: #ffffff;
+      margin: 0;
+      background:
+        radial-gradient(circle at top, rgba(255, 42, 42, 0.10), transparent 30%),
+        linear-gradient(180deg, #060606 0%, #000000 100%);
+      color: var(--text);
       font-family: Arial, Helvetica, sans-serif;
+      line-height: 1.5;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    img {
+      max-width: 100%;
+      display: block;
+    }
+
+    .page {
       min-height: 100vh;
     }
 
-    .page-wrap {
-      max-width: 980px;
+    .container {
+      width: 100%;
+      max-width: var(--max);
       margin: 0 auto;
-      padding: 34px 20px 70px;
+      padding: 0 20px;
     }
 
-    .top-bar {
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      backdrop-filter: blur(14px);
+      background: rgba(0, 0, 0, 0.72);
+      border-bottom: 1px solid rgba(255, 42, 42, 0.22);
+    }
+
+    .topbar-inner {
+      max-width: var(--max);
+      margin: 0 auto;
+      padding: 14px 20px;
       display: flex;
       justify-content: center;
-      margin-bottom: 24px;
-    }
-
-    .back-link {
-      display: inline-flex;
       align-items: center;
+    }
+
+    .nav {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
       justify-content: center;
-      padding: 12px 18px;
-      border-radius: 12px;
-      border: 1px solid rgba(255, 255, 255, 0.12);
-      background:
-        linear-gradient(180deg, rgba(255,255,255,0.035), rgba(255,255,255,0.015)),
-        #0a0a0a;
-      color: #ffffff;
-      text-decoration: none;
-      text-transform: uppercase;
-      font-size: 0.8rem;
+    }
+
+    .nav a {
+      padding: 11px 18px;
+      border: 1px solid rgba(255, 42, 42, 0.34);
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.03);
+      color: #fff;
       font-weight: 700;
-      letter-spacing: 1.3px;
-      transition: border-color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
-    }
-
-    .back-link:hover {
-      border-color: rgba(255, 70, 70, 0.7);
-      transform: translateY(-2px);
-      box-shadow: 0 0 20px rgba(255, 70, 70, 0.14);
-    }
-
-    .service-card {
-      position: relative;
-      border-radius: 20px;
-      padding: 30px 26px;
-      margin-bottom: 20px;
-      overflow: hidden;
-      transition: border-color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
-      scroll-margin-top: 24px;
-      border-width: 2px;
-      border-style: solid;
-    }
-
-    .service-card:hover {
-      transform: translateY(-2px);
-    }
-
-    .service-kicker {
-      text-transform: uppercase;
-      letter-spacing: 1.8px;
-      font-size: 0.78rem;
-      font-weight: 700;
-      margin-bottom: 10px;
-      position: relative;
-      z-index: 1;
-    }
-
-    .service-card h2 {
-      font-size: clamp(1.55rem, 3.4vw, 2.2rem);
-      line-height: 1.1;
-      margin-bottom: 18px;
-      position: relative;
-      z-index: 1;
-      transition: color 0.2s ease;
-    }
-
-    .service-card p {
-      font-size: 1rem;
-      line-height: 1.8;
-      position: relative;
-      z-index: 1;
-      margin-bottom: 14px;
-    }
-
-    .service-grid {
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 14px;
-      margin-top: 18px;
-      position: relative;
-      z-index: 1;
-    }
-
-    .mini-box {
-      border-radius: 14px;
-      padding: 16px 16px;
-      border-width: 1.5px;
-      border-style: solid;
-    }
-
-    .mini-label {
-      text-transform: uppercase;
-      letter-spacing: 1.3px;
-      font-size: 0.74rem;
-      font-weight: 700;
-      margin-bottom: 8px;
-    }
-
-    .mini-box p {
-      margin: 0;
       font-size: 0.95rem;
-      line-height: 1.7;
+      letter-spacing: 0.02em;
+      transition: 0.2s ease;
     }
 
-    /* RED - GENERAL PEST */
-    .theme-red {
+    .nav a:hover,
+    .nav a.active {
+      border-color: rgba(255, 42, 42, 0.75);
+      box-shadow: var(--glow);
+      transform: translateY(-1px);
+    }
+
+    .hero {
+      padding: 72px 0 40px;
+    }
+
+    .hero-box {
+      position: relative;
+      overflow: hidden;
+      border: 2px solid rgba(255, 42, 42, 0.55);
+      border-radius: 34px;
       background:
-        radial-gradient(
-          380px circle at var(--mouse-x, 50%) var(--mouse-y, 50%),
-          rgba(255, 50, 50, 0.22),
-          rgba(255, 50, 50, 0.11) 18%,
-          rgba(255, 50, 50, 0.05) 34%,
-          rgba(255, 50, 50, 0.015) 48%,
-          rgba(255, 50, 50, 0) 64%
-        ),
-        #0a0a0a;
-      border-color: rgba(255, 55, 55, 0.42);
-      box-shadow:
-        0 0 0 1px rgba(255, 55, 55, 0.04) inset,
-        0 0 24px rgba(255, 55, 55, 0.08);
-    }
-
-    .theme-red:hover {
-      border-color: rgba(255, 55, 55, 0.68);
-      box-shadow:
-        0 0 0 1px rgba(255, 55, 55, 0.05) inset,
-        0 0 30px rgba(255, 55, 55, 0.13);
-    }
-
-    .theme-red .service-kicker,
-    .theme-red .mini-label {
-      color: #ff4a4a;
-    }
-
-    .theme-red h2 {
-      color: #ff8f8f;
-    }
-
-    .theme-red p,
-    .theme-red .mini-box p {
-      color: #f4f4f4;
-    }
-
-    .theme-red .mini-box {
-      border-color: rgba(255, 74, 74, 0.18);
-      background: rgba(255, 74, 74, 0.035);
-    }
-
-    /* SILVER - RODENT */
-    .theme-silver {
-      background:
-        radial-gradient(
-          380px circle at var(--mouse-x, 50%) var(--mouse-y, 50%),
-          rgba(215, 215, 215, 0.20),
-          rgba(215, 215, 215, 0.10) 18%,
-          rgba(215, 215, 215, 0.045) 34%,
-          rgba(215, 215, 215, 0.014) 48%,
-          rgba(215, 215, 215, 0) 64%
-        ),
-        #0a0a0a;
-      border-color: rgba(205, 205, 205, 0.34);
-      box-shadow:
-        0 0 0 1px rgba(215, 215, 215, 0.035) inset,
-        0 0 24px rgba(215, 215, 215, 0.07);
-    }
-
-    .theme-silver:hover {
-      border-color: rgba(230, 230, 230, 0.56);
-      box-shadow:
-        0 0 0 1px rgba(215, 215, 215, 0.05) inset,
-        0 0 30px rgba(215, 215, 215, 0.11);
-    }
-
-    .theme-silver .service-kicker,
-    .theme-silver .mini-label {
-      color: #dddddd;
-    }
-
-    .theme-silver h2 {
-      color: #f0f0f0;
-    }
-
-    .theme-silver p,
-    .theme-silver .mini-box p {
-      color: #f3f3f3;
-    }
-
-    .theme-silver .mini-box {
-      border-color: rgba(220, 220, 220, 0.16);
-      background: rgba(255,255,255,0.03);
-    }
-
-    /* ORANGE - TICK & FLEA */
-    .theme-orange {
-      background:
-        radial-gradient(
-          380px circle at var(--mouse-x, 50%) var(--mouse-y, 50%),
-          rgba(255, 150, 25, 0.24),
-          rgba(255, 150, 25, 0.115) 18%,
-          rgba(255, 150, 25, 0.05) 34%,
-          rgba(255, 150, 25, 0.015) 48%,
-          rgba(255, 150, 25, 0) 64%
-        ),
-        #0a0a0a;
-      border-color: rgba(255, 165, 50, 0.40);
-      box-shadow:
-        0 0 0 1px rgba(255, 165, 50, 0.035) inset,
-        0 0 24px rgba(255, 165, 50, 0.08);
-    }
-
-    .theme-orange:hover {
-      border-color: rgba(255, 177, 73, 0.64);
-      box-shadow:
-        0 0 0 1px rgba(255, 165, 50, 0.05) inset,
-        0 0 30px rgba(255, 165, 50, 0.13);
-    }
-
-    .theme-orange .service-kicker,
-    .theme-orange .mini-label {
-      color: #ffb24c;
-    }
-
-    .theme-orange h2 {
-      color: #ffc884;
-    }
-
-    .theme-orange p,
-    .theme-orange .mini-box p {
-      color: #f4f4f4;
-    }
-
-    .theme-orange .mini-box {
-      border-color: rgba(255, 178, 76, 0.18);
-      background: rgba(255, 178, 76, 0.04);
-    }
-
-    /* GREEN - MOSQUITO */
-    .theme-green {
-      background:
-        radial-gradient(
-          380px circle at var(--mouse-x, 50%) var(--mouse-y, 50%),
-          rgba(55, 214, 120, 0.22),
-          rgba(55, 214, 120, 0.105) 18%,
-          rgba(55, 214, 120, 0.05) 34%,
-          rgba(55, 214, 120, 0.015) 48%,
-          rgba(55, 214, 120, 0) 64%
-        ),
-        #0a0a0a;
-      border-color: rgba(65, 219, 129, 0.36);
-      box-shadow:
-        0 0 0 1px rgba(65, 219, 129, 0.035) inset,
-        0 0 24px rgba(65, 219, 129, 0.08);
-    }
-
-    .theme-green:hover {
-      border-color: rgba(77, 230, 141, 0.60);
-      box-shadow:
-        0 0 0 1px rgba(65, 219, 129, 0.05) inset,
-        0 0 30px rgba(65, 219, 129, 0.13);
-    }
-
-    .theme-green .service-kicker,
-    .theme-green .mini-label {
-      color: #58e08f;
-    }
-
-    .theme-green h2 {
-      color: #91efb4;
-    }
-
-    .theme-green p,
-    .theme-green .mini-box p {
-      color: #f3f3f3;
-    }
-
-    .theme-green .mini-box {
-      border-color: rgba(88, 224, 143, 0.18);
-      background: rgba(88, 224, 143, 0.035);
-    }
-
-    /* BROWN - GERMAN ROACH */
-    .theme-brown {
-      background:
-        radial-gradient(
-          430px circle at var(--mouse-x, 50%) var(--mouse-y, 50%),
-          rgba(150, 95, 45, 0.28),
-          rgba(150, 95, 45, 0.14) 18%,
-          rgba(150, 95, 45, 0.065) 34%,
-          rgba(150, 95, 45, 0.02) 50%,
-          rgba(150, 95, 45, 0) 67%
-        ),
-        linear-gradient(180deg, rgba(150, 95, 45, 0.05), rgba(150, 95, 45, 0.018)),
-        #090909;
-      border-color: rgba(185, 125, 72, 0.42);
-      box-shadow:
-        0 0 0 1px rgba(185, 125, 72, 0.045) inset,
-        0 0 30px rgba(150, 95, 45, 0.10);
-    }
-
-    .theme-brown:hover {
-      border-color: rgba(205, 144, 88, 0.66);
-      box-shadow:
-        0 0 0 1px rgba(185, 125, 72, 0.06) inset,
-        0 0 36px rgba(150, 95, 45, 0.15);
-    }
-
-    .theme-brown .service-kicker,
-    .theme-brown .mini-label {
-      color: #d09a65;
-    }
-
-    .theme-brown h2 {
-      color: #e0b286;
-    }
-
-    .theme-brown p,
-    .theme-brown .mini-box p {
-      color: #f5efe8;
-    }
-
-    .theme-brown .mini-box {
-      border-color: rgba(208, 154, 101, 0.20);
-      background: rgba(150, 95, 45, 0.05);
-    }
-
-    /* BLUE - WEED */
-    .theme-blue {
-      background:
-        radial-gradient(
-          380px circle at var(--mouse-x, 50%) var(--mouse-y, 50%),
-          rgba(65, 160, 255, 0.24),
-          rgba(65, 160, 255, 0.11) 18%,
-          rgba(65, 160, 255, 0.05) 34%,
-          rgba(65, 160, 255, 0.015) 48%,
-          rgba(65, 160, 255, 0) 64%
-        ),
-        #0a0a0a;
-      border-color: rgba(80, 175, 255, 0.40);
-      box-shadow:
-        0 0 0 1px rgba(80, 175, 255, 0.035) inset,
-        0 0 24px rgba(80, 175, 255, 0.08);
-    }
-
-    .theme-blue:hover {
-      border-color: rgba(102, 188, 255, 0.64);
-      box-shadow:
-        0 0 0 1px rgba(80, 175, 255, 0.05) inset,
-        0 0 30px rgba(80, 175, 255, 0.13);
-    }
-
-    .theme-blue .service-kicker,
-    .theme-blue .mini-label {
-      color: #66beff;
-    }
-
-    .theme-blue h2 {
-      color: #97d6ff;
-    }
-
-    .theme-blue p,
-    .theme-blue .mini-box p {
-      color: #f3f3f3;
-    }
-
-    .theme-blue .mini-box {
-      border-color: rgba(102, 190, 255, 0.18);
-      background: rgba(102, 190, 255, 0.035);
-    }
-
-    .bottom-cta {
-      max-width: 760px;
-      margin: 18px auto 0;
+        linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.01)),
+        linear-gradient(135deg, rgba(255,42,42,0.12), rgba(255,42,42,0.03));
+      box-shadow: var(--glow-strong);
+      padding: 54px 38px;
       text-align: center;
     }
 
-    .bottom-cta p {
-      color: #eaeaea;
-      font-size: 1rem;
-      line-height: 1.8;
+    .hero-box::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(circle at 20% 20%, rgba(255,42,42,0.12), transparent 26%),
+        radial-gradient(circle at 80% 25%, rgba(255,42,42,0.08), transparent 26%);
+      pointer-events: none;
+    }
+
+    .eyebrow {
+      display: inline-block;
+      margin-bottom: 14px;
+      padding: 8px 14px;
+      border-radius: 999px;
+      border: 1px solid rgba(255, 42, 42, 0.38);
+      background: rgba(255, 42, 42, 0.08);
+      color: #fff;
+      font-weight: 800;
+      font-size: 0.82rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+    }
+
+    h1, h2, h3, p {
+      margin-top: 0;
+    }
+
+    h1 {
+      font-size: clamp(2.3rem, 5vw, 4.5rem);
+      line-height: 1.05;
       margin-bottom: 16px;
+      letter-spacing: -0.03em;
     }
 
-    .cta-row {
-      display: flex;
-      justify-content: center;
-      gap: 12px;
-      flex-wrap: wrap;
+    .hero h1 span {
+      color: var(--red);
+      text-shadow: 0 0 18px rgba(255, 42, 42, 0.35);
     }
 
-    .cta-row a {
+    .hero-sub {
+      max-width: 780px;
+      margin: 0 auto;
+      color: var(--muted);
+      font-size: clamp(1rem, 2vw, 1.14rem);
+    }
+
+    .section {
+      padding: 34px 0;
+    }
+
+    .section-head {
+      text-align: center;
+      margin-bottom: 26px;
+    }
+
+    .section-head h2 {
+      font-size: clamp(1.85rem, 3vw, 3rem);
+      margin-bottom: 10px;
+      letter-spacing: -0.02em;
+    }
+
+    .section-head p {
+      color: var(--muted);
+      max-width: 760px;
+      margin: 0 auto;
+      font-size: 1rem;
+    }
+
+    .grid-3,
+    .grid-4 {
+      display: grid;
+      gap: 20px;
+    }
+
+    .grid-3 {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+
+    .grid-4 {
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+    }
+
+    .card {
+      position: relative;
+      overflow: hidden;
+      background: linear-gradient(180deg, #111111 0%, #0a0a0a 100%);
+      border: 2px solid rgba(255, 42, 42, 0.45);
+      border-radius: var(--radius);
+      padding: 24px 22px 22px;
+      box-shadow: var(--glow);
+      min-height: 100%;
+    }
+
+    .card::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, rgba(255,42,42,0.06), transparent 50%);
+      pointer-events: none;
+    }
+
+    .step-num {
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      min-width: 170px;
-      padding: 13px 16px;
-      border-radius: 12px;
-      border: 1px solid rgba(255,255,255,0.1);
+      width: 56px;
+      height: 56px;
+      margin-bottom: 16px;
+      border-radius: 18px;
+      background: linear-gradient(180deg, #ff3939 0%, #bd0000 100%);
+      color: #fff;
+      font-size: 1.08rem;
+      font-weight: 900;
+      box-shadow: 0 0 18px rgba(255, 42, 42, 0.35);
+    }
+
+    .card h3 {
+      font-size: 1.28rem;
+      margin-bottom: 10px;
+      letter-spacing: -0.02em;
+    }
+
+    .card p {
+      color: var(--muted);
+      font-size: 0.98rem;
+      margin-bottom: 0;
+    }
+
+    .band {
+      border: 2px solid rgba(255, 42, 42, 0.5);
+      border-radius: 30px;
       background:
-        linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.015)),
-        #0a0a0a;
-      color: #ffffff;
-      text-decoration: none;
-      text-transform: uppercase;
-      font-size: 0.82rem;
-      font-weight: 700;
-      letter-spacing: 1.3px;
-      transition: border-color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+        linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01)),
+        linear-gradient(135deg, rgba(255,42,42,0.11), rgba(255,42,42,0.025));
+      box-shadow: var(--glow-strong);
+      overflow: hidden;
     }
 
-    .cta-row a:hover {
-      border-color: rgba(255, 70, 70, 0.7);
+    .band-inner {
+      display: grid;
+      grid-template-columns: 1.05fr 0.95fr;
+      gap: 0;
+      align-items: stretch;
+    }
+
+    .band-copy,
+    .band-points {
+      padding: 34px 30px;
+    }
+
+    .band-copy {
+      border-right: 1px solid rgba(255, 42, 42, 0.22);
+    }
+
+    .band-copy h2 {
+      font-size: clamp(1.9rem, 3.4vw, 3.1rem);
+      line-height: 1.06;
+      margin-bottom: 14px;
+      letter-spacing: -0.03em;
+    }
+
+    .band-copy h2 span {
+      color: var(--red);
+    }
+
+    .band-copy p {
+      color: var(--muted);
+      font-size: 1rem;
+      max-width: 580px;
+      margin-bottom: 0;
+    }
+
+    .point-list {
+      display: grid;
+      gap: 14px;
+    }
+
+    .point {
+      border: 1px solid rgba(255, 42, 42, 0.24);
+      background: rgba(255,255,255,0.03);
+      border-radius: 18px;
+      padding: 14px 15px;
+    }
+
+    .point strong {
+      display: block;
+      margin-bottom: 4px;
+      font-size: 0.98rem;
+    }
+
+    .point span {
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
+
+    .portal {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 22px;
+      align-items: stretch;
+    }
+
+    .portal-main,
+    .portal-side {
+      border: 2px solid rgba(255, 42, 42, 0.45);
+      border-radius: 30px;
+      background: linear-gradient(180deg, #0f0f0f 0%, #080808 100%);
+      box-shadow: var(--glow);
+    }
+
+    .portal-main {
+      padding: 32px 28px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .portal-main .eyebrow {
+      margin-bottom: 16px;
+    }
+
+    .portal-main h2 {
+      font-size: clamp(1.9rem, 3vw, 3rem);
+      line-height: 1.08;
+      margin-bottom: 14px;
+      letter-spacing: -0.03em;
+    }
+
+    .portal-main h2 span {
+      color: var(--red);
+    }
+
+    .portal-main p {
+      color: var(--muted);
+      font-size: 1rem;
+      max-width: 560px;
+      margin-bottom: 0;
+    }
+
+    .portal-side {
+      padding: 20px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+
+    .mini {
+      border: 1px solid rgba(255, 42, 42, 0.28);
+      border-radius: 22px;
+      background: rgba(255,255,255,0.03);
+      padding: 18px 16px;
+    }
+
+    .mini-top {
+      width: 44px;
+      height: 44px;
+      border-radius: 14px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 12px;
+      font-weight: 900;
+      color: #fff;
+      background: linear-gradient(180deg, #ff3939 0%, #b80000 100%);
+      box-shadow: 0 0 16px rgba(255, 42, 42, 0.28);
+    }
+
+    .mini h3 {
+      font-size: 1.02rem;
+      margin-bottom: 8px;
+    }
+
+    .mini p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 0.92rem;
+    }
+
+    .trust-wrap {
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 22px;
+    }
+
+    .trust-main,
+    .trust-boxes {
+      min-width: 0;
+    }
+
+    .trust-main {
+      border: 2px solid rgba(255, 42, 42, 0.45);
+      border-radius: 30px;
+      background: linear-gradient(180deg, #101010 0%, #090909 100%);
+      box-shadow: var(--glow);
+      padding: 34px 30px;
+    }
+
+    .trust-main h2 {
+      font-size: clamp(1.9rem, 3vw, 3rem);
+      line-height: 1.08;
+      margin-bottom: 14px;
+      letter-spacing: -0.03em;
+    }
+
+    .trust-main h2 span {
+      color: var(--red);
+    }
+
+    .trust-main p {
+      color: var(--muted);
+      margin-bottom: 0;
+      max-width: 620px;
+      font-size: 1rem;
+    }
+
+    .trust-boxes {
+      display: grid;
+      gap: 16px;
+    }
+
+    .trust-item {
+      border: 1px solid rgba(255, 42, 42, 0.28);
+      background: rgba(255,255,255,0.03);
+      border-radius: 22px;
+      padding: 18px 18px;
+      box-shadow: var(--glow);
+    }
+
+    .trust-item h3 {
+      margin-bottom: 6px;
+      font-size: 1.04rem;
+    }
+
+    .trust-item p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 0.94rem;
+    }
+
+    .cta {
+      padding: 34px 0 74px;
+    }
+
+    .cta-box {
+      text-align: center;
+      border: 2px solid rgba(255, 42, 42, 0.54);
+      border-radius: 34px;
+      background:
+        linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.01)),
+        linear-gradient(135deg, rgba(255,42,42,0.12), rgba(255,42,42,0.03));
+      box-shadow: var(--glow-strong);
+      padding: 42px 26px;
+    }
+
+    .cta-box h2 {
+      font-size: clamp(2rem, 3vw, 3rem);
+      margin-bottom: 10px;
+      letter-spacing: -0.02em;
+    }
+
+    .cta-box p {
+      margin: 0 auto 24px;
+      max-width: 700px;
+      color: var(--muted);
+      font-size: 1rem;
+    }
+
+    .cta-buttons {
+      display: flex;
+      justify-content: center;
+      gap: 14px;
+      flex-wrap: wrap;
+    }
+
+    .cta-buttons a {
+      min-width: 150px;
+      padding: 15px 22px;
+      border-radius: 999px;
+      border: 2px solid rgba(255, 42, 42, 0.55);
+      background: linear-gradient(180deg, #1a1a1a, #0d0d0d);
+      color: #fff;
+      font-weight: 800;
+      font-size: 0.98rem;
+      letter-spacing: 0.02em;
+      box-shadow: var(--glow);
+      transition: 0.2s ease;
+    }
+
+    .cta-buttons a:hover {
       transform: translateY(-2px);
-      box-shadow: 0 0 20px rgba(255, 70, 70, 0.14);
+      border-color: rgba(255, 42, 42, 0.85);
+      box-shadow: var(--glow-strong);
     }
 
-    @media (max-width: 768px) {
-      .page-wrap {
-        padding: 26px 16px 50px;
+    .footer-space {
+      height: 8px;
+    }
+
+    @media (max-width: 980px) {
+      .grid-4 {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
       }
 
-      .top-bar {
-        margin-bottom: 18px;
+      .grid-3,
+      .portal,
+      .trust-wrap,
+      .band-inner {
+        grid-template-columns: 1fr;
       }
 
-      .service-card {
-        padding: 22px 18px;
+      .band-copy {
+        border-right: none;
+        border-bottom: 1px solid rgba(255, 42, 42, 0.22);
+      }
+    }
+
+    @media (max-width: 700px) {
+      .hero {
+        padding: 56px 0 24px;
+      }
+
+      .hero-box,
+      .cta-box {
+        padding: 34px 20px;
+        border-radius: 26px;
+      }
+
+      .card,
+      .trust-main,
+      .portal-main,
+      .portal-side,
+      .band-copy,
+      .band-points {
+        padding-left: 18px;
+        padding-right: 18px;
+      }
+
+      .grid-3,
+      .grid-4,
+      .portal-side {
+        grid-template-columns: 1fr;
+      }
+
+      .step-num {
+        width: 50px;
+        height: 50px;
         border-radius: 16px;
       }
 
-      .service-kicker {
-        font-size: 0.72rem;
-        letter-spacing: 1.4px;
+      .nav a {
+        padding: 10px 14px;
+        font-size: 0.9rem;
       }
 
-      .service-card h2 {
-        margin-bottom: 16px;
-      }
-
-      .service-card p {
-        font-size: 0.95rem;
-        line-height: 1.72;
-      }
-
-      .service-grid {
-        grid-template-columns: 1fr;
-        gap: 12px;
-      }
-
-      .mini-box {
-        padding: 14px 14px;
-      }
-
-      .mini-box p {
-        font-size: 0.92rem;
-      }
-
-      .bottom-cta p {
-        font-size: 0.95rem;
-        line-height: 1.75;
-      }
-
-      .cta-row a {
-        min-width: 100%;
-        font-size: 0.76rem;
+      .cta-buttons a {
+        width: 100%;
+        max-width: 320px;
       }
     }
   </style>
 </head>
 <body>
-  <main class="page-wrap">
-    <div class="top-bar">
-      <a class="back-link" href="home.html">Back to Home</a>
-    </div>
-
-    <section class="service-card theme-red">
-      <div class="service-kicker">Core Service</div>
-      <h2>General Pest Control</h2>
-      <p>
-        Our general pest service is built for common pest pressure around the
-        home and is designed to help keep pest activity down through consistent,
-        dependable treatment.
-      </p>
-      <p>
-        This service typically targets pests such as ants, spiders, roaches,
-        crickets, earwigs, silverfish, centipedes, millipedes, and other common
-        invading insects.
-      </p>
-
-      <div class="service-grid">
-        <div class="mini-box">
-          <div class="mini-label">Typical Coverage</div>
-          <p>
-            Exterior foundation treatment with interior treatment as needed based
-            on pest activity, pressure, and customer concerns.
-          </p>
-        </div>
-        <div class="mini-box">
-          <div class="mini-label">Important Note</div>
-          <p>
-            Does not cover bed bugs or termites.
-          </p>
-        </div>
+  <div class="page">
+    <header class="topbar">
+      <div class="topbar-inner">
+        <nav class="nav">
+          <a href="home.html">Home</a>
+          <a href="services.html">Services</a>
+          <a href="process.html" class="active">Process</a>
+          <a href="about.html">About</a>
+        </nav>
       </div>
-    </section>
+    </header>
 
-    <section class="service-card theme-silver">
-      <div class="service-kicker">Monitoring + Control</div>
-      <h2>Rodent Control</h2>
-      <p>
-        Our rodent control service focuses on reducing and monitoring rodent
-        activity through strategic bait placement and ongoing follow-up where
-        needed.
-      </p>
-      <p>
-        Service may include inspection of active areas, exterior bait stations,
-        and recommendations to help reduce conditions that contribute to rodent
-        pressure around the home.
-      </p>
-
-      <div class="service-grid">
-        <div class="mini-box">
-          <div class="mini-label">Service Focus</div>
-          <p>
-            Ongoing monitoring, activity reduction, baiting, and follow-up based
-            on the level of rodent pressure.
-          </p>
+    <main>
+      <section class="hero">
+        <div class="container">
+          <div class="hero-box">
+            <div class="eyebrow">What It’s Like To Work With Us</div>
+            <h1>Simple to start. Easy to follow. <span>Built on transparency.</span></h1>
+            <p class="hero-sub">
+              From first contact to ongoing service records, we keep everything clear,
+              professional, and accessible so you’re never left wondering what was done,
+              what was charged, or what comes next.
+            </p>
+          </div>
         </div>
-        <div class="mini-box">
-          <div class="mini-label">Important Note</div>
-          <p>
-            Does not include snakes, skunks, or squirrels.
-          </p>
+      </section>
+
+      <section class="section">
+        <div class="container">
+          <div class="section-head">
+            <h2>Becoming a customer should feel easy.</h2>
+            <p>
+              No weird sign-up flow. No fake online checkout. No confusion. Just clear
+              communication, straightforward service, and a professional customer experience.
+            </p>
+          </div>
+
+          <div class="grid-3">
+            <div class="card">
+              <div class="step-num">01</div>
+              <h3>Reach Out</h3>
+              <p>
+                Call, text, or email us and tell us what’s going on. Whether it’s ants,
+                roaches, mosquitoes, rodents, or weeds, we’ll point you in the right direction.
+              </p>
+            </div>
+
+            <div class="card">
+              <div class="step-num">02</div>
+              <h3>We Talk It Through</h3>
+              <p>
+                We go over the pest issues, the type of property, and what service makes the
+                most sense. You get clear answers before anything moves forward.
+              </p>
+            </div>
+
+            <div class="card">
+              <div class="step-num">03</div>
+              <h3>We Get You Set Up</h3>
+              <p>
+                Once you’re ready, we handle the account setup through our system and make
+                sure everything is organized, documented, and easy to access afterward.
+              </p>
+            </div>
+          </div>
         </div>
-      </div>
-    </section>
+      </section>
 
-    <section class="service-card theme-orange">
-      <div class="service-kicker">Targeted Outdoor Service</div>
-      <h2>Tick &amp; Flea Treatment</h2>
-      <p>
-        Tick and flea treatments are designed for properties dealing with biting
-        pests in the yard, around pet areas, or in outdoor spaces where activity
-        tends to build up.
-      </p>
-      <p>
-        These treatments focus on helping reduce active populations and improving
-        control in the areas where ticks and fleas are most likely to be found.
-      </p>
+      <section class="section">
+        <div class="container">
+          <div class="band">
+            <div class="band-inner">
+              <div class="band-copy">
+                <div class="eyebrow">The Service Side</div>
+                <h2>More than a spray visit. <span>A real process.</span></h2>
+                <p>
+                  Good pest control is not random. We focus on problem areas, pest pressure,
+                  activity patterns, and long-term protection instead of just showing up and
+                  hoping for the best.
+                </p>
+              </div>
 
-      <div class="service-grid">
-        <div class="mini-box">
-          <div class="mini-label">Best For</div>
-          <p>
-            Homes with pets, shaded yards, wildlife traffic, or recurring tick
-            and flea activity outside.
-          </p>
+              <div class="band-points">
+                <div class="point-list">
+                  <div class="point">
+                    <strong>Targeted approach</strong>
+                    <span>We focus on the areas that matter most for your property and the pests involved.</span>
+                  </div>
+                  <div class="point">
+                    <strong>Clear documentation</strong>
+                    <span>You are not left guessing what was done or what products were used.</span>
+                  </div>
+                  <div class="point">
+                    <strong>Long-term mindset</strong>
+                    <span>The goal is steady protection and lower pest pressure over time.</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
-        <div class="mini-box">
-          <div class="mini-label">Important Note</div>
-          <p>
-            Results can vary depending on pet activity, wildlife presence, and
-            surrounding property conditions.
-          </p>
+      </section>
+
+      <section class="section">
+        <div class="container">
+          <div class="grid-4">
+            <div class="card">
+              <div class="step-num">I</div>
+              <h3>Inspect</h3>
+              <p>
+                We look at pest activity, pressure points, and the areas around the home where
+                pests are living, traveling, or trying to get in.
+              </p>
+            </div>
+
+            <div class="card">
+              <div class="step-num">T</div>
+              <h3>Treat</h3>
+              <p>
+                We apply professional products in the right places based on the service being
+                performed instead of using a lazy one-size-fits-all approach.
+              </p>
+            </div>
+
+            <div class="card">
+              <div class="step-num">P</div>
+              <h3>Protect</h3>
+              <p>
+                We focus on building protection around the property and reducing the conditions
+                that allow pest activity to continue.
+              </p>
+            </div>
+
+            <div class="card">
+              <div class="step-num">M</div>
+              <h3>Maintain</h3>
+              <p>
+                Ongoing service helps keep pest pressure low through the seasons and prevents
+                smaller issues from turning into bigger ones.
+              </p>
+            </div>
+          </div>
         </div>
-      </div>
-    </section>
+      </section>
 
-    <section class="service-card theme-green">
-      <div class="service-kicker">Seasonal Treatment</div>
-      <h2>Mosquito Treatment</h2>
-      <p>
-        Our mosquito treatments are designed to help reduce mosquito pressure in
-        the yard so you can enjoy outdoor areas more comfortably during the
-        warmer months.
-      </p>
-      <p>
-        Treatment is typically focused on shaded foliage, harborage areas, and
-        other outdoor zones where mosquitoes like to rest and build up.
-      </p>
+      <section class="section">
+        <div class="container">
+          <div class="portal">
+            <div class="portal-main">
+              <div class="eyebrow">Customer Portal Access</div>
+              <h2>Your account. Your billing. Your service history. <span>All in one place.</span></h2>
+              <p>
+                Once you become a customer, you are not left in the dark. Your account stays
+                organized and accessible so you can review important details without confusion or
+                chasing anyone down for answers.
+              </p>
+            </div>
 
-      <div class="service-grid">
-        <div class="mini-box">
-          <div class="mini-label">Best For</div>
-          <p>
-            Homes with patios, backyards, pets, outdoor gatherings, or heavy
-            mosquito pressure during the season.
-          </p>
+            <div class="portal-side">
+              <div class="mini">
+                <div class="mini-top">$</div>
+                <h3>View Billing</h3>
+                <p>
+                  See charges, payment details, and account information clearly instead of
+                  wondering what hit your card.
+                </p>
+              </div>
+
+              <div class="mini">
+                <div class="mini-top">H</div>
+                <h3>Service History</h3>
+                <p>
+                  Review past visits and keep track of the work that has been completed on
+                  your account.
+                </p>
+              </div>
+
+              <div class="mini">
+                <div class="mini-top">P</div>
+                <h3>Products Used</h3>
+                <p>
+                  Know what was applied at your home and have that information available when
+                  you want it.
+                </p>
+              </div>
+
+              <div class="mini">
+                <div class="mini-top">A</div>
+                <h3>Easy Access</h3>
+                <p>
+                  Your information stays available and organized so the customer experience feels
+                  professional from start to finish.
+                </p>
+              </div>
+            </div>
+          </div>
         </div>
-        <div class="mini-box">
-          <div class="mini-label">Service Approach</div>
-          <p>
-            Seasonal recurring treatments aimed at reducing biting pressure,
-            resting populations, and outdoor mosquito activity.
-          </p>
+      </section>
+
+      <section class="section">
+        <div class="container">
+          <div class="trust-wrap">
+            <div class="trust-main">
+              <div class="eyebrow">Why This Matters</div>
+              <h2>No confusion. No guessing. <span>No nonsense.</span></h2>
+              <p>
+                You should never be left asking what you were charged, what was done, what products
+                were used, or what happens next. We believe pest control should be clearly
+                communicated, properly documented, and easy to access after the service is done.
+              </p>
+            </div>
+
+            <div class="trust-boxes">
+              <div class="trust-item">
+                <h3>Clear communication</h3>
+                <p>We keep the process understandable instead of making everything feel buried in fine print.</p>
+              </div>
+
+              <div class="trust-item">
+                <h3>Professional follow-through</h3>
+                <p>The customer experience does not end once the treatment is finished.</p>
+              </div>
+
+              <div class="trust-item">
+                <h3>Built for long-term trust</h3>
+                <p>Transparency matters more when someone is letting a company work around their home and billing their card.</p>
+              </div>
+            </div>
+          </div>
         </div>
-      </div>
-    </section>
+      </section>
 
-    <section class="service-card theme-brown">
-      <div class="service-kicker">Specialized Treatment</div>
-      <h2>German Roach Treatment</h2>
-      <p>
-        German roach problems usually require a more aggressive and targeted
-        treatment plan than standard pest control. This service is built for
-        active infestations that need more focused attention.
-      </p>
-      <p>
-        Treatment may include detailed inspection, targeted crack-and-crevice
-        applications, baiting, and follow-up service depending on the level of
-        activity and conditions inside the home.
-      </p>
-
-      <div class="service-grid">
-        <div class="mini-box">
-          <div class="mini-label">Best For</div>
-          <p>
-            Active german roach infestations that need more than routine
-            recurring service.
-          </p>
+      <section class="cta">
+        <div class="container">
+          <div class="cta-box">
+            <h2>Let’s make pest control one less thing to worry about.</h2>
+            <p>
+              Professional service is only part of it. Clear communication, organized records,
+              and transparent billing matter too.
+            </p>
+            <div class="cta-buttons">
+              <a href="tel:8709197114">Call</a>
+              <a href="sms:8709197114">Text</a>
+              <a href="mailto:info@allseasonpestllc.com">Email</a>
+            </div>
+          </div>
         </div>
-        <div class="mini-box">
-          <div class="mini-label">Important Note</div>
-          <p>
-            Success depends heavily on severity, sanitation, clutter levels, and
-            cooperation with preparation recommendations.
-          </p>
-        </div>
-      </div>
-    </section>
+      </section>
+    </main>
 
-    <section class="service-card theme-blue">
-      <div class="service-kicker">Lawn + Property Service</div>
-      <h2>Weed Control</h2>
-      <p>
-        Our weed control service is designed to help reduce unwanted weed growth
-        and improve the overall appearance of the lawn and property.
-      </p>
-      <p>
-        Treatment plans may vary based on the season, weed pressure, and overall
-        condition of the turf, but the goal stays the same: cleaner, more
-        controlled outdoor spaces.
-      </p>
-
-      <div class="service-grid">
-        <div class="mini-box">
-          <div class="mini-label">Best For</div>
-          <p>
-            Properties dealing with visible weed pressure in the lawn, along
-            edges, or throughout the yard.
-          </p>
-        </div>
-        <div class="mini-box">
-          <div class="mini-label">Service Approach</div>
-          <p>
-            Targeted treatments built around seasonality, weed pressure, and the
-            condition of the property.
-          </p>
-        </div>
-      </div>
-    </section>
-
-    <section class="bottom-cta">
-      <p>
-        Need help choosing the right service? Reach out and we can point you in
-        the right direction.
-      </p>
-
-      <div class="cta-row">
-        <a href="tel:8709197114">Call</a>
-        <a href="sms:8709197114">Text</a>
-        <a href="mailto:gmail@allseasonllc.com">Email</a>
-      </div>
-    </section>
-  </main>
-
-  <script>
-    const cards = document.querySelectorAll('.service-card');
-
-    cards.forEach((card) => {
-      card.addEventListener('mousemove', (e) => {
-        const rect = card.getBoundingClientRect();
-        const x = e.clientX - rect.left;
-        const y = e.clientY - rect.top;
-
-        card.style.setProperty('--mouse-x', `${x}px`);
-        card.style.setProperty('--mouse-y', `${y}px`);
-      });
-    });
-  </script>
+    <div class="footer-space"></div>
+  </div>
 </body>
 </html>
