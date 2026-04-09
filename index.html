@@ -10,65 +10,52 @@
     body {
       margin: 0;
       background: #000;
-      color: #fff;
-      font-family: Arial, sans-serif;
       display: flex;
       align-items: center;
       justify-content: center;
       min-height: 100vh;
-      text-align: center;
     }
 
     .wrap {
       width: 100%;
       max-width: 1100px;
-      padding: 30px 20px;
+      padding: 20px;
+      text-align: center;
+    }
+
+    .logo-link {
+      display: inline-block;
+      text-decoration: none;
+      cursor: pointer;
     }
 
     .logo {
       display: block;
-      margin: 0 auto 30px auto;
-      max-width: 1100px;
-      width: 95%;
+      margin: 0 auto;
+      max-width: 950px;
+      width: 92%;
       height: auto;
+      transition: transform 0.2s ease, opacity 0.2s ease;
     }
 
-    .enter-btn {
-      display: inline-block;
-      padding: 16px 34px;
-      border: 2px solid #ff0000;
-      color: #fff;
-      text-decoration: none;
-      font-weight: bold;
-      font-size: 18px;
-      letter-spacing: 2px;
-      text-transform: uppercase;
-      border-radius: 6px;
-      transition: 0.2s ease;
-    }
-
-    .enter-btn:hover {
-      background: #ff0000;
-      color: #fff;
+    .logo-link:hover .logo {
+      transform: scale(1.02);
+      opacity: 0.96;
     }
 
     @media (max-width: 768px) {
       .logo {
         width: 100%;
-        max-width: 900px;
-      }
-
-      .enter-btn {
-        font-size: 16px;
-        padding: 14px 28px;
+        max-width: 850px;
       }
     }
   </style>
 </head>
 <body>
   <div class="wrap">
-    <img src="logo.png" alt="All Season Pest Control" class="logo">
-    <a href="home.html" class="enter-btn">Enter Website</a>
+    <a href="home.html" class="logo-link" aria-label="Enter Website">
+      <img src="updated logo.PNG" alt="All Season Pest Control" class="logo">
+    </a>
   </div>
 </body>
 </html>
