@@ -248,9 +248,9 @@
 
     .cta-box{
       background:
-        linear-gradient(135deg, rgba(197,18,18,.18), rgba(255,255,255,.03)),
+        linear-gradient(135deg, rgba(197,18,18,.24), rgba(255,255,255,.03)),
         #0b0b0b;
-      border:1px solid rgba(255,255,255,.08);
+      border:1px solid rgba(255,255,255,.10);
       border-radius:32px;
       padding:34px;
       box-shadow:var(--shadow);
@@ -266,72 +266,38 @@
     .cta-box p{
       color:var(--muted);
       line-height:1.65;
-      margin-bottom:24px;
+      margin-bottom:28px;
     }
 
-    .cta-buttons{
-      display:flex;
-      flex-wrap:wrap;
+    .cta-tabs{
+      display:grid;
+      grid-template-columns:repeat(2, minmax(0, 1fr));
       gap:14px;
     }
 
-    .btn{
+    .cta-tab{
       display:inline-flex;
       align-items:center;
       justify-content:center;
-      min-height:52px;
-      padding:0 20px;
+      min-height:58px;
+      padding:0 18px;
       border-radius:999px;
       font-weight:800;
+      font-size:1.05rem;
       letter-spacing:-0.01em;
-      transition:transform .2s ease, opacity .2s ease, background .2s ease;
-    }
-
-    .btn:hover{
-      transform:translateY(-1px);
-      opacity:.94;
-    }
-
-    .btn-primary{
-      background:#fff;
-      color:#000;
-    }
-
-    .btn-secondary{
       border:1px solid rgba(255,255,255,.18);
       color:#fff;
       background:rgba(255,255,255,.04);
+      transition:transform .2s ease, opacity .2s ease, background .2s ease, color .2s ease, border-color .2s ease;
+      text-align:center;
     }
 
-    .contact-strip{
-      padding:34px 32px 70px;
-      background:#050505;
-    }
-
-    .contact-strip-inner{
-      max-width:var(--max);
-      margin:0 auto;
-      background:linear-gradient(180deg, rgba(255,255,255,.04), rgba(255,255,255,.025));
-      border:1px solid var(--border-soft);
-      border-radius:28px;
-      padding:24px 28px;
-      display:flex;
-      flex-wrap:wrap;
-      align-items:center;
-      justify-content:space-between;
-      gap:18px;
-    }
-
-    .contact-strip-text strong{
-      display:block;
-      font-size:1.15rem;
-      margin-bottom:4px;
-      letter-spacing:-0.02em;
-    }
-
-    .contact-strip-text span{
-      color:var(--muted-soft);
-      line-height:1.5;
+    .cta-tab:hover{
+      transform:translateY(-1px);
+      opacity:1;
+      background:#fff;
+      color:#000;
+      border-color:#fff;
     }
 
     .footer{
@@ -401,10 +367,6 @@
 
       .section{
         padding:80px 24px;
-      }
-
-      .contact-strip{
-        padding:28px 24px 56px;
       }
 
       .footer{
@@ -481,12 +443,13 @@
         border-radius:24px;
       }
 
-      .contact-strip{
-        padding:24px 18px 48px;
+      .cta-tabs{
+        grid-template-columns:1fr;
       }
 
-      .contact-strip-inner{
-        padding:20px;
+      .cta-tab{
+        min-height:54px;
+        font-size:1rem;
       }
 
       .footer{
@@ -533,10 +496,6 @@
         padding:60px 14px;
       }
 
-      .contact-strip{
-        padding:22px 14px 42px;
-      }
-
       .footer{
         padding:0 14px 20px;
       }
@@ -546,14 +505,14 @@
 <body>
 
   <header class="site-header">
-  <nav class="nav">
-    <a href="home.html">Home</a>
-    <a href="services.html">Services</a>
-    <a href="process.html">Process</a>
-    <a href="about.html">About</a>
-  </nav>
-</header>
-  
+    <nav class="nav">
+      <a href="home.html">Home</a>
+      <a href="services.html">Services</a>
+      <a href="process.html">Process</a>
+      <a href="about.html">About</a>
+    </nav>
+  </header>
+
   <section class="hero">
     <div class="hero-inner">
       <div class="hero-copy">
@@ -630,24 +589,16 @@
           <p>
             Start with the basics done right. General pest service, affordable fair pricing, a clear process, and treatments built for the home instead of a rushed cookie-cutter visit.
           </p>
-          <div class="cta-buttons">
-            <a class="btn btn-primary" href="services.html">View Services</a>
-            <a class="btn btn-secondary" href="process.html">See Our Process</a>
+
+          <div class="cta-tabs">
+            <a class="cta-tab" href="services.html">View Services</a>
+            <a class="cta-tab" href="process.html">See Our Process</a>
+            <a class="cta-tab" href="about.html">About</a>
+            <a class="cta-tab" href="mailto:gmail@allseasonpestllc.com">Email</a>
+            <a class="cta-tab" href="tel:8709197114">Call</a>
+            <a class="cta-tab" href="sms:8709197114">Text</a>
           </div>
         </div>
-      </div>
-    </div>
-  </section>
-
-  <section class="contact-strip">
-    <div class="contact-strip-inner">
-      <div class="contact-strip-text">
-        <strong>All Season Pest Control</strong>
-        <span>Jonesboro, Arkansas • Serving homes across Northeast Arkansas</span>
-      </div>
-      <div class="cta-buttons">
-        <a class="btn btn-primary" href="tel:8709197114">Call 870-919-7114</a>
-        <a class="btn btn-secondary" href="about.html">About Us</a>
       </div>
     </div>
   </section>
