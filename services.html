@@ -54,9 +54,9 @@
     }
 
     .back-link:hover {
-      border-color: rgba(255, 70, 70, 0.7);
+      border-color: rgba(255, 190, 70, 0.7);
       transform: translateY(-2px);
-      box-shadow: 0 0 20px rgba(255, 70, 70, 0.14);
+      box-shadow: 0 0 20px rgba(255, 190, 70, 0.14);
     }
 
     .service-card {
@@ -91,6 +91,7 @@
       margin-bottom: 18px;
       position: relative;
       z-index: 1;
+      transition: color 0.2s ease;
     }
 
     .service-card p {
@@ -131,45 +132,48 @@
       line-height: 1.7;
     }
 
-    /* RED - GENERAL PEST */
-    .theme-red {
+    /* GOLD - GENERAL PEST */
+    .theme-gold {
       background:
         radial-gradient(
           380px circle at var(--mouse-x, 50%) var(--mouse-y, 50%),
-          rgba(255, 50, 50, 0.22),
-          rgba(255, 50, 50, 0.11) 18%,
-          rgba(255, 50, 50, 0.05) 34%,
-          rgba(255, 50, 50, 0.015) 48%,
-          rgba(255, 50, 50, 0) 64%
+          rgba(255, 195, 60, 0.24),
+          rgba(255, 195, 60, 0.12) 18%,
+          rgba(255, 195, 60, 0.055) 34%,
+          rgba(255, 195, 60, 0.018) 48%,
+          rgba(255, 195, 60, 0) 64%
         ),
         #0a0a0a;
-      border-color: rgba(255, 55, 55, 0.42);
+      border-color: rgba(255, 200, 80, 0.44);
       box-shadow:
-        0 0 0 1px rgba(255, 55, 55, 0.04) inset,
-        0 0 24px rgba(255, 55, 55, 0.08);
+        0 0 0 1px rgba(255, 200, 80, 0.04) inset,
+        0 0 24px rgba(255, 200, 80, 0.08);
     }
 
-    .theme-red:hover {
-      border-color: rgba(255, 55, 55, 0.68);
+    .theme-gold:hover {
+      border-color: rgba(255, 210, 100, 0.70);
       box-shadow:
-        0 0 0 1px rgba(255, 55, 55, 0.05) inset,
-        0 0 30px rgba(255, 55, 55, 0.13);
+        0 0 0 1px rgba(255, 200, 80, 0.05) inset,
+        0 0 30px rgba(255, 200, 80, 0.14);
     }
 
-    .theme-red .service-kicker,
-    .theme-red .mini-label {
-      color: #ff4a4a;
+    .theme-gold .service-kicker,
+    .theme-gold .mini-label {
+      color: #ffd05c;
     }
 
-    .theme-red p,
-    .theme-red h2,
-    .theme-red .mini-box p {
-      color: #f4f4f4;
+    .theme-gold h2 {
+      color: #ffe29b;
     }
 
-    .theme-red .mini-box {
-      border-color: rgba(255, 74, 74, 0.18);
-      background: rgba(255, 74, 74, 0.035);
+    .theme-gold p,
+    .theme-gold .mini-box p {
+      color: #f7f4ea;
+    }
+
+    .theme-gold .mini-box {
+      border-color: rgba(255, 208, 92, 0.18);
+      background: rgba(255, 208, 92, 0.04);
     }
 
     /* SILVER - RODENT */
@@ -202,8 +206,11 @@
       color: #dddddd;
     }
 
+    .theme-silver h2 {
+      color: #f0f0f0;
+    }
+
     .theme-silver p,
-    .theme-silver h2,
     .theme-silver .mini-box p {
       color: #f3f3f3;
     }
@@ -213,67 +220,26 @@
       background: rgba(255,255,255,0.03);
     }
 
-    /* ORANGE - TICK & FLEA */
-    .theme-orange {
-      background:
-        radial-gradient(
-          380px circle at var(--mouse-x, 50%) var(--mouse-y, 50%),
-          rgba(255, 150, 25, 0.24),
-          rgba(255, 150, 25, 0.115) 18%,
-          rgba(255, 150, 25, 0.05) 34%,
-          rgba(255, 150, 25, 0.015) 48%,
-          rgba(255, 150, 25, 0) 64%
-        ),
-        #0a0a0a;
-      border-color: rgba(255, 165, 50, 0.40);
-      box-shadow:
-        0 0 0 1px rgba(255, 165, 50, 0.035) inset,
-        0 0 24px rgba(255, 165, 50, 0.08);
-    }
-
-    .theme-orange:hover {
-      border-color: rgba(255, 177, 73, 0.64);
-      box-shadow:
-        0 0 0 1px rgba(255, 165, 50, 0.05) inset,
-        0 0 30px rgba(255, 165, 50, 0.13);
-    }
-
-    .theme-orange .service-kicker,
-    .theme-orange .mini-label {
-      color: #ffb24c;
-    }
-
-    .theme-orange p,
-    .theme-orange h2,
-    .theme-orange .mini-box p {
-      color: #f4f4f4;
-    }
-
-    .theme-orange .mini-box {
-      border-color: rgba(255, 178, 76, 0.18);
-      background: rgba(255, 178, 76, 0.04);
-    }
-
-    /* GREEN - MOSQUITO */
+    /* GREEN - TICK & FLEA */
     .theme-green {
       background:
         radial-gradient(
           380px circle at var(--mouse-x, 50%) var(--mouse-y, 50%),
-          rgba(55, 214, 120, 0.22),
-          rgba(55, 214, 120, 0.105) 18%,
+          rgba(55, 214, 120, 0.24),
+          rgba(55, 214, 120, 0.115) 18%,
           rgba(55, 214, 120, 0.05) 34%,
           rgba(55, 214, 120, 0.015) 48%,
           rgba(55, 214, 120, 0) 64%
         ),
         #0a0a0a;
-      border-color: rgba(65, 219, 129, 0.36);
+      border-color: rgba(65, 219, 129, 0.40);
       box-shadow:
         0 0 0 1px rgba(65, 219, 129, 0.035) inset,
         0 0 24px rgba(65, 219, 129, 0.08);
     }
 
     .theme-green:hover {
-      border-color: rgba(77, 230, 141, 0.60);
+      border-color: rgba(77, 230, 141, 0.64);
       box-shadow:
         0 0 0 1px rgba(65, 219, 129, 0.05) inset,
         0 0 30px rgba(65, 219, 129, 0.13);
@@ -284,8 +250,11 @@
       color: #58e08f;
     }
 
+    .theme-green h2 {
+      color: #91efb4;
+    }
+
     .theme-green p,
-    .theme-green h2,
     .theme-green .mini-box p {
       color: #f3f3f3;
     }
@@ -293,6 +262,50 @@
     .theme-green .mini-box {
       border-color: rgba(88, 224, 143, 0.18);
       background: rgba(88, 224, 143, 0.035);
+    }
+
+    /* RED - MOSQUITO */
+    .theme-red {
+      background:
+        radial-gradient(
+          380px circle at var(--mouse-x, 50%) var(--mouse-y, 50%),
+          rgba(255, 50, 50, 0.24),
+          rgba(255, 50, 50, 0.12) 18%,
+          rgba(255, 50, 50, 0.055) 34%,
+          rgba(255, 50, 50, 0.018) 48%,
+          rgba(255, 50, 50, 0) 64%
+        ),
+        #0a0a0a;
+      border-color: rgba(255, 60, 60, 0.44);
+      box-shadow:
+        0 0 0 1px rgba(255, 60, 60, 0.04) inset,
+        0 0 24px rgba(255, 60, 60, 0.08);
+    }
+
+    .theme-red:hover {
+      border-color: rgba(255, 75, 75, 0.70);
+      box-shadow:
+        0 0 0 1px rgba(255, 60, 60, 0.05) inset,
+        0 0 30px rgba(255, 60, 60, 0.14);
+    }
+
+    .theme-red .service-kicker,
+    .theme-red .mini-label {
+      color: #ff5c5c;
+    }
+
+    .theme-red h2 {
+      color: #ff9b9b;
+    }
+
+    .theme-red p,
+    .theme-red .mini-box p {
+      color: #f4f4f4;
+    }
+
+    .theme-red .mini-box {
+      border-color: rgba(255, 92, 92, 0.18);
+      background: rgba(255, 92, 92, 0.04);
     }
 
     /* BROWN - GERMAN ROACH */
@@ -326,8 +339,11 @@
       color: #d09a65;
     }
 
+    .theme-brown h2 {
+      color: #e0b286;
+    }
+
     .theme-brown p,
-    .theme-brown h2,
     .theme-brown .mini-box p {
       color: #f5efe8;
     }
@@ -337,58 +353,54 @@
       background: rgba(150, 95, 45, 0.05);
     }
 
-    /* BLUE - WEED */
-    .theme-blue {
+    /* TURQUOISE BLUE - WEED */
+    .theme-turquoise {
       background:
         radial-gradient(
-          380px circle at var(--mouse-x, 50%) var(--mouse-y, 50%),
-          rgba(65, 160, 255, 0.24),
-          rgba(65, 160, 255, 0.11) 18%,
-          rgba(65, 160, 255, 0.05) 34%,
-          rgba(65, 160, 255, 0.015) 48%,
-          rgba(65, 160, 255, 0) 64%
+          390px circle at var(--mouse-x, 50%) var(--mouse-y, 50%),
+          rgba(55, 210, 215, 0.24),
+          rgba(55, 210, 215, 0.115) 18%,
+          rgba(55, 210, 215, 0.05) 34%,
+          rgba(55, 210, 215, 0.015) 48%,
+          rgba(55, 210, 215, 0) 64%
         ),
         #0a0a0a;
-      border-color: rgba(80, 175, 255, 0.40);
+      border-color: rgba(70, 220, 225, 0.42);
       box-shadow:
-        0 0 0 1px rgba(80, 175, 255, 0.035) inset,
-        0 0 24px rgba(80, 175, 255, 0.08);
+        0 0 0 1px rgba(70, 220, 225, 0.035) inset,
+        0 0 24px rgba(70, 220, 225, 0.08);
     }
 
-    .theme-blue:hover {
-      border-color: rgba(102, 188, 255, 0.64);
+    .theme-turquoise:hover {
+      border-color: rgba(95, 232, 236, 0.66);
       box-shadow:
-        0 0 0 1px rgba(80, 175, 255, 0.05) inset,
-        0 0 30px rgba(80, 175, 255, 0.13);
+        0 0 0 1px rgba(70, 220, 225, 0.05) inset,
+        0 0 30px rgba(70, 220, 225, 0.13);
     }
 
-    .theme-blue .service-kicker,
-    .theme-blue .mini-label {
-      color: #66beff;
+    .theme-turquoise .service-kicker,
+    .theme-turquoise .mini-label {
+      color: #6ee7eb;
     }
 
-    .theme-blue p,
-    .theme-blue h2,
-    .theme-blue .mini-box p {
-      color: #f3f3f3;
+    .theme-turquoise h2 {
+      color: #9ef4f6;
     }
 
-    .theme-blue .mini-box {
-      border-color: rgba(102, 190, 255, 0.18);
-      background: rgba(102, 190, 255, 0.035);
+    .theme-turquoise p,
+    .theme-turquoise .mini-box p {
+      color: #f2fbfb;
+    }
+
+    .theme-turquoise .mini-box {
+      border-color: rgba(110, 231, 235, 0.18);
+      background: rgba(110, 231, 235, 0.04);
     }
 
     .bottom-cta {
       max-width: 760px;
       margin: 18px auto 0;
       text-align: center;
-    }
-
-    .bottom-cta p {
-      color: #eaeaea;
-      font-size: 1rem;
-      line-height: 1.8;
-      margin-bottom: 16px;
     }
 
     .cta-row {
@@ -419,9 +431,9 @@
     }
 
     .cta-row a:hover {
-      border-color: rgba(255, 70, 70, 0.7);
+      border-color: rgba(255, 190, 70, 0.7);
       transform: translateY(-2px);
-      box-shadow: 0 0 20px rgba(255, 70, 70, 0.14);
+      box-shadow: 0 0 20px rgba(255, 190, 70, 0.14);
     }
 
     @media (max-width: 768px) {
@@ -443,6 +455,10 @@
         letter-spacing: 1.4px;
       }
 
+      .service-card h2 {
+        margin-bottom: 16px;
+      }
+
       .service-card p {
         font-size: 0.95rem;
         line-height: 1.72;
@@ -461,11 +477,6 @@
         font-size: 0.92rem;
       }
 
-      .bottom-cta p {
-        font-size: 0.95rem;
-        line-height: 1.75;
-      }
-
       .cta-row a {
         min-width: 100%;
         font-size: 0.76rem;
@@ -479,7 +490,7 @@
       <a class="back-link" href="home.html">Back to Home</a>
     </div>
 
-    <section class="service-card theme-red">
+    <section class="service-card theme-gold">
       <div class="service-kicker">Core Service</div>
       <h2>General Pest Control</h2>
       <p>
@@ -541,7 +552,7 @@
       </div>
     </section>
 
-    <section class="service-card theme-orange">
+    <section class="service-card theme-green">
       <div class="service-kicker">Targeted Outdoor Service</div>
       <h2>Tick &amp; Flea Treatment</h2>
       <p>
@@ -572,7 +583,7 @@
       </div>
     </section>
 
-    <section class="service-card theme-green">
+    <section class="service-card theme-red">
       <div class="service-kicker">Seasonal Treatment</div>
       <h2>Mosquito Treatment</h2>
       <p>
@@ -635,7 +646,7 @@
       </div>
     </section>
 
-    <section class="service-card theme-blue">
+    <section class="service-card theme-turquoise">
       <div class="service-kicker">Lawn + Property Service</div>
       <h2>Weed Control</h2>
       <p>
@@ -667,11 +678,6 @@
     </section>
 
     <section class="bottom-cta">
-      <p>
-        Need help choosing the right service? Reach out and we can point you in
-        the right direction.
-      </p>
-
       <div class="cta-row">
         <a href="tel:8709197114">Call</a>
         <a href="sms:8709197114">Text</a>
