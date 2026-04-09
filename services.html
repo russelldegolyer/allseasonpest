@@ -1,1 +1,518 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Services | All Season Pest Control</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
 
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      background: #000000;
+      color: #ffffff;
+      font-family: Arial, Helvetica, sans-serif;
+      min-height: 100vh;
+    }
+
+    .page-wrap {
+      max-width: 980px;
+      margin: 0 auto;
+      padding: 42px 20px 70px;
+    }
+
+    .top-bar {
+      display: flex;
+      justify-content: center;
+      margin-bottom: 26px;
+    }
+
+    .back-link {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 12px 18px;
+      border-radius: 12px;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      background:
+        linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.015)),
+        #0a0a0a;
+      color: #ffffff;
+      text-decoration: none;
+      text-transform: uppercase;
+      font-size: 0.8rem;
+      font-weight: 700;
+      letter-spacing: 1.3px;
+      transition: border-color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .back-link:hover {
+      border-color: rgba(255, 43, 43, 0.55);
+      transform: translateY(-2px);
+      box-shadow: 0 0 18px rgba(255, 43, 43, 0.1);
+    }
+
+    .hero-card {
+      position: relative;
+      max-width: 760px;
+      margin: 0 auto 34px;
+      padding: 32px 28px;
+      text-align: center;
+      border-radius: 20px;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      background:
+        linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.015)),
+        radial-gradient(circle at top center, rgba(255, 43, 43, 0.10), rgba(255, 43, 43, 0) 58%),
+        #0a0a0a;
+      box-shadow:
+        0 0 0 1px rgba(255,255,255,0.02) inset,
+        0 14px 40px rgba(0,0,0,0.45);
+    }
+
+    .hero-title {
+      color: #ff2b2b;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      font-size: 0.92rem;
+      font-weight: 700;
+      margin-bottom: 14px;
+    }
+
+    .hero-card h1 {
+      font-size: clamp(1.9rem, 4vw, 2.8rem);
+      line-height: 1.08;
+      margin-bottom: 16px;
+      font-weight: 700;
+    }
+
+    .hero-card p {
+      max-width: 640px;
+      margin: 0 auto;
+      color: #ededed;
+      font-size: 1rem;
+      line-height: 1.85;
+    }
+
+    .jump-links {
+      max-width: 860px;
+      margin: 0 auto 28px;
+      display: flex;
+      justify-content: center;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .jump-links a {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 200px;
+      padding: 13px 16px;
+      border-radius: 12px;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      background:
+        linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.015)),
+        #0a0a0a;
+      color: #ffffff;
+      text-decoration: none;
+      text-transform: uppercase;
+      font-size: 0.82rem;
+      font-weight: 700;
+      letter-spacing: 1.3px;
+      transition: border-color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .jump-links a:hover {
+      border-color: rgba(255, 43, 43, 0.55);
+      transform: translateY(-2px);
+      box-shadow: 0 0 18px rgba(255, 43, 43, 0.1);
+    }
+
+    .service-card {
+      position: relative;
+      background:
+        radial-gradient(
+          340px circle at var(--mouse-x, 50%) var(--mouse-y, 50%),
+          rgba(255, 43, 43, 0.16),
+          rgba(255, 43, 43, 0.08) 20%,
+          rgba(255, 43, 43, 0.03) 36%,
+          rgba(255, 43, 43, 0) 60%
+        ),
+        #0a0a0a;
+      border: 1px solid #1f1f1f;
+      border-radius: 20px;
+      padding: 30px 26px;
+      margin-bottom: 20px;
+      overflow: hidden;
+      transition: border-color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+      scroll-margin-top: 24px;
+    }
+
+    .service-card:hover {
+      border-color: rgba(255, 43, 43, 0.45);
+      transform: translateY(-2px);
+      box-shadow: 0 0 20px rgba(255, 43, 43, 0.08);
+    }
+
+    .service-kicker {
+      color: #ff2b2b;
+      text-transform: uppercase;
+      letter-spacing: 1.8px;
+      font-size: 0.78rem;
+      font-weight: 700;
+      margin-bottom: 10px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .service-card h2 {
+      font-size: clamp(1.55rem, 3.4vw, 2.2rem);
+      line-height: 1.1;
+      margin-bottom: 18px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .service-card p,
+    .service-card li {
+      color: #f1f1f1;
+      font-size: 1rem;
+      line-height: 1.8;
+      position: relative;
+      z-index: 1;
+    }
+
+    .service-card p {
+      margin-bottom: 14px;
+    }
+
+    .service-card ul {
+      padding-left: 20px;
+      margin: 8px 0 16px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .service-card li {
+      margin-bottom: 6px;
+    }
+
+    .service-card strong {
+      color: #ffffff;
+    }
+
+    .service-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 14px;
+      margin-top: 18px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .mini-box {
+      border-radius: 14px;
+      border: 1px solid rgba(255,255,255,0.07);
+      background: rgba(255,255,255,0.02);
+      padding: 16px 16px;
+    }
+
+    .mini-label {
+      color: #ff2b2b;
+      text-transform: uppercase;
+      letter-spacing: 1.3px;
+      font-size: 0.74rem;
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+
+    .mini-box p {
+      margin: 0;
+      font-size: 0.95rem;
+      line-height: 1.7;
+      color: #f0f0f0;
+    }
+
+    .bottom-cta {
+      max-width: 760px;
+      margin: 18px auto 0;
+      text-align: center;
+    }
+
+    .bottom-cta p {
+      color: #eaeaea;
+      font-size: 1rem;
+      line-height: 1.8;
+      margin-bottom: 16px;
+    }
+
+    .cta-row {
+      display: flex;
+      justify-content: center;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .cta-row a {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 170px;
+      padding: 13px 16px;
+      border-radius: 12px;
+      border: 1px solid rgba(255,255,255,0.1);
+      background:
+        linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.015)),
+        #0a0a0a;
+      color: #ffffff;
+      text-decoration: none;
+      text-transform: uppercase;
+      font-size: 0.82rem;
+      font-weight: 700;
+      letter-spacing: 1.3px;
+      transition: border-color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .cta-row a:hover {
+      border-color: rgba(255, 43, 43, 0.55);
+      transform: translateY(-2px);
+      box-shadow: 0 0 18px rgba(255, 43, 43, 0.1);
+    }
+
+    @media (max-width: 768px) {
+      .page-wrap {
+        padding: 28px 16px 50px;
+      }
+
+      .top-bar {
+        margin-bottom: 20px;
+      }
+
+      .hero-card {
+        padding: 24px 18px;
+        margin-bottom: 24px;
+        border-radius: 16px;
+      }
+
+      .hero-title {
+        font-size: 0.76rem;
+        letter-spacing: 1.4px;
+        margin-bottom: 10px;
+      }
+
+      .hero-card h1 {
+        margin-bottom: 12px;
+      }
+
+      .hero-card p {
+        font-size: 0.94rem;
+        line-height: 1.8;
+      }
+
+      .jump-links {
+        gap: 10px;
+        margin-bottom: 20px;
+      }
+
+      .jump-links a {
+        min-width: 100%;
+        font-size: 0.76rem;
+        padding: 12px 14px;
+      }
+
+      .service-card {
+        padding: 22px 18px;
+        border-radius: 16px;
+      }
+
+      .service-kicker {
+        font-size: 0.72rem;
+        letter-spacing: 1.4px;
+      }
+
+      .service-card p,
+      .service-card li {
+        font-size: 0.95rem;
+        line-height: 1.72;
+      }
+
+      .service-grid {
+        grid-template-columns: 1fr;
+        gap: 12px;
+      }
+
+      .mini-box {
+        padding: 14px 14px;
+      }
+
+      .mini-box p {
+        font-size: 0.92rem;
+      }
+
+      .bottom-cta p {
+        font-size: 0.95rem;
+        line-height: 1.75;
+      }
+
+      .cta-row a {
+        min-width: 100%;
+        font-size: 0.76rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main class="page-wrap">
+    <div class="top-bar">
+      <a class="back-link" href="home.html">Back to Home</a>
+    </div>
+
+    <section class="hero-card">
+      <div class="hero-title">All Season Pest Control</div>
+      <h1>Services That We Offer</h1>
+      <p>
+        We offer recurring pest control and specialty treatment options designed
+        to protect the home, reduce pest pressure, and give customers dependable
+        service they can count on.
+      </p>
+    </section>
+
+    <nav class="jump-links">
+      <a href="#general-pests">General Pests</a>
+      <a href="#rodent-control">Rodent Control</a>
+      <a href="#specialty-pests">Specialty Pests</a>
+    </nav>
+
+    <section id="general-pests" class="service-card">
+      <div class="service-kicker">Core Service</div>
+      <h2>General Pests</h2>
+      <p>
+        Our general pest service is designed to help control common household
+        pests through thorough exterior treatment and targeted interior service
+        when needed.
+      </p>
+      <p>
+        This service typically targets pests such as ants, spiders, roaches,
+        crickets, earwigs, silverfish, centipedes, millipedes, and other common
+        invading insects.
+      </p>
+
+      <div class="service-grid">
+        <div class="mini-box">
+          <div class="mini-label">Typical Coverage</div>
+          <p>
+            Exterior foundation treatment with interior treatment as needed based
+            on pest activity and customer concerns.
+          </p>
+        </div>
+        <div class="mini-box">
+          <div class="mini-label">Important Note</div>
+          <p>
+            Does not cover bed bugs or termites.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section id="rodent-control" class="service-card">
+      <div class="service-kicker">Monitoring + Control</div>
+      <h2>Rodent Control</h2>
+      <p>
+        Our rodent control service focuses on reducing and monitoring rodent
+        activity through strategic placement of bait stations and ongoing
+        service as needed.
+      </p>
+      <p>
+        Service may include inspection of active areas, exterior baiting, and
+        recommendations to help reduce conditions that contribute to rodent
+        problems around the home.
+      </p>
+
+      <div class="service-grid">
+        <div class="mini-box">
+          <div class="mini-label">Service Focus</div>
+          <p>
+            Ongoing control, activity reduction, monitoring, and follow-up based
+            on the level of rodent pressure.
+          </p>
+        </div>
+        <div class="mini-box">
+          <div class="mini-label">Important Note</div>
+          <p>
+            Does not include snakes, skunks, or squirrels.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section id="specialty-pests" class="service-card">
+      <div class="service-kicker">Specialized Treatment</div>
+      <h2>Specialty Pests</h2>
+      <p>
+        Some pest issues require a more focused treatment plan than standard
+        recurring service. Our specialty services are built for pest problems
+        that need more targeted attention.
+      </p>
+
+      <ul>
+        <li>German roach treatments</li>
+        <li>Mosquito treatments</li>
+        <li>Tick and flea treatments</li>
+        <li>Weed control</li>
+      </ul>
+
+      <div class="service-grid">
+        <div class="mini-box">
+          <div class="mini-label">Best For</div>
+          <p>
+            Properties dealing with more persistent or seasonal pest pressure
+            that falls outside standard general pest service.
+          </p>
+        </div>
+        <div class="mini-box">
+          <div class="mini-label">Service Approach</div>
+          <p>
+            Treatment plans may vary depending on pest type, severity of
+            activity, and property conditions.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section class="bottom-cta">
+      <p>
+        Need help choosing the right plan? Reach out and we can point you in the
+        right direction.
+      </p>
+
+      <div class="cta-row">
+        <a href="tel:8709197114">Call</a>
+        <a href="sms:8709197114">Text</a>
+        <a href="mailto:gmail@allseasonllc.com">Email</a>
+      </div>
+    </section>
+  </main>
+
+  <script>
+    const cards = document.querySelectorAll('.service-card');
+
+    cards.forEach((card) => {
+      card.addEventListener('mousemove', (e) => {
+        const rect = card.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+
+        card.style.setProperty('--mouse-x', `${x}px`);
+        card.style.setProperty('--mouse-y', `${y}px`);
+      });
+    });
+  </script>
+</body>
+</html>
