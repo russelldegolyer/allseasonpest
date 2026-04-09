@@ -11,6 +11,10 @@
       padding: 0;
     }
 
+    html {
+      scroll-behavior: smooth;
+    }
+
     body {
       background: #000000;
       color: #ffffff;
@@ -19,9 +23,9 @@
     }
 
     .home-wrap {
-      max-width: 900px;
+      max-width: 980px;
       margin: 0 auto;
-      padding: 48px 20px 60px;
+      padding: 48px 20px 70px;
       text-align: center;
     }
 
@@ -38,12 +42,12 @@
       letter-spacing: 2px;
       text-transform: uppercase;
       color: #ff2b2b;
-      margin-bottom: 18px;
+      margin-bottom: 34px;
     }
 
     .philosophy-text {
       max-width: 760px;
-      margin: 0 auto;
+      margin: 0 auto 46px;
     }
 
     .philosophy-text p {
@@ -54,6 +58,118 @@
     }
 
     .philosophy-text p:last-child {
+      margin-bottom: 0;
+    }
+
+    .services-section {
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    .services-heading {
+      font-size: 0.95rem;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: #ff2b2b;
+      margin-bottom: 20px;
+    }
+
+    .service-nav {
+      display: flex;
+      justify-content: center;
+      gap: 14px;
+      flex-wrap: wrap;
+      margin-bottom: 30px;
+    }
+
+    .service-nav a {
+      display: inline-block;
+      min-width: 220px;
+      padding: 14px 18px;
+      border: 1px solid #2a2a2a;
+      border-radius: 12px;
+      background: #0d0d0d;
+      color: #ffffff;
+      text-decoration: none;
+      text-transform: uppercase;
+      font-size: 0.9rem;
+      font-weight: 700;
+      letter-spacing: 1px;
+      transition: border-color 0.2s ease, transform 0.2s ease, background 0.2s ease;
+    }
+
+    .service-nav a:hover {
+      border-color: #ff2b2b;
+      background: #111111;
+      transform: translateY(-2px);
+    }
+
+    .service-card {
+      position: relative;
+      background:
+        radial-gradient(
+          320px circle at var(--mouse-x, 50%) var(--mouse-y, 50%),
+          rgba(255, 43, 43, 0.18),
+          rgba(255, 43, 43, 0.08) 20%,
+          rgba(255, 43, 43, 0.03) 36%,
+          rgba(255, 43, 43, 0) 60%
+        ),
+        #0a0a0a;
+      border: 1px solid #1f1f1f;
+      border-radius: 18px;
+      padding: 28px 24px;
+      text-align: left;
+      margin-bottom: 18px;
+      scroll-margin-top: 24px;
+      overflow: hidden;
+      transition: border-color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .service-card:hover {
+      border-color: rgba(255, 43, 43, 0.45);
+      transform: translateY(-2px);
+      box-shadow: 0 0 20px rgba(255, 43, 43, 0.08);
+    }
+
+    .service-card h3 {
+      color: #ff2b2b;
+      font-size: 1.2rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 14px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .service-card p,
+    .service-card ul {
+      color: #f3f3f3;
+      font-size: 1rem;
+      line-height: 1.75;
+      margin-bottom: 14px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .service-card p:last-child,
+    .service-card ul:last-child {
+      margin-bottom: 0;
+    }
+
+    .service-card strong {
+      color: #ffffff;
+    }
+
+    .service-card ul {
+      padding-left: 20px;
+    }
+
+    .service-card li {
+      margin-bottom: 6px;
+    }
+
+    .service-card li:last-child {
       margin-bottom: 0;
     }
 
@@ -70,11 +186,39 @@
       .founders-line {
         font-size: 0.82rem;
         letter-spacing: 1.4px;
-        margin-bottom: 14px;
+        margin-bottom: 28px;
+      }
+
+      .philosophy-text {
+        margin-bottom: 38px;
       }
 
       .philosophy-text p {
         font-size: 0.98rem;
+        line-height: 1.7;
+      }
+
+      .services-heading {
+        font-size: 0.82rem;
+        letter-spacing: 1.4px;
+      }
+
+      .service-nav a {
+        min-width: 100%;
+        font-size: 0.85rem;
+      }
+
+      .service-card {
+        padding: 22px 18px;
+      }
+
+      .service-card h3 {
+        font-size: 1.05rem;
+      }
+
+      .service-card p,
+      .service-card ul {
+        font-size: 0.96rem;
         line-height: 1.7;
       }
     }
@@ -88,10 +232,9 @@
 
     <section class="philosophy-text">
       <p>
-        We believe pest control should be professional,
-        dependable, and done with care. Our focus is on delivering safe,
-        effective treatments and consistent service that gives customers real
-        peace of mind.
+        We believe pest control should be professional, dependable, and done
+        with care. Our focus is on delivering safe, effective treatments and
+        consistent service that gives customers real peace of mind.
       </p>
 
       <p>
@@ -101,6 +244,75 @@
         customer-first approach.
       </p>
     </section>
+
+    <section class="services-section">
+      <div class="services-heading">Our Services</div>
+
+      <nav class="service-nav">
+        <a href="#general-pests">General Pests</a>
+        <a href="#rodent-control">Rodent Control</a>
+        <a href="#specialty-pests">Specialty Pests</a>
+      </nav>
+
+      <section id="general-pests" class="service-card">
+        <h3>General Pests</h3>
+        <p>
+          Our general pest service is designed to help control common household
+          pests through thorough exterior treatment and targeted interior service
+          when needed.
+        </p>
+        <p>
+          This service typically targets pests such as ants, spiders, roaches,
+          crickets, earwigs, silverfish, centipedes, millipedes, and other
+          common invading insects.
+        </p>
+        <p><strong>Does not cover bed bugs or termites.</strong></p>
+      </section>
+
+      <section id="rodent-control" class="service-card">
+        <h3>Rodent Control</h3>
+        <p>
+          Our rodent control service focuses on reducing and monitoring rodent
+          activity through strategic placement of bait stations and ongoing
+          service as needed.
+        </p>
+        <p>
+          Service may include inspection of active areas, exterior baiting, and
+          recommendations to help reduce conditions that contribute to rodent
+          problems.
+        </p>
+        <p><strong>Does not include snakes, skunks, or squirrels.</strong></p>
+      </section>
+
+      <section id="specialty-pests" class="service-card">
+        <h3>Specialty Pests</h3>
+        <p>
+          Some pest issues require a more focused treatment plan than standard
+          recurring service. Specialty pest services include:
+        </p>
+        <ul>
+          <li>German roach treatments</li>
+          <li>Mosquito treatments</li>
+          <li>Tick and flea treatments</li>
+          <li>Weed control</li>
+        </ul>
+      </section>
+    </section>
   </main>
+
+  <script>
+    const cards = document.querySelectorAll('.service-card');
+
+    cards.forEach((card) => {
+      card.addEventListener('mousemove', (e) => {
+        const rect = card.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+
+        card.style.setProperty('--mouse-x', `${x}px`);
+        card.style.setProperty('--mouse-y', `${y}px`);
+      });
+    });
+  </script>
 </body>
 </html>
