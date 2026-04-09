@@ -68,16 +68,23 @@
       overflow: hidden;
     }
 
-    .philosophy-card::before {
+    .philosophy-card::before,
+    .philosophy-card::after {
       content: "";
       position: absolute;
-      top: 0;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 140px;
-      height: 2px;
-      background: linear-gradient(to right, transparent, #ff2b2b, transparent);
+      top: 18px;
+      bottom: 18px;
+      width: 2px;
+      background: linear-gradient(to bottom, transparent, #ff2b2b, transparent);
       opacity: 0.95;
+    }
+
+    .philosophy-card::before {
+      left: 14px;
+    }
+
+    .philosophy-card::after {
+      right: 14px;
     }
 
     .philosophy-card p {
@@ -87,14 +94,6 @@
       font-weight: 400;
       letter-spacing: 0.15px;
       margin: 0;
-    }
-
-    .intro-accent {
-      width: 72px;
-      height: 2px;
-      background: linear-gradient(to right, transparent, #ff2b2b, transparent);
-      margin: 28px auto 0;
-      opacity: 0.9;
     }
 
     .services-section {
@@ -195,18 +194,23 @@
         border-radius: 16px;
       }
 
+      .philosophy-card::before,
+      .philosophy-card::after {
+        top: 16px;
+        bottom: 16px;
+      }
+
       .philosophy-card::before {
-        width: 96px;
+        left: 10px;
+      }
+
+      .philosophy-card::after {
+        right: 10px;
       }
 
       .philosophy-card p {
         font-size: 0.94rem;
         line-height: 1.85;
-      }
-
-      .intro-accent {
-        width: 56px;
-        margin: 24px auto 0;
       }
 
       .service-card {
@@ -237,8 +241,6 @@
           We believe pest control should be professional, dependable, and done with care. Our focus is on delivering safe, effective treatments, consistent service, and real peace of mind through honest communication, fair pricing, and a commitment to standing behind our work. Our goal is not just to treat pests, but to provide lasting protection through quality service, real solutions, and a customer-first approach.
         </p>
       </div>
-
-      <div class="intro-accent"></div>
     </section>
 
     <section class="services-section">
