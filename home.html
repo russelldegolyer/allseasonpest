@@ -1,67 +1,105 @@
-<!-- White Logo -->
-<img
-  src="images/all-season-logo-white.png"
-  alt="All Season Pest Control Logo"
-  class="home-logo"
-/>
-
-<!-- Company Philosophy -->
-<section class="home-philosophy">
-  <p>
-    All Season Pest Control believes pest control should be professional,
-    dependable, and done with care. Our focus is on delivering safe, effective
-    treatments and consistent service that gives customers real peace of mind.
-  </p>
-
-  <p>
-    We are committed to honest communication, fair pricing, and standing behind
-    our work. Our goal is not just to treat pests, but to provide lasting
-    protection through quality service, real solutions, and a customer-first
-    approach.
-  </p>
-</section>
-
-<style>
-  .home-logo {
-    display: block;
-    width: min(420px, 82vw);
-    height: auto;
-    margin: 0 auto 28px;
-  }
-
-  .home-philosophy {
-    max-width: 760px;
-    margin: 0 auto;
-    text-align: center;
-    padding: 0 20px;
-  }
-
-  .home-philosophy p {
-    margin: 0 0 18px;
-    color: #ffffff;
-    font-size: 1.08rem;
-    line-height: 1.8;
-    font-weight: 400;
-    letter-spacing: 0.2px;
-  }
-
-  .home-philosophy p:last-child {
-    margin-bottom: 0;
-  }
-
-  @media (max-width: 768px) {
-    .home-logo {
-      width: min(320px, 88vw);
-      margin-bottom: 22px;
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>All Season Pest Control</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
     }
 
-    .home-philosophy {
-      padding: 0 16px;
+    body {
+      background: #000000;
+      color: #ffffff;
+      font-family: Arial, Helvetica, sans-serif;
+      min-height: 100vh;
     }
 
-    .home-philosophy p {
-      font-size: 1rem;
-      line-height: 1.75;
+    .home-wrap {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 48px 20px 60px;
+      text-align: center;
     }
-  }
-</style>
+
+    .logo {
+      display: block;
+      width: min(440px, 85vw);
+      height: auto;
+      margin: 0 auto 22px;
+    }
+
+    .philosophy-title {
+      font-size: 0.95rem;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: #ffffff;
+      margin-bottom: 18px;
+    }
+
+    .philosophy-text {
+      max-width: 760px;
+      margin: 0 auto;
+    }
+
+    .philosophy-text p {
+      font-size: 1.05rem;
+      line-height: 1.8;
+      color: #f5f5f5;
+      margin-bottom: 18px;
+    }
+
+    .philosophy-text p:last-child {
+      margin-bottom: 0;
+    }
+
+    @media (max-width: 768px) {
+      .home-wrap {
+        padding: 36px 16px 50px;
+      }
+
+      .logo {
+        width: min(340px, 88vw);
+        margin-bottom: 18px;
+      }
+
+      .philosophy-title {
+        font-size: 0.85rem;
+        margin-bottom: 14px;
+      }
+
+      .philosophy-text p {
+        font-size: 0.98rem;
+        line-height: 1.7;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main class="home-wrap">
+    <img src="logo.png" alt="All Season Pest Control Logo" class="logo" />
+
+    <div class="philosophy-title">Company Philosophy</div>
+
+    <section class="philosophy-text">
+      <p>
+        All Season Pest Control believes pest control should be professional,
+        dependable, and done with care. Our focus is on delivering safe,
+        effective treatments and consistent service that gives customers real
+        peace of mind.
+      </p>
+
+      <p>
+        We are committed to honest communication, fair pricing, and standing
+        behind our work. Our goal is not just to treat pests, but to provide
+        lasting protection through quality service, real solutions, and a
+        customer-first approach.
+      </p>
+    </section>
+  </main>
+</body>
+</html>
