@@ -34,11 +34,12 @@
     }
 
     .logo {
-      display: block;
+      display: inline-block;
       margin: 0 auto;
       max-width: 950px;
-      width: 92%;
+      width: auto;
       height: auto;
+      max-height: 78vh;
       transform-origin: center center;
       animation: subtlePulse 2.4s ease-in-out infinite;
       transition: transform 0.32s ease-in-out, opacity 0.32s ease-in-out, filter 0.32s ease-in-out;
@@ -48,9 +49,9 @@
       transform: scale(1.075);
       opacity: 0.99;
       filter:
-        drop-shadow(0 0 8px rgba(255, 0, 0, 0.70))
-        drop-shadow(0 0 18px rgba(255, 0, 0, 0.55))
-        drop-shadow(0 0 32px rgba(255, 0, 0, 0.38));
+        drop-shadow(0 0 5px rgba(255, 0, 0, 0.45))
+        drop-shadow(0 0 12px rgba(255, 0, 0, 0.30))
+        drop-shadow(0 0 20px rgba(255, 0, 0, 0.18));
       animation-play-state: paused;
     }
 
@@ -106,7 +107,8 @@
 
       .logo {
         width: 100%;
-        max-width: none;
+        max-width: 100%;
+        max-height: none;
       }
 
       .enter-link {
