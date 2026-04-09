@@ -14,6 +14,7 @@
       align-items: center;
       justify-content: center;
       min-height: 100vh;
+      font-family: Arial, sans-serif;
     }
 
     .wrap {
@@ -45,9 +46,21 @@
       opacity: 0.97;
     }
 
-    .logo-link:not(:hover) .logo {
-      transform: scale(1);
-      opacity: 1;
+    .enter-text {
+      margin-top: 18px;
+      color: #ffffff;
+      font-size: 16px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      opacity: 0.9;
+    }
+
+    .desktop-text {
+      display: inline;
+    }
+
+    .mobile-text {
+      display: none;
     }
 
     @media (max-width: 768px) {
@@ -59,6 +72,20 @@
         width: 100%;
         max-width: none;
       }
+
+      .enter-text {
+        font-size: 14px;
+        letter-spacing: 1.5px;
+        margin-top: 14px;
+      }
+
+      .desktop-text {
+        display: none;
+      }
+
+      .mobile-text {
+        display: inline;
+      }
     }
   </style>
 </head>
@@ -67,6 +94,11 @@
     <a href="home.html" class="logo-link" aria-label="Enter Website">
       <img src="updated logo.PNG" alt="All Season Pest Control" class="logo">
     </a>
+
+    <div class="enter-text">
+      <span class="desktop-text">Click Logo to Enter</span>
+      <span class="mobile-text">Tap Logo to Enter</span>
+    </div>
   </div>
 </body>
 </html>
