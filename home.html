@@ -42,7 +42,7 @@
       letter-spacing: 2px;
       text-transform: uppercase;
       color: #ff2b2b;
-      margin-bottom: 42px;
+      margin-bottom: 34px;
     }
 
     .intro-wrap {
@@ -51,22 +51,42 @@
       padding: 0 10px;
     }
 
-    .philosophy-text {
-      max-width: 680px;
+    .philosophy-card {
+      position: relative;
+      max-width: 720px;
       margin: 0 auto;
+      padding: 34px 30px;
+      background:
+        linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.015)),
+        radial-gradient(circle at top center, rgba(255, 43, 43, 0.09), rgba(255, 43, 43, 0) 55%),
+        #0a0a0a;
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 20px;
+      box-shadow:
+        0 0 0 1px rgba(255,255,255,0.02) inset,
+        0 14px 40px rgba(0,0,0,0.45);
+      overflow: hidden;
     }
 
-    .philosophy-text p {
-      font-size: 1.02rem;
+    .philosophy-card::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 140px;
+      height: 2px;
+      background: linear-gradient(to right, transparent, #ff2b2b, transparent);
+      opacity: 0.95;
+    }
+
+    .philosophy-card p {
+      font-size: 1.05rem;
       line-height: 1.95;
-      color: #f2f2f2;
-      margin-bottom: 24px;
+      color: #f3f3f3;
       font-weight: 400;
       letter-spacing: 0.15px;
-    }
-
-    .philosophy-text p:last-child {
-      margin-bottom: 0;
+      margin: 0;
     }
 
     .intro-accent {
@@ -162,7 +182,7 @@
       .founders-line {
         font-size: 0.8rem;
         letter-spacing: 1.6px;
-        margin-bottom: 34px;
+        margin-bottom: 28px;
       }
 
       .intro-wrap {
@@ -170,14 +190,18 @@
         padding: 0;
       }
 
-      .philosophy-text {
-        max-width: 100%;
+      .philosophy-card {
+        padding: 24px 18px;
+        border-radius: 16px;
       }
 
-      .philosophy-text p {
-        font-size: 0.92rem;
+      .philosophy-card::before {
+        width: 96px;
+      }
+
+      .philosophy-card p {
+        font-size: 0.94rem;
         line-height: 1.85;
-        margin-bottom: 22px;
       }
 
       .intro-accent {
@@ -208,18 +232,9 @@
     <div class="founders-line">FOUNDED AND OPERATED BY ZAMIR AND RUSSELL</div>
 
     <section class="intro-wrap">
-      <div class="philosophy-text">
+      <div class="philosophy-card">
         <p>
-          We believe pest control should be professional, dependable, and done
-          with care. Our focus is on delivering safe, effective treatments and
-          consistent service that gives customers real peace of mind.
-        </p>
-
-        <p>
-          We are committed to honest communication, fair pricing, and standing
-          behind our work. Our goal is not just to treat pests, but to provide
-          lasting protection through quality service, real solutions, and a
-          customer-first approach.
+          We believe pest control should be professional, dependable, and done with care. Our focus is on delivering safe, effective treatments, consistent service, and real peace of mind through honest communication, fair pricing, and a commitment to standing behind our work. Our goal is not just to treat pests, but to provide lasting protection through quality service, real solutions, and a customer-first approach.
         </p>
       </div>
 
