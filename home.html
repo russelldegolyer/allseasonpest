@@ -123,7 +123,7 @@
 
     .services-link-wrap {
       max-width: 720px;
-      margin: 0 auto 42px;
+      margin: 0 auto;
     }
 
     .services-link {
@@ -155,78 +155,6 @@
       background:
         linear-gradient(180deg, rgba(255, 43, 43, 0.16), rgba(255, 43, 43, 0.08)),
         #111111;
-    }
-
-    .services-section {
-      max-width: 900px;
-      margin: 0 auto;
-      text-align: left;
-    }
-
-    .service-card {
-      position: relative;
-      background:
-        radial-gradient(
-          320px circle at var(--mouse-x, 50%) var(--mouse-y, 50%),
-          rgba(255, 43, 43, 0.18),
-          rgba(255, 43, 43, 0.08) 20%,
-          rgba(255, 43, 43, 0.03) 36%,
-          rgba(255, 43, 43, 0) 60%
-        ),
-        #0a0a0a;
-      border: 1px solid #1f1f1f;
-      border-radius: 18px;
-      padding: 28px 24px;
-      margin-bottom: 18px;
-      overflow: hidden;
-      transition: border-color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
-    }
-
-    .service-card:hover {
-      border-color: rgba(255, 43, 43, 0.45);
-      transform: translateY(-2px);
-      box-shadow: 0 0 20px rgba(255, 43, 43, 0.08);
-    }
-
-    .service-card h3 {
-      color: #ff2b2b;
-      font-size: 1.2rem;
-      text-transform: uppercase;
-      letter-spacing: 1px;
-      margin-bottom: 14px;
-      position: relative;
-      z-index: 1;
-    }
-
-    .service-card p,
-    .service-card ul {
-      color: #f3f3f3;
-      font-size: 1rem;
-      line-height: 1.75;
-      margin-bottom: 14px;
-      position: relative;
-      z-index: 1;
-    }
-
-    .service-card p:last-child,
-    .service-card ul:last-child {
-      margin-bottom: 0;
-    }
-
-    .service-card strong {
-      color: #ffffff;
-    }
-
-    .service-card ul {
-      padding-left: 20px;
-    }
-
-    .service-card li {
-      margin-bottom: 6px;
-    }
-
-    .service-card li:last-child {
-      margin-bottom: 0;
     }
 
     @media (max-width: 768px) {
@@ -272,29 +200,11 @@
         letter-spacing: 1.1px;
       }
 
-      .services-link-wrap {
-        margin-bottom: 34px;
-      }
-
       .services-link {
         min-height: 58px;
         font-size: 0.88rem;
         letter-spacing: 1.2px;
         padding: 16px 14px;
-      }
-
-      .service-card {
-        padding: 22px 18px;
-      }
-
-      .service-card h3 {
-        font-size: 1.05rem;
-      }
-
-      .service-card p,
-      .service-card ul {
-        font-size: 0.96rem;
-        line-height: 1.7;
       }
     }
   </style>
@@ -305,7 +215,7 @@
 
     <section class="intro-wrap">
       <div class="philosophy-card">
-        <div class="philosophy-header">Founded and Operated by Zamir and Russell</div>
+        <div class="philosophy-header">Founded &amp; Operated by Zamir &amp; Russell</div>
         <p>
           We believe pest control should be professional, dependable, and done with care. Our focus is on delivering safe, effective treatments, consistent service, and real peace of mind through honest communication, fair pricing, and a commitment to standing behind our work. Our goal is not just to treat pests, but to provide lasting protection through quality service, real solutions, and a customer-first approach.
         </p>
@@ -323,67 +233,6 @@
         Services That We Offer
       </a>
     </section>
-
-    <section class="services-section">
-      <section class="service-card">
-        <h3>General Pests</h3>
-        <p>
-          Our general pest service is designed to help control common household
-          pests through thorough exterior treatment and targeted interior service
-          when needed.
-        </p>
-        <p>
-          This service typically targets pests such as ants, spiders, roaches,
-          crickets, earwigs, silverfish, centipedes, millipedes, and other
-          common invading insects.
-        </p>
-        <p><strong>Does not cover bed bugs or termites.</strong></p>
-      </section>
-
-      <section class="service-card">
-        <h3>Rodent Control</h3>
-        <p>
-          Our rodent control service focuses on reducing and monitoring rodent
-          activity through strategic placement of bait stations and ongoing
-          service as needed.
-        </p>
-        <p>
-          Service may include inspection of active areas, exterior baiting, and
-          recommendations to help reduce conditions that contribute to rodent
-          problems.
-        </p>
-        <p><strong>Does not include snakes, skunks, or squirrels.</strong></p>
-      </section>
-
-      <section class="service-card">
-        <h3>Specialty Pests</h3>
-        <p>
-          Some pest issues require a more focused treatment plan than standard
-          recurring service. Specialty pest services include:
-        </p>
-        <ul>
-          <li>German roach treatments</li>
-          <li>Mosquito treatments</li>
-          <li>Tick and flea treatments</li>
-          <li>Weed control</li>
-        </ul>
-      </section>
-    </section>
   </main>
-
-  <script>
-    const cards = document.querySelectorAll('.service-card');
-
-    cards.forEach((card) => {
-      card.addEventListener('mousemove', (e) => {
-        const rect = card.getBoundingClientRect();
-        const x = e.clientX - rect.left;
-        const y = e.clientY - rect.top;
-
-        card.style.setProperty('--mouse-x', `${x}px`);
-        card.style.setProperty('--mouse-y', `${y}px`);
-      });
-    });
-  </script>
 </body>
 </html>
