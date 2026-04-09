@@ -37,30 +37,44 @@
       max-width: 950px;
       width: 92%;
       height: auto;
-      transition: transform 0.28s ease-in-out, opacity 0.28s ease-in-out;
       transform-origin: center center;
+      animation: subtlePulse 2.4s ease-in-out infinite;
+      transition: transform 0.28s ease-in-out, opacity 0.28s ease-in-out, filter 0.28s ease-in-out;
     }
 
     .logo-link:hover .logo {
       transform: scale(1.045);
-      opacity: 0.97;
+      opacity: 0.98;
+      filter: drop-shadow(0 0 14px rgba(255, 0, 0, 0.22));
+      animation-play-state: paused;
     }
 
     .enter-text {
       margin-top: 18px;
-      color: #ffffff;
-      font-size: 16px;
-      letter-spacing: 2px;
+      color: #d9d9d9;
+      font-size: 13px;
+      letter-spacing: 4px;
       text-transform: uppercase;
-      opacity: 0.9;
+      opacity: 0.92;
+      animation: softFade 2s ease-in-out infinite;
     }
 
-    .desktop-text {
-      display: inline;
+    @keyframes subtlePulse {
+      0%, 100% {
+        transform: scale(1);
+      }
+      50% {
+        transform: scale(1.018);
+      }
     }
 
-    .mobile-text {
-      display: none;
+    @keyframes softFade {
+      0%, 100% {
+        opacity: 0.55;
+      }
+      50% {
+        opacity: 1;
+      }
     }
 
     @media (max-width: 768px) {
@@ -74,17 +88,9 @@
       }
 
       .enter-text {
-        font-size: 14px;
-        letter-spacing: 1.5px;
         margin-top: 14px;
-      }
-
-      .desktop-text {
-        display: none;
-      }
-
-      .mobile-text {
-        display: inline;
+        font-size: 11px;
+        letter-spacing: 3px;
       }
     }
   </style>
@@ -95,10 +101,7 @@
       <img src="updated logo.PNG" alt="All Season Pest Control" class="logo">
     </a>
 
-    <div class="enter-text">
-      <span class="desktop-text">Click Logo to Enter</span>
-      <span class="mobile-text">Tap Logo to Enter</span>
-    </div>
+    <div class="enter-text">Enter Site</div>
   </div>
 </body>
 </html>
