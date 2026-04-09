@@ -2,237 +2,324 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>All Season Pest Control</title>
+
   <style>
     * {
-      box-sizing: border-box;
       margin: 0;
       padding: 0;
-    }
-
-    html {
-      scroll-behavior: smooth;
+      box-sizing: border-box;
     }
 
     body {
-      background: #000000;
-      color: #ffffff;
+      background: #000;
+      color: #fff;
       font-family: Arial, Helvetica, sans-serif;
-      min-height: 100vh;
     }
 
-    .home-wrap {
-      max-width: 980px;
+    .container {
+      max-width: 1100px;
       margin: 0 auto;
-      padding: 48px 20px 70px;
+      padding: 0 20px;
+    }
+
+    /* HEADER */
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 22px 0;
+    }
+
+    .nav {
+      display: flex;
+      gap: 24px;
+      align-items: center;
+    }
+
+    .nav a {
+      color: #fff;
+      text-decoration: none;
+      font-size: 0.9rem;
+      letter-spacing: 1px;
+    }
+
+    .call-btn {
+      padding: 10px 16px;
+      border: 1px solid #ff2b2b;
+      border-radius: 8px;
+      text-decoration: none;
+      color: #fff;
+      font-size: 0.85rem;
+      letter-spacing: 1px;
+    }
+
+    /* HERO */
+    .hero {
       text-align: center;
+      padding: 80px 0 70px;
     }
 
-    .logo {
-      display: block;
-      width: min(880px, 170vw);
-      height: auto;
-      margin: 0 auto 24px;
+    .hero img {
+      width: min(700px, 90vw);
+      margin-bottom: 40px;
     }
 
-    .intro-wrap {
-      max-width: 760px;
-      margin: 0 auto 34px;
-      padding: 0 10px;
+    .hero h1 {
+      font-size: clamp(2rem, 5vw, 3rem);
+      line-height: 1.15;
+      margin-bottom: 20px;
     }
 
-    .philosophy-card {
-      position: relative;
-      max-width: 720px;
-      margin: 0 auto;
-      padding: 30px 30px 34px;
-      background:
-        linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.015)),
-        radial-gradient(circle at top center, rgba(255, 43, 43, 0.09), rgba(255, 43, 43, 0) 55%),
-        #0a0a0a;
-      border: 1px solid rgba(255,255,255,0.08);
-      border-radius: 20px;
-      box-shadow:
-        0 0 0 1px rgba(255,255,255,0.02) inset,
-        0 14px 40px rgba(0,0,0,0.45);
-      overflow: hidden;
+    .hero p {
+      max-width: 700px;
+      margin: 0 auto 30px;
+      font-size: 1rem;
+      line-height: 1.8;
+      color: #e5e5e5;
     }
 
-    .philosophy-header {
-      color: #ff2b2b;
-      font-size: 0.92rem;
-      font-weight: 700;
-      letter-spacing: 2px;
-      text-transform: uppercase;
-      margin-bottom: 18px;
-    }
-
-    .philosophy-card p {
-      font-size: 1.05rem;
-      line-height: 1.95;
-      color: #f3f3f3;
-      font-weight: 400;
-      letter-spacing: 0.15px;
-      margin: 0;
-    }
-
-    .contact-actions {
-      max-width: 720px;
-      margin: 0 auto 18px;
+    .hero-buttons {
       display: flex;
       justify-content: center;
       gap: 12px;
-      flex-wrap: nowrap;
+      flex-wrap: wrap;
+      margin-bottom: 20px;
     }
 
-    .contact-button {
-      flex: 1 1 0;
-      max-width: 170px;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      padding: 12px 16px;
-      border-radius: 12px;
-      border: 1px solid rgba(255, 255, 255, 0.1);
-      background:
-        linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.015)),
-        #0a0a0a;
-      color: #ffffff;
+    .btn {
+      padding: 14px 20px;
+      border-radius: 10px;
       text-decoration: none;
+      font-size: 0.85rem;
+      letter-spacing: 1.2px;
       text-transform: uppercase;
-      font-size: 0.82rem;
-      font-weight: 700;
-      letter-spacing: 1.4px;
-      transition: border-color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
-      box-shadow: 0 8px 24px rgba(0,0,0,0.28);
+      border: 1px solid #333;
+      background: #0d0d0d;
     }
 
-    .contact-button:hover {
-      border-color: rgba(255, 43, 43, 0.55);
-      box-shadow: 0 0 18px rgba(255, 43, 43, 0.1);
-      transform: translateY(-2px);
-      background:
-        linear-gradient(180deg, rgba(255,255,255,0.045), rgba(255,255,255,0.02)),
-        #0d0d0d;
+    .btn.primary {
+      border-color: #ff2b2b;
     }
 
-    .contact-button:active {
-      transform: translateY(0);
+    .trust-line {
+      font-size: 0.8rem;
+      color: #aaa;
+      margin-top: 10px;
     }
 
-    .services-link-wrap {
+    /* SECTION */
+    section {
+      padding: 70px 0;
+    }
+
+    .section-title {
+      text-align: center;
+      margin-bottom: 30px;
+      font-size: 1.6rem;
+    }
+
+    .section-text {
       max-width: 720px;
       margin: 0 auto;
+      text-align: center;
+      line-height: 1.8;
+      color: #ddd;
     }
 
-    .services-link {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      width: 100%;
-      min-height: 64px;
-      padding: 18px 20px;
-      border-radius: 16px;
-      border: 1px solid rgba(255, 43, 43, 0.28);
-      background:
-        linear-gradient(180deg, rgba(255, 43, 43, 0.12), rgba(255, 43, 43, 0.06)),
-        #0d0d0d;
-      color: #ffffff;
-      text-decoration: none;
-      text-transform: uppercase;
+    /* SERVICES */
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+      margin-top: 40px;
+    }
+
+    .card {
+      background: #0a0a0a;
+      padding: 24px;
+      border-radius: 14px;
+      border: 1px solid #1a1a1a;
+    }
+
+    .card h3 {
+      color: #ff2b2b;
+      margin-bottom: 10px;
       font-size: 1rem;
-      font-weight: 700;
-      letter-spacing: 1.6px;
-      box-shadow: 0 10px 28px rgba(0,0,0,0.32);
-      transition: border-color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
     }
 
-    .services-link:hover {
-      border-color: rgba(255, 43, 43, 0.6);
-      transform: translateY(-2px);
-      box-shadow: 0 0 22px rgba(255, 43, 43, 0.12);
-      background:
-        linear-gradient(180deg, rgba(255, 43, 43, 0.16), rgba(255, 43, 43, 0.08)),
-        #111111;
+    .card p {
+      font-size: 0.95rem;
+      line-height: 1.7;
+      color: #e3e3e3;
     }
 
-    @media (max-width: 768px) {
-      .home-wrap {
-        padding: 34px 16px 50px;
+    .center-btn {
+      text-align: center;
+      margin-top: 30px;
+    }
+
+    /* PROCESS */
+    .process {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 20px;
+      margin-top: 40px;
+    }
+
+    .step h4 {
+      color: #ff2b2b;
+      margin-bottom: 10px;
+    }
+
+    .step p {
+      font-size: 0.9rem;
+      color: #ddd;
+      line-height: 1.6;
+    }
+
+    /* CTA */
+    .cta {
+      text-align: center;
+      padding: 80px 0;
+    }
+
+    .cta h2 {
+      margin-bottom: 15px;
+    }
+
+    .cta p {
+      margin-bottom: 25px;
+      color: #ddd;
+    }
+
+    /* MOBILE */
+    @media (max-width: 900px) {
+      .grid {
+        grid-template-columns: 1fr;
       }
 
-      .logo {
-        width: min(340px, 88vw);
-        margin-bottom: 20px;
+      .process {
+        grid-template-columns: 1fr;
       }
 
-      .intro-wrap {
-        margin-bottom: 26px;
-        padding: 0;
-      }
-
-      .philosophy-card {
-        padding: 24px 18px;
-        border-radius: 16px;
-      }
-
-      .philosophy-header {
-        font-size: 0.78rem;
-        letter-spacing: 1.4px;
-        margin-bottom: 14px;
-      }
-
-      .philosophy-card p {
-        font-size: 0.94rem;
-        line-height: 1.85;
-      }
-
-      .contact-actions {
-        margin-bottom: 14px;
-        gap: 10px;
-      }
-
-      .contact-button {
-        max-width: none;
-        font-size: 0.76rem;
-        padding: 11px 10px;
-        letter-spacing: 1.1px;
-      }
-
-      .services-link {
-        min-height: 58px;
-        font-size: 0.88rem;
-        letter-spacing: 1.2px;
-        padding: 16px 14px;
+      .hero {
+        padding: 60px 0;
       }
     }
   </style>
 </head>
+
 <body>
-  <main class="home-wrap">
-    <img src="logo.png" alt="All Season Pest Control Logo" class="logo" />
 
-    <section class="intro-wrap">
-      <div class="philosophy-card">
-        <div class="philosophy-header">Founded &amp; Operated by Zamir &amp; Russell</div>
-        <p>
-          We believe pest control should be professional, dependable, and done with care. Our focus is on delivering safe, effective treatments, consistent service, and real peace of mind through honest communication, fair pricing, and a commitment to standing behind our work. Our goal is not just to treat pests, but to provide lasting protection through quality service, real solutions, and a customer-first approach.
-        </p>
+<div class="container">
+
+  <!-- HEADER -->
+  <header>
+    <img src="logo.png" style="height:40px;">
+    <div class="nav">
+      <a href="#">Home</a>
+      <a href="services.html">Services</a>
+      <a href="#">Contact</a>
+      <a class="call-btn" href="tel:8709197114">Call Now</a>
+    </div>
+  </header>
+
+  <!-- HERO -->
+  <section class="hero">
+    <img src="logo.png">
+
+    <h1>Professional pest control for Jonesboro homes that want it done right.</h1>
+
+    <p>
+      Safe treatments. Dependable service. Real protection for common household pests, rodent issues, German roaches, mosquitoes, and weed control.
+    </p>
+
+    <div class="hero-buttons">
+      <a class="btn primary" href="#">Get Quote</a>
+      <a class="btn" href="tel:8709197114">Call Now</a>
+    </div>
+
+    <div class="trust-line">
+      Locally Owned • Founded & Operated by Zamir & Russell • Serving Jonesboro and Surrounding Areas
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section>
+    <h2 class="section-title">A Better Kind of Pest Control</h2>
+    <p class="section-text">
+      We built All Season Pest Control around safe applications, dependable service, and honest communication. Our goal is simple: protect the home, solve the problem, and make the process straightforward from start to finish.
+    </p>
+  </section>
+
+  <!-- SERVICES -->
+  <section>
+    <h2 class="section-title">Services That We Offer</h2>
+
+    <div class="grid">
+      <div class="card">
+        <h3>General Pest Control</h3>
+        <p>Protection against common household pests with dependable recurring service.</p>
       </div>
-    </section>
 
-    <section class="contact-actions">
-      <a class="contact-button" href="tel:8709197114">Call</a>
-      <a class="contact-button" href="sms:8709197114">Text</a>
-      <a class="contact-button" href="mailto:gmail@allseasonllc.com">Email</a>
-    </section>
+      <div class="card">
+        <h3>Rodent Control</h3>
+        <p>Strategic monitoring and control designed to reduce rodent activity and protect your home.</p>
+      </div>
 
-    <section class="services-link-wrap">
-      <a class="services-link" href="services.html" target="_blank" rel="noopener noreferrer">
-        Services That We Offer
-      </a>
-    </section>
-  </main>
+      <div class="card">
+        <h3>Specialty Services</h3>
+        <p>Targeted treatments for German roaches, mosquitoes, and weed control.</p>
+      </div>
+    </div>
+
+    <div class="center-btn">
+      <a class="btn primary" href="services.html">View All Services</a>
+    </div>
+  </section>
+
+  <!-- PROCESS -->
+  <section>
+    <h2 class="section-title">Our Process</h2>
+
+    <div class="process">
+      <div class="step">
+        <h4>01 — Inspect</h4>
+        <p>We evaluate pest activity and pressure points around your home.</p>
+      </div>
+
+      <div class="step">
+        <h4>02 — Treat</h4>
+        <p>We apply targeted treatments based on your specific situation.</p>
+      </div>
+
+      <div class="step">
+        <h4>03 — Protect</h4>
+        <p>We build a plan to reduce future pest pressure.</p>
+      </div>
+
+      <div class="step">
+        <h4>04 — Maintain</h4>
+        <p>Ongoing service keeps protection consistent over time.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="cta">
+    <h2>Need Pest Control Done Right?</h2>
+    <p>Call, text, or request a quote today.</p>
+
+    <div class="hero-buttons">
+      <a class="btn" href="tel:8709197114">Call</a>
+      <a class="btn" href="sms:8709197114">Text</a>
+      <a class="btn" href="mailto:gmail@allseasonllc.com">Email</a>
+    </div>
+  </section>
+
+</div>
+
 </body>
 </html>
