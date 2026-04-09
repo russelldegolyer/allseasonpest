@@ -203,6 +203,12 @@
       grid-template-columns:1.1fr .9fr;
       gap:28px;
       margin-top:42px;
+      align-items:stretch;
+    }
+
+    .list-card,
+    .cta-box{
+      height:100%;
     }
 
     .list-card{
@@ -213,50 +219,19 @@
       box-shadow:var(--shadow);
     }
 
-    .list-card h3{
-      font-size:1.6rem;
-      margin-bottom:18px;
-      letter-spacing:-0.03em;
-    }
-
-    .feature-list{
-      list-style:none;
-      display:grid;
-      gap:16px;
-    }
-
-    .feature-list li{
-      padding-bottom:16px;
-      border-bottom:1px solid rgba(255,255,255,.08);
-      color:var(--muted);
-      line-height:1.6;
-    }
-
-    .feature-list li:last-child{
-      padding-bottom:0;
-      border-bottom:none;
-    }
-
-    .mini-label{
-      display:block;
-      color:#fff;
-      font-weight:800;
-      margin-bottom:4px;
-      letter-spacing:-0.02em;
-    }
-
     .cta-box{
       background:
         linear-gradient(135deg, rgba(197,18,18,.24), rgba(255,255,255,.03)),
         #0b0b0b;
       border:1px solid rgba(255,255,255,.10);
       border-radius:32px;
-      padding:34px;
+      padding:30px;
       box-shadow:var(--shadow);
     }
 
+    .list-card h3,
     .cta-box h3{
-      font-size:1.9rem;
+      font-size:1.8rem;
       line-height:1.05;
       margin-bottom:16px;
       letter-spacing:-0.04em;
@@ -265,13 +240,14 @@
     .cta-box p{
       color:var(--muted);
       line-height:1.65;
-      margin-bottom:20px;
+      margin-bottom:18px;
+      font-size:1rem;
     }
 
     .advantage-list{
       list-style:none;
       display:grid;
-      gap:14px;
+      gap:16px;
       margin-top:4px;
     }
 
@@ -500,6 +476,15 @@
         border-radius:24px;
       }
 
+      .list-card h3,
+      .cta-box h3{
+        font-size:1.55rem;
+      }
+
+      .advantage-list li{
+        font-size:.98rem;
+      }
+
       .bottom-cta{
         padding:0 18px 48px;
       }
@@ -620,22 +605,26 @@
       <div class="split">
         <div class="list-card">
           <h3>What you can expect</h3>
-          <ul class="feature-list">
+          <ul class="advantage-list">
             <li>
-              <span class="mini-label">Straight answers</span>
-              No vague wording, no inflated promises, and no pretending every issue needs some massive treatment.
+              <span class="advantage-dot"></span>
+              <span><strong>Straight answers</strong> — No vague wording, no inflated promises, and no pretending every issue needs some massive treatment.</span>
             </li>
             <li>
-              <span class="mini-label">Service with a plan</span>
-              We focus on treatment flow, pressure points, and follow-through so results actually build over time.
+              <span class="advantage-dot"></span>
+              <span><strong>Service with a plan</strong> — We focus on treatment flow, pressure points, and follow-through so results actually build over time.</span>
             </li>
             <li>
-              <span class="mini-label">Professional communication</span>
-              Homeowners should know what was done, why it was done, and what to expect next.
+              <span class="advantage-dot"></span>
+              <span><strong>Professional communication</strong> — Homeowners should know what was done, why it was done, and what to expect next.</span>
             </li>
             <li>
-              <span class="mini-label">Real Northeast Arkansas coverage</span>
-              Service built for the homes, weather, and seasonal pest activity in this area.
+              <span class="advantage-dot"></span>
+              <span><strong>Real Northeast Arkansas coverage</strong> — Service built for the homes, weather, and seasonal pest activity in this area.</span>
+            </li>
+            <li>
+              <span class="advantage-dot"></span>
+              <span><strong>Focused treatments</strong> — We treat what matters instead of wasting time and product on unnecessary areas.</span>
             </li>
           </ul>
         </div>
@@ -662,10 +651,6 @@
             <li>
               <span class="advantage-dot"></span>
               <span>Recurring protection that helps pest pressure stay low through changing seasons instead of constantly restarting from scratch.</span>
-            </li>
-            <li>
-              <span class="advantage-dot"></span>
-              <span>Professional communication so you know what was treated, what was found, and what to expect next.</span>
             </li>
             <li>
               <span class="advantage-dot"></span>
