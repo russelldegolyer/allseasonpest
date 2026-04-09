@@ -40,9 +40,9 @@
       justify-content: center;
       padding: 12px 18px;
       border-radius: 12px;
-      border: 1px solid rgba(255, 255, 255, 0.1);
+      border: 1px solid rgba(255, 255, 255, 0.12);
       background:
-        linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.015)),
+        linear-gradient(180deg, rgba(255,255,255,0.035), rgba(255,255,255,0.015)),
         #0a0a0a;
       color: #ffffff;
       text-decoration: none;
@@ -54,9 +54,9 @@
     }
 
     .back-link:hover {
-      border-color: rgba(255, 43, 43, 0.55);
+      border-color: rgba(255, 70, 70, 0.7);
       transform: translateY(-2px);
-      box-shadow: 0 0 18px rgba(255, 43, 43, 0.1);
+      box-shadow: 0 0 20px rgba(255, 70, 70, 0.14);
     }
 
     .service-card {
@@ -67,6 +67,8 @@
       overflow: hidden;
       transition: border-color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
       scroll-margin-top: 24px;
+      border-width: 2px;
+      border-style: solid;
     }
 
     .service-card:hover {
@@ -111,6 +113,8 @@
     .mini-box {
       border-radius: 14px;
       padding: 16px 16px;
+      border-width: 1.5px;
+      border-style: solid;
     }
 
     .mini-label {
@@ -131,218 +135,247 @@
     .theme-red {
       background:
         radial-gradient(
-          340px circle at var(--mouse-x, 50%) var(--mouse-y, 50%),
-          rgba(255, 43, 43, 0.16),
-          rgba(255, 43, 43, 0.08) 20%,
-          rgba(255, 43, 43, 0.03) 36%,
-          rgba(255, 43, 43, 0) 60%
+          380px circle at var(--mouse-x, 50%) var(--mouse-y, 50%),
+          rgba(255, 50, 50, 0.22),
+          rgba(255, 50, 50, 0.11) 18%,
+          rgba(255, 50, 50, 0.05) 34%,
+          rgba(255, 50, 50, 0.015) 48%,
+          rgba(255, 50, 50, 0) 64%
         ),
         #0a0a0a;
-      border: 1px solid #1f1f1f;
+      border-color: rgba(255, 55, 55, 0.42);
+      box-shadow:
+        0 0 0 1px rgba(255, 55, 55, 0.04) inset,
+        0 0 24px rgba(255, 55, 55, 0.08);
     }
 
     .theme-red:hover {
-      border-color: rgba(255, 43, 43, 0.45);
-      box-shadow: 0 0 20px rgba(255, 43, 43, 0.08);
+      border-color: rgba(255, 55, 55, 0.68);
+      box-shadow:
+        0 0 0 1px rgba(255, 55, 55, 0.05) inset,
+        0 0 30px rgba(255, 55, 55, 0.13);
     }
 
     .theme-red .service-kicker,
     .theme-red .mini-label {
-      color: #ff2b2b;
+      color: #ff4a4a;
     }
 
     .theme-red p,
     .theme-red h2,
     .theme-red .mini-box p {
-      color: #f1f1f1;
+      color: #f4f4f4;
     }
 
     .theme-red .mini-box {
-      border: 1px solid rgba(255,255,255,0.07);
-      background: rgba(255,255,255,0.02);
+      border-color: rgba(255, 74, 74, 0.18);
+      background: rgba(255, 74, 74, 0.035);
     }
 
     /* SILVER - RODENT */
     .theme-silver {
       background:
         radial-gradient(
-          340px circle at var(--mouse-x, 50%) var(--mouse-y, 50%),
-          rgba(190, 190, 190, 0.16),
-          rgba(190, 190, 190, 0.08) 20%,
-          rgba(190, 190, 190, 0.03) 36%,
-          rgba(190, 190, 190, 0) 60%
+          380px circle at var(--mouse-x, 50%) var(--mouse-y, 50%),
+          rgba(215, 215, 215, 0.20),
+          rgba(215, 215, 215, 0.10) 18%,
+          rgba(215, 215, 215, 0.045) 34%,
+          rgba(215, 215, 215, 0.014) 48%,
+          rgba(215, 215, 215, 0) 64%
         ),
         #0a0a0a;
-      border: 1px solid rgba(170, 170, 170, 0.18);
+      border-color: rgba(205, 205, 205, 0.34);
+      box-shadow:
+        0 0 0 1px rgba(215, 215, 215, 0.035) inset,
+        0 0 24px rgba(215, 215, 215, 0.07);
     }
 
     .theme-silver:hover {
-      border-color: rgba(210, 210, 210, 0.42);
-      box-shadow: 0 0 20px rgba(190, 190, 190, 0.08);
+      border-color: rgba(230, 230, 230, 0.56);
+      box-shadow:
+        0 0 0 1px rgba(215, 215, 215, 0.05) inset,
+        0 0 30px rgba(215, 215, 215, 0.11);
     }
 
     .theme-silver .service-kicker,
     .theme-silver .mini-label {
-      color: #d3d3d3;
+      color: #dddddd;
     }
 
     .theme-silver p,
     .theme-silver h2,
     .theme-silver .mini-box p {
-      color: #f1f1f1;
+      color: #f3f3f3;
     }
 
     .theme-silver .mini-box {
-      border: 1px solid rgba(210,210,210,0.10);
-      background: rgba(255,255,255,0.025);
-    }
-
-    /* GREEN - MOSQUITO */
-    .theme-green {
-      background:
-        radial-gradient(
-          340px circle at var(--mouse-x, 50%) var(--mouse-y, 50%),
-          rgba(46, 204, 113, 0.16),
-          rgba(46, 204, 113, 0.08) 20%,
-          rgba(46, 204, 113, 0.03) 36%,
-          rgba(46, 204, 113, 0) 60%
-        ),
-        #0a0a0a;
-      border: 1px solid rgba(46, 204, 113, 0.16);
-    }
-
-    .theme-green:hover {
-      border-color: rgba(46, 204, 113, 0.42);
-      box-shadow: 0 0 20px rgba(46, 204, 113, 0.09);
-    }
-
-    .theme-green .service-kicker,
-    .theme-green .mini-label {
-      color: #41d97d;
-    }
-
-    .theme-green p,
-    .theme-green h2,
-    .theme-green .mini-box p {
-      color: #f1f1f1;
-    }
-
-    .theme-green .mini-box {
-      border: 1px solid rgba(65,217,125,0.10);
-      background: rgba(65,217,125,0.03);
+      border-color: rgba(220, 220, 220, 0.16);
+      background: rgba(255,255,255,0.03);
     }
 
     /* ORANGE - TICK & FLEA */
     .theme-orange {
       background:
         radial-gradient(
-          340px circle at var(--mouse-x, 50%) var(--mouse-y, 50%),
-          rgba(255, 145, 0, 0.18),
-          rgba(255, 145, 0, 0.09) 20%,
-          rgba(255, 145, 0, 0.03) 36%,
-          rgba(255, 145, 0, 0) 60%
+          380px circle at var(--mouse-x, 50%) var(--mouse-y, 50%),
+          rgba(255, 150, 25, 0.24),
+          rgba(255, 150, 25, 0.115) 18%,
+          rgba(255, 150, 25, 0.05) 34%,
+          rgba(255, 150, 25, 0.015) 48%,
+          rgba(255, 150, 25, 0) 64%
         ),
         #0a0a0a;
-      border: 1px solid rgba(255, 145, 0, 0.16);
+      border-color: rgba(255, 165, 50, 0.40);
+      box-shadow:
+        0 0 0 1px rgba(255, 165, 50, 0.035) inset,
+        0 0 24px rgba(255, 165, 50, 0.08);
     }
 
     .theme-orange:hover {
-      border-color: rgba(255, 145, 0, 0.44);
-      box-shadow: 0 0 20px rgba(255, 145, 0, 0.10);
+      border-color: rgba(255, 177, 73, 0.64);
+      box-shadow:
+        0 0 0 1px rgba(255, 165, 50, 0.05) inset,
+        0 0 30px rgba(255, 165, 50, 0.13);
     }
 
     .theme-orange .service-kicker,
     .theme-orange .mini-label {
-      color: #ffae42;
+      color: #ffb24c;
     }
 
     .theme-orange p,
     .theme-orange h2,
     .theme-orange .mini-box p {
-      color: #f1f1f1;
+      color: #f4f4f4;
     }
 
     .theme-orange .mini-box {
-      border: 1px solid rgba(255,174,66,0.10);
-      background: rgba(255,174,66,0.03);
+      border-color: rgba(255, 178, 76, 0.18);
+      background: rgba(255, 178, 76, 0.04);
+    }
+
+    /* GREEN - MOSQUITO */
+    .theme-green {
+      background:
+        radial-gradient(
+          380px circle at var(--mouse-x, 50%) var(--mouse-y, 50%),
+          rgba(55, 214, 120, 0.22),
+          rgba(55, 214, 120, 0.105) 18%,
+          rgba(55, 214, 120, 0.05) 34%,
+          rgba(55, 214, 120, 0.015) 48%,
+          rgba(55, 214, 120, 0) 64%
+        ),
+        #0a0a0a;
+      border-color: rgba(65, 219, 129, 0.36);
+      box-shadow:
+        0 0 0 1px rgba(65, 219, 129, 0.035) inset,
+        0 0 24px rgba(65, 219, 129, 0.08);
+    }
+
+    .theme-green:hover {
+      border-color: rgba(77, 230, 141, 0.60);
+      box-shadow:
+        0 0 0 1px rgba(65, 219, 129, 0.05) inset,
+        0 0 30px rgba(65, 219, 129, 0.13);
+    }
+
+    .theme-green .service-kicker,
+    .theme-green .mini-label {
+      color: #58e08f;
+    }
+
+    .theme-green p,
+    .theme-green h2,
+    .theme-green .mini-box p {
+      color: #f3f3f3;
+    }
+
+    .theme-green .mini-box {
+      border-color: rgba(88, 224, 143, 0.18);
+      background: rgba(88, 224, 143, 0.035);
     }
 
     /* BROWN - GERMAN ROACH */
     .theme-brown {
       background:
         radial-gradient(
-          420px circle at var(--mouse-x, 50%) var(--mouse-y, 50%),
-          rgba(139, 90, 43, 0.24),
-          rgba(139, 90, 43, 0.13) 20%,
-          rgba(139, 90, 43, 0.06) 36%,
-          rgba(139, 90, 43, 0.01) 52%,
-          rgba(139, 90, 43, 0) 66%
+          430px circle at var(--mouse-x, 50%) var(--mouse-y, 50%),
+          rgba(150, 95, 45, 0.28),
+          rgba(150, 95, 45, 0.14) 18%,
+          rgba(150, 95, 45, 0.065) 34%,
+          rgba(150, 95, 45, 0.02) 50%,
+          rgba(150, 95, 45, 0) 67%
         ),
-        linear-gradient(180deg, rgba(139, 90, 43, 0.05), rgba(139, 90, 43, 0.015)),
+        linear-gradient(180deg, rgba(150, 95, 45, 0.05), rgba(150, 95, 45, 0.018)),
         #090909;
-      border: 1px solid rgba(139, 90, 43, 0.30);
+      border-color: rgba(185, 125, 72, 0.42);
       box-shadow:
-        0 0 0 1px rgba(139, 90, 43, 0.05) inset,
-        0 0 28px rgba(139, 90, 43, 0.08);
+        0 0 0 1px rgba(185, 125, 72, 0.045) inset,
+        0 0 30px rgba(150, 95, 45, 0.10);
     }
 
     .theme-brown:hover {
-      border-color: rgba(166, 112, 62, 0.52);
+      border-color: rgba(205, 144, 88, 0.66);
       box-shadow:
-        0 0 0 1px rgba(139, 90, 43, 0.06) inset,
-        0 0 36px rgba(139, 90, 43, 0.12);
+        0 0 0 1px rgba(185, 125, 72, 0.06) inset,
+        0 0 36px rgba(150, 95, 45, 0.15);
     }
 
     .theme-brown .service-kicker,
     .theme-brown .mini-label {
-      color: #c48a57;
+      color: #d09a65;
     }
 
     .theme-brown p,
     .theme-brown h2,
     .theme-brown .mini-box p {
-      color: #f2eee9;
+      color: #f5efe8;
     }
 
     .theme-brown .mini-box {
-      border: 1px solid rgba(196,138,87,0.14);
-      background: rgba(139, 90, 43, 0.05);
-      box-shadow: 0 0 0 1px rgba(196,138,87,0.03) inset;
+      border-color: rgba(208, 154, 101, 0.20);
+      background: rgba(150, 95, 45, 0.05);
     }
 
     /* BLUE - WEED */
     .theme-blue {
       background:
         radial-gradient(
-          340px circle at var(--mouse-x, 50%) var(--mouse-y, 50%),
-          rgba(52, 152, 219, 0.18),
-          rgba(52, 152, 219, 0.09) 20%,
-          rgba(52, 152, 219, 0.03) 36%,
-          rgba(52, 152, 219, 0) 60%
+          380px circle at var(--mouse-x, 50%) var(--mouse-y, 50%),
+          rgba(65, 160, 255, 0.24),
+          rgba(65, 160, 255, 0.11) 18%,
+          rgba(65, 160, 255, 0.05) 34%,
+          rgba(65, 160, 255, 0.015) 48%,
+          rgba(65, 160, 255, 0) 64%
         ),
         #0a0a0a;
-      border: 1px solid rgba(52, 152, 219, 0.16);
+      border-color: rgba(80, 175, 255, 0.40);
+      box-shadow:
+        0 0 0 1px rgba(80, 175, 255, 0.035) inset,
+        0 0 24px rgba(80, 175, 255, 0.08);
     }
 
     .theme-blue:hover {
-      border-color: rgba(52, 152, 219, 0.44);
-      box-shadow: 0 0 20px rgba(52, 152, 219, 0.10);
+      border-color: rgba(102, 188, 255, 0.64);
+      box-shadow:
+        0 0 0 1px rgba(80, 175, 255, 0.05) inset,
+        0 0 30px rgba(80, 175, 255, 0.13);
     }
 
     .theme-blue .service-kicker,
     .theme-blue .mini-label {
-      color: #59b7ff;
+      color: #66beff;
     }
 
     .theme-blue p,
     .theme-blue h2,
     .theme-blue .mini-box p {
-      color: #f1f1f1;
+      color: #f3f3f3;
     }
 
     .theme-blue .mini-box {
-      border: 1px solid rgba(89,183,255,0.10);
-      background: rgba(89,183,255,0.03);
+      border-color: rgba(102, 190, 255, 0.18);
+      background: rgba(102, 190, 255, 0.035);
     }
 
     .bottom-cta {
@@ -386,9 +419,9 @@
     }
 
     .cta-row a:hover {
-      border-color: rgba(255, 43, 43, 0.55);
+      border-color: rgba(255, 70, 70, 0.7);
       transform: translateY(-2px);
-      box-shadow: 0 0 18px rgba(255, 43, 43, 0.1);
+      box-shadow: 0 0 20px rgba(255, 70, 70, 0.14);
     }
 
     @media (max-width: 768px) {
@@ -508,37 +541,6 @@
       </div>
     </section>
 
-    <section class="service-card theme-green">
-      <div class="service-kicker">Seasonal Treatment</div>
-      <h2>Mosquito Treatment</h2>
-      <p>
-        Our mosquito treatments are designed to help reduce mosquito pressure in
-        the yard so you can enjoy outdoor areas more comfortably during the
-        warmer months.
-      </p>
-      <p>
-        Treatment is typically focused on shaded foliage, harborage areas, and
-        other outdoor zones where mosquitoes like to rest and build up.
-      </p>
-
-      <div class="service-grid">
-        <div class="mini-box">
-          <div class="mini-label">Best For</div>
-          <p>
-            Homes with patios, backyards, pets, outdoor gatherings, or heavy
-            mosquito pressure during the season.
-          </p>
-        </div>
-        <div class="mini-box">
-          <div class="mini-label">Service Approach</div>
-          <p>
-            Seasonal recurring treatments aimed at reducing biting pressure,
-            resting populations, and outdoor mosquito activity.
-          </p>
-        </div>
-      </div>
-    </section>
-
     <section class="service-card theme-orange">
       <div class="service-kicker">Targeted Outdoor Service</div>
       <h2>Tick &amp; Flea Treatment</h2>
@@ -565,6 +567,37 @@
           <p>
             Results can vary depending on pet activity, wildlife presence, and
             surrounding property conditions.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section class="service-card theme-green">
+      <div class="service-kicker">Seasonal Treatment</div>
+      <h2>Mosquito Treatment</h2>
+      <p>
+        Our mosquito treatments are designed to help reduce mosquito pressure in
+        the yard so you can enjoy outdoor areas more comfortably during the
+        warmer months.
+      </p>
+      <p>
+        Treatment is typically focused on shaded foliage, harborage areas, and
+        other outdoor zones where mosquitoes like to rest and build up.
+      </p>
+
+      <div class="service-grid">
+        <div class="mini-box">
+          <div class="mini-label">Best For</div>
+          <p>
+            Homes with patios, backyards, pets, outdoor gatherings, or heavy
+            mosquito pressure during the season.
+          </p>
+        </div>
+        <div class="mini-box">
+          <div class="mini-label">Service Approach</div>
+          <p>
+            Seasonal recurring treatments aimed at reducing biting pressure,
+            resting populations, and outdoor mosquito activity.
           </p>
         </div>
       </div>
