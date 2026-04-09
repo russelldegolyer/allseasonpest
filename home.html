@@ -1,106 +1,67 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>All Season Pest Control | Jonesboro, Arkansas</title>
-  <meta name="description" content="Safe, reliable pest control in Jonesboro, Arkansas. Custom treatment plans with no contracts.">
+<!-- White Logo -->
+<img
+  src="images/all-season-logo-white.png"
+  alt="All Season Pest Control Logo"
+  class="home-logo"
+/>
 
-  <style>
-    body {
-      margin: 0;
-      font-family: Arial, sans-serif;
-      background: #000;
-      color: #fff;
-      text-align: center;
+<!-- Company Philosophy -->
+<section class="home-philosophy">
+  <p>
+    All Season Pest Control believes pest control should be professional,
+    dependable, and done with care. Our focus is on delivering safe, effective
+    treatments and consistent service that gives customers real peace of mind.
+  </p>
+
+  <p>
+    We are committed to honest communication, fair pricing, and standing behind
+    our work. Our goal is not just to treat pests, but to provide lasting
+    protection through quality service, real solutions, and a customer-first
+    approach.
+  </p>
+</section>
+
+<style>
+  .home-logo {
+    display: block;
+    width: min(420px, 82vw);
+    height: auto;
+    margin: 0 auto 28px;
+  }
+
+  .home-philosophy {
+    max-width: 760px;
+    margin: 0 auto;
+    text-align: center;
+    padding: 0 20px;
+  }
+
+  .home-philosophy p {
+    margin: 0 0 18px;
+    color: #ffffff;
+    font-size: 1.08rem;
+    line-height: 1.8;
+    font-weight: 400;
+    letter-spacing: 0.2px;
+  }
+
+  .home-philosophy p:last-child {
+    margin-bottom: 0;
+  }
+
+  @media (max-width: 768px) {
+    .home-logo {
+      width: min(320px, 88vw);
+      margin-bottom: 22px;
     }
 
-    .container {
-      padding: 60px 20px;
-      max-width: 1000px;
-      margin: 0 auto;
+    .home-philosophy {
+      padding: 0 16px;
     }
 
-    .logo {
-      display: block;
-      margin: 0 auto 20px auto;
-      max-width: 700px;
-      width: 90%;
-      height: auto;
+    .home-philosophy p {
+      font-size: 1rem;
+      line-height: 1.75;
     }
-
-    h2 {
-      font-size: 20px;
-      color: white;
-      margin-bottom: 30px;
-    }
-
-    p {
-      max-width: 700px;
-      margin: 0 auto 30px;
-      line-height: 1.6;
-      color: #ccc;
-      font-size: 18px;
-    }
-
-    .btn {
-      display: inline-block;
-      background: red;
-      color: white;
-      padding: 15px 25px;
-      text-decoration: none;
-      font-weight: bold;
-      border-radius: 6px;
-      margin-top: 10px;
-    }
-
-    .section {
-      margin-top: 60px;
-    }
-
-    .pricing {
-      display: flex;
-      flex-direction: column;
-      gap: 15px;
-      max-width: 700px;
-      margin: 0 auto;
-    }
-
-    .box {
-      border: 1px solid red;
-      padding: 20px;
-      font-size: 18px;
-    }
-  </style>
-</head>
-<body>
-
-  <div class="container">
-    <img src="logo.png" alt="All Season Pest Control" class="logo">
-
-    <h2>Jonesboro, Arkansas</h2>
-
-    <p>
-      We provide safe, reliable pest control built around your home — not a one-size-fits-all plan.
-      No contracts. No pressure. Just results.
-    </p>
-
-    <a href="tel:8709197114" class="btn">Call Now</a>
-
-    <div class="section">
-      <h2>Pricing</h2>
-
-      <div class="pricing">
-        <div class="box">Initial: $249 / $299 / $349</div>
-        <div class="box">Recurring: $119 / $139 / $159</div>
-      </div>
-    </div>
-
-    <div class="section">
-      <h2>Services</h2>
-      <p>Ants • Spiders • Wasps • Rodents • General Pest Control</p>
-    </div>
-  </div>
-
-</body>
-</html>
+  }
+</style>
