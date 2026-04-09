@@ -27,6 +27,7 @@
       display: inline-block;
       text-decoration: none;
       cursor: pointer;
+      line-height: 0;
     }
 
     .logo {
@@ -35,18 +36,28 @@
       max-width: 950px;
       width: 92%;
       height: auto;
-      transition: transform 0.2s ease, opacity 0.2s ease;
+      transition: transform 0.28s ease-in-out, opacity 0.28s ease-in-out;
+      transform-origin: center center;
     }
 
     .logo-link:hover .logo {
-      transform: scale(1.02);
-      opacity: 0.96;
+      transform: scale(1.045);
+      opacity: 0.97;
+    }
+
+    .logo-link:not(:hover) .logo {
+      transform: scale(1);
+      opacity: 1;
     }
 
     @media (max-width: 768px) {
+      .wrap {
+        padding: 10px;
+      }
+
       .logo {
         width: 100%;
-        max-width: 850px;
+        max-width: none;
       }
     }
   </style>
