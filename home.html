@@ -294,69 +294,56 @@
       box-shadow:0 0 0 4px rgba(255,255,255,.08);
     }
 
-    .contact-strip{
-      padding:34px 32px 70px;
+    .contact-cta{
+      padding:24px 32px 70px;
       background:#050505;
     }
 
-    .contact-strip-inner{
+    .contact-cta-inner{
       max-width:var(--max);
       margin:0 auto;
-      background:linear-gradient(180deg, rgba(255,255,255,.04), rgba(255,255,255,.025));
-      border:1px solid var(--border-soft);
-      border-radius:28px;
-      padding:24px 28px;
+    }
+
+    .contact-cta-heading{
+      max-width:1180px;
+      margin:0 auto 34px;
+      text-align:center;
+      color:#f1f1f1;
+      font-size:clamp(2rem, 4.2vw, 3.35rem);
+      line-height:1.32;
+      letter-spacing:-0.04em;
+      font-weight:400;
+    }
+
+    .contact-cta-buttons{
+      display:grid;
+      grid-template-columns:1fr;
+      gap:38px;
+      max-width:100%;
+    }
+
+    .contact-cta-button{
+      min-height:132px;
+      border-radius:34px;
+      border:1px solid rgba(255,255,255,.14);
+      background:linear-gradient(180deg, rgba(255,255,255,.02), rgba(255,255,255,.01));
+      box-shadow:inset 0 0 0 1px rgba(255,255,255,.03);
       display:flex;
-      flex-wrap:wrap;
-      align-items:center;
-      justify-content:space-between;
-      gap:18px;
-    }
-
-    .contact-strip-text strong{
-      display:block;
-      font-size:1.15rem;
-      margin-bottom:4px;
-      letter-spacing:-0.02em;
-    }
-
-    .contact-strip-text span{
-      color:var(--muted-soft);
-      line-height:1.5;
-    }
-
-    .contact-buttons{
-      display:flex;
-      flex-wrap:wrap;
-      gap:14px;
-    }
-
-    .btn{
-      display:inline-flex;
       align-items:center;
       justify-content:center;
-      min-height:52px;
-      padding:0 20px;
-      border-radius:999px;
-      font-weight:800;
-      letter-spacing:-0.01em;
-      transition:transform .2s ease, opacity .2s ease, background .2s ease;
-    }
-
-    .btn:hover{
-      transform:translateY(-1px);
-      opacity:.94;
-    }
-
-    .btn-primary{
-      background:#fff;
-      color:#000;
-    }
-
-    .btn-secondary{
-      border:1px solid rgba(255,255,255,.18);
+      text-align:center;
       color:#fff;
-      background:rgba(255,255,255,.04);
+      font-size:clamp(1.9rem, 3.5vw, 2.45rem);
+      font-weight:800;
+      letter-spacing:.16em;
+      text-transform:uppercase;
+      transition:transform .2s ease, border-color .2s ease, background .2s ease;
+    }
+
+    .contact-cta-button:hover{
+      transform:translateY(-2px);
+      border-color:rgba(255,255,255,.24);
+      background:linear-gradient(180deg, rgba(255,255,255,.04), rgba(255,255,255,.018));
     }
 
     .footer{
@@ -428,8 +415,21 @@
         padding:80px 24px;
       }
 
-      .contact-strip{
-        padding:28px 24px 56px;
+      .contact-cta{
+        padding:20px 24px 56px;
+      }
+
+      .contact-cta-heading{
+        margin-bottom:28px;
+      }
+
+      .contact-cta-buttons{
+        gap:28px;
+      }
+
+      .contact-cta-button{
+        min-height:118px;
+        border-radius:30px;
       }
 
       .footer{
@@ -506,20 +506,25 @@
         border-radius:24px;
       }
 
-      .contact-strip{
-        padding:24px 18px 48px;
+      .contact-cta{
+        padding:12px 18px 48px;
       }
 
-      .contact-strip-inner{
-        padding:20px;
+      .contact-cta-heading{
+        font-size:clamp(1.55rem, 8vw, 2.35rem);
+        line-height:1.42;
+        margin-bottom:24px;
       }
 
-      .contact-buttons{
-        width:100%;
+      .contact-cta-buttons{
+        gap:18px;
       }
 
-      .contact-buttons .btn{
-        flex:1 1 100%;
+      .contact-cta-button{
+        min-height:96px;
+        border-radius:26px;
+        font-size:1.15rem;
+        letter-spacing:.14em;
       }
 
       .footer{
@@ -566,8 +571,20 @@
         padding:60px 14px;
       }
 
-      .contact-strip{
-        padding:22px 14px 42px;
+      .contact-cta{
+        padding:10px 14px 42px;
+      }
+
+      .contact-cta-heading{
+        font-size:1.45rem;
+        line-height:1.45;
+        margin-bottom:22px;
+      }
+
+      .contact-cta-button{
+        min-height:88px;
+        border-radius:24px;
+        font-size:1.02rem;
       }
 
       .footer{
@@ -695,16 +712,14 @@
     </div>
   </section>
 
-  <section class="contact-strip">
-    <div class="contact-strip-inner">
-      <div class="contact-strip-text">
-        <strong>All Season Pest Control</strong>
-        <span>Jonesboro, Arkansas • Serving homes across Northeast Arkansas</span>
-      </div>
-      <div class="contact-buttons">
-        <a class="btn btn-primary" href="tel:8709197114">Call 870-919-7114</a>
-        <a class="btn btn-secondary" href="sms:8709197114">Text Us</a>
-        <a class="btn btn-secondary" href="mailto:gmail@allseasonpestllc.com">Email Us</a>
+  <section class="contact-cta">
+    <div class="contact-cta-inner">
+      <h2 class="contact-cta-heading">Need help choosing the right plan? Reach out and we can point you in the right direction.</h2>
+
+      <div class="contact-cta-buttons">
+        <a class="contact-cta-button" href="tel:8709197114">Call</a>
+        <a class="contact-cta-button" href="sms:8709197114">Text</a>
+        <a class="contact-cta-button" href="mailto:gmail@allseasonpestllc.com">Email</a>
       </div>
     </div>
   </section>
