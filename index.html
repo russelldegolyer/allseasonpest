@@ -41,13 +41,16 @@
       height: auto;
       transform-origin: center center;
       animation: subtlePulse 2.4s ease-in-out infinite;
-      transition: transform 0.28s ease-in-out, opacity 0.28s ease-in-out, filter 0.28s ease-in-out;
+      transition: transform 0.32s ease-in-out, opacity 0.32s ease-in-out, filter 0.32s ease-in-out;
     }
 
     .logo-link:hover .logo {
-      transform: scale(1.045);
-      opacity: 0.98;
-      filter: drop-shadow(0 0 14px rgba(255, 0, 0, 0.22));
+      transform: scale(1.075);
+      opacity: 0.99;
+      filter:
+        drop-shadow(0 0 20px rgba(255, 0, 0, 0.30))
+        drop-shadow(0 0 40px rgba(255, 0, 0, 0.22))
+        drop-shadow(0 0 70px rgba(255, 0, 0, 0.16));
       animation-play-state: paused;
     }
 
@@ -78,7 +81,7 @@
         transform: scale(1);
       }
       50% {
-        transform: scale(1.018);
+        transform: scale(1.03);
       }
     }
 
