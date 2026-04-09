@@ -47,7 +47,7 @@
 
     .intro-wrap {
       max-width: 760px;
-      margin: 0 auto 52px;
+      margin: 0 auto 34px;
       padding: 0 10px;
     }
 
@@ -94,6 +94,49 @@
       font-weight: 400;
       letter-spacing: 0.15px;
       margin: 0;
+    }
+
+    .contact-actions {
+      max-width: 720px;
+      margin: 0 auto 42px;
+      display: flex;
+      justify-content: center;
+      gap: 14px;
+      flex-wrap: wrap;
+    }
+
+    .contact-button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 190px;
+      padding: 14px 20px;
+      border-radius: 14px;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      background:
+        linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.015)),
+        #0a0a0a;
+      color: #ffffff;
+      text-decoration: none;
+      text-transform: uppercase;
+      font-size: 0.9rem;
+      font-weight: 700;
+      letter-spacing: 1.2px;
+      transition: border-color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.28);
+    }
+
+    .contact-button:hover {
+      border-color: rgba(255, 43, 43, 0.55);
+      box-shadow: 0 0 18px rgba(255, 43, 43, 0.1);
+      transform: translateY(-2px);
+      background:
+        linear-gradient(180deg, rgba(255,255,255,0.045), rgba(255,255,255,0.02)),
+        #0d0d0d;
+    }
+
+    .contact-button:active {
+      transform: translateY(0);
     }
 
     .services-section {
@@ -185,7 +228,7 @@
       }
 
       .intro-wrap {
-        margin-bottom: 40px;
+        margin-bottom: 26px;
         padding: 0;
       }
 
@@ -211,6 +254,17 @@
       .philosophy-card p {
         font-size: 0.94rem;
         line-height: 1.85;
+      }
+
+      .contact-actions {
+        margin-bottom: 34px;
+        gap: 12px;
+      }
+
+      .contact-button {
+        min-width: 100%;
+        font-size: 0.85rem;
+        padding: 13px 16px;
       }
 
       .service-card {
@@ -241,6 +295,12 @@
           We believe pest control should be professional, dependable, and done with care. Our focus is on delivering safe, effective treatments, consistent service, and real peace of mind through honest communication, fair pricing, and a commitment to standing behind our work. Our goal is not just to treat pests, but to provide lasting protection through quality service, real solutions, and a customer-first approach.
         </p>
       </div>
+    </section>
+
+    <section class="contact-actions">
+      <a class="contact-button" href="tel:8709197114">Call 870-919-7114</a>
+      <a class="contact-button" href="sms:8709197114">Text Us</a>
+      <a class="contact-button" href="mailto:gmail@allseasonllc.com">Email Us</a>
     </section>
 
     <section class="services-section">
