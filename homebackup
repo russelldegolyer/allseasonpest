@@ -158,6 +158,15 @@
       background:#050505;
     }
 
+    .section:first-of-type{
+      padding-bottom:48px;
+    }
+
+    .section + .section{
+      padding-top:44px;
+      padding-bottom:52px;
+    }
+
     .section-inner{
       max-width:var(--max);
       margin:0 auto;
@@ -319,9 +328,9 @@
 
     .bottom-cta{
       max-width:760px;
-      margin:18px auto 0;
+      margin:0 auto 0;
       text-align:center;
-      padding:0 32px 70px;
+      padding:0 32px 56px;
     }
 
     .bottom-cta p{
@@ -420,8 +429,17 @@
         padding:80px 24px;
       }
 
+      .section:first-of-type{
+        padding-bottom:42px;
+      }
+
+      .section + .section{
+        padding-top:36px;
+        padding-bottom:42px;
+      }
+
       .bottom-cta{
-        padding:0 24px 56px;
+        padding:0 24px 48px;
       }
 
       .footer{
@@ -489,6 +507,15 @@
         padding:68px 18px;
       }
 
+      .section:first-of-type{
+        padding-bottom:34px;
+      }
+
+      .section + .section{
+        padding-top:28px;
+        padding-bottom:30px;
+      }
+
       .section-lead{
         font-size:1.02rem;
       }
@@ -530,7 +557,7 @@
       }
 
       .bottom-cta{
-        padding:0 18px 48px;
+        padding:0 18px 38px;
       }
 
       .footer{
@@ -581,8 +608,17 @@
         padding:60px 14px;
       }
 
+      .section:first-of-type{
+        padding-bottom:28px;
+      }
+
+      .section + .section{
+        padding-top:24px;
+        padding-bottom:24px;
+      }
+
       .bottom-cta{
-        padding:0 14px 42px;
+        padding:0 14px 30px;
       }
 
       .footer{
@@ -624,7 +660,7 @@
         <div class="card">
           <h3>Safe, targeted treatments</h3>
           <p>
-            We focus on practical treatment plans designed for real pest pressure, not flashy upsells or overpriced services to boost sales commissions.
+            We focus on targeted treatment plans designed for real pest pressure, not flashy upsells or overpriced services to boost sales commissions.
           </p>
         </div>
 
