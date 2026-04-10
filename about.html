@@ -11,13 +11,16 @@
   <style>
     :root{
       --bg:#000000;
+      --bg-soft:#070707;
       --text:#ffffff;
-      --muted:rgba(255,255,255,.78);
-      --muted-soft:rgba(255,255,255,.56);
-      --line:rgba(255,42,42,.72);
+      --muted:rgba(255,255,255,.76);
+      --muted-soft:rgba(255,255,255,.52);
       --red:#ff2a2a;
-      --glow:0 0 26px rgba(255,42,42,.18);
-      --max:1080px;
+      --red-soft:rgba(255,42,42,.22);
+      --line:rgba(255,255,255,.08);
+      --glow:0 0 24px rgba(255,42,42,.16);
+      --max:1280px;
+      --content:980px;
     }
 
     *{
@@ -32,8 +35,8 @@
 
     body{
       background:
-        radial-gradient(circle at top left, rgba(255,42,42,.08), transparent 26%),
-        linear-gradient(180deg, #030303 0%, #000000 100%);
+        radial-gradient(circle at top center, rgba(255,42,42,.06), transparent 24%),
+        linear-gradient(180deg, #020202 0%, #000000 100%);
       color:var(--text);
       font-family:Inter, Arial, Helvetica, sans-serif;
       overflow-x:hidden;
@@ -52,7 +55,7 @@
       z-index:1000;
       backdrop-filter:blur(14px);
       background:rgba(0,0,0,.72);
-      border-bottom:1px solid rgba(255,42,42,.16);
+      border-bottom:1px solid rgba(255,42,42,.14);
     }
 
     .topbar-inner{
@@ -73,7 +76,7 @@
 
     .nav a{
       padding:11px 18px;
-      border:1px solid rgba(255,42,42,.30);
+      border:1px solid rgba(255,42,42,.28);
       border-radius:999px;
       background:rgba(255,255,255,.03);
       color:#fff;
@@ -85,16 +88,14 @@
 
     .nav a:hover,
     .nav a.active{
-      border-color:rgba(255,42,42,.76);
+      border-color:rgba(255,42,42,.74);
       box-shadow:var(--glow);
       transform:translateY(-1px);
     }
 
     .page{
       min-height:100vh;
-      display:flex;
-      align-items:center;
-      padding:120px 24px 60px;
+      padding:130px 28px 70px;
     }
 
     .wrap{
@@ -103,59 +104,109 @@
       margin:0 auto;
     }
 
-    .about{
+    .about-shell{
+      width:100%;
+      max-width:var(--content);
+      margin:0 auto;
+    }
+
+    .about-top{
+      display:grid;
+      grid-template-columns:220px 1fr;
+      gap:40px;
+      align-items:start;
+      padding-bottom:34px;
+      border-bottom:1px solid var(--line);
+    }
+
+    .about-label{
+      color:var(--muted-soft);
+      font-size:.84rem;
+      letter-spacing:.16em;
+      text-transform:uppercase;
+      font-weight:800;
+      padding-top:8px;
+    }
+
+    .about-main h1{
+      font-size:clamp(2rem, 4vw, 3.2rem);
+      line-height:1.02;
+      letter-spacing:-.04em;
+      margin-bottom:20px;
       max-width:760px;
     }
 
-    .eyebrow{
-      display:inline-block;
-      color:var(--red);
-      text-transform:uppercase;
-      letter-spacing:.16em;
-      font-size:.82rem;
-      font-weight:800;
-      margin-bottom:20px;
-    }
-
-    h1{
-      font-size:clamp(3rem, 7vw, 5.6rem);
-      line-height:.92;
-      letter-spacing:-.06em;
-      margin-bottom:22px;
-    }
-
-    .accent-line{
-      width:96px;
-      height:2px;
-      background:var(--line);
-      box-shadow:0 0 18px rgba(255,42,42,.22);
-      margin-bottom:28px;
-    }
-
-    .about p{
+    .about-main p{
       color:var(--muted);
       font-size:1.08rem;
-      line-height:1.82;
-      max-width:700px;
+      line-height:1.85;
+      max-width:760px;
     }
 
-    .about p + p{
+    .about-main p + p{
       margin-top:18px;
+    }
+
+    .about-mid{
+      display:grid;
+      grid-template-columns:220px 1fr;
+      gap:40px;
+      align-items:start;
+      padding:34px 0;
+      border-bottom:1px solid var(--line);
+    }
+
+    .about-accent{
+      color:var(--red);
+      font-size:.9rem;
+      font-weight:800;
+      letter-spacing:.14em;
+      text-transform:uppercase;
+      padding-top:4px;
+    }
+
+    .about-quote{
+      font-size:1.35rem;
+      line-height:1.7;
+      letter-spacing:-.02em;
+      color:#fff;
+      max-width:760px;
+    }
+
+    .about-quote strong{
+      font-weight:800;
+    }
+
+    .about-bottom{
+      display:grid;
+      grid-template-columns:220px 1fr;
+      gap:40px;
+      align-items:start;
+      padding-top:34px;
+    }
+
+    .about-contact-label{
+      color:var(--muted-soft);
+      font-size:.84rem;
+      letter-spacing:.16em;
+      text-transform:uppercase;
+      font-weight:800;
+      padding-top:8px;
     }
 
     .cta-row{
       display:flex;
-      gap:12px;
+      gap:14px;
       flex-wrap:wrap;
-      margin-top:34px;
+      align-items:center;
     }
 
     .cta-row a{
       display:inline-flex;
       align-items:center;
       justify-content:center;
-      min-width:165px;
-      padding:14px 18px;
+      min-width:180px;
+      padding:15px 20px;
       border-radius:14px;
       border:1px solid rgba(255,255,255,.10);
       background:
@@ -170,13 +221,13 @@
     }
 
     .cta-row a:hover{
-      border-color:rgba(255,42,42,.64);
+      border-color:rgba(255,42,42,.62);
       transform:translateY(-2px);
       box-shadow:0 0 18px rgba(255,42,42,.12);
     }
 
     .footer{
-      padding:0 24px 24px;
+      padding:0 28px 24px;
     }
 
     .footer-inner{
@@ -192,6 +243,36 @@
       font-size:.94rem;
     }
 
+    @media (max-width: 900px){
+      .about-top,
+      .about-mid,
+      .about-bottom{
+        grid-template-columns:1fr;
+        gap:14px;
+      }
+
+      .page{
+        padding:115px 20px 52px;
+      }
+
+      .about-main h1{
+        max-width:100%;
+      }
+
+      .about-main p,
+      .about-quote{
+        max-width:100%;
+      }
+
+      .cta-row a{
+        min-width:160px;
+      }
+
+      .footer{
+        padding:0 20px 20px;
+      }
+    }
+
     @media (max-width: 700px){
       .topbar-inner{
         padding:14px 14px;
@@ -202,30 +283,30 @@
         font-size:.9rem;
       }
 
-      .page{
-        padding:110px 18px 44px;
-        align-items:flex-start;
+      .about-main h1{
+        font-size:2rem;
       }
 
-      .about p{
+      .about-main p{
         font-size:1rem;
-        line-height:1.72;
+        line-height:1.75;
+      }
+
+      .about-quote{
+        font-size:1.12rem;
+        line-height:1.65;
+      }
+
+      .cta-row{
+        gap:12px;
       }
 
       .cta-row a{
         min-width:100%;
       }
-
-      .footer{
-        padding:0 18px 20px;
-      }
     }
 
     @media (max-width: 430px){
-      h1{
-        font-size:2.6rem;
-      }
-
       .page{
         padding-top:102px;
       }
@@ -255,29 +336,45 @@
 
   <main class="page">
     <div class="wrap">
-      <section class="about">
-        <div class="eyebrow">About All Season Pest Control</div>
-        <h1>Built to feel more honest, personal, and dependable.</h1>
-        <div class="accent-line"></div>
+      <section class="about-shell">
+        <div class="about-top">
+          <div class="about-label">About</div>
 
-        <p>
-          All Season Pest Control was built by Russell and Zamir with a simple goal:
-          offer pest control that feels straightforward, honest, and easy to trust.
-          Between us, we have 12 years of combined experience in the industry, and
-          we built this company to give people a better experience than the usual
-          big-company runaround.
-        </p>
+          <div class="about-main">
+            <h1>Built to feel more honest, personal, and dependable.</h1>
 
-        <p>
-          We care about doing clean work, communicating clearly, and treating homes
-          the right way. No inflated promises. No overcomplicated treatment pitch.
-          Just solid service from people who take it seriously.
-        </p>
+            <p>
+              All Season Pest Control was built by Russell and Zamir with a simple goal:
+              offer pest control that feels straightforward, honest, and easy to trust.
+              Between us, we have 12 years of combined experience in the industry, and
+              we built this company to give people a better experience than the usual
+              big-company runaround.
+            </p>
 
-        <div class="cta-row">
-          <a href="tel:8709197114">Call</a>
-          <a href="sms:8709197114">Text</a>
-          <a href="mailto:gmail@allseasonpestllc.com">Email</a>
+            <p>
+              We care about doing clean work, communicating clearly, and treating homes
+              the right way. No inflated promises. No overcomplicated treatment pitch.
+              Just solid service from people who take it seriously.
+            </p>
+          </div>
+        </div>
+
+        <div class="about-mid">
+          <div class="about-accent">Simple</div>
+
+          <div class="about-quote">
+            <strong>If something does not need to be treated, we will tell you.</strong>
+          </div>
+        </div>
+
+        <div class="about-bottom">
+          <div class="about-contact-label">Contact</div>
+
+          <div class="cta-row">
+            <a href="tel:8709197114">Call</a>
+            <a href="sms:8709197114">Text</a>
+            <a href="mailto:gmail@allseasonpestllc.com">Email</a>
+          </div>
         </div>
       </section>
     </div>
