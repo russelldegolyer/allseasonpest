@@ -134,7 +134,7 @@
       font-weight:800;
       letter-spacing:.08em;
       text-transform:uppercase;
-      margin-bottom:28px;
+      margin:10px 0 20px;
     }
 
     .hero h1{
@@ -400,11 +400,7 @@
 
       .hero-copy{
         max-width:100%;
-        padding-top:110px;
-      }
-
-      .hero-pill{
-        margin-bottom:24px;
+        padding-top:72px;
       }
 
       .hero h1{
@@ -464,14 +460,14 @@
       }
 
       .hero-copy{
-        padding-top:145px;
+        padding-top:108px;
       }
 
       .hero-pill{
         font-size:.86rem;
         letter-spacing:.07em;
         padding:12px 18px;
-        margin-bottom:18px;
+        margin:8px 0 18px;
       }
 
       .hero h1{
@@ -561,13 +557,13 @@
       }
 
       .hero-copy{
-        padding-top:165px;
+        padding-top:126px;
       }
 
       .hero-pill{
         font-size:.8rem;
         padding:11px 15px;
-        margin-bottom:16px;
+        margin:6px 0 16px;
       }
 
       .hero h1{
@@ -602,7 +598,6 @@
       <nav class="nav">
         <a href="home.html" class="active">Home</a>
         <a href="services.html">Services</a>
-        <a href="process.html">Process</a>
         <a href="about.html">About</a>
       </nav>
     </div>
@@ -611,16 +606,15 @@
   <section class="hero">
     <div class="hero-inner">
       <div class="hero-copy">
-        <div class="hero-pill">Jonesboro, Arkansas</div>
         <h1>Professional pest control for homes that want it done right every time.</h1>
-        <p>Safe treatments. Dependable service. Real protection for homeowners and renters in Northeast Arkansas.</p>
+        <div class="hero-pill">Jonesboro, Arkansas</div>
       </div>
     </div>
   </section>
 
   <section class="section">
     <div class="section-inner">
-      <span class="eyebrow">Built for home owners and renters.</span>
+      <span class="eyebrow">Built for homeowners and renters</span>
       <h2>Protection that feels local, straightforward, and dependable.</h2>
       <p class="section-lead">
         We keep it simple. Show up when we say we will, treat the property the right way, and build a service plan that actually fits the home instead of overselling things people do not need. Monthly billing can feel like a scam, which is why we only charge you after the completion of the full service.
@@ -678,7 +672,7 @@
 
             <div class="expect-box">
               <h4>Real Northeast Arkansas coverage</h4>
-              <p>Service built for the homes, weather, and seasonal pest activity in this area.</p>
+              <p>Service built for the homes, weather, and seasonal pest activity in Jonesboro, Bono, Brookland, Truman, Lake City, and Paragould.</p>
             </div>
 
             <div class="expect-box">
@@ -731,11 +725,6 @@
   </section>
 
   <section class="bottom-cta">
-    <p>
-      Need help choosing the right plan? Reach out and we can point you in the
-      right direction.
-    </p>
-
     <div class="cta-row">
       <a href="tel:8709197114">Call</a>
       <a href="sms:8709197114">Text</a>
