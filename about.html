@@ -6,21 +6,21 @@
   <title>About | All Season Pest Control</title>
   <meta
     name="description"
-    content="Learn more about All Season Pest Control and the people behind the company."
+    content="Meet the people behind All Season Pest Control."
   />
   <style>
     :root{
       --bg:#000000;
       --bg-soft:#070707;
+      --panel:#0d0d0d;
       --text:#ffffff;
       --muted:rgba(255,255,255,.76);
-      --muted-soft:rgba(255,255,255,.52);
+      --muted-soft:rgba(255,255,255,.50);
       --red:#ff2a2a;
-      --red-soft:rgba(255,42,42,.22);
+      --red-soft:rgba(255,42,42,.18);
       --line:rgba(255,255,255,.08);
       --glow:0 0 24px rgba(255,42,42,.16);
-      --max:1280px;
-      --content:980px;
+      --max:1240px;
     }
 
     *{
@@ -35,7 +35,8 @@
 
     body{
       background:
-        radial-gradient(circle at top center, rgba(255,42,42,.06), transparent 24%),
+        radial-gradient(circle at top left, rgba(255,42,42,.07), transparent 24%),
+        radial-gradient(circle at 85% 10%, rgba(255,42,42,.05), transparent 20%),
         linear-gradient(180deg, #020202 0%, #000000 100%);
       color:var(--text);
       font-family:Inter, Arial, Helvetica, sans-serif;
@@ -95,101 +96,150 @@
 
     .page{
       min-height:100vh;
-      padding:130px 28px 70px;
+      padding:126px 26px 54px;
     }
 
     .wrap{
-      width:100%;
       max-width:var(--max);
       margin:0 auto;
     }
 
-    .about-shell{
-      width:100%;
-      max-width:var(--content);
+    .intro{
+      text-align:center;
+      padding:10px 0 42px;
+    }
+
+    .eyebrow{
+      display:inline-block;
+      color:var(--red);
+      text-transform:uppercase;
+      letter-spacing:.16em;
+      font-size:.82rem;
+      font-weight:800;
+      margin-bottom:16px;
+    }
+
+    .intro h1{
+      font-size:clamp(2.1rem, 4vw, 3.6rem);
+      line-height:1.02;
+      letter-spacing:-.04em;
+      max-width:760px;
+      margin:0 auto 18px;
+    }
+
+    .intro p{
+      color:var(--muted);
+      font-size:1.04rem;
+      line-height:1.78;
+      max-width:700px;
       margin:0 auto;
     }
 
-    .about-top{
+    .founders{
       display:grid;
-      grid-template-columns:220px 1fr;
-      gap:40px;
-      align-items:start;
-      padding-bottom:34px;
-      border-bottom:1px solid var(--line);
+      grid-template-columns:1fr 1fr;
+      gap:24px;
+      align-items:stretch;
     }
 
-    .about-label{
-      color:var(--muted-soft);
-      font-size:.84rem;
-      letter-spacing:.16em;
+    .founder{
+      position:relative;
+      padding:32px 30px 30px;
+      border:1px solid rgba(255,255,255,.08);
+      border-radius:26px;
+      background:
+        linear-gradient(180deg, rgba(255,255,255,.03), rgba(255,255,255,.015)),
+        linear-gradient(135deg, rgba(255,42,42,.06), transparent 70%),
+        #090909;
+      overflow:hidden;
+    }
+
+    .founder::before{
+      content:"";
+      position:absolute;
+      top:0;
+      left:0;
+      width:100%;
+      height:1px;
+      background:linear-gradient(90deg, rgba(255,42,42,.58), transparent 65%);
+    }
+
+    .founder-label{
+      color:rgba(255,255,255,.46);
       text-transform:uppercase;
+      letter-spacing:.15em;
+      font-size:.76rem;
       font-weight:800;
-      padding-top:8px;
+      margin-bottom:16px;
     }
 
-    .about-main h1{
-      font-size:clamp(2rem, 4vw, 3.2rem);
-      line-height:1.02;
+    .founder h2{
+      font-size:2.2rem;
+      line-height:1;
       letter-spacing:-.04em;
-      margin-bottom:20px;
-      max-width:760px;
+      margin-bottom:10px;
     }
 
-    .about-main p{
+    .founder-sub{
+      color:var(--red);
+      font-size:.95rem;
+      font-weight:700;
+      letter-spacing:.02em;
+      margin-bottom:18px;
+    }
+
+    .founder p{
+      color:var(--muted);
+      font-size:1rem;
+      line-height:1.8;
+      max-width:520px;
+    }
+
+    .shared{
+      margin-top:28px;
+      padding:34px 0 0;
+      border-top:1px solid var(--line);
+      display:grid;
+      grid-template-columns:280px 1fr;
+      gap:28px;
+      align-items:start;
+    }
+
+    .shared-label{
+      color:rgba(255,255,255,.46);
+      text-transform:uppercase;
+      letter-spacing:.16em;
+      font-size:.78rem;
+      font-weight:800;
+      padding-top:6px;
+    }
+
+    .shared-copy p{
       color:var(--muted);
       font-size:1.08rem;
-      line-height:1.85;
+      line-height:1.9;
       max-width:760px;
     }
 
-    .about-main p + p{
-      margin-top:18px;
+    .shared-copy p + p{
+      margin-top:16px;
     }
 
-    .about-mid{
+    .contact{
+      margin-top:34px;
+      padding-top:30px;
+      border-top:1px solid var(--line);
       display:grid;
-      grid-template-columns:220px 1fr;
-      gap:40px;
+      grid-template-columns:280px 1fr;
+      gap:28px;
       align-items:start;
-      padding:34px 0;
-      border-bottom:1px solid var(--line);
     }
 
-    .about-accent{
-      color:var(--red);
-      font-size:.9rem;
-      font-weight:800;
-      letter-spacing:.14em;
+    .contact-label{
+      color:rgba(255,255,255,.46);
       text-transform:uppercase;
-      padding-top:4px;
-    }
-
-    .about-quote{
-      font-size:1.35rem;
-      line-height:1.7;
-      letter-spacing:-.02em;
-      color:#fff;
-      max-width:760px;
-    }
-
-    .about-quote strong{
-      font-weight:800;
-    }
-
-    .about-bottom{
-      display:grid;
-      grid-template-columns:220px 1fr;
-      gap:40px;
-      align-items:start;
-      padding-top:34px;
-    }
-
-    .about-contact-label{
-      color:var(--muted-soft);
-      font-size:.84rem;
       letter-spacing:.16em;
-      text-transform:uppercase;
+      font-size:.78rem;
       font-weight:800;
       padding-top:8px;
     }
@@ -198,7 +248,6 @@
       display:flex;
       gap:14px;
       flex-wrap:wrap;
-      align-items:center;
     }
 
     .cta-row a{
@@ -227,7 +276,7 @@
     }
 
     .footer{
-      padding:0 28px 24px;
+      padding:0 26px 24px;
     }
 
     .footer-inner{
@@ -243,33 +292,15 @@
       font-size:.94rem;
     }
 
-    @media (max-width: 900px){
-      .about-top,
-      .about-mid,
-      .about-bottom{
+    @media (max-width: 920px){
+      .founders{
+        grid-template-columns:1fr;
+      }
+
+      .shared,
+      .contact{
         grid-template-columns:1fr;
         gap:14px;
-      }
-
-      .page{
-        padding:115px 20px 52px;
-      }
-
-      .about-main h1{
-        max-width:100%;
-      }
-
-      .about-main p,
-      .about-quote{
-        max-width:100%;
-      }
-
-      .cta-row a{
-        min-width:160px;
-      }
-
-      .footer{
-        padding:0 20px 20px;
       }
     }
 
@@ -283,34 +314,39 @@
         font-size:.9rem;
       }
 
-      .about-main h1{
-        font-size:2rem;
+      .page{
+        padding:110px 18px 44px;
       }
 
-      .about-main p{
+      .intro{
+        padding-bottom:30px;
+      }
+
+      .intro p,
+      .shared-copy p,
+      .founder p{
         font-size:1rem;
         line-height:1.75;
       }
 
-      .about-quote{
-        font-size:1.12rem;
-        line-height:1.65;
+      .founder{
+        padding:26px 22px 24px;
       }
 
-      .cta-row{
-        gap:12px;
+      .founder h2{
+        font-size:1.9rem;
       }
 
       .cta-row a{
         min-width:100%;
       }
+
+      .footer{
+        padding:0 18px 20px;
+      }
     }
 
     @media (max-width: 430px){
-      .page{
-        padding-top:102px;
-      }
-
       .nav{
         gap:8px;
       }
@@ -318,6 +354,14 @@
       .nav a{
         padding:9px 12px;
         font-size:.84rem;
+      }
+
+      .page{
+        padding-top:102px;
+      }
+
+      .intro h1{
+        font-size:2rem;
       }
     }
   </style>
@@ -336,45 +380,63 @@
 
   <main class="page">
     <div class="wrap">
-      <section class="about-shell">
-        <div class="about-top">
-          <div class="about-label">About</div>
+      <section class="intro">
+        <div class="eyebrow">About</div>
+        <h1>Real people. Real experience. No big-company runaround.</h1>
+        <p>
+          All Season Pest Control was built to feel more personal, more straightforward,
+          and easier to trust. The goal was simple: do solid work, communicate clearly,
+          and treat people the way we would want to be treated.
+        </p>
+      </section>
 
-          <div class="about-main">
-            <h1>Built to feel more honest, personal, and dependable.</h1>
+      <section class="founders">
+        <article class="founder">
+          <div class="founder-label">Founder</div>
+          <h2>Russell</h2>
+          <div class="founder-sub">Built around field experience and doing things right</div>
+          <p>
+            Russell helped build this company around the kind of service customers actually
+            want: honest answers, clean work, and dependable follow-through. The focus is
+            not on making everything sound bigger than it is. It is on handling pest control
+            the right way and keeping the experience simple.
+          </p>
+        </article>
 
-            <p>
-              All Season Pest Control was built by Russell and Zamir with a simple goal:
-              offer pest control that feels straightforward, honest, and easy to trust.
-              Between us, we have 12 years of combined experience in the industry, and
-              we built this company to give people a better experience than the usual
-              big-company runaround.
-            </p>
+        <article class="founder">
+          <div class="founder-label">Founder</div>
+          <h2>Zamir</h2>
+          <div class="founder-sub">Built around trust, communication, and customer experience</div>
+          <p>
+            Zamir helped shape the company around being easy to work with and easy to trust.
+            That means clear communication, no confusing sales pressure, and a company that
+            feels more personal than the typical corporate experience people are used to.
+          </p>
+        </article>
+      </section>
 
-            <p>
-              We care about doing clean work, communicating clearly, and treating homes
-              the right way. No inflated promises. No overcomplicated treatment pitch.
-              Just solid service from people who take it seriously.
-            </p>
-          </div>
+      <section class="shared">
+        <div class="shared-label">Why we built it</div>
+        <div class="shared-copy">
+          <p>
+            Between us, we have 12 years of combined experience in the pest control industry.
+            We started All Season Pest Control because too many companies feel rushed, overly
+            sales-focused, or disconnected from the people they serve.
+          </p>
+          <p>
+            We wanted to build something that felt more grounded than that. Straightforward
+            service. Clear communication. No inflated promises. Just a company people feel
+            comfortable letting around their home.
+          </p>
         </div>
+      </section>
 
-        <div class="about-mid">
-          <div class="about-accent">Simple</div>
-
-          <div class="about-quote">
-            <strong>If something does not need to be treated, we will tell you.</strong>
-          </div>
-        </div>
-
-        <div class="about-bottom">
-          <div class="about-contact-label">Contact</div>
-
-          <div class="cta-row">
-            <a href="tel:8709197114">Call</a>
-            <a href="sms:8709197114">Text</a>
-            <a href="mailto:gmail@allseasonpestllc.com">Email</a>
-          </div>
+      <section class="contact">
+        <div class="contact-label">Contact</div>
+        <div class="cta-row">
+          <a href="tel:8709197114">Call</a>
+          <a href="sms:8709197114">Text</a>
+          <a href="mailto:gmail@allseasonpestllc.com">Email</a>
         </div>
       </section>
     </div>
