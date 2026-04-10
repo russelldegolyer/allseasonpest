@@ -182,12 +182,14 @@
       gap:12px;
       overflow-x:auto;
       overflow-y:hidden;
-      padding:2px 2px 8px;
+      padding:12px 20px 14px;
+      margin:0 -2px;
       scrollbar-width:none;
       -webkit-overflow-scrolling:touch;
       overscroll-behavior-x:contain;
       scroll-behavior:smooth;
       justify-content:flex-start;
+      align-items:center;
     }
 
     .service-rail::-webkit-scrollbar{
@@ -195,7 +197,7 @@
     }
 
     .service-btn{
-      flex:0 0 250px;
+      flex:0 0 238px;
       border:1px solid rgba(255,255,255,.08);
       background:rgba(255,255,255,.03);
       color:#fff;
@@ -203,10 +205,24 @@
       padding:16px;
       text-align:left;
       cursor:pointer;
-      transition:border-color .18s ease, box-shadow .18s ease, background .18s ease;
+      transition:
+        border-color .18s ease,
+        box-shadow .18s ease,
+        background .18s ease,
+        transform .22s ease,
+        opacity .22s ease,
+        flex-basis .22s ease;
+      transform:scale(.92);
+      opacity:.72;
+    }
+
+    .service-btn.near-active{
+      transform:scale(.965);
+      opacity:.9;
     }
 
     .service-btn.active{
+      flex-basis:278px;
       border-color:color-mix(in srgb, var(--active) 58%, transparent);
       background:linear-gradient(
         180deg,
@@ -216,6 +232,8 @@
       box-shadow:
         0 0 0 1px color-mix(in srgb, var(--active) 18%, transparent) inset,
         0 0 26px color-mix(in srgb, var(--active) 12%, transparent);
+      transform:scale(1);
+      opacity:1;
     }
 
     .service-btn-top{
@@ -492,13 +510,23 @@
 
       .service-rail{
         gap:8px;
-        padding-bottom:4px;
+        padding:10px 14px 8px;
       }
 
       .service-btn{
-        flex:0 0 158px;
+        flex:0 0 148px;
         border-radius:14px;
         padding:11px;
+        transform:scale(.92);
+      }
+
+      .service-btn.near-active{
+        transform:scale(.965);
+      }
+
+      .service-btn.active{
+        flex-basis:172px;
+        transform:scale(1);
       }
 
       .service-icon{
@@ -643,10 +671,6 @@
         font-size:.8rem;
       }
 
-      .service-btn{
-        flex:0 0 146px;
-      }
-
       .focus-title{
         font-size:1.46rem;
       }
@@ -687,14 +711,10 @@ const generalPest = {
   pests: [<span class="silver">ants</span>, <span class="silver">spiders</span>, <span class="silver">crickets</span>, <span class="silver">earwigs</span>]
 };
 
-const rodentControl = {
-  type: <span class="gold">"monitoring"</span>,
-  focus: [<span class="silver">bait stations</span>, <span class="silver">sticky traps</span>, <span class="silver">follow-up</span>]
-};
-
-const mosquitoService = {
-  type: <span class="gold">"seasonal"</span>,
-  target: [<span class="green">shaded foliage</span>, <span class="green">harborage areas</span>, <span class="green">outdoor zones</span>]
+const weedControl = {
+  type: <span class="gold">"specialized"</span>,
+  service: <span class="gold">"Weed Control"</span>,
+  focus: [<span class="silver">edges</span>, <span class="silver">rocks</span>, <span class="silver">yard appearance</span>]
 };
 
 render(<span class="red">premiumServiceExperience</span>);
@@ -935,8 +955,12 @@ render(<span class="red">premiumServiceExperience</span>);
       });
     }
 
+    function getButtonsById(id) {
+      return [...document.querySelectorAll(`.service-btn[data-id="${id}"]`)];
+    }
+
     function getCenterCandidateButtons(id) {
-      const buttons = [...document.querySelectorAll(`.service-btn[data-id="${id}"]`)];
+      const buttons = getButtonsById(id);
       const railRect = serviceRail.getBoundingClientRect();
       const railCenter = railRect.left + railRect.width / 2;
 
@@ -952,6 +976,17 @@ render(<span class="red">premiumServiceExperience</span>);
         .sort((a, b) => a.distance - b.distance);
     }
 
+    function getMiddleSetButton(id) {
+      const buttons = getButtonsById(id);
+      const segmentLength = baseServices.length;
+      const middleIndexStart = segmentLength * cloneRepeat;
+
+      return buttons.find(btn => {
+        const idx = Number(btn.dataset.index);
+        return idx >= middleIndexStart && idx < middleIndexStart + segmentLength;
+      }) || buttons[0] || null;
+    }
+
     function centerButton(button, smooth = true) {
       if (!button) return;
 
@@ -964,34 +999,45 @@ render(<span class="red">premiumServiceExperience</span>);
       });
     }
 
-    function normalizeRailPosition() {
-      const buttons = [...document.querySelectorAll(".service-btn")];
-      if (!buttons.length) return;
+    function updateRailClasses(activeButton) {
+      const allButtons = [...document.querySelectorAll(".service-btn")];
+      allButtons.forEach(btn => btn.classList.remove("near-active"));
 
-      const segmentLength = baseServices.length;
-      const allById = {};
-      buttons.forEach(btn => {
-        const id = btn.dataset.id;
-        if (!allById[id]) allById[id] = [];
-        allById[id].push(btn);
+      if (!activeButton) return;
+
+      const rect = activeButton.getBoundingClientRect();
+      const activeCenter = rect.left + rect.width / 2;
+
+      allButtons.forEach(btn => {
+        if (btn === activeButton) return;
+        const r = btn.getBoundingClientRect();
+        const center = r.left + r.width / 2;
+        const dist = Math.abs(center - activeCenter);
+        if (dist < 330) {
+          btn.classList.add("near-active");
+        }
       });
+    }
 
-      const activeSet = allById[currentActiveId];
-      if (!activeSet || !activeSet.length) return;
-
-      const middleIndexStart = segmentLength * cloneRepeat;
-      const targetButton = activeSet.find(btn => {
-        const idx = Number(btn.dataset.index);
-        return idx >= middleIndexStart && idx < middleIndexStart + segmentLength;
-      }) || activeSet[0];
-
+    function normalizeRailPosition() {
+      const targetButton = getMiddleSetButton(currentActiveId);
+      if (!targetButton) return;
       centerButton(targetButton, false);
+      updateRailClasses(targetButton);
+    }
+
+    function isBoundaryJump(fromId, toId) {
+      return (
+        (fromId === "weed" && toId === "general") ||
+        (fromId === "general" && toId === "weed")
+      );
     }
 
     function setActiveService(id, shouldCenter = false, clickedButton = null) {
       const service = baseServices.find(item => item.id === id);
       if (!service) return;
 
+      const previousId = currentActiveId;
       currentActiveId = id;
       document.documentElement.style.setProperty("--active", service.color);
 
@@ -1008,6 +1054,18 @@ render(<span class="red">premiumServiceExperience</span>);
 
       if (shouldCenter && centerTarget) {
         centerButton(centerTarget, true);
+        updateRailClasses(centerTarget);
+
+        if (isBoundaryJump(previousId, id)) {
+          setTimeout(() => {
+            const middleButton = getMiddleSetButton(id);
+            centerButton(middleButton, false);
+            updateRailClasses(middleButton);
+          }, 240);
+        }
+      } else {
+        const middleButton = getMiddleSetButton(id);
+        updateRailClasses(middleButton || centerTarget);
       }
 
       focusBadge.innerHTML = iconMap[service.icon];
@@ -1041,9 +1099,17 @@ render(<span class="red">premiumServiceExperience</span>);
 
     renderButtons();
     setActiveService("general", false);
+
     requestAnimationFrame(() => {
       normalizeRailPosition();
     });
+
+    serviceRail.addEventListener("scroll", () => {
+      const activeCandidates = getCenterCandidateButtons(currentActiveId);
+      if (activeCandidates.length) {
+        updateRailClasses(activeCandidates[0].button);
+      }
+    }, { passive: true });
 
     window.addEventListener("resize", () => {
       setActiveService(currentActiveId, false);
