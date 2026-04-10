@@ -11,7 +11,6 @@
   <style>
     :root{
       --bg:#000000;
-      --bg-soft:#070707;
       --panel:#0d0d0d;
       --text:#ffffff;
       --muted:rgba(255,255,255,.76);
@@ -110,9 +109,10 @@
       align-items:stretch;
     }
 
-    .founder{
+    .founder,
+    .story-panel,
+    .contact-box{
       position:relative;
-      padding:32px 30px 30px;
       border:1px solid rgba(255,255,255,.08);
       border-radius:26px;
       background:
@@ -122,7 +122,9 @@
       overflow:hidden;
     }
 
-    .founder::before{
+    .founder::before,
+    .story-panel::before,
+    .contact-box::before{
       content:"";
       position:absolute;
       top:0;
@@ -130,6 +132,11 @@
       width:100%;
       height:1px;
       background:linear-gradient(90deg, rgba(255,42,42,.58), transparent 65%);
+    }
+
+    .founder{
+      padding:32px 30px 30px;
+      min-height:280px;
     }
 
     .founder-label{
@@ -164,88 +171,73 @@
       max-width:520px;
     }
 
-    .shared{
-      margin-top:32px;
-      padding-top:30px;
-      border-top:1px solid var(--line);
-      display:grid;
-      grid-template-columns:280px 1fr;
-      gap:28px;
-      align-items:start;
+    .story-panel{
+      margin-top:28px;
+      padding:34px 34px 32px;
     }
 
-    .shared-label{
+    .story-kicker{
       color:rgba(255,255,255,.46);
       text-transform:uppercase;
-      letter-spacing:.16em;
-      font-size:.78rem;
+      letter-spacing:.15em;
+      font-size:.76rem;
       font-weight:800;
-      padding-top:6px;
+      margin-bottom:16px;
     }
 
-    .shared-copy p{
+    .story-panel h3{
+      font-size:2rem;
+      line-height:1.02;
+      letter-spacing:-.04em;
+      margin-bottom:18px;
+      max-width:700px;
+    }
+
+    .story-grid{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:28px;
+    }
+
+    .story-grid p{
       color:var(--muted);
-      font-size:1.08rem;
-      line-height:1.9;
-      max-width:760px;
+      font-size:1.04rem;
+      line-height:1.85;
     }
 
-    .shared-copy p + p{
-      margin-top:16px;
-    }
-
-    .contact{
-      margin-top:34px;
-      padding-top:30px;
-      border-top:1px solid var(--line);
+    .contact-grid{
       display:grid;
-      grid-template-columns:280px 1fr;
-      gap:28px;
-      align-items:start;
+      grid-template-columns:repeat(3, 1fr);
+      gap:18px;
+      margin-top:28px;
     }
 
-    .contact-label{
-      color:rgba(255,255,255,.46);
-      text-transform:uppercase;
-      letter-spacing:.16em;
-      font-size:.78rem;
-      font-weight:800;
-      padding-top:8px;
+    .contact-box{
+      min-height:110px;
     }
 
-    .cta-row{
+    .contact-box a{
       display:flex;
-      gap:14px;
-      flex-wrap:wrap;
-    }
-
-    .cta-row a{
-      display:inline-flex;
       align-items:center;
       justify-content:center;
-      min-width:180px;
-      padding:15px 20px;
-      border-radius:14px;
-      border:1px solid rgba(255,255,255,.10);
-      background:
-        linear-gradient(180deg, rgba(255,255,255,.03), rgba(255,255,255,.015)),
-        #0a0a0a;
-      color:#fff;
+      width:100%;
+      height:100%;
+      padding:22px;
       text-transform:uppercase;
-      font-size:.82rem;
+      font-size:.92rem;
       font-weight:800;
-      letter-spacing:.14em;
+      letter-spacing:.16em;
       transition:.2s ease;
     }
 
-    .cta-row a:hover{
-      border-color:rgba(255,42,42,.62);
+    .contact-box:hover{
+      border-color:rgba(255,42,42,.44);
+      box-shadow:0 0 18px rgba(255,42,42,.10);
       transform:translateY(-2px);
-      box-shadow:0 0 18px rgba(255,42,42,.12);
     }
 
     .footer{
-      padding:0 26px 24px;
+      padding:30px 26px 24px;
     }
 
     .footer-inner{
@@ -262,14 +254,10 @@
     }
 
     @media (max-width: 920px){
-      .founders{
+      .founders,
+      .story-grid,
+      .contact-grid{
         grid-template-columns:1fr;
-      }
-
-      .shared,
-      .contact{
-        grid-template-columns:1fr;
-        gap:14px;
       }
     }
 
@@ -287,7 +275,8 @@
         padding:110px 18px 44px;
       }
 
-      .founder{
+      .founder,
+      .story-panel{
         padding:26px 22px 24px;
       }
 
@@ -295,18 +284,22 @@
         font-size:1.9rem;
       }
 
+      .story-panel h3{
+        font-size:1.65rem;
+      }
+
       .founder p,
-      .shared-copy p{
+      .story-grid p{
         font-size:1rem;
         line-height:1.75;
       }
 
-      .cta-row a{
-        min-width:100%;
+      .contact-box{
+        min-height:92px;
       }
 
       .footer{
-        padding:0 18px 20px;
+        padding:26px 18px 20px;
       }
     }
 
@@ -366,14 +359,17 @@
         </article>
       </section>
 
-      <section class="shared">
-        <div class="shared-label">Why we built it</div>
-        <div class="shared-copy">
+      <section class="story-panel">
+        <div class="story-kicker">Why we built it</div>
+        <h3>A more grounded kind of pest control company.</h3>
+
+        <div class="story-grid">
           <p>
             Between us, we have 12 years of combined experience in the pest control
             industry. We started All Season Pest Control because too many companies
             feel rushed, overly sales-focused, or disconnected from the people they serve.
           </p>
+
           <p>
             We wanted to build something more grounded than that. Straightforward
             service. Clear communication. No inflated promises. Just a company people
@@ -382,11 +378,14 @@
         </div>
       </section>
 
-      <section class="contact">
-        <div class="contact-label">Contact</div>
-        <div class="cta-row">
+      <section class="contact-grid">
+        <div class="contact-box">
           <a href="tel:8709197114">Call</a>
+        </div>
+        <div class="contact-box">
           <a href="sms:8709197114">Text</a>
+        </div>
+        <div class="contact-box">
           <a href="mailto:gmail@allseasonpestllc.com">Email</a>
         </div>
       </section>
