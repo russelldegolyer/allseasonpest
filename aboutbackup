@@ -1,0 +1,605 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>About | All Season Pest Control</title>
+  <meta
+    name="description"
+    content="Learn more about All Season Pest Control and the experience behind the company."
+  />
+  <style>
+    :root{
+      --bg:#050505;
+      --panel:rgba(17,17,17,.88);
+      --text:#ffffff;
+      --muted:rgba(255,255,255,.82);
+      --muted-soft:rgba(255,255,255,.68);
+      --border:rgba(255,255,255,.18);
+      --border-soft:rgba(255,255,255,.08);
+      --shadow:0 10px 40px rgba(0,0,0,.35);
+      --red:#ff2a2a;
+      --red-deep:#b30000;
+      --line:rgba(255, 42, 42, 0.55);
+      --glow:0 0 22px rgba(255, 42, 42, 0.22);
+      --glow-strong:0 0 30px rgba(255, 42, 42, 0.3);
+      --max:1200px;
+    }
+
+    *{
+      box-sizing:border-box;
+      margin:0;
+      padding:0;
+    }
+
+    html{
+      scroll-behavior:smooth;
+    }
+
+    body{
+      background:#000;
+      color:var(--text);
+      font-family:Inter, Arial, Helvetica, sans-serif;
+      overflow-x:hidden;
+    }
+
+    a{
+      color:inherit;
+      text-decoration:none;
+    }
+
+    .topbar{
+      position:fixed;
+      top:0;
+      left:0;
+      width:100%;
+      z-index:1000;
+      backdrop-filter:blur(14px);
+      background:rgba(0, 0, 0, 0.72);
+      border-bottom:1px solid rgba(255, 42, 42, 0.22);
+    }
+
+    .topbar-inner{
+      max-width:var(--max);
+      margin:0 auto;
+      padding:14px 20px;
+      display:flex;
+      justify-content:center;
+      align-items:center;
+    }
+
+    .nav{
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+      justify-content:center;
+    }
+
+    .nav a{
+      padding:11px 18px;
+      border:1px solid rgba(255, 42, 42, 0.34);
+      border-radius:999px;
+      background:rgba(255, 255, 255, 0.03);
+      color:#fff;
+      font-weight:700;
+      font-size:0.95rem;
+      letter-spacing:0.02em;
+      transition:0.2s ease;
+    }
+
+    .nav a:hover,
+    .nav a.active{
+      border-color:rgba(255, 42, 42, 0.75);
+      box-shadow:var(--glow);
+      transform:translateY(-1px);
+    }
+
+    .page{
+      padding-top:110px;
+    }
+
+    .section{
+      padding:0 32px 52px;
+      background:#050505;
+    }
+
+    .section-inner{
+      max-width:var(--max);
+      margin:0 auto;
+    }
+
+    .hero-card{
+      border:1px solid rgba(255,255,255,.08);
+      border-radius:34px;
+      padding:42px 38px;
+      background:
+        linear-gradient(180deg, rgba(255,255,255,.035), rgba(255,255,255,.02)),
+        linear-gradient(135deg, rgba(255,42,42,.08), rgba(255,255,255,.02));
+      box-shadow:var(--shadow);
+    }
+
+    .eyebrow{
+      display:inline-block;
+      color:var(--red);
+      font-size:.9rem;
+      font-weight:800;
+      letter-spacing:.14em;
+      text-transform:uppercase;
+      margin-bottom:18px;
+    }
+
+    h1{
+      font-size:clamp(2.6rem, 5vw, 5rem);
+      line-height:.96;
+      letter-spacing:-0.05em;
+      margin-bottom:20px;
+      max-width:820px;
+    }
+
+    .hero-lead{
+      max-width:820px;
+      color:var(--muted);
+      font-size:1.14rem;
+      line-height:1.7;
+    }
+
+    .hero-lead + .hero-lead{
+      margin-top:18px;
+    }
+
+    .grid{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:28px;
+      margin-top:28px;
+    }
+
+    .card{
+      border-radius:28px;
+      padding:30px;
+      background:linear-gradient(180deg, rgba(255,255,255,.04), rgba(255,255,255,.02));
+      border:1px solid var(--border-soft);
+      box-shadow:var(--shadow);
+    }
+
+    .card h2{
+      font-size:1.9rem;
+      line-height:1.05;
+      margin-bottom:16px;
+      letter-spacing:-0.04em;
+    }
+
+    .card p{
+      color:var(--muted);
+      line-height:1.72;
+      font-size:1rem;
+    }
+
+    .card p + p{
+      margin-top:14px;
+    }
+
+    .states-card{
+      margin-top:28px;
+      border-radius:30px;
+      padding:32px;
+      background:
+        linear-gradient(135deg, rgba(197,18,18,.18), rgba(255,255,255,.02)),
+        #0b0b0b;
+      border:1px solid rgba(255,255,255,.10);
+      box-shadow:var(--shadow);
+    }
+
+    .states-card h2{
+      font-size:2rem;
+      line-height:1.05;
+      margin-bottom:14px;
+      letter-spacing:-0.04em;
+    }
+
+    .states-card p{
+      color:var(--muted);
+      line-height:1.72;
+      max-width:860px;
+      margin-bottom:20px;
+    }
+
+    .states-list{
+      display:flex;
+      flex-wrap:wrap;
+      gap:12px;
+    }
+
+    .state-pill{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      padding:12px 16px;
+      border-radius:999px;
+      border:1px solid rgba(255,255,255,.10);
+      background:rgba(255,255,255,.03);
+      color:#fff;
+      font-size:.92rem;
+      font-weight:700;
+      letter-spacing:.02em;
+    }
+
+    .values-wrap{
+      margin-top:28px;
+    }
+
+    .values-wrap h2{
+      font-size:clamp(2rem, 4vw, 3.3rem);
+      line-height:1;
+      letter-spacing:-0.04em;
+      margin-bottom:20px;
+    }
+
+    .values-grid{
+      display:grid;
+      grid-template-columns:repeat(4, minmax(0, 1fr));
+      gap:20px;
+    }
+
+    .value-box{
+      border-radius:24px;
+      padding:24px 22px;
+      background:linear-gradient(180deg, rgba(255,255,255,.04), rgba(255,255,255,.02));
+      border:1px solid var(--border-soft);
+      box-shadow:var(--shadow);
+    }
+
+    .value-box h3{
+      font-size:1.15rem;
+      margin-bottom:10px;
+      letter-spacing:-0.02em;
+    }
+
+    .value-box p{
+      color:var(--muted-soft);
+      line-height:1.65;
+      font-size:.98rem;
+    }
+
+    .bottom-cta{
+      max-width:760px;
+      margin:8px auto 0;
+      text-align:center;
+      padding:0 32px 56px;
+    }
+
+    .bottom-cta p{
+      color:#eaeaea;
+      font-size:1rem;
+      line-height:1.8;
+      margin-bottom:16px;
+    }
+
+    .cta-row{
+      display:flex;
+      justify-content:center;
+      gap:12px;
+      flex-wrap:wrap;
+    }
+
+    .cta-row a{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      min-width:170px;
+      padding:13px 16px;
+      border-radius:12px;
+      border:1px solid rgba(255,255,255,0.1);
+      background:
+        linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.015)),
+        #0a0a0a;
+      color:#ffffff;
+      text-transform:uppercase;
+      font-size:0.82rem;
+      font-weight:700;
+      letter-spacing:1.3px;
+      transition:border-color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .cta-row a:hover{
+      border-color:rgba(255, 43, 43, 0.55);
+      transform:translateY(-2px);
+      box-shadow:0 0 18px rgba(255, 43, 43, 0.1);
+    }
+
+    .footer{
+      padding:0 32px 34px;
+      background:#050505;
+    }
+
+    .footer-inner{
+      max-width:var(--max);
+      margin:0 auto;
+      border-top:1px solid rgba(255,255,255,.08);
+      padding-top:22px;
+      display:flex;
+      justify-content:space-between;
+      gap:16px;
+      flex-wrap:wrap;
+      color:rgba(255,255,255,.56);
+      font-size:.95rem;
+    }
+
+    @media (max-width: 1100px){
+      .values-grid{
+        grid-template-columns:1fr 1fr;
+      }
+    }
+
+    @media (max-width: 900px){
+      .section{
+        padding:0 24px 44px;
+      }
+
+      .grid{
+        grid-template-columns:1fr;
+      }
+
+      .bottom-cta{
+        padding:0 24px 48px;
+      }
+
+      .footer{
+        padding:0 24px 28px;
+      }
+    }
+
+    @media (max-width: 768px){
+      .cta-row a{
+        min-width:100%;
+        font-size:0.76rem;
+      }
+    }
+
+    @media (max-width: 700px){
+      .topbar-inner{
+        padding:14px 14px;
+      }
+
+      .nav a{
+        padding:10px 14px;
+        font-size:0.9rem;
+      }
+    }
+
+    @media (max-width: 640px){
+      .page{
+        padding-top:102px;
+      }
+
+      .section{
+        padding:0 18px 34px;
+      }
+
+      .hero-card,
+      .card,
+      .states-card,
+      .value-box{
+        padding:22px;
+        border-radius:24px;
+      }
+
+      h1{
+        font-size:3.25rem;
+        line-height:.95;
+      }
+
+      .hero-lead{
+        font-size:1rem;
+        line-height:1.65;
+      }
+
+      .card h2,
+      .states-card h2{
+        font-size:1.65rem;
+      }
+
+      .values-wrap h2{
+        font-size:2.3rem;
+      }
+
+      .values-grid{
+        grid-template-columns:1fr;
+      }
+
+      .bottom-cta{
+        padding:0 18px 38px;
+      }
+
+      .footer{
+        padding:0 18px 24px;
+      }
+    }
+
+    @media (max-width: 430px){
+      .topbar-inner{
+        padding:12px 10px;
+      }
+
+      .nav{
+        gap:8px;
+      }
+
+      .nav a{
+        padding:9px 12px;
+        font-size:.84rem;
+      }
+
+      .page{
+        padding-top:96px;
+      }
+
+      .section{
+        padding:0 14px 28px;
+      }
+
+      h1{
+        font-size:2.85rem;
+      }
+
+      .bottom-cta{
+        padding:0 14px 30px;
+      }
+
+      .footer{
+        padding:0 14px 20px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header class="topbar">
+    <div class="topbar-inner">
+      <nav class="nav">
+        <a href="home.html">Home</a>
+        <a href="services.html">Services</a>
+        <a href="about.html" class="active">About</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="page">
+    <section class="section">
+      <div class="section-inner">
+        <div class="hero-card">
+          <span class="eyebrow">About All Season Pest Control</span>
+          <h1>Built by real pest control experience, not just marketing.</h1>
+          <p class="hero-lead">
+            All Season Pest Control was built by Russell and Zamir with a simple goal:
+            offer honest, dependable pest control that feels personal, professional,
+            and easy to trust.
+          </p>
+          <p class="hero-lead">
+            Between us, we have 12 years of combined pest control experience working
+            in different parts of the United States. That experience shaped how we
+            inspect homes, communicate with customers, and think about long-term pest control.
+          </p>
+          <p class="hero-lead">
+            Different states bring different pest pressures, climates, housing styles,
+            and expectations. But one thing stays the same everywhere: people want
+            straight answers, dependable service, and a company they feel comfortable
+            letting around their home.
+          </p>
+        </div>
+
+        <div class="grid">
+          <div class="card">
+            <h2>Why we started this company</h2>
+            <p>
+              We wanted to build something that felt more personal and more honest
+              than the typical big-company experience. Too many people feel like
+              they are being sold to, rushed through, or pushed into services they
+              do not fully understand.
+            </p>
+            <p>
+              That is not what we want this company to be. We believe pest control
+              should feel straightforward. Show up. Communicate clearly. Treat the
+              property the right way. Follow through when something needs extra attention.
+            </p>
+          </div>
+
+          <div class="card">
+            <h2>What matters to us</h2>
+            <p>
+              We care about doing clean work, respecting the home, and being easy to
+              deal with. That means no confusing runaround, no inflated promises, and
+              no pretending every pest issue needs some giant treatment plan.
+            </p>
+            <p>
+              We would rather build long-term trust than chase short-term sales.
+              That is the kind of company we would want working at our own homes.
+            </p>
+          </div>
+        </div>
+
+        <div class="states-card">
+          <h2>Experience from all over the country</h2>
+          <p>
+            Between Russell and Zamir, our combined experience includes work in Texas,
+            Minnesota, Oregon, Tennessee, Missouri, Kansas, New Mexico, Iowa, and
+            South Dakota. Seeing how pest control is done across that many markets
+            gives you a wider perspective on what works, what does not, and what
+            customers actually care about.
+          </p>
+
+          <div class="states-list">
+            <span class="state-pill">Texas</span>
+            <span class="state-pill">Minnesota</span>
+            <span class="state-pill">Oregon</span>
+            <span class="state-pill">Tennessee</span>
+            <span class="state-pill">Missouri</span>
+            <span class="state-pill">Kansas</span>
+            <span class="state-pill">New Mexico</span>
+            <span class="state-pill">Iowa</span>
+            <span class="state-pill">South Dakota</span>
+          </div>
+        </div>
+
+        <div class="values-wrap">
+          <h2>What customers can expect from us</h2>
+
+          <div class="values-grid">
+            <div class="value-box">
+              <h3>Real experience</h3>
+              <p>
+                We are not new to pest control. Our combined experience across multiple
+                states has shaped how we inspect, treat, communicate, and follow through.
+              </p>
+            </div>
+
+            <div class="value-box">
+              <h3>Straight communication</h3>
+              <p>
+                Customers deserve to know what is being done, why it is being done,
+                and what to expect next.
+              </p>
+            </div>
+
+            <div class="value-box">
+              <h3>Respect for the property</h3>
+              <p>
+                We treat homes with care and focus on what actually matters instead
+                of wasting time on unnecessary steps.
+              </p>
+            </div>
+
+            <div class="value-box">
+              <h3>Dependable follow-through</h3>
+              <p>
+                Good service is not just about the first visit. It is about being
+                consistent over time and handling issues the right way when they come up.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="bottom-cta">
+      <p>
+        Want to talk to a real person before getting started? Reach out anytime.
+      </p>
+
+      <div class="cta-row">
+        <a href="tel:8709197114">Call</a>
+        <a href="sms:8709197114">Text</a>
+        <a href="mailto:gmail@allseasonpestllc.com">Email</a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+      <span>© 2026 All Season Pest Control</span>
+      <span>Jonesboro, Arkansas</span>
+    </div>
+  </footer>
+
+</body>
+</html>
