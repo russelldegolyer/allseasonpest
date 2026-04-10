@@ -1,1 +1,754 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>All Season Pest Control | Jonesboro, Arkansas</title>
+  <meta
+    name="description"
+    content="Professional pest control for homes in Jonesboro, Arkansas and Northeast Arkansas. Safe treatments. Dependable service. Real protection."
+  />
+  <style>
+    :root{
+      --bg:#050505;
+      --panel:rgba(17,17,17,.88);
+      --text:#ffffff;
+      --muted:rgba(255,255,255,.82);
+      --muted-soft:rgba(255,255,255,.68);
+      --border:rgba(255,255,255,.18);
+      --border-soft:rgba(255,255,255,.08);
+      --shadow:0 10px 40px rgba(0,0,0,.35);
+      --red:#ff2a2a;
+      --red-deep:#b30000;
+      --line:rgba(255, 42, 42, 0.55);
+      --glow:0 0 22px rgba(255, 42, 42, 0.22);
+      --glow-strong:0 0 30px rgba(255, 42, 42, 0.3);
+      --max:1200px;
+    }
 
+    *{
+      box-sizing:border-box;
+      margin:0;
+      padding:0;
+    }
+
+    html{
+      scroll-behavior:smooth;
+    }
+
+    body{
+      background:#000;
+      color:var(--text);
+      font-family:Inter, Arial, Helvetica, sans-serif;
+      overflow-x:hidden;
+    }
+
+    a{
+      color:inherit;
+      text-decoration:none;
+    }
+
+    img{
+      max-width:100%;
+      display:block;
+    }
+
+    .topbar{
+      position:fixed;
+      top:0;
+      left:0;
+      width:100%;
+      z-index:1000;
+      backdrop-filter:blur(14px);
+      background:rgba(0, 0, 0, 0.72);
+      border-bottom:1px solid rgba(255, 42, 42, 0.22);
+    }
+
+    .topbar-inner{
+      max-width:var(--max);
+      margin:0 auto;
+      padding:14px 20px;
+      display:flex;
+      justify-content:center;
+      align-items:center;
+    }
+
+    .nav{
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+      justify-content:center;
+    }
+
+    .nav a{
+      padding:11px 18px;
+      border:1px solid rgba(255, 42, 42, 0.34);
+      border-radius:999px;
+      background:rgba(255, 255, 255, 0.03);
+      color:#fff;
+      font-weight:700;
+      font-size:0.95rem;
+      letter-spacing:0.02em;
+      transition:0.2s ease;
+    }
+
+    .nav a:hover,
+    .nav a.active{
+      border-color:rgba(255, 42, 42, 0.75);
+      box-shadow:var(--glow);
+      transform:translateY(-1px);
+    }
+
+    .hero{
+      position:relative;
+      min-height:100vh;
+      display:flex;
+      align-items:center;
+      padding:140px 32px 80px;
+      background:
+        linear-gradient(rgba(0,0,0,.46), rgba(0,0,0,.62)),
+        url("stadium.jpg") center center / cover no-repeat;
+    }
+
+    .hero-inner{
+      width:100%;
+      max-width:var(--max);
+      margin:0 auto;
+    }
+
+    .hero-copy{
+      max-width:760px;
+    }
+
+    .hero-pill{
+      display:inline-flex;
+      align-items:center;
+      padding:14px 30px;
+      border:1px solid var(--border);
+      border-radius:999px;
+      background:rgba(22,22,22,.38);
+      backdrop-filter:blur(8px);
+      box-shadow:var(--shadow);
+      color:#fff;
+      font-size:1rem;
+      font-weight:800;
+      letter-spacing:.08em;
+      text-transform:uppercase;
+      margin-bottom:28px;
+    }
+
+    .hero h1{
+      font-size:clamp(3.25rem, 5.35vw, 5.85rem);
+      line-height:.94;
+      letter-spacing:-0.055em;
+      font-weight:900;
+      max-width:760px;
+      margin-bottom:22px;
+    }
+
+    .hero p{
+      max-width:700px;
+      font-size:clamp(1.05rem, 1.45vw, 1.35rem);
+      line-height:1.45;
+      color:var(--muted);
+    }
+
+    .section{
+      padding:92px 32px;
+      background:#050505;
+    }
+
+    .section-inner{
+      max-width:var(--max);
+      margin:0 auto;
+    }
+
+    .eyebrow{
+      display:inline-block;
+      color:var(--red);
+      font-size:.9rem;
+      font-weight:800;
+      letter-spacing:.14em;
+      text-transform:uppercase;
+      margin-bottom:18px;
+    }
+
+    .section h2{
+      font-size:clamp(2.2rem, 4vw, 4rem);
+      line-height:1;
+      letter-spacing:-0.04em;
+      margin-bottom:20px;
+    }
+
+    .section-lead{
+      max-width:780px;
+      font-size:1.15rem;
+      line-height:1.6;
+      color:var(--muted);
+    }
+
+    .grid{
+      display:grid;
+      grid-template-columns:repeat(3, minmax(0, 1fr));
+      gap:24px;
+      margin-top:42px;
+    }
+
+    .card{
+      background:linear-gradient(180deg, rgba(255,255,255,.04), rgba(255,255,255,.025));
+      border:1px solid var(--border-soft);
+      border-radius:28px;
+      padding:28px;
+      box-shadow:var(--shadow);
+    }
+
+    .card h3{
+      font-size:1.35rem;
+      margin-bottom:12px;
+      letter-spacing:-0.03em;
+    }
+
+    .card p{
+      color:var(--muted-soft);
+      line-height:1.65;
+      font-size:1rem;
+    }
+
+    .split{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:28px;
+      margin-top:42px;
+      align-items:stretch;
+    }
+
+    .list-card,
+    .cta-box{
+      height:100%;
+      border-radius:30px;
+      box-shadow:var(--shadow);
+    }
+
+    .list-card{
+      background:linear-gradient(180deg, rgba(255,255,255,.04), rgba(255,255,255,.02));
+      border:1px solid var(--border-soft);
+      padding:30px;
+    }
+
+    .cta-box{
+      background:
+        linear-gradient(135deg, rgba(197,18,18,.24), rgba(255,255,255,.03)),
+        #0b0b0b;
+      border:1px solid rgba(255,255,255,.10);
+      padding:30px;
+      display:flex;
+      flex-direction:column;
+    }
+
+    .list-card h3,
+    .cta-box h3{
+      font-size:1.8rem;
+      line-height:1.05;
+      margin-bottom:16px;
+      letter-spacing:-0.04em;
+    }
+
+    .cta-box > p{
+      color:var(--muted);
+      line-height:1.65;
+      margin-bottom:18px;
+      font-size:1rem;
+    }
+
+    .expect-grid{
+      display:grid;
+      grid-template-columns:1fr;
+      gap:16px;
+      margin-top:6px;
+    }
+
+    .expect-box{
+      border-radius:18px;
+      border:1px solid rgba(255,255,255,.07);
+      background:rgba(255,255,255,.025);
+      padding:18px 18px;
+    }
+
+    .expect-box h4{
+      font-size:1.02rem;
+      line-height:1.2;
+      margin-bottom:7px;
+      letter-spacing:-0.02em;
+    }
+
+    .expect-box p{
+      color:var(--muted-soft);
+      font-size:.98rem;
+      line-height:1.58;
+    }
+
+    .advantage-list{
+      margin:6px 0 0;
+      padding-left:24px;
+      display:flex;
+      flex-direction:column;
+      gap:18px;
+      flex:1;
+    }
+
+    .advantage-list li{
+      color:rgba(255,255,255,.92);
+      line-height:1.5;
+    }
+
+    .advantage-list li p{
+      margin:6px 0 0;
+      color:var(--muted-soft);
+      font-size:.98rem;
+      line-height:1.58;
+    }
+
+    .process-step-title{
+      display:inline-block;
+      font-size:1.02rem;
+      font-weight:800;
+      color:#fff;
+      letter-spacing:-0.02em;
+      line-height:1.2;
+    }
+
+    .bottom-cta{
+      max-width:760px;
+      margin:18px auto 0;
+      text-align:center;
+      padding:0 32px 70px;
+    }
+
+    .bottom-cta p{
+      color:#eaeaea;
+      font-size:1rem;
+      line-height:1.8;
+      margin-bottom:16px;
+    }
+
+    .cta-row{
+      display:flex;
+      justify-content:center;
+      gap:12px;
+      flex-wrap:wrap;
+    }
+
+    .cta-row a{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      min-width:170px;
+      padding:13px 16px;
+      border-radius:12px;
+      border:1px solid rgba(255,255,255,0.1);
+      background:
+        linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.015)),
+        #0a0a0a;
+      color:#ffffff;
+      text-decoration:none;
+      text-transform:uppercase;
+      font-size:0.82rem;
+      font-weight:700;
+      letter-spacing:1.3px;
+      transition:border-color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .cta-row a:hover{
+      border-color:rgba(255, 43, 43, 0.55);
+      transform:translateY(-2px);
+      box-shadow:0 0 18px rgba(255, 43, 43, 0.1);
+    }
+
+    .footer{
+      padding:0 32px 34px;
+      background:#050505;
+    }
+
+    .footer-inner{
+      max-width:var(--max);
+      margin:0 auto;
+      border-top:1px solid rgba(255,255,255,.08);
+      padding-top:22px;
+      display:flex;
+      justify-content:space-between;
+      gap:16px;
+      flex-wrap:wrap;
+      color:rgba(255,255,255,.56);
+      font-size:.95rem;
+    }
+
+    @media (max-width: 1100px){
+      .grid{
+        grid-template-columns:1fr 1fr;
+      }
+
+      .split{
+        grid-template-columns:1fr;
+      }
+    }
+
+    @media (max-width: 900px){
+      .hero{
+        padding:135px 24px 70px;
+        align-items:flex-start;
+      }
+
+      .hero-copy{
+        max-width:100%;
+        padding-top:110px;
+      }
+
+      .hero-pill{
+        margin-bottom:24px;
+      }
+
+      .hero h1{
+        font-size:clamp(3rem, 8vw, 4.7rem);
+        line-height:.98;
+        margin-bottom:18px;
+        max-width:680px;
+      }
+
+      .hero p{
+        font-size:1.16rem;
+        line-height:1.42;
+        max-width:640px;
+      }
+
+      .section{
+        padding:80px 24px;
+      }
+
+      .bottom-cta{
+        padding:0 24px 56px;
+      }
+
+      .footer{
+        padding:0 24px 28px;
+      }
+    }
+
+    @media (max-width: 768px){
+      .bottom-cta p{
+        font-size:0.95rem;
+        line-height:1.75;
+      }
+
+      .cta-row a{
+        min-width:100%;
+        font-size:0.76rem;
+      }
+    }
+
+    @media (max-width: 700px){
+      .topbar-inner{
+        padding:14px 14px;
+      }
+
+      .nav a{
+        padding:10px 14px;
+        font-size:0.9rem;
+      }
+    }
+
+    @media (max-width: 640px){
+      .hero{
+        min-height:auto;
+        padding:112px 18px 58px;
+        background-position:center center;
+      }
+
+      .hero-copy{
+        padding-top:145px;
+      }
+
+      .hero-pill{
+        font-size:.86rem;
+        letter-spacing:.07em;
+        padding:12px 18px;
+        margin-bottom:18px;
+      }
+
+      .hero h1{
+        font-size:4.3rem;
+        line-height:.95;
+        letter-spacing:-0.055em;
+        margin-bottom:16px;
+        max-width:100%;
+      }
+
+      .hero p{
+        font-size:1rem;
+        line-height:1.38;
+        max-width:100%;
+        padding-right:4px;
+      }
+
+      .section{
+        padding:68px 18px;
+      }
+
+      .section-lead{
+        font-size:1.02rem;
+      }
+
+      .grid{
+        grid-template-columns:1fr;
+        gap:18px;
+        margin-top:30px;
+      }
+
+      .split{
+        gap:18px;
+        margin-top:30px;
+      }
+
+      .card,
+      .list-card,
+      .cta-box{
+        padding:22px;
+        border-radius:24px;
+      }
+
+      .list-card h3,
+      .cta-box h3{
+        font-size:1.55rem;
+      }
+
+      .expect-box{
+        padding:16px;
+      }
+
+      .expect-box h4{
+        font-size:.98rem;
+      }
+
+      .expect-box p,
+      .advantage-list li p{
+        font-size:.96rem;
+      }
+
+      .bottom-cta{
+        padding:0 18px 48px;
+      }
+
+      .footer{
+        padding:0 18px 24px;
+      }
+    }
+
+    @media (max-width: 430px){
+      .topbar-inner{
+        padding:12px 10px;
+      }
+
+      .nav{
+        gap:8px;
+      }
+
+      .nav a{
+        padding:9px 12px;
+        font-size:.84rem;
+      }
+
+      .hero{
+        padding:104px 14px 50px;
+      }
+
+      .hero-copy{
+        padding-top:165px;
+      }
+
+      .hero-pill{
+        font-size:.8rem;
+        padding:11px 15px;
+        margin-bottom:16px;
+      }
+
+      .hero h1{
+        font-size:3.7rem;
+        line-height:.96;
+        margin-bottom:14px;
+      }
+
+      .hero p{
+        font-size:.96rem;
+        line-height:1.36;
+      }
+
+      .section{
+        padding:60px 14px;
+      }
+
+      .bottom-cta{
+        padding:0 14px 42px;
+      }
+
+      .footer{
+        padding:0 14px 20px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header class="topbar">
+    <div class="topbar-inner">
+      <nav class="nav">
+        <a href="home.html" class="active">Home</a>
+        <a href="services.html">Services</a>
+        <a href="process.html">Process</a>
+        <a href="about.html">About</a>
+      </nav>
+    </div>
+  </header>
+
+  <section class="hero">
+    <div class="hero-inner">
+      <div class="hero-copy">
+        <div class="hero-pill">Jonesboro, Arkansas</div>
+        <h1>Professional pest control for homes that want it done right every time.</h1>
+        <p>Safe treatments. Dependable service. Real protection for homeowners and renters in Northeast Arkansas.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="section-inner">
+      <span class="eyebrow">Built for home owners and renters, not door to door sales teams.</span>
+      <h2>Protection that feels local, straightforward, and dependable.</h2>
+      <p class="section-lead">
+        We keep it simple. Show up when we say we will, treat the property the right way, and build a service plan that actually fits the home instead of overselling things people do not need. Monthly billing can feel like a scam, which is why we only charge you after the completion of the full service.
+      </p>
+
+      <div class="grid">
+        <div class="card">
+          <h3>Safe, targeted treatments</h3>
+          <p>
+            We focus on practical treatment plans designed for real pest pressure, not flashy upsells or overpriced services to boost sales commissions.
+          </p>
+        </div>
+
+        <div class="card">
+          <h3>Dependable recurring service</h3>
+          <p>
+            Reliable pest control works best when it is consistent. We help keep homes protected through the seasons, not just for a few days after a spray.
+          </p>
+        </div>
+
+        <div class="card">
+          <h3>Local knowledge matters</h3>
+          <p>
+            Homes in Northeast Arkansas deal with their own pest pressures. The service should reflect that instead of using a generic one-size-fits-all approach.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="section-inner">
+      <span class="eyebrow">Why homeowners and renters in Jonesboro choose us</span>
+      <h2>Built around clear service, not confusion.</h2>
+
+      <div class="split">
+        <div class="list-card">
+          <h3>What you can expect</h3>
+
+          <div class="expect-grid">
+            <div class="expect-box">
+              <h4>Straight answers</h4>
+              <p>No vague wording, no inflated promises, and no pretending every issue needs some massive treatment.</p>
+            </div>
+
+            <div class="expect-box">
+              <h4>Service with a plan</h4>
+              <p>We focus on treatment flow, pressure points, and follow-through so results actually build over time.</p>
+            </div>
+
+            <div class="expect-box">
+              <h4>Professional communication</h4>
+              <p>Homeowners should know what was done, why it was done, and what to expect next.</p>
+            </div>
+
+            <div class="expect-box">
+              <h4>Real Northeast Arkansas coverage</h4>
+              <p>Service built for the homes, weather, and seasonal pest activity in this area.</p>
+            </div>
+
+            <div class="expect-box">
+              <h4>Focused treatments</h4>
+              <p>We treat what matters instead of wasting time and product on unnecessary areas.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="cta-box">
+          <h3>Advantages of our general pest service</h3>
+          <p>
+            Built to protect the home without overcomplicating the service or burying people in confusing pricing and unnecessary add-ons.
+          </p>
+
+          <ul class="advantage-list">
+            <li>
+              <span class="process-step-title">Exterior-first protection</span>
+              <p>Built for long-term control instead of a rushed spray-and-go visit that looks good for one day and fades out fast.</p>
+            </li>
+
+            <li>
+              <span class="process-step-title">Local pest focus</span>
+              <p>Designed around common Northeast Arkansas issues like ants, spiders, wasps, roaches, and other normal home invaders.</p>
+            </li>
+
+            <li>
+              <span class="process-step-title">Clear pricing</span>
+              <p>No bloated package structure, no weird add-on stacking, and no pressure to pay for services the home does not need.</p>
+            </li>
+
+            <li>
+              <span class="process-step-title">Recurring control that holds up</span>
+              <p>Helps keep pest pressure low through changing seasons instead of constantly restarting the problem from scratch.</p>
+            </li>
+
+            <li>
+              <span class="process-step-title">Easy communication</span>
+              <p>Simple ways to reach us by call, text, or email when something needs attention between visits.</p>
+            </li>
+
+            <li>
+              <span class="process-step-title">Unlimited free re-services</span>
+              <p>Unlimited free re-services between scheduled appointments if pest activity comes back and needs extra attention.</p>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="bottom-cta">
+    <p>
+      Need help choosing the right plan? Reach out and we can point you in the
+      right direction.
+    </p>
+
+    <div class="cta-row">
+      <a href="tel:8709197114">Call</a>
+      <a href="sms:8709197114">Text</a>
+      <a href="mailto:gmail@allseasonpestllc.com">Email</a>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="footer-inner">
+      <span>© 2026 All Season Pest Control</span>
+      <span>Jonesboro, Arkansas</span>
+    </div>
+  </footer>
+
+</body>
+</html>
