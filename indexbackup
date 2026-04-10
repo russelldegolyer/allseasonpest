@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>All Season Pest Control</title>
+  <meta name="description" content="All Season Pest Control - Jonesboro, Arkansas">
+
+  <style>
+    body {
+      margin: 0;
+      background: #000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      font-family: Arial, sans-serif;
+      overflow: hidden;
+    }
+
+    .wrap {
+      width: 100%;
+      max-width: 1100px;
+      padding: 0 20px;
+      text-align: center;
+      transform: translateY(-30px);
+    }
+
+    .hero {
+      display: inline-flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .logo-link {
+      display: inline-block;
+      text-decoration: none;
+      cursor: pointer;
+      line-height: 0;
+    }
+
+    .logo-box {
+      display: inline-block;
+      line-height: 0;
+    }
+
+    .logo {
+      display: block;
+      max-width: 950px;
+      width: auto;
+      height: auto;
+      max-height: 78vh;
+      transform-origin: center center;
+      animation: subtlePulse 2.4s ease-in-out infinite;
+      transition: transform 0.32s ease-in-out, opacity 0.32s ease-in-out, filter 0.32s ease-in-out;
+    }
+
+    .logo-link:hover .logo {
+      transform: scale(1.075);
+      opacity: 0.99;
+      filter:
+        drop-shadow(0 0 4px rgba(255, 0, 0, 0.35))
+        drop-shadow(0 0 10px rgba(255, 0, 0, 0.22))
+        drop-shadow(0 0 16px rgba(255, 0, 0, 0.12));
+      animation-play-state: paused;
+    }
+
+    .enter-link {
+      display: inline-block;
+      margin-top: 6px;
+      text-decoration: none;
+      text-align: center;
+    }
+
+    .enter-text {
+      color: #ff2a2a;
+      font-size: 18px;
+      font-weight: 700;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      opacity: 0.95;
+      animation: softFade 2s ease-in-out infinite;
+      transition: transform 0.2s ease, opacity 0.2s ease;
+      text-align: center;
+    }
+
+    .enter-link:hover .enter-text {
+      transform: scale(1.06);
+      opacity: 1;
+    }
+
+    @keyframes subtlePulse {
+      0%, 100% {
+        transform: scale(1);
+      }
+      50% {
+        transform: scale(1.03);
+      }
+    }
+
+    @keyframes softFade {
+      0%, 100% {
+        opacity: 0.6;
+      }
+      50% {
+        opacity: 1;
+      }
+    }
+
+    @media (max-width: 768px) {
+      body {
+        overflow: auto;
+      }
+
+      .wrap {
+        padding: 4px 8px 12px;
+        transform: translateY(-10px);
+      }
+
+      .logo {
+        width: 92vw;
+        max-width: none;
+        max-height: none;
+      }
+
+      .enter-link {
+        margin-top: 10px;
+      }
+
+      .enter-text {
+        font-size: 15px;
+        letter-spacing: 2px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="hero">
+      <a href="home.html" class="logo-link" aria-label="Enter Website">
+        <span class="logo-box">
+          <img src="updated logo.PNG" alt="All Season Pest Control" class="logo">
+        </span>
+      </a>
+
+      <a href="home.html" class="enter-link" aria-label="Enter Site">
+        <div class="enter-text">Click here if you hate bugs</div>
+      </a>
+    </div>
+  </div>
+</body>
+</html>
