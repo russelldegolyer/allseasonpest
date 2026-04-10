@@ -6,16 +6,9 @@
   <title>Services | All Season Pest Control</title>
   <style>
     :root{
-      --bg:#000000;
-      --panel:#0b0d11;
-      --panel-2:rgba(16,18,24,.88);
-      --glass:rgba(255,255,255,.04);
-      --glass-2:rgba(255,255,255,.06);
-      --border:rgba(255,255,255,.12);
-      --border-soft:rgba(255,255,255,.08);
       --text:#ffffff;
       --muted:rgba(255,255,255,.76);
-      --muted-soft:rgba(255,255,255,.58);
+      --muted-soft:rgba(255,255,255,.56);
       --shadow:0 18px 60px rgba(0,0,0,.45);
 
       --gold:#ffd05c;
@@ -112,10 +105,10 @@
     }
 
     .hero h1{
-      font-size:clamp(1.9rem, 4vw, 3.1rem);
-      line-height:1.02;
+      font-size:clamp(1.95rem, 4vw, 3.1rem);
+      line-height:1.01;
       margin-bottom:10px;
-      letter-spacing:-.035em;
+      letter-spacing:-.04em;
     }
 
     .hero p{
@@ -144,7 +137,7 @@
       inset:0;
       background:
         radial-gradient(circle at 20% 18%, rgba(255,255,255,.05), transparent 22%),
-        radial-gradient(circle at 80% 25%, rgba(255,255,255,.028), transparent 24%),
+        radial-gradient(circle at 80% 25%, rgba(255,255,255,.025), transparent 24%),
         radial-gradient(circle at 50% 100%, rgba(255,42,42,.06), transparent 32%);
       pointer-events:none;
     }
@@ -204,21 +197,21 @@
       z-index:1;
       padding:28px 32px 24px;
       font-family:ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
-      font-size:clamp(.86rem, 1.2vw, 1.08rem);
+      font-size:clamp(.86rem, 1.2vw, 1.06rem);
       line-height:1.65;
-      color:rgba(232,238,255,.115);
+      color:rgba(232,238,255,.10);
       white-space:pre-wrap;
       pointer-events:none;
       user-select:none;
       overflow:hidden;
     }
 
-    .code-bg .green{ color:rgba(88,224,143,.36); }
-    .code-bg .blue{ color:rgba(110,231,235,.34); }
-    .code-bg .gold{ color:rgba(255,208,92,.34); }
-    .code-bg .red{ color:rgba(255,92,92,.30); }
-    .code-bg .silver{ color:rgba(221,221,221,.25); }
-    .code-bg .brown{ color:rgba(208,154,101,.28); }
+    .code-bg .green{ color:rgba(88,224,143,.28); }
+    .code-bg .blue{ color:rgba(110,231,235,.26); }
+    .code-bg .gold{ color:rgba(255,208,92,.28); }
+    .code-bg .red{ color:rgba(255,92,92,.24); }
+    .code-bg .silver{ color:rgba(221,221,221,.18); }
+    .code-bg .brown{ color:rgba(208,154,101,.22); }
 
     .sidebar{
       position:relative;
@@ -252,7 +245,7 @@
       background:rgba(255,255,255,.03);
       color:#fff;
       border-radius:18px;
-      padding:15px 15px 14px;
+      padding:14px 14px 13px;
       cursor:pointer;
       transition:.22s ease;
       -webkit-tap-highlight-color: transparent;
@@ -266,29 +259,59 @@
 
     .service-btn.active{
       border-color:color-mix(in srgb, var(--active) 58%, transparent);
-      background:color-mix(in srgb, var(--active) 10%, rgba(255,255,255,.03));
+      background:linear-gradient(180deg, color-mix(in srgb, var(--active) 12%, rgba(255,255,255,.03)), rgba(255,255,255,.03));
       box-shadow:
         0 0 0 1px color-mix(in srgb, var(--active) 18%, transparent) inset,
         0 0 22px color-mix(in srgb, var(--active) 12%, transparent);
       transform:translateX(5px);
     }
 
+    .service-btn-top{
+      display:flex;
+      align-items:center;
+      gap:10px;
+      margin-bottom:6px;
+    }
+
+    .service-icon{
+      width:34px;
+      height:34px;
+      border-radius:12px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      border:1px solid rgba(255,255,255,.09);
+      background:rgba(255,255,255,.04);
+      color:var(--active);
+      flex:none;
+    }
+
+    .service-icon svg{
+      width:18px;
+      height:18px;
+      stroke:currentColor;
+      fill:none;
+      stroke-width:1.9;
+      stroke-linecap:round;
+      stroke-linejoin:round;
+    }
+
     .service-btn .kicker{
       display:block;
-      font-size:.67rem;
+      font-size:.64rem;
       letter-spacing:.15em;
       text-transform:uppercase;
-      margin-bottom:6px;
       color:var(--muted-soft);
       font-weight:800;
+      margin-bottom:4px;
     }
 
     .service-btn .name{
       display:block;
-      font-size:.98rem;
+      font-size:.97rem;
       font-weight:800;
       letter-spacing:-.02em;
-      line-height:1.15;
+      line-height:1.12;
     }
 
     .main-panel{
@@ -302,11 +325,11 @@
 
     .focus-card{
       width:100%;
-      max-width:720px;
-      border-radius:26px;
+      max-width:730px;
+      border-radius:28px;
       border:1px solid rgba(255,255,255,.12);
       background:
-        linear-gradient(180deg, rgba(255,255,255,.05), rgba(255,255,255,.02)),
+        linear-gradient(180deg, rgba(255,255,255,.055), rgba(255,255,255,.02)),
         rgba(10,12,18,.84);
       backdrop-filter:blur(14px);
       box-shadow:0 18px 60px rgba(0,0,0,.42);
@@ -323,9 +346,12 @@
 
     .focus-top{
       position:relative;
-      padding:26px 26px 18px;
+      padding:28px 28px 20px;
       border-bottom:1px solid rgba(255,255,255,.08);
       overflow:hidden;
+      background:
+        linear-gradient(180deg, rgba(255,255,255,.02), rgba(255,255,255,0)),
+        radial-gradient(circle at top right, color-mix(in srgb, var(--active) 18%, transparent), transparent 46%);
     }
 
     .focus-top::after{
@@ -335,9 +361,41 @@
       width:230px;
       height:230px;
       border-radius:50%;
-      background:radial-gradient(circle, color-mix(in srgb, var(--active) 32%, transparent) 0%, transparent 68%);
+      background:radial-gradient(circle, color-mix(in srgb, var(--active) 34%, transparent) 0%, transparent 68%);
       pointer-events:none;
       filter:blur(2px);
+    }
+
+    .focus-head{
+      position:relative;
+      z-index:2;
+      display:flex;
+      align-items:flex-start;
+      gap:16px;
+    }
+
+    .focus-badge{
+      width:56px;
+      height:56px;
+      border-radius:18px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      flex:none;
+      border:1px solid rgba(255,255,255,.12);
+      background:linear-gradient(180deg, rgba(255,255,255,.08), rgba(255,255,255,.03));
+      color:var(--active);
+      box-shadow:0 0 22px color-mix(in srgb, var(--active) 12%, transparent);
+    }
+
+    .focus-badge svg{
+      width:28px;
+      height:28px;
+      stroke:currentColor;
+      fill:none;
+      stroke-width:1.9;
+      stroke-linecap:round;
+      stroke-linejoin:round;
     }
 
     .focus-kicker{
@@ -350,9 +408,9 @@
     }
 
     .focus-title{
-      font-size:clamp(1.95rem, 3.8vw, 3.15rem);
-      line-height:.98;
-      letter-spacing:-.045em;
+      font-size:clamp(2rem, 3.9vw, 3.2rem);
+      line-height:.96;
+      letter-spacing:-.05em;
       margin-bottom:14px;
       max-width:11ch;
     }
@@ -365,13 +423,13 @@
     }
 
     .focus-content{
-      padding:20px 26px 26px;
+      padding:20px 28px 28px;
     }
 
     .focus-sub{
-      color:rgba(255,255,255,.94);
+      color:rgba(255,255,255,.95);
       font-size:.96rem;
-      line-height:1.78;
+      line-height:1.8;
       margin-bottom:18px;
     }
 
@@ -492,14 +550,11 @@
 
       .service-btn{
         flex:0 0 220px;
-        min-height:78px;
+        min-height:82px;
         scroll-snap-align:start;
       }
 
-      .service-btn:hover{
-        transform:none;
-      }
-
+      .service-btn:hover,
       .service-btn.active{
         transform:none;
       }
@@ -513,7 +568,7 @@
         padding:20px 22px 16px;
         font-size:.84rem;
         line-height:1.58;
-        opacity:.78;
+        opacity:.72;
       }
     }
 
@@ -534,7 +589,7 @@
 
       .hero p{
         font-size:.9rem;
-        line-height:1.6;
+        line-height:1.58;
         max-width:33ch;
       }
 
@@ -568,18 +623,9 @@
       .code-bg{
         inset:56px 0 0 0;
         padding:16px 16px 10px;
-        font-size:.72rem;
-        line-height:1.48;
-        color:rgba(232,238,255,.075);
-      }
-
-      .code-bg .green,
-      .code-bg .blue,
-      .code-bg .gold,
-      .code-bg .red,
-      .code-bg .silver,
-      .code-bg .brown{
-        opacity:.7;
+        font-size:.7rem;
+        line-height:1.45;
+        color:rgba(232,238,255,.06);
       }
 
       .sidebar{
@@ -598,19 +644,35 @@
       }
 
       .service-btn{
-        flex:0 0 170px;
+        flex:0 0 160px;
         min-height:auto;
         border-radius:14px;
-        padding:12px 12px 11px;
+        padding:11px;
       }
 
-      .service-btn .kicker{
-        font-size:.58rem;
+      .service-btn-top{
+        gap:8px;
         margin-bottom:5px;
       }
 
+      .service-icon{
+        width:30px;
+        height:30px;
+        border-radius:10px;
+      }
+
+      .service-icon svg{
+        width:15px;
+        height:15px;
+      }
+
+      .service-btn .kicker{
+        font-size:.56rem;
+        margin-bottom:4px;
+      }
+
       .service-btn .name{
-        font-size:.86rem;
+        font-size:.84rem;
       }
 
       .main-panel{
@@ -626,9 +688,24 @@
       }
 
       .focus-top::after{
-        width:180px;
-        height:180px;
-        inset:auto -70px -70px auto;
+        width:170px;
+        height:170px;
+        inset:auto -64px -64px auto;
+      }
+
+      .focus-head{
+        gap:12px;
+      }
+
+      .focus-badge{
+        width:44px;
+        height:44px;
+        border-radius:14px;
+      }
+
+      .focus-badge svg{
+        width:22px;
+        height:22px;
       }
 
       .focus-kicker{
@@ -637,14 +714,14 @@
       }
 
       .focus-title{
-        font-size:1.7rem;
+        font-size:1.68rem;
         margin-bottom:10px;
         max-width:12ch;
       }
 
       .focus-desc{
         font-size:.9rem;
-        line-height:1.6;
+        line-height:1.58;
       }
 
       .focus-content{
@@ -653,7 +730,7 @@
 
       .focus-sub{
         font-size:.9rem;
-        line-height:1.62;
+        line-height:1.6;
         margin-bottom:14px;
       }
 
@@ -675,7 +752,7 @@
 
       .info-box p{
         font-size:.87rem;
-        line-height:1.6;
+        line-height:1.58;
       }
 
       .tag-row{
@@ -702,7 +779,7 @@
       .footer-note{
         margin-top:12px;
         font-size:.76rem;
-        line-height:1.55;
+        line-height:1.52;
       }
     }
 
@@ -739,15 +816,15 @@
       }
 
       .service-btn{
-        flex:0 0 158px;
+        flex:0 0 150px;
       }
 
       .focus-title{
-        font-size:1.5rem;
+        font-size:1.46rem;
       }
 
       .code-bg{
-        opacity:.55;
+        opacity:.45;
       }
     }
   </style>
@@ -826,9 +903,15 @@ render(<span class="red">premiumServiceExperience</span>);
         <div class="main-panel">
           <div class="focus-card" id="focusCard">
             <div class="focus-top">
-              <div class="focus-kicker" id="focusKicker"></div>
-              <h2 class="focus-title" id="focusTitle"></h2>
-              <p class="focus-desc" id="focusDesc"></p>
+              <div class="focus-head">
+                <div class="focus-badge" id="focusBadge"></div>
+
+                <div class="focus-copy">
+                  <div class="focus-kicker" id="focusKicker"></div>
+                  <h2 class="focus-title" id="focusTitle"></h2>
+                  <p class="focus-desc" id="focusDesc"></p>
+                </div>
+              </div>
             </div>
 
             <div class="focus-content">
@@ -864,10 +947,54 @@ render(<span class="red">premiumServiceExperience</span>);
   </main>
 
   <script>
+    const iconMap = {
+      bug: `
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M12 8.5c2.2 0 4 1.8 4 4.1V16c0 2.2-1.8 4-4 4s-4-1.8-4-4v-3.4c0-2.3 1.8-4.1 4-4.1Z"/>
+          <path d="M10.5 5.5 12 4l1.5 1.5"/>
+          <path d="M8 10 5.5 8.5M16 10l2.5-1.5M8 14H5M19 14h-3M8.5 18l-2 1.5M15.5 18l2 1.5"/>
+        </svg>
+      `,
+      shield: `
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M12 3l7 3v5c0 4.8-2.8 8.4-7 10-4.2-1.6-7-5.2-7-10V6l7-3Z"/>
+          <path d="M9.5 12.5 11 14l3.5-4"/>
+        </svg>
+      `,
+      paw: `
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M8 11.5c-1.2 0-2-1.3-2-2.8S6.8 6 8 6s2 1.3 2 2.7-.8 2.8-2 2.8ZM16 11.5c-1.2 0-2-1.3-2-2.8S14.8 6 16 6s2 1.3 2 2.7-.8 2.8-2 2.8ZM5.5 15.5c-1 0-1.7-1.1-1.7-2.4s.7-2.4 1.7-2.4 1.7 1.1 1.7 2.4-.7 2.4-1.7 2.4ZM18.5 15.5c-1 0-1.7-1.1-1.7-2.4s.7-2.4 1.7-2.4 1.7 1.1 1.7 2.4-.7 2.4-1.7 2.4Z"/>
+          <path d="M12 19.5c2.3 0 4.5-1.1 4.5-3.2 0-1.8-1.4-3.1-3.1-3.1-.7 0-1.1.2-1.4.5-.3-.3-.7-.5-1.4-.5-1.7 0-3.1 1.3-3.1 3.1 0 2.1 2.2 3.2 4.5 3.2Z"/>
+        </svg>
+      `,
+      mosquito: `
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M12 12v7"/>
+          <path d="M12 12 7 7M12 12l5-5M12 12l6 2M12 12 6 14"/>
+          <path d="M12 7.5c1.2 0 2-.8 2-1.8S13.2 4 12 4s-2 .8-2 1.7.8 1.8 2 1.8Z"/>
+          <path d="M10.5 19.5h3"/>
+        </svg>
+      `,
+      target: `
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <circle cx="12" cy="12" r="7"/>
+          <circle cx="12" cy="12" r="3"/>
+          <path d="M12 5V3M19 12h2M12 21v-2M3 12h2"/>
+        </svg>
+      `,
+      leaf: `
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M19 4c-7.5.4-12 4.8-12 10.5 0 3 2.2 5.5 5.4 5.5C18.3 20 20 13.9 19 4Z"/>
+          <path d="M8 16c2.5-2.4 4.8-4 8-5.5"/>
+        </svg>
+      `
+    };
+
     const services = [
       {
         id: "general",
         color: "#ffd05c",
+        icon: "bug",
         kicker: "Core Service",
         title: "General Pest Control",
         desc: "Built for common pest pressure around the home and designed to help keep activity down through consistent, dependable treatment.",
@@ -881,6 +1008,7 @@ render(<span class="red">premiumServiceExperience</span>);
       {
         id: "rodent",
         color: "#dddddd",
+        icon: "shield",
         kicker: "Monitoring + Control",
         title: "Rodent Control",
         desc: "Focused on reducing and monitoring rodent activity through strategic bait placement and ongoing follow-up where needed.",
@@ -894,6 +1022,7 @@ render(<span class="red">premiumServiceExperience</span>);
       {
         id: "tickflea",
         color: "#58e08f",
+        icon: "paw",
         kicker: "Targeted Outdoor Service",
         title: "Tick & Flea Treatment",
         desc: "Designed for properties dealing with biting pests in the yard, around pet areas, or in outdoor spaces where activity tends to build up.",
@@ -907,6 +1036,7 @@ render(<span class="red">premiumServiceExperience</span>);
       {
         id: "mosquito",
         color: "#ff5c5c",
+        icon: "mosquito",
         kicker: "Seasonal Treatment",
         title: "Mosquito Treatment",
         desc: "Designed to help reduce mosquito pressure in the yard so you can enjoy outdoor areas more comfortably during the warmer months.",
@@ -920,6 +1050,7 @@ render(<span class="red">premiumServiceExperience</span>);
       {
         id: "roach",
         color: "#d09a65",
+        icon: "target",
         kicker: "Specialized Treatment",
         title: "German Roach Treatment",
         desc: "Built for active infestations that need more aggressive and targeted attention than standard routine pest service.",
@@ -933,6 +1064,7 @@ render(<span class="red">premiumServiceExperience</span>);
       {
         id: "weed",
         color: "#6ee7eb",
+        icon: "leaf",
         kicker: "Specialized Treatment",
         title: "Weed Control",
         desc: "Designed to help reduce unwanted weed growth and improve the overall appearance of the property.",
@@ -947,6 +1079,7 @@ render(<span class="red">premiumServiceExperience</span>);
 
     const serviceList = document.getElementById("serviceList");
     const focusCard = document.getElementById("focusCard");
+    const focusBadge = document.getElementById("focusBadge");
     const focusKicker = document.getElementById("focusKicker");
     const focusTitle = document.getElementById("focusTitle");
     const focusDesc = document.getElementById("focusDesc");
@@ -964,21 +1097,24 @@ render(<span class="red">premiumServiceExperience</span>);
     function renderButtons() {
       serviceList.innerHTML = "";
 
-      services.forEach((service, index) => {
+      services.forEach((service) => {
         const button = document.createElement("button");
         button.className = "service-btn";
         button.dataset.id = service.id;
-        button.innerHTML = `
-          <span class="kicker">${service.kicker}</span>
-          <span class="name">${service.title}</span>
-        `;
         button.style.setProperty("--active", service.color);
+
+        button.innerHTML = `
+          <div class="service-btn-top">
+            <div class="service-icon">${iconMap[service.icon]}</div>
+            <div>
+              <span class="kicker">${service.kicker}</span>
+              <span class="name">${service.title}</span>
+            </div>
+          </div>
+        `;
+
         button.addEventListener("click", () => setActiveService(service.id, true));
         serviceList.appendChild(button);
-
-        if (index === 0) {
-          button.classList.add("active");
-        }
       });
     }
 
@@ -992,17 +1128,18 @@ render(<span class="red">premiumServiceExperience</span>);
       allButtons.forEach(btn => {
         const isActive = btn.dataset.id === id;
         btn.classList.toggle("active", isActive);
-        if (isActive) {
-          btn.style.setProperty("--active", service.color);
-          if (scrollButtonIntoView && window.innerWidth <= 980) {
-            btn.scrollIntoView({ behavior: "smooth", inline: "center", block: "nearest" });
-          }
+
+        if (isActive && scrollButtonIntoView && window.innerWidth <= 980) {
+          btn.scrollIntoView({ behavior: "smooth", inline: "center", block: "nearest" });
         }
       });
 
       focusCard.classList.add("is-changing");
 
       setTimeout(() => {
+        focusBadge.innerHTML = iconMap[service.icon];
+        focusBadge.style.color = service.color;
+
         focusKicker.textContent = service.kicker;
         focusTitle.textContent = service.title;
         focusDesc.textContent = service.desc;
@@ -1024,22 +1161,23 @@ render(<span class="red">premiumServiceExperience</span>);
         document.querySelectorAll(".label").forEach(label => {
           label.style.color = service.color;
         });
+
         focusCard.style.borderColor = `${service.color}44`;
-        focusCard.style.boxShadow = `0 18px 60px rgba(0,0,0,.42), 0 0 28px ${service.color}12`;
+        focusCard.style.boxShadow = `0 18px 60px rgba(0,0,0,.42), 0 0 34px ${service.color}14`;
         focusCard.classList.remove("is-changing");
       }, 130);
     }
 
-    let activeId = "general";
+    function getCurrentActiveId() {
+      const current = document.querySelector(".service-btn.active");
+      return current ? current.dataset.id : "general";
+    }
 
     renderButtons();
-    setActiveService(activeId);
+    setActiveService("general");
 
     window.addEventListener("resize", () => {
-      const currentTitle = focusTitle.textContent;
-      const found = services.find(service => service.title === currentTitle);
-      activeId = found ? found.id : "general";
-      setActiveService(activeId);
+      setActiveService(getCurrentActiveId());
     });
   </script>
 </body>
