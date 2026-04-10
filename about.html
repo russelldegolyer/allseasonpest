@@ -17,7 +17,6 @@
       --muted:rgba(255,255,255,.76);
       --muted-soft:rgba(255,255,255,.50);
       --red:#ff2a2a;
-      --red-soft:rgba(255,42,42,.18);
       --line:rgba(255,255,255,.08);
       --glow:0 0 24px rgba(255,42,42,.16);
       --max:1240px;
@@ -96,42 +95,11 @@
 
     .page{
       min-height:100vh;
-      padding:126px 26px 54px;
+      padding:122px 26px 54px;
     }
 
     .wrap{
       max-width:var(--max);
-      margin:0 auto;
-    }
-
-    .intro{
-      text-align:center;
-      padding:10px 0 42px;
-    }
-
-    .eyebrow{
-      display:inline-block;
-      color:var(--red);
-      text-transform:uppercase;
-      letter-spacing:.16em;
-      font-size:.82rem;
-      font-weight:800;
-      margin-bottom:16px;
-    }
-
-    .intro h1{
-      font-size:clamp(2.1rem, 4vw, 3.6rem);
-      line-height:1.02;
-      letter-spacing:-.04em;
-      max-width:760px;
-      margin:0 auto 18px;
-    }
-
-    .intro p{
-      color:var(--muted);
-      font-size:1.04rem;
-      line-height:1.78;
-      max-width:700px;
       margin:0 auto;
     }
 
@@ -186,6 +154,7 @@
       font-weight:700;
       letter-spacing:.02em;
       margin-bottom:18px;
+      line-height:1.45;
     }
 
     .founder p{
@@ -196,8 +165,8 @@
     }
 
     .shared{
-      margin-top:28px;
-      padding:34px 0 0;
+      margin-top:32px;
+      padding-top:30px;
       border-top:1px solid var(--line);
       display:grid;
       grid-template-columns:280px 1fr;
@@ -318,23 +287,18 @@
         padding:110px 18px 44px;
       }
 
-      .intro{
-        padding-bottom:30px;
-      }
-
-      .intro p,
-      .shared-copy p,
-      .founder p{
-        font-size:1rem;
-        line-height:1.75;
-      }
-
       .founder{
         padding:26px 22px 24px;
       }
 
       .founder h2{
         font-size:1.9rem;
+      }
+
+      .founder p,
+      .shared-copy p{
+        font-size:1rem;
+        line-height:1.75;
       }
 
       .cta-row a{
@@ -359,10 +323,6 @@
       .page{
         padding-top:102px;
       }
-
-      .intro h1{
-        font-size:2rem;
-      }
     }
   </style>
 </head>
@@ -380,26 +340,16 @@
 
   <main class="page">
     <div class="wrap">
-      <section class="intro">
-        <div class="eyebrow">About</div>
-        <h1>Real people. Real experience. No big-company runaround.</h1>
-        <p>
-          All Season Pest Control was built to feel more personal, more straightforward,
-          and easier to trust. The goal was simple: do solid work, communicate clearly,
-          and treat people the way we would want to be treated.
-        </p>
-      </section>
-
       <section class="founders">
         <article class="founder">
           <div class="founder-label">Founder</div>
           <h2>Russell</h2>
           <div class="founder-sub">Built around field experience and doing things right</div>
           <p>
-            Russell helped build this company around the kind of service customers actually
-            want: honest answers, clean work, and dependable follow-through. The focus is
-            not on making everything sound bigger than it is. It is on handling pest control
-            the right way and keeping the experience simple.
+            Russell helped build this company around the kind of service customers
+            actually want: honest answers, clean work, and dependable follow-through.
+            The focus is not on making everything sound bigger than it is. It is on
+            handling pest control the right way and keeping the experience simple.
           </p>
         </article>
 
@@ -408,9 +358,10 @@
           <h2>Zamir</h2>
           <div class="founder-sub">Built around trust, communication, and customer experience</div>
           <p>
-            Zamir helped shape the company around being easy to work with and easy to trust.
-            That means clear communication, no confusing sales pressure, and a company that
-            feels more personal than the typical corporate experience people are used to.
+            Zamir helped shape the company around being easy to work with and easy
+            to trust. That means clear communication, no confusing sales pressure,
+            and a company that feels more personal than the typical corporate
+            experience people are used to.
           </p>
         </article>
       </section>
@@ -419,14 +370,14 @@
         <div class="shared-label">Why we built it</div>
         <div class="shared-copy">
           <p>
-            Between us, we have 12 years of combined experience in the pest control industry.
-            We started All Season Pest Control because too many companies feel rushed, overly
-            sales-focused, or disconnected from the people they serve.
+            Between us, we have 12 years of combined experience in the pest control
+            industry. We started All Season Pest Control because too many companies
+            feel rushed, overly sales-focused, or disconnected from the people they serve.
           </p>
           <p>
-            We wanted to build something that felt more grounded than that. Straightforward
-            service. Clear communication. No inflated promises. Just a company people feel
-            comfortable letting around their home.
+            We wanted to build something more grounded than that. Straightforward
+            service. Clear communication. No inflated promises. Just a company people
+            feel comfortable letting around their home.
           </p>
         </div>
       </section>
