@@ -203,7 +203,7 @@
       padding:16px;
       text-align:left;
       cursor:pointer;
-      transition:border-color .18s ease, box-shadow .18s ease, background .18s ease, transform .18s ease;
+      transition:border-color .18s ease, box-shadow .18s ease, background .18s ease;
     }
 
     .service-btn.active{
@@ -471,14 +471,6 @@
       box-shadow:0 0 20px color-mix(in srgb, var(--active) 14%, transparent);
     }
 
-    .footer-note{
-      margin-top:14px;
-      color:rgba(255,255,255,.52);
-      font-size:.82rem;
-      line-height:1.65;
-      overflow-wrap:anywhere;
-    }
-
     @media (max-width: 768px){
       .page-wrap{
         padding:84px 10px 34px;
@@ -629,12 +621,6 @@
         border-radius:12px;
       }
 
-      .footer-note{
-        margin-top:12px;
-        font-size:.76rem;
-        line-height:1.52;
-      }
-
       .code-bg{
         padding:14px 16px 10px;
         font-size:.68rem;
@@ -754,10 +740,6 @@ render(<span class="red">premiumServiceExperience</span>);
               <a href="sms:8709197114">Text</a>
               <a href="mailto:gmail@allseasonllc.com">Email</a>
             </div>
-
-            <div class="footer-note">
-              Interior and garage treatments are optional where applicable and can be added based on the situation.
-            </div>
           </div>
         </div>
       </div>
@@ -808,7 +790,7 @@ render(<span class="red">premiumServiceExperience</span>);
       `
     };
 
-    const services = [
+    const baseServices = [
       {
         id: "general",
         color: "#ffd05c",
@@ -908,33 +890,34 @@ render(<span class="red">premiumServiceExperience</span>);
     const box2Text = document.getElementById("box2Text");
     const tagRow = document.getElementById("tagRow");
 
+    const cloneRepeat = 2;
+    let currentActiveId = "general";
+
     function getVisibleTags(tags) {
       return window.innerWidth <= 768 ? tags.slice(0, 3) : tags;
     }
 
-    function centerActivePill(button, smooth = true) {
-      if (!button) return;
+    function getRailServices() {
+      const before = [];
+      const after = [];
 
-      const container = serviceRail;
-      const targetLeft =
-        button.offsetLeft - (container.clientWidth / 2) + (button.clientWidth / 2);
+      for (let i = 0; i < cloneRepeat; i++) {
+        before.push(...baseServices);
+        after.push(...baseServices);
+      }
 
-      const maxScroll = container.scrollWidth - container.clientWidth;
-      const clamped = Math.max(0, Math.min(targetLeft, maxScroll));
-
-      container.scrollTo({
-        left: clamped,
-        behavior: smooth ? "smooth" : "auto"
-      });
+      return [...before, ...baseServices, ...after];
     }
 
     function renderButtons() {
       serviceRail.innerHTML = "";
+      const railServices = getRailServices();
 
-      services.forEach((service) => {
+      railServices.forEach((service, index) => {
         const button = document.createElement("button");
         button.className = "service-btn";
         button.dataset.id = service.id;
+        button.dataset.index = index;
         button.style.setProperty("--active", service.color);
 
         button.innerHTML = `
@@ -947,28 +930,84 @@ render(<span class="red">premiumServiceExperience</span>);
           </div>
         `;
 
-        button.addEventListener("click", () => setActiveService(service.id, true));
+        button.addEventListener("click", () => setActiveService(service.id, true, button));
         serviceRail.appendChild(button);
       });
     }
 
-    function setActiveService(id, centerButton = false) {
-      const service = services.find(item => item.id === id);
-      if (!service) return;
+    function getCenterCandidateButtons(id) {
+      const buttons = [...document.querySelectorAll(`.service-btn[data-id="${id}"]`)];
+      const railRect = serviceRail.getBoundingClientRect();
+      const railCenter = railRect.left + railRect.width / 2;
 
-      document.documentElement.style.setProperty("--active", service.color);
+      return buttons
+        .map((button) => {
+          const rect = button.getBoundingClientRect();
+          const center = rect.left + rect.width / 2;
+          return {
+            button,
+            distance: Math.abs(center - railCenter)
+          };
+        })
+        .sort((a, b) => a.distance - b.distance);
+    }
 
-      const allButtons = document.querySelectorAll(".service-btn");
-      let activeButton = null;
+    function centerButton(button, smooth = true) {
+      if (!button) return;
 
-      allButtons.forEach(btn => {
-        const isActive = btn.dataset.id === id;
-        btn.classList.toggle("active", isActive);
-        if (isActive) activeButton = btn;
+      const targetLeft =
+        button.offsetLeft - (serviceRail.clientWidth / 2) + (button.clientWidth / 2);
+
+      serviceRail.scrollTo({
+        left: targetLeft,
+        behavior: smooth ? "smooth" : "auto"
+      });
+    }
+
+    function normalizeRailPosition() {
+      const buttons = [...document.querySelectorAll(".service-btn")];
+      if (!buttons.length) return;
+
+      const segmentLength = baseServices.length;
+      const allById = {};
+      buttons.forEach(btn => {
+        const id = btn.dataset.id;
+        if (!allById[id]) allById[id] = [];
+        allById[id].push(btn);
       });
 
-      if (centerButton) {
-        centerActivePill(activeButton, true);
+      const activeSet = allById[currentActiveId];
+      if (!activeSet || !activeSet.length) return;
+
+      const middleIndexStart = segmentLength * cloneRepeat;
+      const targetButton = activeSet.find(btn => {
+        const idx = Number(btn.dataset.index);
+        return idx >= middleIndexStart && idx < middleIndexStart + segmentLength;
+      }) || activeSet[0];
+
+      centerButton(targetButton, false);
+    }
+
+    function setActiveService(id, shouldCenter = false, clickedButton = null) {
+      const service = baseServices.find(item => item.id === id);
+      if (!service) return;
+
+      currentActiveId = id;
+      document.documentElement.style.setProperty("--active", service.color);
+
+      document.querySelectorAll(".service-btn").forEach(btn => {
+        btn.classList.toggle("active", btn.dataset.id === id);
+      });
+
+      let centerTarget = clickedButton;
+
+      if (!centerTarget) {
+        const candidates = getCenterCandidateButtons(id);
+        centerTarget = candidates.length ? candidates[0].button : null;
+      }
+
+      if (shouldCenter && centerTarget) {
+        centerButton(centerTarget, true);
       }
 
       focusBadge.innerHTML = iconMap[service.icon];
@@ -1000,23 +1039,15 @@ render(<span class="red">premiumServiceExperience</span>);
       focusCard.style.boxShadow = `0 18px 60px rgba(0,0,0,.42), 0 0 34px ${service.color}14`;
     }
 
-    function getCurrentActiveId() {
-      const current = document.querySelector(".service-btn.active");
-      return current ? current.dataset.id : "general";
-    }
-
     renderButtons();
     setActiveService("general", false);
-
     requestAnimationFrame(() => {
-      const current = document.querySelector(".service-btn.active");
-      centerActivePill(current, false);
+      normalizeRailPosition();
     });
 
     window.addEventListener("resize", () => {
-      setActiveService(getCurrentActiveId(), false);
-      const current = document.querySelector(".service-btn.active");
-      centerActivePill(current, false);
+      setActiveService(currentActiveId, false);
+      normalizeRailPosition();
     });
   </script>
 </body>
