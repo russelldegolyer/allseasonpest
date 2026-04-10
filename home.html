@@ -6,873 +6,720 @@
   <title>All Season Pest Control | Jonesboro, Arkansas</title>
   <meta
     name="description"
-    content="Professional pest control for homes that want it done right every time in Jonesboro, Arkansas."
+    content="Professional pest control for homes in Jonesboro, Arkansas and Northeast Arkansas. Safe treatments. Dependable service. Real protection."
   />
   <style>
-    :root {
-      --bg: #000000;
-      --panel: #0b0b0b;
-      --panel-2: #111111;
-      --text: #ffffff;
-      --muted: rgba(255, 255, 255, 0.82);
-      --muted-2: rgba(255, 255, 255, 0.68);
-      --red: #ff2a2a;
-      --red-dark: #9c0000;
-      --line: rgba(255, 55, 55, 0.34);
-      --line-strong: rgba(255, 55, 55, 0.58);
-      --glow: 0 0 28px rgba(255, 40, 40, 0.20);
-      --glow-strong: 0 0 38px rgba(255, 40, 40, 0.30);
-      --max: 1400px;
-      --radius: 30px;
-      --radius-sm: 22px;
+    :root{
+      --bg:#050505;
+      --panel:rgba(17,17,17,.88);
+      --text:#ffffff;
+      --muted:rgba(255,255,255,.82);
+      --muted-soft:rgba(255,255,255,.68);
+      --border:rgba(255,255,255,.18);
+      --border-soft:rgba(255,255,255,.08);
+      --shadow:0 10px 40px rgba(0,0,0,.35);
+      --red:#c51212;
+      --max:1200px;
     }
 
-    * {
-      box-sizing: border-box;
+    *{
+      box-sizing:border-box;
+      margin:0;
+      padding:0;
     }
 
-    html {
-      scroll-behavior: smooth;
+    html{
+      scroll-behavior:smooth;
     }
 
-    body {
-      margin: 0;
-      background: #000;
-      color: #fff;
-      font-family: Arial, Helvetica, sans-serif;
-      overflow-x: hidden;
+    body{
+      background:#000;
+      color:var(--text);
+      font-family:Inter, Arial, Helvetica, sans-serif;
+      overflow-x:hidden;
     }
 
-    a {
-      color: inherit;
-      text-decoration: none;
+    a{
+      color:inherit;
+      text-decoration:none;
     }
 
-    img {
-      max-width: 100%;
-      display: block;
+    img{
+      max-width:100%;
+      display:block;
     }
 
-    .page {
-      min-height: 100vh;
+    .site-header{
+      position:fixed;
+      top:0;
+      left:0;
+      width:100%;
+      z-index:1000;
+      background:linear-gradient(to bottom, rgba(10,10,10,.95), rgba(20,20,20,.82));
+      backdrop-filter:blur(8px);
+      border-bottom:1px solid rgba(255,255,255,.06);
+    }
+
+    .nav{
+      max-width:var(--max);
+      margin:0 auto;
+      padding:22px 32px;
+      display:flex;
+      justify-content:center;
+      align-items:center;
+      gap:56px;
+    }
+
+    .nav a{
+      color:#fff;
+      font-weight:700;
+      font-size:1.15rem;
+      letter-spacing:-0.02em;
+      transition:opacity .2s ease, transform .2s ease;
+    }
+
+    .nav a:hover{
+      opacity:.82;
+      transform:translateY(-1px);
+    }
+
+    .hero{
+      position:relative;
+      min-height:100vh;
+      display:flex;
+      align-items:center;
+      padding:140px 32px 80px;
       background:
-        radial-gradient(circle at top, rgba(255, 30, 30, 0.08), transparent 24%),
-        linear-gradient(180deg, #050505 0%, #000000 100%);
-    }
-
-    .container {
-      width: 100%;
-      max-width: var(--max);
-      margin: 0 auto;
-      padding: 0 26px;
-    }
-
-    /* LOCKED HEADER */
-    .topbar {
-      position: sticky;
-      top: 0;
-      z-index: 1000;
-      background: rgba(0, 0, 0, 0.78);
-      backdrop-filter: blur(10px);
-      -webkit-backdrop-filter: blur(10px);
-      border-bottom: 1px solid rgba(255, 255, 255, 0.06);
-    }
-
-    .topbar-inner {
-      max-width: 1400px;
-      margin: 0 auto;
-      padding: 18px 26px;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-    }
-
-    .nav {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 78px;
-      flex-wrap: nowrap;
-    }
-
-    .nav a {
-      color: #ffffff;
-      font-size: 1.08rem;
-      font-weight: 800;
-      letter-spacing: -0.02em;
-      line-height: 1;
-      padding: 4px 0;
-      text-shadow: 0 2px 10px rgba(0, 0, 0, 0.45);
-      transition: opacity 0.2s ease, transform 0.2s ease;
-    }
-
-    .nav a:hover,
-    .nav a.active {
-      opacity: 1;
-      transform: translateY(-1px);
-    }
-
-    /* HERO */
-    .hero {
-      position: relative;
-      min-height: calc(100vh - 78px);
-      display: flex;
-      align-items: stretch;
-      background:
-        linear-gradient(
-          90deg,
-          rgba(0, 0, 0, 0.72) 0%,
-          rgba(0, 0, 0, 0.48) 28%,
-          rgba(0, 0, 0, 0.24) 54%,
-          rgba(0, 0, 0, 0.38) 100%
-        ),
-        linear-gradient(
-          180deg,
-          rgba(0, 0, 0, 0.24) 0%,
-          rgba(0, 0, 0, 0.10) 28%,
-          rgba(0, 0, 0, 0.18) 58%,
-          rgba(0, 0, 0, 0.44) 100%
-        ),
+        linear-gradient(rgba(0,0,0,.46), rgba(0,0,0,.62)),
         url("stadium.jpg") center center / cover no-repeat;
     }
 
-    .hero::after {
-      content: "";
-      position: absolute;
-      inset: 0;
+    .hero-inner{
+      width:100%;
+      max-width:var(--max);
+      margin:0 auto;
+    }
+
+    .hero-copy{
+      max-width:760px;
+    }
+
+    .hero-pill{
+      display:inline-flex;
+      align-items:center;
+      padding:14px 30px;
+      border:1px solid var(--border);
+      border-radius:999px;
+      background:rgba(22,22,22,.38);
+      backdrop-filter:blur(8px);
+      box-shadow:var(--shadow);
+      color:#fff;
+      font-size:1rem;
+      font-weight:800;
+      letter-spacing:.08em;
+      text-transform:uppercase;
+      margin-bottom:28px;
+    }
+
+    .hero h1{
+      font-size:clamp(3.25rem, 5.35vw, 5.85rem);
+      line-height:.94;
+      letter-spacing:-0.055em;
+      font-weight:900;
+      max-width:760px;
+      margin-bottom:22px;
+    }
+
+    .hero p{
+      max-width:700px;
+      font-size:clamp(1.05rem, 1.45vw, 1.35rem);
+      line-height:1.45;
+      color:var(--muted);
+    }
+
+    .section{
+      padding:92px 32px;
+      background:#050505;
+    }
+
+    .section-inner{
+      max-width:var(--max);
+      margin:0 auto;
+    }
+
+    .eyebrow{
+      display:inline-block;
+      color:var(--red);
+      font-size:.9rem;
+      font-weight:800;
+      letter-spacing:.14em;
+      text-transform:uppercase;
+      margin-bottom:18px;
+    }
+
+    .section h2{
+      font-size:clamp(2.2rem, 4vw, 4rem);
+      line-height:1;
+      letter-spacing:-0.04em;
+      margin-bottom:20px;
+    }
+
+    .section-lead{
+      max-width:780px;
+      font-size:1.15rem;
+      line-height:1.6;
+      color:var(--muted);
+    }
+
+    .grid{
+      display:grid;
+      grid-template-columns:repeat(3, minmax(0, 1fr));
+      gap:24px;
+      margin-top:42px;
+    }
+
+    .card{
+      background:linear-gradient(180deg, rgba(255,255,255,.04), rgba(255,255,255,.025));
+      border:1px solid var(--border-soft);
+      border-radius:28px;
+      padding:28px;
+      box-shadow:var(--shadow);
+    }
+
+    .card h3{
+      font-size:1.35rem;
+      margin-bottom:12px;
+      letter-spacing:-0.03em;
+    }
+
+    .card p{
+      color:var(--muted-soft);
+      line-height:1.65;
+      font-size:1rem;
+    }
+
+    .split{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:28px;
+      margin-top:42px;
+      align-items:stretch;
+    }
+
+    .list-card,
+    .cta-box{
+      height:100%;
+      border-radius:30px;
+      box-shadow:var(--shadow);
+    }
+
+    .list-card{
+      background:linear-gradient(180deg, rgba(255,255,255,.04), rgba(255,255,255,.02));
+      border:1px solid var(--border-soft);
+      padding:30px;
+    }
+
+    .cta-box{
       background:
-        radial-gradient(circle at 18% 38%, rgba(255,255,255,0.08), transparent 28%),
-        linear-gradient(180deg, rgba(0,0,0,0) 65%, rgba(0,0,0,0.18) 100%);
-      pointer-events: none;
+        linear-gradient(135deg, rgba(197,18,18,.24), rgba(255,255,255,.03)),
+        #0b0b0b;
+      border:1px solid rgba(255,255,255,.10);
+      padding:30px;
     }
 
-    .hero-inner {
-      position: relative;
-      z-index: 2;
-      width: 100%;
-      max-width: 1400px;
-      margin: 0 auto;
-      padding: 78px 56px 70px;
-      display: flex;
-      align-items: center;
+    .list-card h3,
+    .cta-box h3{
+      font-size:1.8rem;
+      line-height:1.05;
+      margin-bottom:16px;
+      letter-spacing:-0.04em;
     }
 
-    .hero-copy {
-      width: 100%;
-      max-width: 840px;
+    .cta-box p{
+      color:var(--muted);
+      line-height:1.65;
+      margin-bottom:18px;
+      font-size:1rem;
     }
 
-    .location-pill {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      padding: 18px 34px;
-      margin-bottom: 34px;
-      border-radius: 999px;
-      border: 2px solid rgba(255, 255, 255, 0.22);
-      background: rgba(0, 0, 0, 0.18);
-      color: #ffffff;
-      font-size: 1.1rem;
-      font-weight: 800;
-      letter-spacing: 0.03em;
-      text-transform: uppercase;
-      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.22);
-      backdrop-filter: blur(2px);
-      -webkit-backdrop-filter: blur(2px);
+    .expect-grid{
+      display:grid;
+      grid-template-columns:1fr;
+      gap:14px;
+      margin-top:6px;
     }
 
-    .hero h1 {
-      margin: 0 0 22px;
-      max-width: 760px;
-      color: #ffffff;
-      font-size: clamp(4.2rem, 6vw, 5.95rem);
-      line-height: 0.92;
-      font-weight: 900;
-      letter-spacing: -0.065em;
-      text-shadow: 0 6px 30px rgba(0, 0, 0, 0.30);
+    .expect-box{
+      border-radius:18px;
+      border:1px solid rgba(255,255,255,.07);
+      background:rgba(255,255,255,.025);
+      padding:18px 18px;
     }
 
-    .hero-sub {
-      margin: 0;
-      max-width: 860px;
-      color: rgba(255, 255, 255, 0.94);
-      font-size: 1.08rem;
-      line-height: 1.3;
-      font-weight: 500;
-      text-shadow: 0 4px 18px rgba(0, 0, 0, 0.30);
+    .expect-box h4{
+      font-size:1.02rem;
+      line-height:1.2;
+      margin-bottom:7px;
+      letter-spacing:-0.02em;
     }
 
-    /* GENERAL SECTIONS */
-    .section {
-      padding: 44px 0;
+    .expect-box p{
+      color:var(--muted-soft);
+      font-size:.98rem;
+      line-height:1.58;
     }
 
-    .section-head {
-      text-align: center;
-      margin-bottom: 26px;
+    .advantage-list{
+      list-style:none;
+      display:grid;
+      gap:16px;
+      margin-top:4px;
     }
 
-    .eyebrow {
-      display: inline-block;
-      margin-bottom: 12px;
-      padding: 9px 14px;
-      border-radius: 999px;
-      border: 1px solid rgba(255, 60, 60, 0.34);
-      background: rgba(255, 35, 35, 0.08);
-      color: #fff;
-      font-size: 0.8rem;
-      font-weight: 800;
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
+    .advantage-list li{
+      display:flex;
+      align-items:flex-start;
+      gap:12px;
+      color:#fff;
+      line-height:1.55;
+      font-size:1.02rem;
     }
 
-    .section-head h2 {
-      margin: 0 0 10px;
-      font-size: clamp(2rem, 3.3vw, 3.2rem);
-      line-height: 1.05;
-      letter-spacing: -0.04em;
+    .advantage-dot{
+      flex:0 0 10px;
+      width:10px;
+      height:10px;
+      border-radius:999px;
+      background:#fff;
+      margin-top:8px;
+      box-shadow:0 0 0 4px rgba(255,255,255,.08);
     }
 
-    .section-head p {
-      margin: 0 auto;
-      max-width: 760px;
-      color: var(--muted);
-      font-size: 1rem;
-      line-height: 1.55;
+    .bottom-cta{
+      max-width:760px;
+      margin:18px auto 0;
+      text-align:center;
+      padding:0 32px 70px;
     }
 
-    .grid-3,
-    .grid-4,
-    .grid-2 {
-      display: grid;
-      gap: 20px;
+    .bottom-cta p{
+      color:#eaeaea;
+      font-size:1rem;
+      line-height:1.8;
+      margin-bottom:16px;
     }
 
-    .grid-3 {
-      grid-template-columns: repeat(3, minmax(0, 1fr));
+    .cta-row{
+      display:flex;
+      justify-content:center;
+      gap:12px;
+      flex-wrap:wrap;
     }
 
-    .grid-4 {
-      grid-template-columns: repeat(4, minmax(0, 1fr));
-    }
-
-    .grid-2 {
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-    }
-
-    .card {
-      position: relative;
-      overflow: hidden;
-      background: linear-gradient(180deg, #101010 0%, #090909 100%);
-      border: 2px solid rgba(255, 50, 50, 0.38);
-      border-radius: var(--radius);
-      padding: 24px 22px;
-      box-shadow: var(--glow);
-    }
-
-    .card::after {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(180deg, rgba(255,42,42,0.05), transparent 55%);
-      pointer-events: none;
-    }
-
-    .card h3 {
-      margin: 0 0 10px;
-      font-size: 1.18rem;
-      letter-spacing: -0.02em;
-    }
-
-    .card p {
-      margin: 0;
-      color: var(--muted);
-      font-size: 0.97rem;
-      line-height: 1.55;
-    }
-
-    .feature-number {
-      width: 52px;
-      height: 52px;
-      border-radius: 16px;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      margin-bottom: 16px;
-      background: linear-gradient(180deg, #ff4040 0%, #b60000 100%);
-      color: #fff;
-      font-weight: 900;
-      font-size: 1.02rem;
-      box-shadow: 0 0 18px rgba(255, 40, 40, 0.32);
-    }
-
-    /* QUICK LINKS */
-    .quick-links {
-      padding-top: 28px;
-    }
-
-    .quick-link {
-      min-height: 100%;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-    }
-
-    .quick-link .go {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      margin-top: 18px;
-      color: #fff;
-      font-weight: 800;
-      font-size: 0.96rem;
-    }
-
-    /* PHILOSOPHY BAND */
-    .philosophy {
-      border: 2px solid var(--line-strong);
-      border-radius: 34px;
+    .cta-row a{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      min-width:170px;
+      padding:13px 16px;
+      border-radius:12px;
+      border:1px solid rgba(255,255,255,0.1);
       background:
-        linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.01)),
-        linear-gradient(135deg, rgba(255,42,42,0.10), rgba(255,42,42,0.02));
-      box-shadow: var(--glow-strong);
-      overflow: hidden;
+        linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.015)),
+        #0a0a0a;
+      color:#ffffff;
+      text-decoration:none;
+      text-transform:uppercase;
+      font-size:0.82rem;
+      font-weight:700;
+      letter-spacing:1.3px;
+      transition:border-color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
     }
 
-    .philosophy-inner {
-      display: grid;
-      grid-template-columns: 1.1fr 0.9fr;
-      gap: 0;
-      align-items: stretch;
+    .cta-row a:hover{
+      border-color:rgba(255, 43, 43, 0.55);
+      transform:translateY(-2px);
+      box-shadow:0 0 18px rgba(255, 43, 43, 0.1);
     }
 
-    .philosophy-copy,
-    .philosophy-points {
-      padding: 34px 30px;
+    .footer{
+      padding:0 32px 34px;
+      background:#050505;
     }
 
-    .philosophy-copy {
-      border-right: 1px solid rgba(255, 50, 50, 0.22);
+    .footer-inner{
+      max-width:var(--max);
+      margin:0 auto;
+      border-top:1px solid rgba(255,255,255,.08);
+      padding-top:22px;
+      display:flex;
+      justify-content:space-between;
+      gap:16px;
+      flex-wrap:wrap;
+      color:rgba(255,255,255,.56);
+      font-size:.95rem;
     }
 
-    .philosophy-copy h2 {
-      margin: 0 0 14px;
-      font-size: clamp(2rem, 3vw, 3.1rem);
-      line-height: 1.05;
-      letter-spacing: -0.04em;
-    }
-
-    .philosophy-copy p {
-      margin: 0;
-      color: var(--muted);
-      max-width: 620px;
-      line-height: 1.6;
-    }
-
-    .point-list {
-      display: grid;
-      gap: 14px;
-    }
-
-    .point {
-      border: 1px solid rgba(255, 50, 50, 0.24);
-      border-radius: 18px;
-      background: rgba(255,255,255,0.03);
-      padding: 14px 15px;
-    }
-
-    .point strong {
-      display: block;
-      margin-bottom: 4px;
-      font-size: 0.98rem;
-    }
-
-    .point span {
-      color: var(--muted);
-      font-size: 0.94rem;
-      line-height: 1.5;
-    }
-
-    /* CONTACT CTA */
-    .cta-box {
-      text-align: center;
-      border: 2px solid rgba(255, 55, 55, 0.54);
-      border-radius: 34px;
-      background:
-        linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.01)),
-        linear-gradient(135deg, rgba(255,42,42,0.12), rgba(255,42,42,0.03));
-      box-shadow: var(--glow-strong);
-      padding: 42px 26px;
-    }
-
-    .cta-box h2 {
-      margin: 0 0 10px;
-      font-size: clamp(2rem, 3vw, 3rem);
-      letter-spacing: -0.03em;
-    }
-
-    .cta-box p {
-      margin: 0 auto 24px;
-      max-width: 720px;
-      color: var(--muted);
-      line-height: 1.55;
-    }
-
-    .cta-buttons {
-      display: flex;
-      justify-content: center;
-      gap: 14px;
-      flex-wrap: wrap;
-    }
-
-    .cta-buttons a {
-      min-width: 160px;
-      padding: 15px 22px;
-      border-radius: 999px;
-      border: 2px solid rgba(255, 55, 55, 0.55);
-      background: linear-gradient(180deg, #1a1a1a, #0d0d0d);
-      color: #fff;
-      font-weight: 800;
-      font-size: 0.98rem;
-      letter-spacing: 0.02em;
-      box-shadow: var(--glow);
-      transition: 0.2s ease;
-    }
-
-    .cta-buttons a:hover {
-      transform: translateY(-2px);
-      border-color: rgba(255, 80, 80, 0.88);
-      box-shadow: var(--glow-strong);
-    }
-
-    .footer-space {
-      height: 18px;
-    }
-
-    /* DESKTOP TUNING */
-    @media (min-width: 1200px) {
-      .hero-inner {
-        padding-top: 86px;
-        padding-bottom: 82px;
+    @media (max-width: 1100px){
+      .grid{
+        grid-template-columns:1fr 1fr;
       }
 
-      .hero-copy {
-        max-width: 860px;
-      }
-
-      .hero h1 {
-        max-width: 780px;
+      .split{
+        grid-template-columns:1fr;
       }
     }
 
-    /* TABLET */
-    @media (max-width: 980px) {
-      .topbar-inner {
-        padding: 16px 20px;
+    @media (max-width: 900px){
+      .nav{
+        gap:34px;
+        padding:20px 20px;
       }
 
-      .nav {
-        gap: 42px;
+      .nav a{
+        font-size:1.05rem;
       }
 
-      .nav a {
-        font-size: 1rem;
+      .hero{
+        padding:135px 24px 70px;
+        align-items:flex-start;
       }
 
-      .hero {
-        min-height: calc(100vh - 70px);
-        background-position: center center;
+      .hero-copy{
+        max-width:100%;
+        padding-top:110px;
       }
 
-      .hero-inner {
-        padding: 62px 30px 54px;
-        align-items: flex-start;
+      .hero-pill{
+        margin-bottom:24px;
       }
 
-      .hero-copy {
-        max-width: 760px;
+      .hero h1{
+        font-size:clamp(3rem, 8vw, 4.7rem);
+        line-height:.98;
+        margin-bottom:18px;
+        max-width:680px;
       }
 
-      .location-pill {
-        padding: 16px 28px;
-        font-size: 1rem;
-        margin-bottom: 28px;
+      .hero p{
+        font-size:1.16rem;
+        line-height:1.42;
+        max-width:640px;
       }
 
-      .hero h1 {
-        font-size: clamp(3.3rem, 8vw, 5rem);
-        max-width: 700px;
+      .section{
+        padding:80px 24px;
       }
 
-      .hero-sub {
-        max-width: 680px;
-        font-size: 1rem;
+      .bottom-cta{
+        padding:0 24px 56px;
       }
 
-      .grid-4 {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-      }
-
-      .grid-3,
-      .grid-2,
-      .philosophy-inner {
-        grid-template-columns: 1fr;
-      }
-
-      .philosophy-copy {
-        border-right: none;
-        border-bottom: 1px solid rgba(255, 50, 50, 0.22);
+      .footer{
+        padding:0 24px 28px;
       }
     }
 
-    /* MOBILE */
-    @media (max-width: 700px) {
-      .container {
-        padding: 0 14px;
+    @media (max-width: 768px){
+      .bottom-cta p{
+        font-size:0.95rem;
+        line-height:1.75;
       }
 
-      .topbar-inner {
-        padding: 16px 14px;
+      .cta-row a{
+        min-width:100%;
+        font-size:0.76rem;
+      }
+    }
+
+    @media (max-width: 640px){
+      .nav{
+        gap:22px;
+        padding:18px 14px;
+        flex-wrap:nowrap;
       }
 
-      .nav {
-        width: 100%;
-        gap: 10px;
-        justify-content: space-between;
+      .nav a{
+        font-size:0.95rem;
       }
 
-      .nav a {
-        flex: 1 1 0;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        min-height: 64px;
-        padding: 10px 8px;
-        border: 2px solid rgba(255, 45, 45, 0.55);
-        border-radius: 999px;
-        background: linear-gradient(180deg, rgba(20,0,0,0.92), rgba(10,0,0,0.78));
-        box-shadow:
-          0 0 0 1px rgba(255, 80, 80, 0.08) inset,
-          0 0 24px rgba(255, 30, 30, 0.18);
-        font-size: 0.95rem;
-        font-weight: 800;
-        letter-spacing: -0.02em;
+      .hero{
+        min-height:auto;
+        padding:112px 18px 58px;
+        background-position:center center;
       }
 
-      .nav a.active {
-        border-color: rgba(255, 70, 70, 0.95);
-        box-shadow:
-          0 0 0 1px rgba(255, 110, 110, 0.12) inset,
-          0 0 26px rgba(255, 40, 40, 0.38);
+      .hero-copy{
+        padding-top:145px;
       }
 
-      .hero {
-        min-height: calc(100vh - 96px);
-        background:
-          linear-gradient(
-            180deg,
-            rgba(0, 0, 0, 0.48) 0%,
-            rgba(0, 0, 0, 0.38) 22%,
-            rgba(0, 0, 0, 0.34) 100%
-          ),
-          linear-gradient(
-            90deg,
-            rgba(0, 0, 0, 0.55) 0%,
-            rgba(0, 0, 0, 0.20) 52%,
-            rgba(0, 0, 0, 0.30) 100%
-          ),
-          url("stadium.jpg") center center / cover no-repeat;
+      .hero-pill{
+        font-size:.86rem;
+        letter-spacing:.07em;
+        padding:12px 18px;
+        margin-bottom:18px;
       }
 
-      .hero-inner {
-        padding: 34px 20px 42px;
-        align-items: flex-start;
+      .hero h1{
+        font-size:4.3rem;
+        line-height:.95;
+        letter-spacing:-0.055em;
+        margin-bottom:16px;
+        max-width:100%;
       }
 
-      .hero-copy {
-        max-width: 100%;
+      .hero p{
+        font-size:1rem;
+        line-height:1.38;
+        max-width:100%;
+        padding-right:4px;
       }
 
-      .location-pill {
-        padding: 14px 20px;
-        margin-bottom: 24px;
-        font-size: 0.86rem;
-        letter-spacing: 0.05em;
+      .section{
+        padding:68px 18px;
       }
 
-      .hero h1 {
-        max-width: 100%;
-        font-size: clamp(3.15rem, 13vw, 4.7rem);
-        line-height: 0.95;
-        letter-spacing: -0.075em;
-        margin-bottom: 16px;
+      .section-lead{
+        font-size:1.02rem;
       }
 
-      .hero-sub {
-        max-width: 96%;
-        font-size: 0.94rem;
-        line-height: 1.3;
+      .grid{
+        grid-template-columns:1fr;
+        gap:18px;
+        margin-top:30px;
       }
 
-      .section {
-        padding: 30px 0;
-      }
-
-      .grid-3,
-      .grid-4,
-      .grid-2 {
-        grid-template-columns: 1fr;
+      .split{
+        gap:18px;
+        margin-top:30px;
       }
 
       .card,
-      .philosophy-copy,
-      .philosophy-points,
-      .cta-box {
-        padding-left: 18px;
-        padding-right: 18px;
+      .list-card,
+      .cta-box{
+        padding:22px;
+        border-radius:24px;
       }
 
-      .cta-buttons a {
-        width: 100%;
-        max-width: 320px;
+      .list-card h3,
+      .cta-box h3{
+        font-size:1.55rem;
+      }
+
+      .expect-box{
+        padding:16px;
+      }
+
+      .expect-box h4{
+        font-size:.98rem;
+      }
+
+      .expect-box p,
+      .advantage-list li{
+        font-size:.96rem;
+      }
+
+      .bottom-cta{
+        padding:0 18px 48px;
+      }
+
+      .footer{
+        padding:0 18px 24px;
       }
     }
 
-    @media (max-width: 420px) {
-      .nav a {
-        min-height: 60px;
-        font-size: 0.86rem;
+    @media (max-width: 430px){
+      .nav{
+        gap:16px;
+        padding:16px 10px;
       }
 
-      .hero-inner {
-        padding-left: 16px;
-        padding-right: 16px;
+      .nav a{
+        font-size:.9rem;
       }
 
-      .location-pill {
-        width: 100%;
-        justify-content: center;
+      .hero{
+        padding:104px 14px 50px;
       }
 
-      .hero h1 {
-        font-size: 2.95rem;
+      .hero-copy{
+        padding-top:165px;
+      }
+
+      .hero-pill{
+        font-size:.8rem;
+        padding:11px 15px;
+        margin-bottom:16px;
+      }
+
+      .hero h1{
+        font-size:3.7rem;
+        line-height:.96;
+        margin-bottom:14px;
+      }
+
+      .hero p{
+        font-size:.96rem;
+        line-height:1.36;
+      }
+
+      .section{
+        padding:60px 14px;
+      }
+
+      .bottom-cta{
+        padding:0 14px 42px;
+      }
+
+      .footer{
+        padding:0 14px 20px;
       }
     }
   </style>
 </head>
 <body>
-  <div class="page">
-    <header class="topbar">
-      <div class="topbar-inner">
-        <nav class="nav">
-          <a href="home.html" class="active">Home</a>
-          <a href="services.html">Services</a>
-          <a href="process.html">Process</a>
-          <a href="about.html">About</a>
-        </nav>
+
+  <header class="site-header">
+    <nav class="nav">
+      <a href="home.html">Home</a>
+      <a href="services.html">Services</a>
+      <a href="process.html">Process</a>
+      <a href="about.html">About</a>
+    </nav>
+  </header>
+
+  <section class="hero">
+    <div class="hero-inner">
+      <div class="hero-copy">
+        <div class="hero-pill">Jonesboro, Arkansas</div>
+        <h1>Professional pest control for homes that want it done right every time.</h1>
+        <p>Safe treatments. Dependable service. Real protection for homeowners and renters in Northeast Arkansas.</p>
       </div>
-    </header>
+    </div>
+  </section>
 
-    <main>
-      <section class="hero">
-        <div class="hero-inner">
-          <div class="hero-copy">
-            <div class="location-pill">Jonesboro, Arkansas</div>
+  <section class="section">
+    <div class="section-inner">
+      <span class="eyebrow">Built for home owners and renters, not door to door sales teams.</span>
+      <h2>Protection that feels local, straightforward, and dependable.</h2>
+      <p class="section-lead">
+        We keep it simple. Show up when we say we will, treat the property the right way, and build a service plan that actually fits the home instead of overselling things people do not need. Monthly billing can feel like a scam, which is why we only charge you after the completion of the full service.
+      </p>
 
-            <h1>
-              Professional pest<br />
-              control for homes<br />
-              that want it done<br />
-              right every time.
-            </h1>
-
-            <p class="hero-sub">
-              Safe treatments. Dependable service. Real protection for homeowners
-              and renters in Northeast Arkansas.
-            </p>
-          </div>
+      <div class="grid">
+        <div class="card">
+          <h3>Safe, targeted treatments</h3>
+          <p>
+            We focus on practical treatment plans designed for real pest pressure, not flashy upsells or overpriced services to boost sales commissions.
+          </p>
         </div>
-      </section>
 
-      <section class="section quick-links">
-        <div class="container">
-          <div class="grid-3">
-            <a class="card quick-link" href="services.html">
-              <div>
-                <div class="feature-number">01</div>
-                <h3>Services That Fit Real Homes</h3>
-                <p>
-                  General pest, rodent control, German roaches, mosquitoes, ticks,
-                  fleas, and weed control built around what people in this area actually need.
-                </p>
-              </div>
-              <div class="go">View Services →</div>
-            </a>
-
-            <a class="card quick-link" href="process.html">
-              <div>
-                <div class="feature-number">02</div>
-                <h3>A Clear Customer Process</h3>
-                <p>
-                  From first contact to billing and service history, the experience
-                  should feel organized, transparent, and easy to trust.
-                </p>
-              </div>
-              <div class="go">See Our Process →</div>
-            </a>
-
-            <a class="card quick-link" href="about.html">
-              <div>
-                <div class="feature-number">03</div>
-                <h3>Local, Direct, No Nonsense</h3>
-                <p>
-                  Learn what matters to us, how we operate, and why our approach is
-                  built around real service instead of corporate fluff.
-                </p>
-              </div>
-              <div class="go">About All Season →</div>
-            </a>
-          </div>
+        <div class="card">
+          <h3>Dependable recurring service</h3>
+          <p>
+            Reliable pest control works best when it is consistent. We help keep homes protected through the seasons, not just for a few days after a spray.
+          </p>
         </div>
-      </section>
 
-      <section class="section">
-        <div class="container">
-          <div class="section-head">
-            <div class="eyebrow">Why Homeowners Choose Us</div>
-            <h2>Built for people who want it done right.</h2>
-            <p>
-              Pest control should feel dependable, clear, and professional. Not rushed,
-              confusing, or slapped together.
-            </p>
-          </div>
+        <div class="card">
+          <h3>Local knowledge matters</h3>
+          <p>
+            Homes in Northeast Arkansas deal with their own pest pressures. The service should reflect that instead of using a generic one-size-fits-all approach.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
 
-          <div class="grid-4">
-            <div class="card">
-              <div class="feature-number">A</div>
-              <h3>Dependable service</h3>
-              <p>
-                Consistent treatments and real follow-through instead of a random one-time visit.
-              </p>
+  <section class="section">
+    <div class="section-inner">
+      <span class="eyebrow">Why homeowners and renters in Jonesboro choose us</span>
+      <h2>Built around clear service, not confusion.</h2>
+
+      <div class="split">
+        <div class="list-card">
+          <h3>What you can expect</h3>
+
+          <div class="expect-grid">
+            <div class="expect-box">
+              <h4>Straight answers</h4>
+              <p>No vague wording, no inflated promises, and no pretending every issue needs some massive treatment.</p>
             </div>
 
-            <div class="card">
-              <div class="feature-number">B</div>
-              <h3>Safe applications</h3>
-              <p>
-                Professional products used with care and purpose based on the service being performed.
-              </p>
+            <div class="expect-box">
+              <h4>Service with a plan</h4>
+              <p>We focus on treatment flow, pressure points, and follow-through so results actually build over time.</p>
             </div>
 
-            <div class="card">
-              <div class="feature-number">C</div>
-              <h3>Clear communication</h3>
-              <p>
-                Customers should know what was done, what comes next, and how to reach us.
-              </p>
+            <div class="expect-box">
+              <h4>Professional communication</h4>
+              <p>Homeowners should know what was done, why it was done, and what to expect next.</p>
             </div>
 
-            <div class="card">
-              <div class="feature-number">D</div>
-              <h3>Real protection</h3>
-              <p>
-                The goal is lower pest pressure and better long-term control, not just a quick spray.
-              </p>
+            <div class="expect-box">
+              <h4>Real Northeast Arkansas coverage</h4>
+              <p>Service built for the homes, weather, and seasonal pest activity in this area.</p>
+            </div>
+
+            <div class="expect-box">
+              <h4>Focused treatments</h4>
+              <p>We treat what matters instead of wasting time and product on unnecessary areas.</p>
             </div>
           </div>
         </div>
-      </section>
 
-      <section class="section">
-        <div class="container">
-          <div class="philosophy">
-            <div class="philosophy-inner">
-              <div class="philosophy-copy">
-                <div class="eyebrow">Founded & Operated With Purpose</div>
-                <h2>
-                  Straightforward service. Strong communication. No guessing.
-                </h2>
-                <p>
-                  We believe homeowners should feel confident hiring a pest control company.
-                  That means clear expectations, organized records, transparent billing, and
-                  a service experience that feels professional from start to finish.
-                </p>
-              </div>
+        <div class="cta-box">
+          <h3>Advantages of our general pest service</h3>
+          <p>
+            Built to protect the home without overcomplicating the service or burying people in confusing pricing and unnecessary add-ons.
+          </p>
 
-              <div class="philosophy-points">
-                <div class="point-list">
-                  <div class="point">
-                    <strong>No confusing runaround</strong>
-                    <span>We keep the experience simple and easy to follow.</span>
-                  </div>
-
-                  <div class="point">
-                    <strong>No mystery charges</strong>
-                    <span>Customers should be able to review their account and billing clearly.</span>
-                  </div>
-
-                  <div class="point">
-                    <strong>No lazy service model</strong>
-                    <span>We focus on thorough treatments and long-term results.</span>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
+          <ul class="advantage-list">
+            <li>
+              <span class="advantage-dot"></span>
+              <span>Exterior-focused treatment flow built for long-term control, not just a quick spray-and-go visit.</span>
+            </li>
+            <li>
+              <span class="advantage-dot"></span>
+              <span>Service designed around common Northeast Arkansas pests like ants, spiders, wasps, roaches, and more.</span>
+            </li>
+            <li>
+              <span class="advantage-dot"></span>
+              <span>Clear, fair pricing with no bloated package structure and no pressure to buy services that do not fit the home.</span>
+            </li>
+            <li>
+              <span class="advantage-dot"></span>
+              <span>Recurring protection that helps pest pressure stay low through changing seasons instead of constantly restarting from scratch.</span>
+            </li>
+            <li>
+              <span class="advantage-dot"></span>
+              <span>Easy ways to reach us by call, text, or email when something needs attention between visits.</span>
+            </li>
+          </ul>
         </div>
-      </section>
+      </div>
+    </div>
+  </section>
 
-      <section class="section">
-        <div class="container">
-          <div class="section-head">
-            <div class="eyebrow">Coverage</div>
-            <h2>Protection for the pests people actually deal with here.</h2>
-            <p>
-              Whether it is everyday pest issues or more targeted specialty work, our services
-              are built around real homes and real pest pressure in Northeast Arkansas.
-            </p>
-          </div>
+  <section class="bottom-cta">
+    <p>
+      Need help choosing the right plan? Reach out and we can point you in the
+      right direction.
+    </p>
 
-          <div class="grid-2">
-            <div class="card">
-              <h3>General & recurring protection</h3>
-              <p>
-                Ants, spiders, wasps, exterior pest pressure, routine preventative treatments,
-                and recurring protection designed to help keep activity under control through the seasons.
-              </p>
-            </div>
+    <div class="cta-row">
+      <a href="tel:8709197114">Call</a>
+      <a href="sms:8709197114">Text</a>
+      <a href="mailto:gmail@allseasonpestllc.com">Email</a>
+    </div>
+  </section>
 
-            <div class="card">
-              <h3>Specialty problem solving</h3>
-              <p>
-                German roaches, rodents, mosquitoes, ticks, fleas, and weed control when a standard
-                treatment plan is not enough.
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
+  <footer class="footer">
+    <div class="footer-inner">
+      <span>© 2026 All Season Pest Control</span>
+      <span>Jonesboro, Arkansas</span>
+    </div>
+  </footer>
 
-      <section class="section">
-        <div class="container">
-          <div class="cta-box">
-            <h2>Ready to talk it through?</h2>
-            <p>
-              Call, text, or email us and we’ll help you figure out what makes the most sense
-              for your home, your pest issues, and the level of protection you want.
-            </p>
-
-            <div class="cta-buttons">
-              <a href="tel:8709197114">Call</a>
-              <a href="sms:8709197114">Text</a>
-              <a href="mailto:info@allseasonpestllc.com">Email</a>
-            </div>
-          </div>
-        </div>
-      </section>
-    </main>
-
-    <div class="footer-space"></div>
-  </div>
 </body>
 </html>
