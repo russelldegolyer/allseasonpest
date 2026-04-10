@@ -6,451 +6,387 @@
   <title>About | All Season Pest Control</title>
   <meta
     name="description"
-    content="Learn more about All Season Pest Control and the founders behind the company."
+    content="Meet the people behind All Season Pest Control."
   />
-
   <style>
-    :root {
-      --bg: #050505;
-      --panel: #111111;
-      --panel-2: #171717;
-      --line: rgba(255, 255, 255, 0.12);
-      --line-soft: rgba(255, 255, 255, 0.07);
-      --text: #f5f5f5;
-      --muted: #d4d4d4;
-      --soft: #9f9f9f;
-      --red: #ff4040;
-      --red-deep: #a60d16;
-      --shadow: 0 20px 42px rgba(0, 0, 0, 0.45);
+    :root{
+      --bg:#000000;
+      --panel:#0d0d0d;
+      --text:#ffffff;
+      --muted:rgba(255,255,255,.76);
+      --muted-soft:rgba(255,255,255,.50);
+      --red:#ff2a2a;
+      --line:rgba(255,255,255,.08);
+      --glow:0 0 22px rgba(255, 42, 42, 0.22);
+      --max:1200px;
     }
 
-    * {
-      box-sizing: border-box;
+    *{
+      box-sizing:border-box;
+      margin:0;
+      padding:0;
     }
 
-    html {
-      scroll-behavior: smooth;
+    html{
+      scroll-behavior:smooth;
     }
 
-    body {
-      margin: 0;
-      font-family: Arial, Helvetica, sans-serif;
-      color: var(--text);
+    body{
       background:
-        radial-gradient(circle at top, rgba(255, 64, 64, 0.08), transparent 20%),
-        linear-gradient(180deg, #090909 0%, #050505 50%, #030303 100%);
+        radial-gradient(circle at top left, rgba(255,42,42,.07), transparent 24%),
+        radial-gradient(circle at 85% 10%, rgba(255,42,42,.05), transparent 20%),
+        linear-gradient(180deg, #020202 0%, #000000 100%);
+      color:var(--text);
+      font-family:Inter, Arial, Helvetica, sans-serif;
+      overflow-x:hidden;
+      min-height:100vh;
     }
 
-    a {
-      color: inherit;
-      text-decoration: none;
+    a{
+      color:inherit;
+      text-decoration:none;
     }
 
-    .page {
-      width: 100%;
-      max-width: 1220px;
-      margin: 0 auto;
-      padding: 22px 20px 40px;
+    .topbar{
+      position:fixed;
+      top:0;
+      left:0;
+      width:100%;
+      z-index:1000;
+      backdrop-filter:blur(14px);
+      background:rgba(0,0,0,.72);
+      border-bottom:1px solid rgba(255,42,42,.22);
     }
 
-    /* NAV */
-    .topbar {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      margin-bottom: 38px;
+    .topbar-inner{
+      max-width:var(--max);
+      margin:0 auto;
+      padding:14px 20px;
+      display:flex;
+      justify-content:center;
+      align-items:center;
     }
 
-    .nav {
-      display: flex;
-      gap: 12px;
-      flex-wrap: wrap;
-      justify-content: center;
+    .nav{
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+      justify-content:center;
     }
 
-    .nav a {
-      min-width: 118px;
-      text-align: center;
-      padding: 13px 22px;
-      border-radius: 999px;
+    .nav a{
+      padding:11px 18px;
+      border:1px solid rgba(255,42,42,.34);
+      border-radius:999px;
+      background:rgba(255,255,255,.03);
+      color:#fff;
+      font-weight:700;
+      font-size:.95rem;
+      letter-spacing:.02em;
+      transition:.2s ease;
+    }
+ 
+    .nav a:hover,
+    .nav a.active{
+      border-color:rgba(255,42,42,.75);
+      box-shadow:var(--glow);
+      transform:translateY(-1px);
+    }
+
+    .page{
+      max-width:980px;
+      margin:0 auto;
+      padding:110px 20px 70px;
+    }
+
+    .about-logo{
+      display:flex;
+      justify-content:center;
+      align-items:center;
+      margin:24px auto 38px;
+    }
+
+    .about-logo img{
+      display:block;
+      width:min(100%, 560px);
+      height:auto;
+    }
+
+    .founders{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:20px;
+      align-items:stretch;
+    }
+
+    .founder{
+      position:relative;
+      border-radius:20px;
+      padding:30px 26px;
+      overflow:hidden;
+      border:2px solid rgba(255,255,255,.10);
       background:
-        linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.015));
-      border: 1px solid rgba(255, 64, 64, 0.32);
-      color: #f4f4f4;
-      font-weight: 800;
-      font-size: 1rem;
+        radial-gradient(
+          380px circle at var(--mouse-x, 50%) var(--mouse-y, 50%),
+          rgba(255, 50, 50, 0.14),
+          rgba(255, 50, 50, 0.06) 20%,
+          rgba(255, 50, 50, 0.02) 38%,
+          rgba(255, 50, 50, 0) 62%
+        ),
+        #0a0a0a;
       box-shadow:
-        inset 0 1px 0 rgba(255,255,255,0.08),
-        0 0 0 1px rgba(255,64,64,0.04);
-      transition: 0.2s ease;
+        0 0 0 1px rgba(255,255,255,.02) inset,
+        0 0 24px rgba(255, 50, 50, 0.05);
+      transition:border-color .2s ease, transform .2s ease, box-shadow .2s ease;
     }
 
-    .nav a:hover {
-      transform: translateY(-1px);
-      border-color: rgba(255, 64, 64, 0.55);
+    .founder:hover{
+      transform:translateY(-2px);
+      border-color:rgba(255,255,255,.16);
       box-shadow:
-        inset 0 1px 0 rgba(255,255,255,0.1),
-        0 10px 22px rgba(0,0,0,0.28);
+        0 0 0 1px rgba(255,255,255,.03) inset,
+        0 0 28px rgba(255, 50, 50, 0.08);
     }
 
-    .nav a.active {
-      border-color: rgba(255, 82, 82, 0.92);
-      box-shadow:
-        inset 0 1px 0 rgba(255,255,255,0.1),
-        0 0 18px rgba(255, 64, 64, 0.11);
+    .founder-label{
+      text-transform:uppercase;
+      letter-spacing:1.6px;
+      font-size:.76rem;
+      font-weight:700;
+      color:rgba(255,255,255,.52);
+      margin-bottom:14px;
+      position:relative;
+      z-index:1;
     }
 
-    /* LOGO */
-    .hero-logo {
-      display: flex;
-      justify-content: center;
-      margin-bottom: 30px;
+    .founder h2{
+      font-size:2rem;
+      line-height:1.05;
+      margin-bottom:10px;
+      color:#ffffff;
+      position:relative;
+      z-index:1;
     }
 
-    .hero-logo img {
-      width: min(100%, 520px);
-      height: auto;
-      display: block;
-      filter: drop-shadow(0 10px 26px rgba(0, 0, 0, 0.45));
+    .founder-sub{
+      color:#ff5c5c;
+      font-size:.95rem;
+      font-weight:700;
+      line-height:1.5;
+      margin-bottom:18px;
+      position:relative;
+      z-index:1;
     }
 
-    /* FOUNDER SECTION */
-    .founders {
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 24px;
-      margin-bottom: 24px;
+    .founder p{
+      color:var(--muted);
+      font-size:1rem;
+      line-height:1.8;
+      position:relative;
+      z-index:1;
     }
 
-    .founder-card {
-      position: relative;
-      overflow: hidden;
-      min-height: 320px;
-      border-radius: 26px;
-      padding: 0;
+    .bottom-cta{
+      max-width:760px;
+      margin:24px auto 0;
+      text-align:center;
+    }
+
+    .cta-row{
+      display:flex;
+      justify-content:center;
+      gap:12px;
+      flex-wrap:wrap;
+    }
+
+    .cta-row a{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      min-width:170px;
+      padding:13px 16px;
+      border-radius:12px;
+      border:1px solid rgba(255,255,255,0.1);
       background:
-        linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.01)),
-        linear-gradient(145deg, #181818 0%, #101010 62%, #131313 100%);
-      border: 1px solid var(--line);
-      box-shadow:
-        inset 0 1px 0 rgba(255,255,255,0.07),
-        inset 0 -1px 0 rgba(255,255,255,0.02),
-        var(--shadow);
+        linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.015)),
+        #0a0a0a;
+      color:#ffffff;
+      text-decoration:none;
+      text-transform:uppercase;
+      font-size:0.82rem;
+      font-weight:700;
+      letter-spacing:1.3px;
+      transition:border-color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
     }
 
-    .founder-card::before {
-      content: "";
-      position: absolute;
-      inset: 0;
-      pointer-events: none;
-      background:
-        radial-gradient(circle at 85% 82%, rgba(255, 64, 64, 0.13), transparent 28%),
-        radial-gradient(circle at 20% 12%, rgba(255,255,255,0.03), transparent 18%);
+    .cta-row a:hover{
+      border-color:rgba(255, 190, 70, 0.7);
+      transform:translateY(-2px);
+      box-shadow:0 0 20px rgba(255, 190, 70, 0.14);
     }
 
-    .founder-card::after {
-      content: "";
-      position: absolute;
-      left: 0;
-      top: 22px;
-      bottom: 22px;
-      width: 5px;
-      border-radius: 999px;
-      background: linear-gradient(180deg, #7f0b12 0%, #ff4545 45%, #ff7777 100%);
-      box-shadow: 0 0 16px rgba(255, 64, 64, 0.28);
+    .footer{
+      max-width:980px;
+      margin:0 auto;
+      padding:0 20px 24px;
     }
 
-    .card-inner {
-      position: relative;
-      z-index: 1;
-      height: 100%;
-      padding: 26px 26px 24px 30px;
-      display: flex;
-      flex-direction: column;
+    .footer-inner{
+      border-top:1px solid rgba(255,255,255,.08);
+      padding-top:18px;
+      display:flex;
+      justify-content:space-between;
+      gap:12px;
+      flex-wrap:wrap;
+      color:var(--muted-soft);
+      font-size:.94rem;
     }
 
-    .card-top {
-      position: relative;
-      margin-bottom: 20px;
-      padding-bottom: 18px;
-      border-bottom: 1px solid var(--line-soft);
-    }
-
-    .card-top::before {
-      content: "";
-      position: absolute;
-      top: -26px;
-      right: -26px;
-      width: 170px;
-      height: 170px;
-      border-radius: 50%;
-      border: 1px solid rgba(255,255,255,0.045);
-      opacity: 0.75;
-      pointer-events: none;
-    }
-
-    .card-top::after {
-      content: "";
-      position: absolute;
-      left: 0;
-      top: -1px;
-      width: 110px;
-      height: 2px;
-      background: linear-gradient(90deg, rgba(255,64,64,0.95), rgba(255,64,64,0));
-      border-radius: 999px;
-    }
-
-    .eyebrow {
-      display: inline-block;
-      margin-bottom: 12px;
-      padding: 7px 11px 6px;
-      border-radius: 999px;
-      background: rgba(255,255,255,0.045);
-      border: 1px solid rgba(255,255,255,0.08);
-      color: #ffffff;
-      font-size: 0.74rem;
-      font-weight: 800;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-    }
-
-    .founder-name {
-      margin: 0 0 10px;
-      font-size: clamp(2.25rem, 4vw, 3.2rem);
-      line-height: 0.95;
-      font-weight: 900;
-      letter-spacing: -0.04em;
-      color: #ffffff;
-      text-shadow: 0 2px 12px rgba(0,0,0,0.25);
-    }
-
-    .founder-highlight {
-      margin: 0;
-      max-width: 95%;
-      color: #ff7777;
-      font-size: 1.03rem;
-      line-height: 1.45;
-      font-weight: 800;
-    }
-
-    .founder-body {
-      margin-top: auto;
-      position: relative;
-      padding-left: 16px;
-    }
-
-    .founder-body::before {
-      content: "";
-      position: absolute;
-      left: 0;
-      top: 2px;
-      bottom: 2px;
-      width: 2px;
-      border-radius: 999px;
-      background: linear-gradient(180deg, rgba(255,255,255,0.18), rgba(255,255,255,0.04));
-    }
-
-    .founder-body p {
-      margin: 0;
-      color: #f0f0f0;
-      font-size: 1.08rem;
-      line-height: 1.78;
-      font-weight: 700;
-      max-width: 95%;
-    }
-
-    /* CONTACT */
-    .contact-row {
-      display: flex;
-      justify-content: center;
-      gap: 12px;
-      flex-wrap: wrap;
-      margin-top: 0;
-    }
-
-    .contact-btn {
-      width: 138px;
-      height: 42px;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      border-radius: 13px;
-      text-transform: uppercase;
-      letter-spacing: 0.14em;
-      font-size: 0.86rem;
-      font-weight: 900;
-      color: #f5f5f5;
-      background:
-        linear-gradient(180deg, rgba(255,255,255,0.045), rgba(255,255,255,0.02));
-      border: 1px solid rgba(255,255,255,0.14);
-      box-shadow:
-        inset 0 1px 0 rgba(255,255,255,0.08),
-        0 8px 18px rgba(0,0,0,0.2);
-      transition: 0.2s ease;
-    }
-
-    .contact-btn:hover {
-      transform: translateY(-2px);
-      border-color: rgba(255,64,64,0.52);
-      box-shadow:
-        inset 0 1px 0 rgba(255,255,255,0.09),
-        0 10px 22px rgba(0,0,0,0.24),
-        0 0 14px rgba(255,64,64,0.08);
-    }
-
-    /* RESPONSIVE */
-    @media (max-width: 900px) {
-      .founders {
-        grid-template-columns: 1fr;
+    @media (max-width: 768px){
+      .page{
+        padding:102px 16px 50px;
       }
 
-      .founder-card {
-        min-height: auto;
+      .about-logo{
+        margin:18px auto 28px;
       }
 
-      .founder-highlight,
-      .founder-body p {
-        max-width: 100%;
+      .about-logo img{
+        width:min(100%, 430px);
+      }
+
+      .founders{
+        grid-template-columns:1fr;
+      }
+
+      .founder{
+        padding:22px 18px;
+        border-radius:16px;
+      }
+
+      .founder h2{
+        font-size:1.8rem;
+      }
+
+      .founder p{
+        font-size:.95rem;
+        line-height:1.72;
+      }
+
+      .cta-row a{
+        min-width:100%;
+        font-size:0.76rem;
+      }
+
+      .footer{
+        padding:0 16px 20px;
       }
     }
 
-    @media (max-width: 640px) {
-      .page {
-        padding: 18px 14px 30px;
+    @media (max-width: 700px){
+      .topbar-inner{
+        padding:14px 14px;
       }
 
-      .topbar {
-        margin-bottom: 28px;
+      .nav a{
+        padding:10px 14px;
+        font-size:0.9rem;
+      }
+    }
+
+    @media (max-width: 430px){
+      .topbar-inner{
+        padding:12px 10px;
       }
 
-      .nav {
-        gap: 10px;
+      .nav{
+        gap:8px;
       }
 
-      .nav a {
-        min-width: 98px;
-        padding: 12px 18px;
-        font-size: 0.95rem;
+      .nav a{
+        padding:9px 12px;
+        font-size:.84rem;
       }
 
-      .hero-logo {
-        margin-bottom: 24px;
+      .page{
+        padding:96px 14px 42px;
       }
 
-      .hero-logo img {
-        width: min(100%, 410px);
+      .about-logo{
+        margin:14px auto 24px;
       }
 
-      .founders {
-        gap: 18px;
-        margin-bottom: 20px;
-      }
-
-      .founder-card {
-        border-radius: 22px;
-      }
-
-      .card-inner {
-        padding: 22px 18px 20px 24px;
-      }
-
-      .card-top {
-        margin-bottom: 16px;
-        padding-bottom: 14px;
-      }
-
-      .eyebrow {
-        font-size: 0.7rem;
-        letter-spacing: 0.15em;
-      }
-
-      .founder-name {
-        font-size: 2.3rem;
-      }
-
-      .founder-highlight {
-        font-size: 0.98rem;
-      }
-
-      .founder-body p {
-        font-size: 1rem;
-        line-height: 1.7;
-      }
-
-      .contact-row {
-        gap: 10px;
-      }
-
-      .contact-btn {
-        width: 108px;
-        height: 40px;
-        font-size: 0.8rem;
-        letter-spacing: 0.12em;
+      .footer{
+        padding:0 14px 18px;
       }
     }
   </style>
 </head>
 <body>
-  <div class="page">
-    <div class="topbar">
+  <header class="topbar">
+    <div class="topbar-inner">
       <nav class="nav">
         <a href="home.html">Home</a>
         <a href="services.html">Services</a>
         <a href="about.html" class="active">About</a>
       </nav>
     </div>
+  </header>
 
-    <div class="hero-logo">
-      <img src="logo.jpg" alt="All Season Pest Control logo" />
-    </div>
+  <main class="page">
+    <section class="about-logo">
+      <img src="logo.jpg" alt="All Season Pest Control banner logo" />
+    </section>
 
     <section class="founders">
-      <article class="founder-card">
-        <div class="card-inner">
-          <div class="card-top">
-            <span class="eyebrow">Founder</span>
-            <h2 class="founder-name">Russell</h2>
-            <p class="founder-highlight">
-              Field experience, real-world knowledge, and a standard for doing things right.
-            </p>
-          </div>
-
-          <div class="founder-body">
-            <p>
-              Russell helped build this company around a simple idea: give customers the kind
-              of service they actually want. That means honest communication, clean work, and
-              dependable follow-through. Licensed pesticide applicator here in Arkansas.
-            </p>
-          </div>
-        </div>
+      <article class="founder">
+        <div class="founder-label">Founder</div>
+        <h2>Russell</h2>
+        <div class="founder-sub">Field experience, real-world knowledge, and a standard for doing things right.</div>
+        <p>
+          Russell helped build this company around a simple idea: give customers the kind of service they actually want. That means honest communication, clean work, and dependable follow-through. Licensed pesticide applicator here in Arkansas.
+        </p>
       </article>
 
-      <article class="founder-card">
-        <div class="card-inner">
-          <div class="card-top">
-            <span class="eyebrow">Founder</span>
-            <h2 class="founder-name">Zamir</h2>
-            <p class="founder-highlight">
-              Backed the vision early and helped shape the company from the ground up.
-            </p>
-          </div>
-
-          <div class="founder-body">
-            <p>
-              Zamir helped shape the company around being easy to work with and easy to trust.
-              That means clear communication, a more personal experience, and a company that
-              feels different from the typical corporate approach people are used to.
-            </p>
-          </div>
-        </div>
+      <article class="founder">
+        <div class="founder-label">Founder</div>
+        <h2>Zamir</h2>
+        <div class="founder-sub">Backed the vision early and helped shape the company from the ground up.</div>
+        <p>
+          Zamir helped shape the company around being easy to work with and easy to trust. That means clear communication, a more personal experience, and a company that feels different from the typical corporate approach people are used to.
+        </p>
       </article>
     </section>
 
-    <div class="contact-row">
-      <a class="contact-btn" href="tel:8705203100">Call</a>
-      <a class="contact-btn" href="sms:8705203100">Text</a>
-      <a class="contact-btn" href="mailto:info@allseasonpestllc.com">Email</a>
+    <section class="bottom-cta">
+      <div class="cta-row">
+        <a href="tel:8709197114">Call</a>
+        <a href="sms:8709197114">Text</a>
+        <a href="mailto:gmail@allseasonpestllc.com">Email</a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+      <span>© 2026 All Season Pest Control</span>
+      <span>Jonesboro, Arkansas</span>
     </div>
-  </div>
+  </footer>
+
+  <script>
+    const glowCards = document.querySelectorAll('.founder');
+
+    glowCards.forEach((card) => {
+      card.addEventListener('mousemove', (e) => {
+        const rect = card.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+
+        card.style.setProperty('--mouse-x', `${x}px`);
+        card.style.setProperty('--mouse-y', `${y}px`);
+      });
+    });
+  </script>
 </body>
 </html>
