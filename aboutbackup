@@ -184,19 +184,63 @@
     .story-panel h3{
       font-size:1.7rem;
       line-height:1.1;
-      margin-bottom:18px;
+      margin-bottom:14px;
       color:#ffffff;
       position:relative;
       z-index:1;
     }
 
-    .story-grid{
-      display:grid;
-      grid-template-columns:repeat(2, minmax(0, 1fr));
-      gap:18px;
-      margin-top:4px;
+    .story-panel-upgraded{
+      text-align:center;
+    }
+
+    .story-intro{
+      max-width:700px;
+      margin:0 auto 24px;
+      color:var(--muted);
+      font-size:1rem;
+      line-height:1.8;
       position:relative;
       z-index:1;
+    }
+
+    .story-cards{
+      display:grid;
+      grid-template-columns:repeat(3, minmax(0, 1fr));
+      gap:14px;
+      margin-top:6px;
+      position:relative;
+      z-index:1;
+    }
+
+    .story-card{
+      border:1px solid rgba(255,255,255,.08);
+      background:rgba(255,255,255,.025);
+      border-radius:16px;
+      padding:20px 18px;
+      text-align:left;
+      transition:border-color .2s ease, transform .2s ease, box-shadow .2s ease;
+    }
+
+    .story-card:hover{
+      transform:translateY(-2px);
+      border-color:rgba(255,42,42,.28);
+      box-shadow:0 0 18px rgba(255,42,42,.08);
+    }
+
+    .story-card-title{
+      font-size:.9rem;
+      font-weight:800;
+      letter-spacing:.04em;
+      text-transform:uppercase;
+      color:#ffffff;
+      margin-bottom:10px;
+    }
+
+    .story-card p{
+      color:var(--muted);
+      font-size:.95rem;
+      line-height:1.72;
     }
 
     .bottom-cta{
@@ -284,9 +328,20 @@
         font-size:1.45rem;
       }
 
-      .story-grid{
+      .story-cards{
         grid-template-columns:1fr;
         gap:12px;
+      }
+
+      .story-intro{
+        margin:0 auto 18px;
+        font-size:.95rem;
+        line-height:1.72;
+      }
+
+      .story-card{
+        padding:18px 16px;
+        border-radius:14px;
       }
 
       .cta-row a{
@@ -366,18 +421,38 @@
       </article>
     </section>
 
-    <section class="story-panel">
+    <section class="story-panel story-panel-upgraded">
       <div class="story-kicker">Why we built it</div>
       <h3>A more grounded kind of pest control company.</h3>
+      <p class="story-intro">
+        We started All Season Pest Control because too many companies feel rushed,
+        overly sales-driven, or disconnected from the people they serve.
+      </p>
 
-      <div class="story-grid">
-        <p>
-          Between us, we have 12 years of combined pest control experience across multiple markets around the country. We started All Season Pest Control because too many companies feel rushed, overly sales-driven, or disconnected from the people they serve.
-        </p>
+      <div class="story-cards">
+        <div class="story-card">
+          <div class="story-card-title">12 Years Combined Experience</div>
+          <p>
+            Between us, we have 12 years of combined pest control experience across
+            multiple markets around the country.
+          </p>
+        </div>
 
-        <p>
-          We wanted to build something more grounded than that. Straightforward service, clear communication, and no inflated promises. Just a company people feel comfortable hiring and comfortable having around their home.
-        </p>
+        <div class="story-card">
+          <div class="story-card-title">Built Around Trust</div>
+          <p>
+            We wanted to build something people feel comfortable hiring and
+            comfortable having around their home.
+          </p>
+        </div>
+
+        <div class="story-card">
+          <div class="story-card-title">Straightforward Service</div>
+          <p>
+            Clear communication, no inflated promises, and a more grounded approach
+            than the typical corporate pest control experience.
+          </p>
+        </div>
       </div>
     </section>
 
