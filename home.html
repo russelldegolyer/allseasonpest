@@ -225,6 +225,8 @@
         #0b0b0b;
       border:1px solid rgba(255,255,255,.10);
       padding:30px;
+      display:flex;
+      flex-direction:column;
     }
 
     .list-card h3,
@@ -269,30 +271,34 @@
       line-height:1.58;
     }
 
-    .advantage-list{
-      list-style:none;
+    .advantage-grid{
       display:grid;
-      gap:16px;
-      margin-top:4px;
+      grid-template-columns:1fr;
+      gap:14px;
+      margin-top:6px;
+      flex:1;
     }
 
-    .advantage-list li{
-      display:flex;
-      align-items:flex-start;
-      gap:12px;
-      color:#fff;
-      line-height:1.55;
+    .advantage-box{
+      border-radius:18px;
+      border:1px solid rgba(255,255,255,.09);
+      background:rgba(255,255,255,.035);
+      padding:18px;
+    }
+
+    .advantage-box h4{
       font-size:1.02rem;
+      line-height:1.2;
+      margin-bottom:7px;
+      letter-spacing:-0.02em;
+      color:#fff;
     }
 
-    .advantage-dot{
-      flex:0 0 10px;
-      width:10px;
-      height:10px;
-      border-radius:999px;
-      background:#fff;
-      margin-top:8px;
-      box-shadow:0 0 0 4px rgba(255,255,255,.08);
+    .advantage-box p{
+      color:var(--muted-soft);
+      font-size:.98rem;
+      line-height:1.58;
+      margin-bottom:0;
     }
 
     .bottom-cta{
@@ -506,16 +512,18 @@
         font-size:1.55rem;
       }
 
-      .expect-box{
+      .expect-box,
+      .advantage-box{
         padding:16px;
       }
 
-      .expect-box h4{
+      .expect-box h4,
+      .advantage-box h4{
         font-size:.98rem;
       }
 
       .expect-box p,
-      .advantage-list li{
+      .advantage-box p{
         font-size:.96rem;
       }
 
@@ -674,28 +682,32 @@
             Built to protect the home without overcomplicating the service or burying people in confusing pricing and unnecessary add-ons.
           </p>
 
-          <ul class="advantage-list">
-            <li>
-              <span class="advantage-dot"></span>
-              <span>Exterior-focused treatment flow built for long-term control, not just a quick spray-and-go visit.</span>
-            </li>
-            <li>
-              <span class="advantage-dot"></span>
-              <span>Service designed around common Northeast Arkansas pests like ants, spiders, wasps, roaches, and more.</span>
-            </li>
-            <li>
-              <span class="advantage-dot"></span>
-              <span>Clear, fair pricing with no bloated package structure and no pressure to buy services that do not fit the home.</span>
-            </li>
-            <li>
-              <span class="advantage-dot"></span>
-              <span>Recurring protection that helps pest pressure stay low through changing seasons instead of constantly restarting from scratch.</span>
-            </li>
-            <li>
-              <span class="advantage-dot"></span>
-              <span>Easy ways to reach us by call, text, or email when something needs attention between visits.</span>
-            </li>
-          </ul>
+          <div class="advantage-grid">
+            <div class="advantage-box">
+              <h4>Exterior-first protection</h4>
+              <p>Built for long-term control instead of a rushed spray-and-go visit that looks good for one day and fades out fast.</p>
+            </div>
+
+            <div class="advantage-box">
+              <h4>Local pest focus</h4>
+              <p>Designed around common Northeast Arkansas issues like ants, spiders, wasps, roaches, and other normal home invaders.</p>
+            </div>
+
+            <div class="advantage-box">
+              <h4>Clear pricing</h4>
+              <p>No bloated package structure, no weird add-on stacking, and no pressure to pay for services the home does not need.</p>
+            </div>
+
+            <div class="advantage-box">
+              <h4>Recurring control that holds up</h4>
+              <p>Helps keep pest pressure low through changing seasons instead of constantly restarting the problem from scratch.</p>
+            </div>
+
+            <div class="advantage-box">
+              <h4>Easy communication</h4>
+              <p>Simple ways to reach us by call, text, or email when something needs attention between visits.</p>
+            </div>
+          </div>
         </div>
       </div>
     </div>
