@@ -84,28 +84,40 @@
 
     .nav {
       display: flex;
-      gap: 10px;
+      gap: 18px;
       flex-wrap: wrap;
       justify-content: center;
     }
 
     .nav a {
-      padding: 11px 18px;
-      border: 1px solid rgba(255, 42, 42, 0.34);
+      width: 190px;
+      height: 92px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      box-sizing: border-box;
+      padding: 0;
+      border: 2px solid rgba(255, 42, 42, 0.34);
       border-radius: 999px;
       background: rgba(255, 255, 255, 0.03);
       color: #fff;
       font-weight: 700;
-      font-size: 0.95rem;
+      font-size: 1.05rem;
       letter-spacing: 0.02em;
-      transition: 0.2s ease;
+      transition: border-color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease, background 0.2s ease;
     }
 
-    .nav a:hover,
-    .nav a.active {
+    .nav a:hover {
       border-color: rgba(255, 42, 42, 0.75);
       box-shadow: var(--glow);
       transform: translateY(-1px);
+    }
+
+    .nav a.active {
+      border-color: rgba(255, 42, 42, 0.95);
+      box-shadow: var(--glow-strong);
+      background: rgba(255, 255, 255, 0.02);
+      transform: none;
     }
 
     .hero {
@@ -575,14 +587,27 @@
         border-radius: 16px;
       }
 
+      .nav {
+        gap: 14px;
+      }
+
       .nav a {
-        padding: 10px 14px;
-        font-size: 0.9rem;
+        width: 150px;
+        height: 82px;
+        font-size: 0.96rem;
       }
 
       .cta-buttons a {
         width: 100%;
         max-width: 320px;
+      }
+    }
+
+    @media (max-width: 360px) {
+      .nav a {
+        width: 138px;
+        height: 76px;
+        font-size: 0.9rem;
       }
     }
   </style>
