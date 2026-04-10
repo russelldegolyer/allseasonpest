@@ -84,27 +84,27 @@
 
     .nav {
       display: flex;
-      gap: 18px;
+      gap: 10px;
       flex-wrap: wrap;
       justify-content: center;
     }
 
     .nav a {
-      width: 190px;
-      height: 92px;
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      box-sizing: border-box;
-      padding: 0;
+      min-width: 148px;
+      height: 72px;
+      padding: 0 20px;
       border: 2px solid rgba(255, 42, 42, 0.34);
       border-radius: 999px;
       background: rgba(255, 255, 255, 0.03);
       color: #fff;
       font-weight: 700;
-      font-size: 1.05rem;
+      font-size: 0.95rem;
       letter-spacing: 0.02em;
-      transition: border-color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease, background 0.2s ease;
+      line-height: 1;
+      transition: border-color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
     }
 
     .nav a:hover {
@@ -115,8 +115,7 @@
 
     .nav a.active {
       border-color: rgba(255, 42, 42, 0.95);
-      box-shadow: var(--glow-strong);
-      background: rgba(255, 255, 255, 0.02);
+      box-shadow: 0 0 22px rgba(255, 42, 42, 0.28);
       transform: none;
     }
 
@@ -587,27 +586,17 @@
         border-radius: 16px;
       }
 
-      .nav {
-        gap: 14px;
-      }
-
       .nav a {
-        width: 150px;
-        height: 82px;
-        font-size: 0.96rem;
+        min-width: 0;
+        width: auto;
+        height: 64px;
+        padding: 0 18px;
+        font-size: 0.9rem;
       }
 
       .cta-buttons a {
         width: 100%;
         max-width: 320px;
-      }
-    }
-
-    @media (max-width: 360px) {
-      .nav a {
-        width: 138px;
-        height: 76px;
-        font-size: 0.9rem;
       }
     }
   </style>
