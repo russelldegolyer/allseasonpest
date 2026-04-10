@@ -5,6 +5,23 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Services | All Season Pest Control</title>
   <style>
+    :root{
+      --bg:#050505;
+      --panel:rgba(17,17,17,.88);
+      --text:#ffffff;
+      --muted:rgba(255,255,255,.82);
+      --muted-soft:rgba(255,255,255,.68);
+      --border:rgba(255,255,255,.18);
+      --border-soft:rgba(255,255,255,.08);
+      --shadow:0 10px 40px rgba(0,0,0,.35);
+      --red:#ff2a2a;
+      --red-deep:#b30000;
+      --line:rgba(255, 42, 42, 0.55);
+      --glow:0 0 22px rgba(255, 42, 42, 0.22);
+      --glow-strong:0 0 30px rgba(255, 42, 42, 0.3);
+      --max:1200px;
+    }
+
     * {
       box-sizing: border-box;
       margin: 0;
@@ -18,45 +35,66 @@
     body {
       background: #000000;
       color: #ffffff;
-      font-family: Arial, Helvetica, sans-serif;
+      font-family: Inter, Arial, Helvetica, sans-serif;
       min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .topbar{
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      z-index: 1000;
+      backdrop-filter: blur(14px);
+      background: rgba(0, 0, 0, 0.72);
+      border-bottom: 1px solid rgba(255, 42, 42, 0.22);
+    }
+
+    .topbar-inner{
+      max-width: var(--max);
+      margin: 0 auto;
+      padding: 14px 20px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .nav{
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .nav a{
+      padding: 11px 18px;
+      border: 1px solid rgba(255, 42, 42, 0.34);
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.03);
+      color: #fff;
+      font-weight: 700;
+      font-size: 0.95rem;
+      letter-spacing: 0.02em;
+      transition: 0.2s ease;
+    }
+
+    .nav a:hover,
+    .nav a.active{
+      border-color: rgba(255, 42, 42, 0.75);
+      box-shadow: var(--glow);
+      transform: translateY(-1px);
     }
 
     .page-wrap {
       max-width: 980px;
       margin: 0 auto;
-      padding: 34px 20px 70px;
-    }
-
-    .top-bar {
-      display: flex;
-      justify-content: center;
-      margin-bottom: 24px;
-    }
-
-    .back-link {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      padding: 12px 18px;
-      border-radius: 12px;
-      border: 1px solid rgba(255, 255, 255, 0.12);
-      background:
-        linear-gradient(180deg, rgba(255,255,255,0.035), rgba(255,255,255,0.015)),
-        #0a0a0a;
-      color: #ffffff;
-      text-decoration: none;
-      text-transform: uppercase;
-      font-size: 0.8rem;
-      font-weight: 700;
-      letter-spacing: 1.3px;
-      transition: border-color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
-    }
-
-    .back-link:hover {
-      border-color: rgba(255, 190, 70, 0.7);
-      transform: translateY(-2px);
-      box-shadow: 0 0 20px rgba(255, 190, 70, 0.14);
+      padding: 110px 20px 70px;
     }
 
     .service-card {
@@ -66,7 +104,7 @@
       margin-bottom: 20px;
       overflow: hidden;
       transition: border-color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
-      scroll-margin-top: 24px;
+      scroll-margin-top: 110px;
       border-width: 2px;
       border-style: solid;
     }
@@ -132,7 +170,6 @@
       line-height: 1.7;
     }
 
-    /* GOLD - GENERAL PEST */
     .theme-gold {
       background:
         radial-gradient(
@@ -176,7 +213,6 @@
       background: rgba(255, 208, 92, 0.04);
     }
 
-    /* SILVER - RODENT */
     .theme-silver {
       background:
         radial-gradient(
@@ -220,7 +256,6 @@
       background: rgba(255,255,255,0.03);
     }
 
-    /* GREEN - TICK & FLEA */
     .theme-green {
       background:
         radial-gradient(
@@ -264,7 +299,6 @@
       background: rgba(88, 224, 143, 0.035);
     }
 
-    /* RED - MOSQUITO */
     .theme-red {
       background:
         radial-gradient(
@@ -308,7 +342,6 @@
       background: rgba(255, 92, 92, 0.04);
     }
 
-    /* BROWN - GERMAN ROACH */
     .theme-brown {
       background:
         radial-gradient(
@@ -353,7 +386,6 @@
       background: rgba(150, 95, 45, 0.05);
     }
 
-    /* TURQUOISE BLUE - WEED */
     .theme-turquoise {
       background:
         radial-gradient(
@@ -438,11 +470,7 @@
 
     @media (max-width: 768px) {
       .page-wrap {
-        padding: 26px 16px 50px;
-      }
-
-      .top-bar {
-        margin-bottom: 18px;
+        padding: 102px 16px 50px;
       }
 
       .service-card {
@@ -482,14 +510,51 @@
         font-size: 0.76rem;
       }
     }
+
+    @media (max-width: 700px){
+      .topbar-inner{
+        padding: 14px 14px;
+      }
+
+      .nav a{
+        padding: 10px 14px;
+        font-size: 0.9rem;
+      }
+    }
+
+    @media (max-width: 430px){
+      .topbar-inner{
+        padding: 12px 10px;
+      }
+
+      .nav{
+        gap: 8px;
+      }
+
+      .nav a{
+        padding: 9px 12px;
+        font-size: .84rem;
+      }
+
+      .page-wrap{
+        padding: 96px 14px 42px;
+      }
+    }
   </style>
 </head>
 <body>
-  <main class="page-wrap">
-    <div class="top-bar">
-      <a class="back-link" href="home.html">Back to Home</a>
+  <header class="topbar">
+    <div class="topbar-inner">
+      <nav class="nav">
+        <a href="home.html">Home</a>
+        <a href="services.html" class="active">Services</a>
+        <a href="process.html">Process</a>
+        <a href="about.html">About</a>
+      </nav>
     </div>
+  </header>
 
+  <main class="page-wrap">
     <section class="service-card theme-gold">
       <div class="service-kicker">Core Service</div>
       <h2>General Pest Control</h2>
