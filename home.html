@@ -237,7 +237,7 @@
       letter-spacing:-0.04em;
     }
 
-    .cta-box p{
+    .cta-box > p{
       color:var(--muted);
       line-height:1.65;
       margin-bottom:18px;
@@ -271,34 +271,34 @@
       line-height:1.58;
     }
 
-    .advantage-grid{
-      display:grid;
-      grid-template-columns:1fr;
-      gap:14px;
-      margin-top:6px;
+    .advantage-list{
+      margin:6px 0 0;
+      padding-left:24px;
+      display:flex;
+      flex-direction:column;
+      gap:18px;
       flex:1;
     }
 
-    .advantage-box{
-      border-radius:18px;
-      border:1px solid rgba(255,255,255,.09);
-      background:rgba(255,255,255,.035);
-      padding:18px;
+    .advantage-list li{
+      color:rgba(255,255,255,.92);
+      line-height:1.5;
     }
 
-    .advantage-box h4{
-      font-size:1.02rem;
-      line-height:1.2;
-      margin-bottom:7px;
-      letter-spacing:-0.02em;
-      color:#fff;
-    }
-
-    .advantage-box p{
+    .advantage-list li p{
+      margin:6px 0 0;
       color:var(--muted-soft);
       font-size:.98rem;
       line-height:1.58;
-      margin-bottom:0;
+    }
+
+    .process-step-title{
+      display:inline-block;
+      font-size:1.02rem;
+      font-weight:800;
+      color:#fff;
+      letter-spacing:-0.02em;
+      line-height:1.2;
     }
 
     .bottom-cta{
@@ -512,18 +512,16 @@
         font-size:1.55rem;
       }
 
-      .expect-box,
-      .advantage-box{
+      .expect-box{
         padding:16px;
       }
 
-      .expect-box h4,
-      .advantage-box h4{
+      .expect-box h4{
         font-size:.98rem;
       }
 
       .expect-box p,
-      .advantage-box p{
+      .advantage-list li p{
         font-size:.96rem;
       }
 
@@ -682,32 +680,32 @@
             Built to protect the home without overcomplicating the service or burying people in confusing pricing and unnecessary add-ons.
           </p>
 
-          <div class="advantage-grid">
-            <div class="advantage-box">
-              <h4>Exterior-first protection</h4>
+          <ul class="advantage-list">
+            <li>
+              <span class="process-step-title">Exterior-first protection</span>
               <p>Built for long-term control instead of a rushed spray-and-go visit that looks good for one day and fades out fast.</p>
-            </div>
+            </li>
 
-            <div class="advantage-box">
-              <h4>Local pest focus</h4>
+            <li>
+              <span class="process-step-title">Local pest focus</span>
               <p>Designed around common Northeast Arkansas issues like ants, spiders, wasps, roaches, and other normal home invaders.</p>
-            </div>
+            </li>
 
-            <div class="advantage-box">
-              <h4>Clear pricing</h4>
+            <li>
+              <span class="process-step-title">Clear pricing</span>
               <p>No bloated package structure, no weird add-on stacking, and no pressure to pay for services the home does not need.</p>
-            </div>
+            </li>
 
-            <div class="advantage-box">
-              <h4>Recurring control that holds up</h4>
+            <li>
+              <span class="process-step-title">Recurring control that holds up</span>
               <p>Helps keep pest pressure low through changing seasons instead of constantly restarting the problem from scratch.</p>
-            </div>
+            </li>
 
-            <div class="advantage-box">
-              <h4>Easy communication</h4>
+            <li>
+              <span class="process-step-title">Easy communication</span>
               <p>Simple ways to reach us by call, text, or email when something needs attention between visits.</p>
-            </div>
-          </div>
+            </li>
+          </ul>
         </div>
       </div>
     </div>
