@@ -2,764 +2,1555 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+  />
   <title>Services | All Season Pest Control</title>
   <style>
     :root{
-      --bg:#050505;
-      --panel:rgba(17,17,17,.88);
       --text:#ffffff;
-      --muted:rgba(255,255,255,.82);
-      --muted-soft:rgba(255,255,255,.68);
-      --border:rgba(255,255,255,.18);
-      --border-soft:rgba(255,255,255,.08);
-      --shadow:0 10px 40px rgba(0,0,0,.35);
-      --red:#ff2a2a;
-      --red-deep:#b30000;
-      --line:rgba(255, 42, 42, 0.55);
-      --glow:0 0 22px rgba(255, 42, 42, 0.22);
-      --glow-strong:0 0 30px rgba(255, 42, 42, 0.3);
-      --max:1200px;
+      --muted:rgba(255,255,255,.76);
+      --muted-soft:rgba(255,255,255,.56);
+      --shadow:0 18px 60px rgba(0,0,0,.45);
+
+      --gold:#ffd05c;
+      --silver:#dddddd;
+      --green:#58e08f;
+      --red:#ff5c5c;
+      --brown:#d09a65;
+      --blue:#6ee7eb;
+
+      --active:#ffd05c;
+      --max:1240px;
     }
 
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
+    *{
+      box-sizing:border-box;
+      margin:0;
+      padding:0;
+      min-width:0;
     }
 
-    html {
-      scroll-behavior: smooth;
+    html{
+      scroll-behavior:smooth;
     }
 
-    body {
-      background: #000000;
-      color: #ffffff;
-      font-family: Inter, Arial, Helvetica, sans-serif;
-      min-height: 100vh;
-      overflow-x: hidden;
-    }
-
-    a {
-      color: inherit;
-      text-decoration: none;
-    }
-
-    .topbar{
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      z-index: 1000;
-      backdrop-filter: blur(14px);
-      background: rgba(0, 0, 0, 0.72);
-      border-bottom: 1px solid rgba(255, 42, 42, 0.22);
-    }
-
-    .topbar-inner{
-      max-width: var(--max);
-      margin: 0 auto;
-      padding: 14px 20px;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-    }
-
-    .nav{
-      display: flex;
-      gap: 10px;
-      flex-wrap: wrap;
-      justify-content: center;
-    }
-
-    .nav a{
-      padding: 11px 18px;
-      border: 1px solid rgba(255, 42, 42, 0.34);
-      border-radius: 999px;
-      background: rgba(255, 255, 255, 0.03);
-      color: #fff;
-      font-weight: 700;
-      font-size: 0.95rem;
-      letter-spacing: 0.02em;
-      transition: 0.2s ease;
-    }
-
-    .nav a:hover,
-    .nav a.active{
-      border-color: rgba(255, 42, 42, 0.75);
-      box-shadow: var(--glow);
-      transform: translateY(-1px);
-    }
-
-    .page-wrap {
-      max-width: 980px;
-      margin: 0 auto;
-      padding: 110px 20px 70px;
-    }
-
-    .service-card {
-      position: relative;
-      border-radius: 20px;
-      padding: 30px 26px;
-      margin-bottom: 20px;
-      overflow: hidden;
-      transition: border-color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
-      scroll-margin-top: 110px;
-      border-width: 2px;
-      border-style: solid;
-    }
-
-    .service-card:hover {
-      transform: translateY(-2px);
-    }
-
-    .service-kicker {
-      text-transform: uppercase;
-      letter-spacing: 1.8px;
-      font-size: 0.78rem;
-      font-weight: 700;
-      margin-bottom: 10px;
-      position: relative;
-      z-index: 1;
-    }
-
-    .service-card h2 {
-      font-size: clamp(1.55rem, 3.4vw, 2.2rem);
-      line-height: 1.1;
-      margin-bottom: 18px;
-      position: relative;
-      z-index: 1;
-      transition: color 0.2s ease;
-    }
-
-    .service-card p {
-      font-size: 1rem;
-      line-height: 1.8;
-      position: relative;
-      z-index: 1;
-      margin-bottom: 14px;
-    }
-
-    .service-grid {
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 14px;
-      margin-top: 18px;
-      position: relative;
-      z-index: 1;
-    }
-
-    .mini-box {
-      border-radius: 14px;
-      padding: 16px 16px;
-      border-width: 1.5px;
-      border-style: solid;
-    }
-
-    .mini-label {
-      text-transform: uppercase;
-      letter-spacing: 1.3px;
-      font-size: 0.74rem;
-      font-weight: 700;
-      margin-bottom: 8px;
-    }
-
-    .mini-box p {
-      margin: 0;
-      font-size: 0.95rem;
-      line-height: 1.7;
-    }
-
-    .theme-gold {
+    body{
       background:
-        radial-gradient(
-          380px circle at var(--mouse-x, 50%) var(--mouse-y, 50%),
-          rgba(255, 195, 60, 0.24),
-          rgba(255, 195, 60, 0.12) 18%,
-          rgba(255, 195, 60, 0.055) 34%,
-          rgba(255, 195, 60, 0.018) 48%,
-          rgba(255, 195, 60, 0) 64%
-        ),
-        #0a0a0a;
-      border-color: rgba(255, 200, 80, 0.44);
-      box-shadow:
-        0 0 0 1px rgba(255, 200, 80, 0.04) inset,
-        0 0 24px rgba(255, 200, 80, 0.08);
+        radial-gradient(circle at top, rgba(255,42,42,.08), transparent 28%),
+        linear-gradient(180deg, #030303 0%, #000000 100%);
+      color:var(--text);
+      font-family:Inter, Arial, Helvetica, sans-serif;
+      min-height:100vh;
+      overflow-x:hidden;
     }
 
-    .theme-gold:hover {
-      border-color: rgba(255, 210, 100, 0.70);
-      box-shadow:
-        0 0 0 1px rgba(255, 200, 80, 0.05) inset,
-        0 0 30px rgba(255, 200, 80, 0.14);
+    a{
+      color:inherit;
+      text-decoration:none;
     }
 
-    .theme-gold .service-kicker,
-    .theme-gold .mini-label {
-      color: #ffd05c;
+    button,
+    a,
+    .service-btn{
+      -webkit-tap-highlight-color: transparent;
+      font: inherit;
     }
 
-    .theme-gold h2 {
-      color: #ffe29b;
+    .page-wrap{
+      max-width:var(--max);
+      margin:0 auto;
+      padding:18px 20px 64px;
+      overflow-x:hidden;
     }
 
-    .theme-gold p,
-    .theme-gold .mini-box p {
-      color: #f7f4ea;
-    }
-
-    .theme-gold .mini-box {
-      border-color: rgba(255, 208, 92, 0.18);
-      background: rgba(255, 208, 92, 0.04);
-    }
-
-    .theme-silver {
+    .showcase{
+      position:relative;
+      width:100%;
+      border-radius:28px;
+      border:1px solid rgba(255,255,255,.12);
       background:
-        radial-gradient(
-          380px circle at var(--mouse-x, 50%) var(--mouse-y, 50%),
-          rgba(215, 215, 215, 0.20),
-          rgba(215, 215, 215, 0.10) 18%,
-          rgba(215, 215, 215, 0.045) 34%,
-          rgba(215, 215, 215, 0.014) 48%,
-          rgba(215, 215, 215, 0) 64%
-        ),
-        #0a0a0a;
-      border-color: rgba(205, 205, 205, 0.34);
-      box-shadow:
-        0 0 0 1px rgba(215, 215, 215, 0.035) inset,
-        0 0 24px rgba(215, 215, 215, 0.07);
+        linear-gradient(180deg, rgba(255,255,255,.04), rgba(255,255,255,.015)),
+        rgba(8,10,15,.92);
+      box-shadow:var(--shadow);
+      overflow:hidden;
+      isolation:isolate;
     }
 
-    .theme-silver:hover {
-      border-color: rgba(230, 230, 230, 0.56);
-      box-shadow:
-        0 0 0 1px rgba(215, 215, 215, 0.05) inset,
-        0 0 30px rgba(215, 215, 215, 0.11);
-    }
-
-    .theme-silver .service-kicker,
-    .theme-silver .mini-label {
-      color: #dddddd;
-    }
-
-    .theme-silver h2 {
-      color: #f0f0f0;
-    }
-
-    .theme-silver p,
-    .theme-silver .mini-box p {
-      color: #f3f3f3;
-    }
-
-    .theme-silver .mini-box {
-      border-color: rgba(220, 220, 220, 0.16);
-      background: rgba(255,255,255,0.03);
-    }
-
-    .theme-green {
+    .showcase::before{
+      content:"";
+      position:absolute;
+      inset:0;
       background:
-        radial-gradient(
-          380px circle at var(--mouse-x, 50%) var(--mouse-y, 50%),
-          rgba(55, 214, 120, 0.24),
-          rgba(55, 214, 120, 0.115) 18%,
-          rgba(55, 214, 120, 0.05) 34%,
-          rgba(55, 214, 120, 0.015) 48%,
-          rgba(55, 214, 120, 0) 64%
-        ),
-        #0a0a0a;
-      border-color: rgba(65, 219, 129, 0.40);
-      box-shadow:
-        0 0 0 1px rgba(65, 219, 129, 0.035) inset,
-        0 0 24px rgba(65, 219, 129, 0.08);
+        radial-gradient(circle at 20% 18%, rgba(255,255,255,.05), transparent 22%),
+        radial-gradient(circle at 80% 25%, rgba(255,255,255,.025), transparent 24%),
+        radial-gradient(circle at 50% 100%, rgba(255,42,42,.06), transparent 32%);
+      pointer-events:none;
     }
 
-    .theme-green:hover {
-      border-color: rgba(77, 230, 141, 0.64);
-      box-shadow:
-        0 0 0 1px rgba(65, 219, 129, 0.05) inset,
-        0 0 30px rgba(65, 219, 129, 0.13);
+    .shell-top{
+      position:relative;
+      z-index:6;
+      display:flex;
+      justify-content:flex-end;
+      align-items:flex-start;
+      padding:18px 18px 6px;
     }
 
-    .theme-green .service-kicker,
-    .theme-green .mini-label {
-      color: #58e08f;
+    .page-menu{
+      position:relative;
+      display:flex;
+      flex-direction:column;
+      align-items:flex-end;
     }
 
-    .theme-green h2 {
-      color: #91efb4;
+    .page-menu-toggle,
+    .page-menu-link,
+    .mobile-nav-link{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap:10px;
+      padding:11px 18px;
+      border:1px solid rgba(255,42,42,.30);
+      border-radius:999px;
+      background:rgba(255,255,255,.03);
+      color:#fff;
+      font-weight:800;
+      font-size:.95rem;
+      letter-spacing:.02em;
+      transition:
+        border-color .18s ease,
+        box-shadow .18s ease,
+        transform .18s ease,
+        background .18s ease,
+        opacity .18s ease;
     }
 
-    .theme-green p,
-    .theme-green .mini-box p {
-      color: #f3f3f3;
+    .page-menu-toggle,
+    .page-menu-link{
+      width:138px;
+      cursor:pointer;
     }
 
-    .theme-green .mini-box {
-      border-color: rgba(88, 224, 143, 0.18);
-      background: rgba(88, 224, 143, 0.035);
+    .page-menu-toggle:hover,
+    .page-menu-link:hover,
+    .mobile-nav-link:hover{
+      border-color:rgba(255,42,42,.65);
+      transform:translateY(-1px);
+      box-shadow:0 0 20px rgba(255,42,42,.14);
     }
 
-    .theme-red {
+    .page-menu-toggle svg{
+      width:14px;
+      height:14px;
+      stroke:currentColor;
+      fill:none;
+      stroke-width:2.2;
+      stroke-linecap:round;
+      stroke-linejoin:round;
+      transition:transform .2s ease;
+    }
+
+    .page-menu.open .page-menu-toggle svg{
+      transform:rotate(180deg);
+    }
+
+    .page-menu-dropdown{
+      position:absolute;
+      top:calc(100% + 8px);
+      right:0;
+      width:138px;
+      display:flex;
+      flex-direction:column;
+      gap:8px;
+      opacity:0;
+      pointer-events:none;
+      transform:translateY(-6px);
+      transition:opacity .18s ease, transform .18s ease;
+    }
+
+    .page-menu.open .page-menu-dropdown{
+      opacity:1;
+      pointer-events:auto;
+      transform:translateY(0);
+    }
+
+    .mobile-nav{
+      display:none;
+      width:100%;
+      justify-content:center;
+      gap:8px;
+    }
+
+    .mobile-nav-link{
+      min-width:88px;
+      padding:9px 14px;
+      font-size:.82rem;
+      text-transform:none;
+    }
+
+    .mobile-nav-link.active{
+      border-color:rgba(255,208,92,.7);
+      box-shadow:0 0 18px rgba(255,208,92,.14);
+      background:rgba(255,255,255,.05);
+    }
+
+    .code-bg{
+      position:absolute;
+      inset:0;
+      z-index:1;
+      overflow:hidden;
+      pointer-events:none;
+      user-select:none;
+      mask-image: linear-gradient(to bottom, rgba(0,0,0,.96), rgba(0,0,0,.90) 58%, rgba(0,0,0,.50) 84%, transparent 100%);
+      -webkit-mask-image: linear-gradient(to bottom, rgba(0,0,0,.96), rgba(0,0,0,.90) 58%, rgba(0,0,0,.50) 84%, transparent 100%);
+    }
+
+    .code-grid{
+      position:absolute;
+      inset:-140px 0 0 0;
+      background-image:
+        linear-gradient(rgba(255,255,255,.022) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,.016) 1px, transparent 1px);
+      background-size:100% 38px, 38px 100%;
+      opacity:.14;
+      animation:gridDrift 18s linear infinite;
+    }
+
+    @keyframes gridDrift{
+      from{ transform:translateY(0); }
+      to{ transform:translateY(38px); }
+    }
+
+    .code-fade-left,
+    .code-fade-right{
+      position:absolute;
+      top:0;
+      bottom:0;
+      width:110px;
+      z-index:2;
+      pointer-events:none;
+    }
+
+    .code-fade-left{
+      left:0;
+      background:linear-gradient(90deg, rgba(8,10,15,.90), rgba(8,10,15,0));
+    }
+
+    .code-fade-right{
+      right:0;
+      background:linear-gradient(270deg, rgba(8,10,15,.92), rgba(8,10,15,0));
+    }
+
+    .code-stream{
+      position:absolute;
+      inset:0;
+      z-index:1;
+      font-family:ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+      font-size:clamp(.83rem, .98vw, 1rem);
+      line-height:1.65;
+      padding:22px 30px 30px;
+      color:rgba(232,238,255,.10);
+      white-space:pre-wrap;
+      word-break:break-word;
+      animation:codeDrift 26s linear infinite;
+      will-change:transform;
+    }
+
+    @keyframes codeDrift{
+      0%{ transform:translateY(0); }
+      100%{ transform:translateY(52px); }
+    }
+
+    .code-line{
+      min-height:1.65em;
+      opacity:.94;
+    }
+
+    .tok-green{ color:rgba(88,224,143,.30); }
+    .tok-blue{ color:rgba(110,231,235,.28); }
+    .tok-gold{ color:rgba(255,208,92,.30); }
+    .tok-red{ color:rgba(255,92,92,.24); }
+    .tok-silver{ color:rgba(221,221,221,.18); }
+    .tok-brown{ color:rgba(208,154,101,.24); }
+
+    .code-cursor{
+      display:inline-block;
+      width:.62ch;
+      color:rgba(255,255,255,.28);
+      animation:blinkCursor .85s step-end infinite;
+    }
+
+    @keyframes blinkCursor{
+      0%, 48% { opacity:1; }
+      49%, 100% { opacity:0; }
+    }
+
+    .panel-wrap{
+      position:relative;
+      z-index:3;
+      padding:22px 22px 8px;
+    }
+
+    .focus-card{
+      width:100%;
+      max-width:840px;
+      margin:0 auto;
+      border-radius:28px;
+      border:1px solid rgba(255,255,255,.12);
       background:
-        radial-gradient(
-          380px circle at var(--mouse-x, 50%) var(--mouse-y, 50%),
-          rgba(255, 50, 50, 0.24),
-          rgba(255, 50, 50, 0.12) 18%,
-          rgba(255, 50, 50, 0.055) 34%,
-          rgba(255, 50, 50, 0.018) 48%,
-          rgba(255, 50, 50, 0) 64%
-        ),
-        #0a0a0a;
-      border-color: rgba(255, 60, 60, 0.44);
-      box-shadow:
-        0 0 0 1px rgba(255, 60, 60, 0.04) inset,
-        0 0 24px rgba(255, 60, 60, 0.08);
+        linear-gradient(180deg, rgba(255,255,255,.055), rgba(255,255,255,.02)),
+        rgba(10,12,18,.84);
+      backdrop-filter:blur(14px);
+      box-shadow:0 18px 60px rgba(0,0,0,.42);
+      overflow:hidden;
+      transition:border-color .18s ease, box-shadow .18s ease;
     }
 
-    .theme-red:hover {
-      border-color: rgba(255, 75, 75, 0.70);
-      box-shadow:
-        0 0 0 1px rgba(255, 60, 60, 0.05) inset,
-        0 0 30px rgba(255, 60, 60, 0.14);
-    }
-
-    .theme-red .service-kicker,
-    .theme-red .mini-label {
-      color: #ff5c5c;
-    }
-
-    .theme-red h2 {
-      color: #ff9b9b;
-    }
-
-    .theme-red p,
-    .theme-red .mini-box p {
-      color: #f4f4f4;
-    }
-
-    .theme-red .mini-box {
-      border-color: rgba(255, 92, 92, 0.18);
-      background: rgba(255, 92, 92, 0.04);
-    }
-
-    .theme-brown {
+    .focus-top{
+      position:relative;
+      padding:28px 28px 20px;
+      border-bottom:1px solid rgba(255,255,255,.08);
+      overflow:hidden;
       background:
-        radial-gradient(
-          430px circle at var(--mouse-x, 50%) var(--mouse-y, 50%),
-          rgba(150, 95, 45, 0.28),
-          rgba(150, 95, 45, 0.14) 18%,
-          rgba(150, 95, 45, 0.065) 34%,
-          rgba(150, 95, 45, 0.02) 50%,
-          rgba(150, 95, 45, 0) 67%
-        ),
-        linear-gradient(180deg, rgba(150, 95, 45, 0.05), rgba(150, 95, 45, 0.018)),
-        #090909;
-      border-color: rgba(185, 125, 72, 0.42);
-      box-shadow:
-        0 0 0 1px rgba(185, 125, 72, 0.045) inset,
-        0 0 30px rgba(150, 95, 45, 0.10);
+        linear-gradient(180deg, rgba(255,255,255,.02), rgba(255,255,255,0)),
+        radial-gradient(circle at top right, color-mix(in srgb, var(--active) 18%, transparent), transparent 46%);
     }
 
-    .theme-brown:hover {
-      border-color: rgba(205, 144, 88, 0.66);
-      box-shadow:
-        0 0 0 1px rgba(185, 125, 72, 0.06) inset,
-        0 0 36px rgba(150, 95, 45, 0.15);
+    .focus-top::after{
+      content:"";
+      position:absolute;
+      inset:auto -90px -90px auto;
+      width:230px;
+      height:230px;
+      border-radius:50%;
+      background:radial-gradient(circle, color-mix(in srgb, var(--active) 34%, transparent) 0%, transparent 68%);
+      pointer-events:none;
+      filter:blur(2px);
     }
 
-    .theme-brown .service-kicker,
-    .theme-brown .mini-label {
-      color: #d09a65;
+    .focus-head{
+      position:relative;
+      z-index:2;
+      display:flex;
+      align-items:flex-start;
+      gap:16px;
+      width:100%;
     }
 
-    .theme-brown h2 {
-      color: #e0b286;
+    .focus-copy{
+      flex:1 1 auto;
+      min-width:0;
     }
 
-    .theme-brown p,
-    .theme-brown .mini-box p {
-      color: #f5efe8;
+    .focus-badge{
+      width:56px;
+      height:56px;
+      border-radius:18px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      flex:none;
+      border:1px solid rgba(255,255,255,.12);
+      background:linear-gradient(180deg, rgba(255,255,255,.08), rgba(255,255,255,.03));
+      color:var(--active);
+      box-shadow:0 0 22px color-mix(in srgb, var(--active) 12%, transparent);
     }
 
-    .theme-brown .mini-box {
-      border-color: rgba(208, 154, 101, 0.20);
-      background: rgba(150, 95, 45, 0.05);
+    .focus-badge svg{
+      width:28px;
+      height:28px;
+      stroke:currentColor;
+      fill:none;
+      stroke-width:1.9;
+      stroke-linecap:round;
+      stroke-linejoin:round;
     }
 
-    .theme-turquoise {
+    .focus-kicker{
+      text-transform:uppercase;
+      letter-spacing:.18em;
+      font-size:.72rem;
+      font-weight:900;
+      color:var(--active);
+      margin-bottom:10px;
+    }
+
+    .focus-title{
+      font-size:clamp(2rem, 3.9vw, 3.2rem);
+      line-height:.96;
+      letter-spacing:-.05em;
+      margin-bottom:14px;
+      max-width:11ch;
+      overflow-wrap:anywhere;
+    }
+
+    .focus-desc{
+      color:var(--muted);
+      font-size:.98rem;
+      line-height:1.76;
+      max-width:60ch;
+      overflow-wrap:anywhere;
+    }
+
+    .focus-content{
+      padding:20px 28px 28px;
+      width:100%;
+    }
+
+    .focus-sub{
+      color:rgba(255,255,255,.95);
+      font-size:.96rem;
+      line-height:1.8;
+      margin-bottom:18px;
+      overflow-wrap:anywhere;
+    }
+
+    .info-grid{
+      display:grid;
+      grid-template-columns:repeat(2, minmax(0,1fr));
+      gap:14px;
+      margin-bottom:18px;
+      width:100%;
+    }
+
+    .info-box{
+      border:1px solid rgba(255,255,255,.10);
+      border-radius:18px;
+      background:rgba(255,255,255,.03);
+      padding:15px 15px 14px;
+    }
+
+    .info-box .label{
+      text-transform:uppercase;
+      letter-spacing:.15em;
+      font-size:.68rem;
+      font-weight:900;
+      color:var(--active);
+      margin-bottom:8px;
+    }
+
+    .info-box p{
+      color:#f3f3f3;
+      line-height:1.72;
+      font-size:.93rem;
+      overflow-wrap:anywhere;
+    }
+
+    .tag-row{
+      display:flex;
+      flex-wrap:wrap;
+      gap:9px;
+      margin-bottom:18px;
+      width:100%;
+    }
+
+    .tag{
+      padding:9px 12px;
+      border-radius:999px;
+      border:1px solid rgba(255,255,255,.10);
+      background:rgba(255,255,255,.035);
+      font-size:.78rem;
+      color:#fff;
+      letter-spacing:.02em;
+      font-weight:700;
+      line-height:1;
+      max-width:100%;
+    }
+
+    .cta-row{
+      display:flex;
+      gap:12px;
+      flex-wrap:wrap;
+      width:100%;
+    }
+
+    .cta-row a{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      min-width:156px;
+      padding:13px 16px;
+      border-radius:14px;
+      border:1px solid rgba(255,255,255,.11);
       background:
-        radial-gradient(
-          390px circle at var(--mouse-x, 50%) var(--mouse-y, 50%),
-          rgba(55, 210, 215, 0.24),
-          rgba(55, 210, 215, 0.115) 18%,
-          rgba(55, 210, 215, 0.05) 34%,
-          rgba(55, 210, 215, 0.015) 48%,
-          rgba(55, 210, 215, 0) 64%
-        ),
-        #0a0a0a;
-      border-color: rgba(70, 220, 225, 0.42);
+        linear-gradient(180deg, rgba(255,255,255,.04), rgba(255,255,255,.018)),
+        rgba(10,10,10,.8);
+      color:#fff;
+      text-transform:uppercase;
+      font-size:.78rem;
+      font-weight:900;
+      letter-spacing:.15em;
+      transition:.2s ease;
+    }
+
+    .cta-row a:hover{
+      transform:translateY(-2px);
+      border-color:color-mix(in srgb, var(--active) 50%, transparent);
+      box-shadow:0 0 20px color-mix(in srgb, var(--active) 14%, transparent);
+    }
+
+    .service-selector-bottom{
+      position:relative;
+      z-index:3;
+      padding:14px 18px 18px;
+      border-top:1px solid rgba(255,255,255,.08);
+      background:linear-gradient(180deg, rgba(5,7,11,.10), rgba(5,7,11,.28));
+      backdrop-filter:blur(6px);
+    }
+
+    .service-rail{
+      display:flex;
+      gap:14px;
+      overflow-x:auto;
+      overflow-y:hidden;
+      padding:14px 26px 18px;
+      margin:0 -8px;
+      scrollbar-width:none;
+      -webkit-overflow-scrolling:touch;
+      overscroll-behavior-x:contain;
+      justify-content:flex-start;
+      align-items:center;
+      scroll-snap-type:x mandatory;
+      scroll-padding-inline:26px;
+      scroll-behavior:auto;
+      touch-action:pan-x;
+    }
+
+    .service-rail::-webkit-scrollbar{
+      display:none;
+    }
+
+    .service-btn{
+      flex:0 0 212px;
+      border:1px solid rgba(255,255,255,.08);
+      background:rgba(255,255,255,.03);
+      color:#fff;
+      border-radius:20px;
+      padding:15px 15px 14px;
+      text-align:left;
+      cursor:pointer;
+      transition:
+        border-color .18s ease,
+        box-shadow .18s ease,
+        background .18s ease,
+        transform .22s ease,
+        opacity .22s ease,
+        flex-basis .22s ease,
+        padding .22s ease;
+      transform:scale(.88);
+      opacity:.60;
+      scroll-snap-align:center;
+    }
+
+    .service-btn.near-active{
+      transform:scale(.95);
+      opacity:.84;
+    }
+
+    .service-btn.active{
+      flex-basis:296px;
+      padding:19px 18px 18px;
+      border-color:color-mix(in srgb, var(--active) 58%, transparent);
+      background:linear-gradient(
+        180deg,
+        color-mix(in srgb, var(--active) 12%, rgba(255,255,255,.03)),
+        rgba(255,255,255,.03)
+      );
       box-shadow:
-        0 0 0 1px rgba(70, 220, 225, 0.035) inset,
-        0 0 24px rgba(70, 220, 225, 0.08);
+        0 0 0 1px color-mix(in srgb, var(--active) 18%, transparent) inset,
+        0 0 28px color-mix(in srgb, var(--active) 12%, transparent);
+      transform:scale(1);
+      opacity:1;
     }
 
-    .theme-turquoise:hover {
-      border-color: rgba(95, 232, 236, 0.66);
-      box-shadow:
-        0 0 0 1px rgba(70, 220, 225, 0.05) inset,
-        0 0 30px rgba(70, 220, 225, 0.13);
+    .service-btn-top{
+      display:flex;
+      align-items:center;
+      gap:10px;
+      margin-bottom:6px;
     }
 
-    .theme-turquoise .service-kicker,
-    .theme-turquoise .mini-label {
-      color: #6ee7eb;
+    .service-icon{
+      width:36px;
+      height:36px;
+      border-radius:12px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      border:1px solid rgba(255,255,255,.09);
+      background:rgba(255,255,255,.04);
+      color:var(--active);
+      flex:none;
+      transition:width .22s ease, height .22s ease, border-radius .22s ease;
     }
 
-    .theme-turquoise h2 {
-      color: #9ef4f6;
+    .service-btn.active .service-icon{
+      width:42px;
+      height:42px;
+      border-radius:14px;
     }
 
-    .theme-turquoise p,
-    .theme-turquoise .mini-box p {
-      color: #f2fbfb;
+    .service-icon svg{
+      width:18px;
+      height:18px;
+      stroke:currentColor;
+      fill:none;
+      stroke-width:1.9;
+      stroke-linecap:round;
+      stroke-linejoin:round;
+      transition:width .22s ease, height .22s ease;
     }
 
-    .theme-turquoise .mini-box {
-      border-color: rgba(110, 231, 235, 0.18);
-      background: rgba(110, 231, 235, 0.04);
+    .service-btn.active .service-icon svg{
+      width:20px;
+      height:20px;
     }
 
-    .bottom-cta {
-      max-width: 760px;
-      margin: 18px auto 0;
-      text-align: center;
+    .service-btn .kicker{
+      display:block;
+      font-size:.62rem;
+      letter-spacing:.15em;
+      text-transform:uppercase;
+      color:var(--muted-soft);
+      font-weight:800;
+      margin-bottom:4px;
+      transition:font-size .22s ease;
     }
 
-    .cta-row {
-      display: flex;
-      justify-content: center;
-      gap: 12px;
-      flex-wrap: wrap;
+    .service-btn.active .kicker{
+      font-size:.68rem;
     }
 
-    .cta-row a {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      min-width: 170px;
-      padding: 13px 16px;
-      border-radius: 12px;
-      border: 1px solid rgba(255,255,255,0.1);
-      background:
-        linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.015)),
-        #0a0a0a;
-      color: #ffffff;
-      text-decoration: none;
-      text-transform: uppercase;
-      font-size: 0.82rem;
-      font-weight: 700;
-      letter-spacing: 1.3px;
-      transition: border-color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+    .service-btn .name{
+      display:block;
+      font-size:.94rem;
+      font-weight:800;
+      letter-spacing:-.02em;
+      line-height:1.1;
+      word-break:break-word;
+      transition:font-size .22s ease;
     }
 
-    .cta-row a:hover {
-      border-color: rgba(255, 190, 70, 0.7);
-      transform: translateY(-2px);
-      box-shadow: 0 0 20px rgba(255, 190, 70, 0.14);
+    .service-btn.active .name{
+      font-size:1.08rem;
     }
 
-    @media (max-width: 768px) {
-      .page-wrap {
-        padding: 102px 16px 50px;
+    @media (max-width: 768px){
+      .page-wrap{
+        padding:10px 10px 34px;
       }
 
-      .service-card {
-        padding: 22px 18px;
-        border-radius: 16px;
+      .showcase{
+        border-radius:22px;
       }
 
-      .service-kicker {
-        font-size: 0.72rem;
-        letter-spacing: 1.4px;
+      .shell-top{
+        justify-content:center;
+        padding:12px 10px 8px;
       }
 
-      .service-card h2 {
-        margin-bottom: 16px;
+      .page-menu{
+        display:none;
       }
 
-      .service-card p {
-        font-size: 0.95rem;
-        line-height: 1.72;
+      .mobile-nav{
+        display:flex;
       }
 
-      .service-grid {
-        grid-template-columns: 1fr;
-        gap: 12px;
+      .panel-wrap{
+        padding:10px 10px 4px;
       }
 
-      .mini-box {
-        padding: 14px 14px;
+      .focus-card{
+        border-radius:20px;
       }
 
-      .mini-box p {
-        font-size: 0.92rem;
+      .focus-top{
+        padding:18px 16px 14px;
       }
 
-      .cta-row a {
-        min-width: 100%;
-        font-size: 0.76rem;
-      }
-    }
-
-    @media (max-width: 700px){
-      .topbar-inner{
-        padding: 14px 14px;
+      .focus-top::after{
+        width:170px;
+        height:170px;
+        inset:auto -64px -64px auto;
       }
 
-      .nav a{
-        padding: 10px 14px;
-        font-size: 0.9rem;
+      .focus-head{
+        gap:12px;
+      }
+
+      .focus-badge{
+        width:44px;
+        height:44px;
+        border-radius:14px;
+      }
+
+      .focus-badge svg{
+        width:22px;
+        height:22px;
+      }
+
+      .focus-kicker{
+        font-size:.62rem;
+        margin-bottom:8px;
+      }
+
+      .focus-title{
+        font-size:1.68rem;
+        margin-bottom:10px;
+        max-width:12ch;
+      }
+
+      .focus-desc{
+        font-size:.9rem;
+        line-height:1.58;
+      }
+
+      .focus-content{
+        padding:14px 16px 16px;
+      }
+
+      .focus-sub{
+        font-size:.9rem;
+        line-height:1.6;
+        margin-bottom:14px;
+      }
+
+      .info-grid{
+        grid-template-columns:1fr;
+        gap:10px;
+        margin-bottom:14px;
+      }
+
+      .info-box{
+        border-radius:14px;
+        padding:13px 13px 12px;
+      }
+
+      .info-box .label{
+        font-size:.62rem;
+        margin-bottom:7px;
+      }
+
+      .info-box p{
+        font-size:.87rem;
+        line-height:1.58;
+      }
+
+      .tag-row{
+        gap:7px;
+        margin-bottom:14px;
+      }
+
+      .tag{
+        padding:8px 10px;
+        font-size:.72rem;
+      }
+
+      .cta-row{
+        gap:9px;
+      }
+
+      .cta-row a{
+        min-width:100%;
+        padding:12px 14px;
+        font-size:.74rem;
+        border-radius:12px;
+      }
+
+      .service-selector-bottom{
+        padding:10px 10px 14px;
+      }
+
+      .service-rail{
+        gap:8px;
+        padding:10px 16px 10px;
+        scroll-padding-inline:16px;
+      }
+
+      .service-btn{
+        flex:0 0 148px;
+        border-radius:14px;
+        padding:10px;
+        transform:scale(.86);
+        opacity:.58;
+      }
+
+      .service-btn.near-active{
+        transform:scale(.94);
+        opacity:.84;
+      }
+
+      .service-btn.active{
+        flex-basis:210px;
+        padding:13px 12px 12px;
+        transform:scale(1);
+        opacity:1;
+      }
+
+      .service-icon{
+        width:30px;
+        height:30px;
+        border-radius:10px;
+      }
+
+      .service-btn.active .service-icon{
+        width:36px;
+        height:36px;
+        border-radius:12px;
+      }
+
+      .service-icon svg{
+        width:15px;
+        height:15px;
+      }
+
+      .service-btn.active .service-icon svg{
+        width:17px;
+        height:17px;
+      }
+
+      .service-btn .kicker{
+        font-size:.54rem;
+      }
+
+      .service-btn.active .kicker{
+        font-size:.60rem;
+      }
+
+      .service-btn .name{
+        font-size:.78rem;
+      }
+
+      .service-btn.active .name{
+        font-size:.92rem;
+      }
+
+      .code-stream{
+        font-size:.68rem;
+        line-height:1.42;
+        padding:16px 16px 12px;
+      }
+
+      .code-fade-left,
+      .code-fade-right{
+        width:52px;
       }
     }
 
     @media (max-width: 430px){
-      .topbar-inner{
-        padding: 12px 10px;
+      .focus-title{
+        font-size:1.46rem;
       }
 
-      .nav{
-        gap: 8px;
+      .mobile-nav-link{
+        min-width:80px;
+        padding:8px 12px;
+        font-size:.78rem;
       }
 
-      .nav a{
-        padding: 9px 12px;
-        font-size: .84rem;
-      }
-
-      .page-wrap{
-        padding: 96px 14px 42px;
+      .code-bg{
+        opacity:.86;
       }
     }
   </style>
 </head>
 <body>
-  <header class="topbar">
-    <div class="topbar-inner">
-      <nav class="nav">
-        <a href="home.html">Home</a>
-        <a href="services.html" class="active">Services</a>
-        <a href="about.html">About</a>
-      </nav>
-    </div>
-  </header>
-
   <main class="page-wrap">
-    <section class="service-card theme-gold">
-      <div class="service-kicker">Core Service</div>
-      <h2>General Pest Control</h2>
-      <p>
-        Our general pest service is built for common pest pressure around the
-        home and is designed to help keep pest activity down through consistent,
-        dependable treatment.
-      </p>
-      <p>
-        This service typically targets pests such as ants, spiders,
-        crickets, earwigs, silverfish, centipedes, millipedes, and other common
-        invading insects. Does not cover bed bugs or termites.
-      </p>
+    <section class="showcase">
+      <div class="code-bg" aria-hidden="true">
+        <div class="code-grid"></div>
+        <div class="code-stream" id="codeStream"></div>
+        <div class="code-fade-left"></div>
+        <div class="code-fade-right"></div>
+      </div>
 
-      <div class="service-grid">
-        <div class="mini-box">
-          <div class="mini-label">Typical Coverage</div>
-          <p>
-            Exterior foundation and eave treatment with full front to back curb spot treatment as needed based
-            on pest activity.
-          </p>
+      <div class="shell-top">
+        <div class="page-menu" id="pageMenu">
+          <button class="page-menu-toggle" id="pageMenuToggle" type="button" aria-expanded="false">
+            Services
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path d="m6 9 6 6 6-6"></path>
+            </svg>
+          </button>
+
+          <div class="page-menu-dropdown">
+            <a class="page-menu-link" href="home.html">Home</a>
+            <a class="page-menu-link" href="about.html">About</a>
+          </div>
         </div>
-        <div class="mini-box">
-          <div class="mini-label">Important Note</div>
-          <p>
-            Interior and garage treatments are optional, not mandatory.
-          </p>
+
+        <nav class="mobile-nav" aria-label="Mobile navigation">
+          <a class="mobile-nav-link" href="home.html">Home</a>
+          <a class="mobile-nav-link active" href="services.html">Services</a>
+          <a class="mobile-nav-link" href="about.html">About</a>
+        </nav>
+      </div>
+
+      <div class="panel-wrap">
+        <div class="focus-card" id="focusCard">
+          <div class="focus-top">
+            <div class="focus-head">
+              <div class="focus-badge" id="focusBadge"></div>
+
+              <div class="focus-copy">
+                <div class="focus-kicker" id="focusKicker"></div>
+                <h2 class="focus-title" id="focusTitle"></h2>
+                <p class="focus-desc" id="focusDesc"></p>
+              </div>
+            </div>
+          </div>
+
+          <div class="focus-content">
+            <p class="focus-sub" id="focusSub"></p>
+
+            <div class="info-grid">
+              <div class="info-box">
+                <div class="label" id="box1Label"></div>
+                <p id="box1Text"></p>
+              </div>
+              <div class="info-box">
+                <div class="label" id="box2Label"></div>
+                <p id="box2Text"></p>
+              </div>
+            </div>
+
+            <div class="tag-row" id="tagRow"></div>
+
+            <div class="cta-row">
+              <a href="tel:8709197114">Call</a>
+              <a href="sms:8709197114">Text</a>
+              <a href="mailto:gmail@allseasonllc.com">Email</a>
+            </div>
+          </div>
         </div>
       </div>
-    </section>
 
-    <section class="service-card theme-silver">
-      <div class="service-kicker">Monitoring + Control</div>
-      <h2>Rodent Control</h2>
-      <p>
-        Our rodent control service focuses on reducing and monitoring rodent
-        activity through strategic bait placement and ongoing follow-up where
-        needed.
-      </p>
-      <p>
-        Service includes inspection of active areas, exterior bait stations, sticky traps, 
-        and recommendations to help reduce conditions that contribute to rodent
-        pressure around the home.
-      </p>
-
-      <div class="service-grid">
-        <div class="mini-box">
-          <div class="mini-label">Service Focus</div>
-          <p>
-            Ongoing monitoring, activity reduction, baiting, and follow-up based
-            on the level of rodent pressure.
-          </p>
-        </div>
-        <div class="mini-box">
-          <div class="mini-label">Important Note</div>
-          <p>
-            Does not include moles, snakes, skunks, or squirrels.
-          </p>
-        </div>
-      </div>
-    </section>
-
-    <section class="service-card theme-green">
-      <div class="service-kicker">Targeted Outdoor Service</div>
-      <h2>Tick &amp; Flea Treatment</h2>
-      <p>
-        Tick and flea treatments are designed for properties dealing with biting
-        pests in the yard, around pet areas, or in outdoor spaces where activity
-        tends to build up.
-      </p>
-      <p>
-        These treatments focus on helping reduce active populations and improving
-        control in the areas where ticks and fleas are most likely to be found.
-      </p>
-
-      <div class="service-grid">
-        <div class="mini-box">
-          <div class="mini-label">Best For</div>
-          <p>
-            Homes with pets, shaded yards, wildlife traffic, or recurring tick
-            and flea activity outside.
-          </p>
-        </div>
-        <div class="mini-box">
-          <div class="mini-label">Important Note</div>
-          <p>
-            This is an optional add-on service for general pest control.
-          </p>
-        </div>
-      </div>
-    </section>
-
-    <section class="service-card theme-red">
-      <div class="service-kicker">Seasonal Treatment</div>
-      <h2>Mosquito Treatment</h2>
-      <p>
-        Our mosquito treatments are designed to help reduce mosquito pressure in
-        the yard so you can enjoy outdoor areas more comfortably during the
-        warmer months.
-      </p>
-      <p>
-        Treatment is typically focused on shaded foliage, harborage areas, and
-        other outdoor zones where mosquitoes like to rest and build up.
-      </p>
-
-      <div class="service-grid">
-        <div class="mini-box">
-          <div class="mini-label">Best For</div>
-          <p>
-            Homes with patios, backyards, pets, outdoor gatherings, or heavy
-            mosquito pressure during the season.
-          </p>
-        </div>
-        <div class="mini-box">
-          <div class="mini-label">Service Approach</div>
-          <p>
-            Monthly recurring treatments from April-September aimed at reducing biting pressure and breeding populations.
-          </p>
-        </div>
-      </div>
-    </section>
-
-    <section class="service-card theme-brown">
-      <div class="service-kicker">Specialized Treatment</div>
-      <h2>German Roach Treatment</h2>
-      <p>
-        German roach problems usually require a more aggressive and targeted
-        treatment plan than standard pest control. This service is built for
-        active infestations that need more focused attention.
-      </p>
-      <p>
-        Treatment may include detailed inspection, targeted crack-and-crevice
-        applications, baiting, and follow-up service depending on the level of
-        activity and conditions inside the home.
-      </p>
-
-      <div class="service-grid">
-        <div class="mini-box">
-          <div class="mini-label">Best For</div>
-          <p>
-            Active german roach infestations that need more than routine
-            recurring service.
-          </p>
-        </div>
-        <div class="mini-box">
-          <div class="mini-label">Important Note</div>
-          <p>
-            Success depends heavily on severity, sanitation, clutter levels, and
-            cooperation with preparation recommendations.
-          </p>
-        </div>
-      </div>
-    </section>
-
-    <section class="service-card theme-turquoise">
-      <div class="service-kicker">Specialized Treatment</div>
-      <h2>Weed Control</h2>
-      <p>
-        Our weed control service is designed to help reduce unwanted weed growth
-        and improve the overall appearance of your property.
-      </p>
-      <p>
-        Treatment plans may vary based on the season, weed pressure, and overall
-        condition of the turf, but the goal stays the same: cleaner, more
-        controlled outdoor spaces.
-      </p>
-
-      <div class="service-grid">
-        <div class="mini-box">
-          <div class="mini-label">Best For</div>
-          <p>
-            Properties dealing with visible weed pressure in the rocks, along
-            edges, or throughout the yard.
-          </p>
-        </div>
-        <div class="mini-box">
-          <div class="mini-label">Service Approach</div>
-          <p>
-            Price varies by total square feet of treatment. Treatments are done in spring (Mar/Apr) and late summer (Aug/Sep).
-          </p>
-        </div>
-      </div>
-    </section>
-
-    <section class="bottom-cta">
-      <div class="cta-row">
-        <a href="tel:8709197114">Call</a>
-        <a href="sms:8709197114">Text</a>
-        <a href="mailto:gmail@allseasonllc.com">Email</a>
+      <div class="service-selector-bottom">
+        <div class="service-rail" id="serviceRail"></div>
       </div>
     </section>
   </main>
 
   <script>
-    const cards = document.querySelectorAll('.service-card');
+    const iconMap = {
+      bug: `
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M12 8.5c2.2 0 4 1.8 4 4.1V16c0 2.2-1.8 4-4 4s-4-1.8-4-4v-3.4c0-2.3 1.8-4.1 4-4.1Z"/>
+          <path d="M10.5 5.5 12 4l1.5 1.5"/>
+          <path d="M8 10 5.5 8.5M16 10l2.5-1.5M8 14H5M19 14h-3M8.5 18l-2 1.5M15.5 18l2 1.5"/>
+        </svg>
+      `,
+      shield: `
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M12 3l7 3v5c0 4.8-2.8 8.4-7 10-4.2-1.6-7-5.2-7-10V6l7-3Z"/>
+          <path d="M9.5 12.5 11 14l3.5-4"/>
+        </svg>
+      `,
+      paw: `
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M8 11.5c-1.2 0-2-1.3-2-2.8S6.8 6 8 6s2 1.3 2 2.7-.8 2.8-2 2.8ZM16 11.5c-1.2 0-2-1.3-2-2.8S14.8 6 16 6s2 1.3 2 2.7-.8 2.8-2 2.8ZM5.5 15.5c-1 0-1.7-1.1-1.7-2.4s.7-2.4 1.7-2.4 1.7 1.1 1.7 2.4-.7 2.4-1.7 2.4ZM18.5 15.5c-1 0-1.7-1.1-1.7-2.4s.7-2.4 1.7-2.4 1.7 1.1 1.7 2.4-.7 2.4-1.7 2.4Z"/>
+          <path d="M12 19.5c2.3 0 4.5-1.1 4.5-3.2 0-1.8-1.4-3.1-3.1-3.1-.7 0-1.1.2-1.4.5-.3-.3-.7-.5-1.4-.5-1.7 0-3.1 1.3-3.1 3.1 0 2.1 2.2 3.2 4.5 3.2Z"/>
+        </svg>
+      `,
+      mosquito: `
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M12 12v7"/>
+          <path d="M12 12 7 7M12 12l5-5M12 12l6 2M12 12 6 14"/>
+          <path d="M12 7.5c1.2 0 2-.8 2-1.8S13.2 4 12 4s-2 .8-2 1.7.8 1.8 2 1.8Z"/>
+          <path d="M10.5 19.5h3"/>
+        </svg>
+      `,
+      target: `
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <circle cx="12" cy="12" r="7"/>
+          <circle cx="12" cy="12" r="3"/>
+          <path d="M12 5V3M19 12h2M12 21v-2M3 12h2"/>
+        </svg>
+      `,
+      leaf: `
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M19 4c-7.5.4-12 4.8-12 10.5 0 3 2.2 5.5 5.4 5.5C18.3 20 20 13.9 19 4Z"/>
+          <path d="M8 16c2.5-2.4 4.8-4 8-5.5"/>
+        </svg>
+      `
+    };
 
-    cards.forEach((card) => {
-      card.addEventListener('mousemove', (e) => {
-        const rect = card.getBoundingClientRect();
-        const x = e.clientX - rect.left;
-        const y = e.clientY - rect.top;
+    const baseServices = [
+      {
+        id: "general",
+        color: "#ffd05c",
+        icon: "bug",
+        kicker: "Core Service",
+        title: "General Pest Control",
+        desc: "Built for common pest pressure around the home and designed to help keep activity down through consistent, dependable treatment.",
+        sub: "This service typically targets pests such as ants, spiders, crickets, earwigs, silverfish, centipedes, millipedes, and other common invading insects. It does not cover bed bugs or termites.",
+        box1Label: "Typical Coverage",
+        box1Text: "Exterior foundation and eave treatment with full front to back curb spot treatment as needed based on pest activity.",
+        box2Label: "Important Note",
+        box2Text: "Interior and garage treatments are optional, not mandatory.",
+        tags: ["Ants", "Spiders", "Crickets", "Earwigs", "Routine Protection"]
+      },
+      {
+        id: "rodent",
+        color: "#dddddd",
+        icon: "shield",
+        kicker: "Monitoring + Control",
+        title: "Rodent Control",
+        desc: "Focused on reducing and monitoring rodent activity through strategic bait placement and ongoing follow-up where needed.",
+        sub: "Service includes inspection of active areas, exterior bait stations, sticky traps, and recommendations to help reduce conditions that contribute to rodent pressure around the home.",
+        box1Label: "Service Focus",
+        box1Text: "Ongoing monitoring, activity reduction, baiting, and follow-up based on the level of rodent pressure.",
+        box2Label: "Important Note",
+        box2Text: "Does not include moles, snakes, skunks, or squirrels.",
+        tags: ["Bait Stations", "Sticky Traps", "Monitoring", "Follow-Up", "Rodent Pressure"]
+      },
+      {
+        id: "tickflea",
+        color: "#58e08f",
+        icon: "paw",
+        kicker: "Targeted Outdoor Service",
+        title: "Tick & Flea Treatment",
+        desc: "Designed for properties dealing with biting pests in the yard, around pet areas, or in outdoor spaces where activity tends to build up.",
+        sub: "These treatments focus on helping reduce active populations and improving control in the areas where ticks and fleas are most likely to be found.",
+        box1Label: "Best For",
+        box1Text: "Homes with pets, shaded yards, wildlife traffic, or recurring tick and flea activity outside.",
+        box2Label: "Important Note",
+        box2Text: "This is an optional add-on service for general pest control.",
+        tags: ["Pets", "Shaded Yards", "Wildlife Traffic", "Outdoor Pressure", "Add-On Service"]
+      },
+      {
+        id: "mosquito",
+        color: "#ff5c5c",
+        icon: "mosquito",
+        kicker: "Seasonal Treatment",
+        title: "Mosquito Treatment",
+        desc: "Designed to help reduce mosquito pressure in the yard so you can enjoy outdoor areas more comfortably during the warmer months.",
+        sub: "Treatment is typically focused on shaded foliage, harborage areas, and other outdoor zones where mosquitoes like to rest and build up.",
+        box1Label: "Best For",
+        box1Text: "Homes with patios, backyards, pets, outdoor gatherings, or heavy mosquito pressure during the season.",
+        box2Label: "Service Approach",
+        box2Text: "Monthly recurring treatments from April through September aimed at reducing biting pressure and breeding populations.",
+        tags: ["Patios", "Backyards", "Outdoor Comfort", "Seasonal Control", "Monthly Service"]
+      },
+      {
+        id: "roach",
+        color: "#d09a65",
+        icon: "target",
+        kicker: "Specialized Treatment",
+        title: "German Roach Treatment",
+        desc: "Built for active infestations that need more aggressive and targeted attention than standard routine pest service.",
+        sub: "Treatment may include detailed inspection, targeted crack-and-crevice applications, baiting, and follow-up service depending on the level of activity and conditions inside the home.",
+        box1Label: "Best For",
+        box1Text: "Active german roach infestations that need more than routine recurring service.",
+        box2Label: "Important Note",
+        box2Text: "Results depend heavily on severity, sanitation, clutter levels, and cooperation with preparation recommendations.",
+        tags: ["Active Infestations", "Baiting", "Inspection", "Interior Focus", "Targeted Treatment"]
+      },
+      {
+        id: "weed",
+        color: "#6ee7eb",
+        icon: "leaf",
+        kicker: "Specialized Treatment",
+        title: "Weed Control",
+        desc: "Designed to help reduce unwanted weed growth and improve the overall appearance of the property.",
+        sub: "Treatment plans may vary based on the season, weed pressure, and overall condition of the turf, but the goal stays the same: cleaner, more controlled outdoor spaces.",
+        box1Label: "Best For",
+        box1Text: "Properties dealing with visible weed pressure in the rocks, along edges, or throughout the yard.",
+        box2Label: "Service Approach",
+        box2Text: "Price varies by total square feet of treatment. Treatments are typically done in spring and again in late summer.",
+        tags: ["Edges", "Rocks", "Yard Appearance", "Seasonal Timing", "Square-Foot Pricing"]
+      }
+    ];
 
-        card.style.setProperty('--mouse-x', `${x}px`);
-        card.style.setProperty('--mouse-y', `${y}px`);
+    const pageMenu = document.getElementById("pageMenu");
+    const pageMenuToggle = document.getElementById("pageMenuToggle");
+    const serviceRail = document.getElementById("serviceRail");
+    const focusCard = document.getElementById("focusCard");
+    const focusBadge = document.getElementById("focusBadge");
+    const focusKicker = document.getElementById("focusKicker");
+    const focusTitle = document.getElementById("focusTitle");
+    const focusDesc = document.getElementById("focusDesc");
+    const focusSub = document.getElementById("focusSub");
+    const box1Label = document.getElementById("box1Label");
+    const box1Text = document.getElementById("box1Text");
+    const box2Label = document.getElementById("box2Label");
+    const box2Text = document.getElementById("box2Text");
+    const tagRow = document.getElementById("tagRow");
+    const codeStream = document.getElementById("codeStream");
+
+    const cloneRepeat = 2;
+    let currentActiveId = "general";
+    let lastSyncedId = currentActiveId;
+    let touchStartX = 0;
+    let touchStartY = 0;
+    let touchLocked = false;
+    let isAnimatingSwipe = false;
+
+    function getVisibleTags(tags) {
+      return window.innerWidth <= 768 ? tags.slice(0, 3) : tags;
+    }
+
+    function getRailServices() {
+      const before = [];
+      const after = [];
+
+      for (let i = 0; i < cloneRepeat; i++) {
+        before.push(...baseServices);
+        after.push(...baseServices);
+      }
+
+      return [...before, ...baseServices, ...after];
+    }
+
+    function renderButtons() {
+      serviceRail.innerHTML = "";
+      const railServices = getRailServices();
+
+      railServices.forEach((service, index) => {
+        const button = document.createElement("button");
+        button.className = "service-btn";
+        button.dataset.id = service.id;
+        button.dataset.index = index;
+        button.style.setProperty("--active", service.color);
+
+        button.innerHTML = `
+          <div class="service-btn-top">
+            <div class="service-icon">${iconMap[service.icon]}</div>
+            <div>
+              <span class="kicker">${service.kicker}</span>
+              <span class="name">${service.title}</span>
+            </div>
+          </div>
+        `;
+
+        button.addEventListener("click", () => {
+          if (window.innerWidth <= 768) return;
+          setActiveService(service.id, true, button);
+        });
+
+        serviceRail.appendChild(button);
       });
+    }
+
+    function getButtonsById(id) {
+      return [...document.querySelectorAll(`.service-btn[data-id="${id}"]`)];
+    }
+
+    function getCenterCandidateButtons(id) {
+      const buttons = getButtonsById(id);
+      const railRect = serviceRail.getBoundingClientRect();
+      const railCenter = railRect.left + railRect.width / 2;
+
+      return buttons
+        .map((button) => {
+          const rect = button.getBoundingClientRect();
+          const center = rect.left + rect.width / 2;
+          return {
+            button,
+            distance: Math.abs(center - railCenter)
+          };
+        })
+        .sort((a, b) => a.distance - b.distance);
+    }
+
+    function getMiddleSetButton(id) {
+      const buttons = getButtonsById(id);
+      const segmentLength = baseServices.length;
+      const middleIndexStart = segmentLength * cloneRepeat;
+
+      return buttons.find(btn => {
+        const idx = Number(btn.dataset.index);
+        return idx >= middleIndexStart && idx < middleIndexStart + segmentLength;
+      }) || buttons[0] || null;
+    }
+
+    function centerButton(button, smooth = true) {
+      if (!button) return;
+
+      const targetLeft =
+        button.offsetLeft - (serviceRail.clientWidth / 2) + (button.clientWidth / 2);
+
+      serviceRail.scrollTo({
+        left: targetLeft,
+        behavior: smooth ? "smooth" : "auto"
+      });
+    }
+
+    function updateRailClasses(activeButton) {
+      const allButtons = [...document.querySelectorAll(".service-btn")];
+      allButtons.forEach(btn => btn.classList.remove("near-active"));
+
+      if (!activeButton) return;
+
+      const rect = activeButton.getBoundingClientRect();
+      const activeCenter = rect.left + rect.width / 2;
+
+      allButtons.forEach(btn => {
+        if (btn === activeButton) return;
+        const r = btn.getBoundingClientRect();
+        const center = r.left + r.width / 2;
+        const dist = Math.abs(center - activeCenter);
+        if (dist < 340) {
+          btn.classList.add("near-active");
+        }
+      });
+    }
+
+    function normalizeRailPosition() {
+      const targetButton = getMiddleSetButton(currentActiveId);
+      if (!targetButton) return;
+      centerButton(targetButton, false);
+      updateRailClasses(targetButton);
+    }
+
+    function isBoundaryJump(fromId, toId) {
+      return (
+        (fromId === "weed" && toId === "general") ||
+        (fromId === "general" && toId === "weed")
+      );
+    }
+
+    function setActiveService(id, shouldCenter = false, clickedButton = null) {
+      const service = baseServices.find(item => item.id === id);
+      if (!service) return;
+
+      const previousId = currentActiveId;
+      currentActiveId = id;
+      document.documentElement.style.setProperty("--active", service.color);
+
+      document.querySelectorAll(".service-btn").forEach(btn => {
+        btn.classList.toggle("active", btn.dataset.id === id);
+      });
+
+      let centerTarget = clickedButton;
+
+      if (!centerTarget) {
+        const candidates = getCenterCandidateButtons(id);
+        centerTarget = candidates.length ? candidates[0].button : null;
+      }
+
+      if (shouldCenter && centerTarget) {
+        centerButton(centerTarget, true);
+        updateRailClasses(centerTarget);
+
+        if (isBoundaryJump(previousId, id)) {
+          setTimeout(() => {
+            const middleButton = getMiddleSetButton(id);
+            centerButton(middleButton, false);
+            updateRailClasses(middleButton);
+          }, 240);
+        }
+      } else {
+        const middleButton = getMiddleSetButton(id);
+        updateRailClasses(middleButton || centerTarget);
+      }
+
+      focusBadge.innerHTML = iconMap[service.icon];
+      focusBadge.style.color = service.color;
+
+      focusKicker.textContent = service.kicker;
+      focusTitle.textContent = service.title;
+      focusDesc.textContent = service.desc;
+      focusSub.textContent = service.sub;
+      box1Label.textContent = service.box1Label;
+      box1Text.textContent = service.box1Text;
+      box2Label.textContent = service.box2Label;
+      box2Text.textContent = service.box2Text;
+
+      tagRow.innerHTML = "";
+      getVisibleTags(service.tags).forEach(tag => {
+        const span = document.createElement("span");
+        span.className = "tag";
+        span.textContent = tag;
+        tagRow.appendChild(span);
+      });
+
+      focusKicker.style.color = service.color;
+      document.querySelectorAll(".label").forEach(label => {
+        label.style.color = service.color;
+      });
+
+      focusCard.style.borderColor = `${service.color}44`;
+      focusCard.style.boxShadow = `0 18px 60px rgba(0,0,0,.42), 0 0 34px ${service.color}14`;
+    }
+
+    function getServiceIndexById(id) {
+      return baseServices.findIndex(service => service.id === id);
+    }
+
+    function goToServiceIndex(index) {
+      const total = baseServices.length;
+      const wrappedIndex = (index + total) % total;
+      const nextService = baseServices[wrappedIndex];
+      const targetButton = getMiddleSetButton(nextService.id);
+
+      if (!targetButton) return;
+
+      isAnimatingSwipe = true;
+      lastSyncedId = nextService.id;
+      setActiveService(nextService.id, false, targetButton);
+      centerButton(targetButton, true);
+
+      setTimeout(() => {
+        const middleButton = getMiddleSetButton(nextService.id);
+        centerButton(middleButton, false);
+        updateRailClasses(middleButton);
+        isAnimatingSwipe = false;
+      }, 260);
+    }
+
+    function stepService(direction) {
+      if (isAnimatingSwipe) return;
+
+      const currentIndex = getServiceIndexById(currentActiveId);
+      if (currentIndex === -1) return;
+
+      goToServiceIndex(currentIndex + direction);
+    }
+
+    pageMenuToggle.addEventListener("click", (event) => {
+      event.stopPropagation();
+      const isOpen = pageMenu.classList.toggle("open");
+      pageMenuToggle.setAttribute("aria-expanded", isOpen ? "true" : "false");
     });
+
+    document.addEventListener("click", (event) => {
+      if (!pageMenu.contains(event.target)) {
+        pageMenu.classList.remove("open");
+        pageMenuToggle.setAttribute("aria-expanded", "false");
+      }
+    });
+
+    renderButtons();
+    setActiveService("general", false);
+
+    requestAnimationFrame(() => {
+      normalizeRailPosition();
+    });
+
+    serviceRail.addEventListener("touchstart", (event) => {
+      if (window.innerWidth > 768) return;
+      if (!event.touches.length) return;
+
+      touchStartX = event.touches[0].clientX;
+      touchStartY = event.touches[0].clientY;
+      touchLocked = false;
+    }, { passive: true });
+
+    serviceRail.addEventListener("touchmove", (event) => {
+      if (window.innerWidth > 768) return;
+      if (!event.touches.length || isAnimatingSwipe) return;
+
+      const deltaX = event.touches[0].clientX - touchStartX;
+      const deltaY = event.touches[0].clientY - touchStartY;
+
+      if (touchLocked) {
+        event.preventDefault();
+        return;
+      }
+
+      if (Math.abs(deltaX) > 22 && Math.abs(deltaX) > Math.abs(deltaY)) {
+        touchLocked = true;
+        event.preventDefault();
+      }
+    }, { passive: false });
+
+    serviceRail.addEventListener("touchend", (event) => {
+      if (window.innerWidth > 768) return;
+      if (isAnimatingSwipe) return;
+
+      const changedTouch = event.changedTouches && event.changedTouches[0];
+      if (!changedTouch) return;
+
+      const deltaX = changedTouch.clientX - touchStartX;
+      const deltaY = changedTouch.clientY - touchStartY;
+
+      if (Math.abs(deltaX) > 38 && Math.abs(deltaX) > Math.abs(deltaY)) {
+        if (deltaX < 0) {
+          stepService(1);
+        } else {
+          stepService(-1);
+        }
+      } else {
+        const middleButton = getMiddleSetButton(currentActiveId);
+        centerButton(middleButton, true);
+        updateRailClasses(middleButton);
+      }
+
+      touchLocked = false;
+    }, { passive: true });
+
+    serviceRail.addEventListener("scroll", () => {
+      if (window.innerWidth > 768 || isAnimatingSwipe) return;
+      const middleButton = getMiddleSetButton(currentActiveId);
+      updateRailClasses(middleButton);
+    }, { passive: true });
+
+    window.addEventListener("resize", () => {
+      pageMenu.classList.remove("open");
+      pageMenuToggle.setAttribute("aria-expanded", "false");
+      setActiveService(currentActiveId, false);
+      normalizeRailPosition();
+      lastSyncedId = currentActiveId;
+      isAnimatingSwipe = false;
+    });
+
+    const codeLines = [
+      `<span class="tok-red">const</span> <span class="tok-silver">propertyProfile</span> = {`,
+      `  <span class="tok-silver">city</span>: <span class="tok-gold">"Jonesboro"</span>,`,
+      `  <span class="tok-silver">season</span>: <span class="tok-gold">"spring"</span>,`,
+      `  <span class="tok-silver">pressure</span>: <span class="tok-red">"moderate"</span>`,
+      `};`,
+      ``,
+      `<span class="tok-red">let</span> <span class="tok-silver">targetPests</span> = [<span class="tok-silver">"ants"</span>, <span class="tok-silver">"spiders"</span>, <span class="tok-silver">"earwigs"</span>, <span class="tok-silver">"crickets"</span>];`,
+      `<span class="tok-red">let</span> <span class="tok-silver">perimeterZones</span> = [<span class="tok-silver">"foundation"</span>, <span class="tok-silver">"garageDoor"</span>, <span class="tok-silver">"rearFence"</span>, <span class="tok-silver">"weepHoles"</span>];`,
+      `<span class="tok-blue">serviceData</span>.<span class="tok-green">forEach</span>((service) => {`,
+      `  <span class="tok-blue">serviceRail</span>.<span class="tok-green">addEventListener</span>(<span class="tok-gold">"click"</span>, () => {`,
+      `    <span class="tok-silver">activeService</span> = <span class="tok-blue">service</span>.<span class="tok-silver">name</span>;`,
+      `    <span class="tok-silver">entryPointRisk</span> = <span class="tok-blue">inspect</span>(<span class="tok-gold">"doorSweep"</span>, <span class="tok-gold">"windowGap"</span>, <span class="tok-gold">"utilityLine"</span>);`,
+      `    <span class="tok-silver">harborageZones</span> = <span class="tok-blue">mapAreas</span>(<span class="tok-gold">"mulchBeds"</span>, <span class="tok-gold">"shedLine"</span>, <span class="tok-gold">"ACPad"</span>);`,
+      `    <span class="tok-blue">applyTreatment</span>(<span class="tok-blue">service</span>.<span class="tok-gold">title</span>);`,
+      `  });`,
+      `});`,
+      ``,
+      `<span class="tok-red">const</span> <span class="tok-silver">mosquitoPlan</span> = {`,
+      `  <span class="tok-silver">focus</span>: [<span class="tok-green">"shadedFoliage"</span>, <span class="tok-green">"standingWaterRisk"</span>, <span class="tok-green">"rearPatio"</span>],`,
+      `  <span class="tok-silver">interval</span>: <span class="tok-gold">"monthly"</span>,`,
+      `  <span class="tok-silver">seasonWindow</span>: <span class="tok-gold">"April-September"</span>`,
+      `};`,
+      ``,
+      `<span class="tok-red">const</span> <span class="tok-silver">rodentStations</span> = [<span class="tok-silver">"northWall"</span>, <span class="tok-silver">"garageCorner"</span>, <span class="tok-silver">"rearACUnit"</span>];`,
+      `<span class="tok-blue">rodentStations</span>.<span class="tok-green">forEach</span>((station) => {`,
+      `  <span class="tok-blue">checkBait</span>(station);`,
+      `  <span class="tok-blue">logRodentActivity</span>(station, <span class="tok-gold">"weekly"</span>);`,
+      `  <span class="tok-blue">replaceIfLow</span>(station);`,
+      `});`,
+      ``,
+      `<span class="tok-red">const</span> <span class="tok-silver">roachProtocol</span> = {`,
+      `  <span class="tok-silver">inspectionPoints</span>: [<span class="tok-silver">"sinkBase"</span>, <span class="tok-silver">"dishwasherVoid"</span>, <span class="tok-silver">"stoveGap"</span>],`,
+      `  <span class="tok-silver">treatmentMode</span>: <span class="tok-gold">"baiting + crackAndCrevice"</span>,`,
+      `  <span class="tok-silver">followUp</span>: <span class="tok-gold">"required"</span>`,
+      `};`,
+      ``,
+      `<span class="tok-red">const</span> <span class="tok-silver">tickFleaZones</span> = [<span class="tok-silver">"petRun"</span>, <span class="tok-silver">"shadeLine"</span>, <span class="tok-silver">"underDeck"</span>, <span class="tok-silver">"fencePerimeter"</span>];`,
+      `<span class="tok-blue">tickFleaZones</span>.<span class="tok-green">forEach</span>((zone) => {`,
+      `  <span class="tok-blue">treatHotSpot</span>(zone);`,
+      `  <span class="tok-blue">markFollowUp</span>(zone);`,
+      `});`,
+      ``,
+      `<span class="tok-red">const</span> <span class="tok-silver">weedPlan</span> = {`,
+      `  <span class="tok-silver">squareFeet</span>: <span class="tok-blue">measure</span>(<span class="tok-gold">"frontYard"</span>) + <span class="tok-blue">measure</span>(<span class="tok-gold">"rockBeds"</span>) + <span class="tok-blue">measure</span>(<span class="tok-gold">"driveEdge"</span>),`,
+      `  <span class="tok-silver">pressureZones</span>: [<span class="tok-silver">"curbLine"</span>, <span class="tok-silver">"fenceEdge"</span>, <span class="tok-silver">"landscapeBorders"</span>],`,
+      `  <span class="tok-silver">timing</span>: [<span class="tok-gold">"spring"</span>, <span class="tok-gold">"lateSummer"</span>]`,
+      `};`,
+      ``,
+      `<span class="tok-red">if</span> (<span class="tok-silver">activityLevel</span> > <span class="tok-blue">threshold</span>) {`,
+      `  <span class="tok-blue">scheduleReservice</span>(<span class="tok-gold">"focusedTreatment"</span>);`,
+      `  <span class="tok-blue">serviceNotes</span>.<span class="tok-green">push</span>(<span class="tok-gold">"focus on rear fence line, garage threshold, and utility penetrations"</span>);`,
+      `}`,
+      ``,
+      `<span class="tok-blue">finalPass</span>(<span class="tok-gold">"yard"</span>, <span class="tok-gold">"foundation"</span>, <span class="tok-gold">"entryPoints"</span>);`
+    ];
+
+    const prefilledCount = 20;
+    const maxVisibleLines = 36;
+    let typedLines = codeLines.slice(0, prefilledCount);
+    let sourceIndex = prefilledCount % codeLines.length;
+    let charIndex = 0;
+    let typingForward = true;
+
+    function stripHTML(html) {
+      const temp = document.createElement("div");
+      temp.innerHTML = html;
+      return temp.textContent || temp.innerText || "";
+    }
+
+    function sliceHTMLPreserveTags(html, count) {
+      let result = "";
+      let textCount = 0;
+      let i = 0;
+      const stack = [];
+
+      while (i < html.length && textCount < count) {
+        if (html[i] === "<") {
+          const close = html.indexOf(">", i);
+          if (close === -1) break;
+          const tag = html.slice(i, close + 1);
+          result += tag;
+
+          const isClosing = /^<\//.test(tag);
+          const isSelfClosing = /\/>$/.test(tag);
+          const openMatch = tag.match(/^<([a-zA-Z0-9]+)/);
+          const closeMatch = tag.match(/^<\/([a-zA-Z0-9]+)/);
+
+          if (!isClosing && !isSelfClosing && openMatch) {
+            stack.push(openMatch[1]);
+          } else if (isClosing && closeMatch) {
+            const tagName = closeMatch[1];
+            const idx = stack.lastIndexOf(tagName);
+            if (idx !== -1) stack.splice(idx, 1);
+          }
+
+          i = close + 1;
+        } else {
+          result += html[i];
+          textCount++;
+          i++;
+        }
+      }
+
+      for (let j = stack.length - 1; j >= 0; j--) {
+        result += `</${stack[j]}>`;
+      }
+
+      return result;
+    }
+
+    function renderCodeStream(activeLineHTML = "") {
+      const lines = [...typedLines];
+      if (activeLineHTML) lines.push(activeLineHTML);
+
+      codeStream.innerHTML = lines
+        .slice(-maxVisibleLines)
+        .map(line => `<div class="code-line">${line}</div>`)
+        .join("");
+    }
+
+    function tickCode() {
+      const currentLine = codeLines[sourceIndex];
+      const rawText = stripHTML(currentLine);
+
+      if (typingForward) {
+        charIndex++;
+        const partial = sliceHTMLPreserveTags(currentLine, charIndex);
+        renderCodeStream(`${partial}<span class="code-cursor">|</span>`);
+
+        if (charIndex >= rawText.length) {
+          typingForward = false;
+          setTimeout(tickCode, rawText.length < 4 ? 60 : 180);
+          return;
+        }
+
+        setTimeout(tickCode, rawText.length < 4 ? 36 : 14);
+      } else {
+        typedLines.push(currentLine);
+        if (typedLines.length > 80) typedLines.shift();
+
+        sourceIndex = (sourceIndex + 1) % codeLines.length;
+        charIndex = 0;
+        typingForward = true;
+
+        renderCodeStream(`<span class="code-cursor">|</span>`);
+        setTimeout(tickCode, 40);
+      }
+    }
+
+    renderCodeStream(`<span class="code-cursor">|</span>`);
+    setTimeout(tickCode, 180);
   </script>
 </body>
 </html>
