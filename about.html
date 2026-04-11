@@ -117,8 +117,9 @@
       min-height:calc(100vh - 160px);
       border:1px solid rgba(255,255,255,.08);
       background:
-        radial-gradient(circle at 18% 34%, rgba(255,40,40,.03), transparent 30%),
-        radial-gradient(circle at 85% 74%, rgba(255,255,255,.028), transparent 30%),
+        radial-gradient(circle at 20% 36%, rgba(255,40,40,.03), transparent 32%),
+        radial-gradient(circle at 84% 72%, rgba(255,255,255,.026), transparent 32%),
+        radial-gradient(circle at 54% 52%, rgba(255,130,150,.018), transparent 22%),
         linear-gradient(180deg, rgba(255,255,255,.01), rgba(255,255,255,.002)),
         #000;
       box-shadow:var(--shadow);
@@ -133,8 +134,8 @@
       z-index:3;
       pointer-events:none;
       background:
-        radial-gradient(circle at 18% 34%, rgba(0,0,0,.015) 0%, rgba(0,0,0,.11) 66%, rgba(0,0,0,.24) 100%),
-        linear-gradient(180deg, rgba(0,0,0,.06), rgba(0,0,0,.10));
+        radial-gradient(circle at 54% 52%, rgba(255,160,180,.015) 0%, rgba(0,0,0,.0) 20%, rgba(0,0,0,.08) 58%, rgba(0,0,0,.20) 100%),
+        linear-gradient(180deg, rgba(0,0,0,.05), rgba(0,0,0,.10));
     }
 
     .web-canvas{
@@ -146,9 +147,9 @@
       display:block;
       pointer-events:none;
       filter:
-        drop-shadow(0 0 5px rgba(255,60,60,.10))
+        drop-shadow(0 0 5px rgba(255,70,70,.10))
         drop-shadow(0 0 7px rgba(255,255,255,.06))
-        drop-shadow(0 0 18px rgba(255,255,255,.02));
+        drop-shadow(0 0 18px rgba(255,180,190,.025));
     }
 
     .content{
@@ -270,6 +271,10 @@
       const dx = x2 - x1;
       const dy = y2 - y1;
       return Math.sqrt(dx * dx + dy * dy);
+    }
+
+    function lerp(a, b, t) {
+      return a + (b - a) * t;
     }
 
     function resizeCanvas() {
@@ -419,6 +424,20 @@
       return t >= spoke.breakStart && t <= (spoke.breakStart + spoke.breakLen);
     }
 
+    function getMergeAmount() {
+      const red = systems[0];
+      const white = systems[1];
+      if (!red || !white) return 0;
+
+      const d = dist(red.x, red.y, white.x, white.y);
+      const thresholdFar = Math.max(w, h) * 0.92;
+      const thresholdNear = Math.max(w, h) * 0.42;
+
+      let t = 1 - ((d - thresholdNear) / (thresholdFar - thresholdNear));
+      t = Math.max(0, Math.min(1, t));
+      return t;
+    }
+
     function updateSystems() {
       systems.forEach((system) => {
         system.pulse += 0.0044;
@@ -435,8 +454,13 @@
     }
 
     function drawGlow(system) {
+      const merge = getMergeAmount();
       const g = ctx.createRadialGradient(system.x, system.y, 0, system.x, system.y, system.maxRadius * 1.12);
-      const baseA = system.colorName === "red" ? 0.070 : 0.040;
+      const baseA =
+        system.colorName === "red"
+          ? 0.070 + merge * 0.010
+          : 0.040 + merge * 0.008;
+
       g.addColorStop(0, `rgba(${system.glowRGB},${baseA})`);
       g.addColorStop(0.12, `rgba(${system.glowRGB},${baseA * 0.45})`);
       g.addColorStop(0.35, `rgba(${system.glowRGB},${baseA * 0.12})`);
@@ -593,11 +617,108 @@
       });
     }
 
+    function drawMergeThreads() {
+      const red = systems[0];
+      const white = systems[1];
+      if (!red || !white) return;
+
+      const merge = getMergeAmount();
+      if (merge < 0.12) return;
+
+      const bridgeCount = 10 + Math.floor(merge * 16);
+
+      for (let i = 0; i < bridgeCount; i++) {
+        const ra = red.spokes[(i * 2) % red.spokes.length];
+        const wa = white.spokes[(i * 3 + 5) % white.spokes.length];
+
+        const rt = lerp(0.28, 0.82, ((i % 7) / 6)) * Math.min(1, red.webProgress + 0.15);
+        const wt = lerp(0.24, 0.78, (((i + 2) % 7) / 6)) * Math.min(1, white.webProgress + 0.15);
+
+        if (rt > red.webProgress + 0.16 || wt > white.webProgress + 0.16) continue;
+
+        const p1 = pointOnSpoke(red, ra, Math.min(rt, 0.98));
+        const p2 = pointOnSpoke(white, wa, Math.min(wt, 0.98));
+
+        const mixAlpha = 0.018 + merge * 0.12;
+        const mx = (p1.x + p2.x) * 0.5 + Math.sin(frame * 0.004 + i) * (14 + merge * 10);
+        const my = (p1.y + p2.y) * 0.5 + Math.cos(frame * 0.004 + i * 1.2) * (10 + merge * 8);
+
+        ctx.beginPath();
+        ctx.moveTo(p1.x, p1.y);
+        ctx.quadraticCurveTo(mx, my, p2.x, p2.y);
+        ctx.strokeStyle = `rgba(255,180,195,${mixAlpha})`;
+        ctx.lineWidth = 0.9 + merge * 1.0;
+        ctx.lineCap = "round";
+        ctx.lineJoin = "round";
+        ctx.stroke();
+      }
+    }
+
+    function drawMergeRings() {
+      const red = systems[0];
+      const white = systems[1];
+      if (!red || !white) return;
+
+      const merge = getMergeAmount();
+      if (merge < 0.20) return;
+
+      const centerX = (red.x + white.x) * 0.5;
+      const centerY = (red.y + white.y) * 0.5;
+      const baseRadius = Math.min(
+        dist(red.x, red.y, white.x, white.y) * 0.42,
+        Math.max(w, h) * 0.22
+      );
+
+      const ringTotal = 4 + Math.floor(merge * 5);
+
+      for (let r = 0; r < ringTotal; r++) {
+        const radius = baseRadius * (0.35 + r * 0.22);
+        ctx.beginPath();
+
+        const steps = 36;
+        for (let i = 0; i <= steps; i++) {
+          const t = i / steps;
+          const a = t * Math.PI * 2;
+          const wobble = Math.sin(a * 3 + frame * 0.004 + r) * (6 + merge * 7);
+          const x = centerX + Math.cos(a) * (radius + wobble);
+          const y = centerY + Math.sin(a) * (radius * 0.72 + wobble * 0.5);
+
+          if (i === 0) ctx.moveTo(x, y);
+          else ctx.lineTo(x, y);
+        }
+
+        ctx.strokeStyle = `rgba(255,185,200,${0.026 + merge * 0.09})`;
+        ctx.lineWidth = 1.0 + merge * 0.8;
+        ctx.stroke();
+      }
+    }
+
+    function drawMergeGlow() {
+      const red = systems[0];
+      const white = systems[1];
+      if (!red || !white) return;
+
+      const merge = getMergeAmount();
+      if (merge < 0.12) return;
+
+      const centerX = (red.x + white.x) * 0.5;
+      const centerY = (red.y + white.y) * 0.5;
+      const radius = Math.max(w, h) * (0.08 + merge * 0.12);
+
+      const g = ctx.createRadialGradient(centerX, centerY, 0, centerX, centerY, radius);
+      g.addColorStop(0, `rgba(255,180,190,${0.035 + merge * 0.08})`);
+      g.addColorStop(0.3, `rgba(255,150,170,${0.018 + merge * 0.04})`);
+      g.addColorStop(1, `rgba(255,150,170,0)`);
+      ctx.fillStyle = g;
+      ctx.fillRect(0, 0, w, h);
+    }
+
     function drawCrossLink() {
       const red = systems[0];
       const white = systems[1];
       if (!red || !white) return;
 
+      const merge = getMergeAmount();
       const redSpokes = red.spokes.slice(4, 8);
       const whiteSpokes = white.spokes.slice(8, 12);
 
@@ -615,8 +736,12 @@
         const mx = (p1.x + p2.x) * 0.5 + Math.sin(frame * 0.005 + i) * 18;
         const my = (p1.y + p2.y) * 0.5 - 10;
         ctx.quadraticCurveTo(mx, my, p2.x, p2.y);
-        ctx.strokeStyle = "rgba(255,255,255,0.028)";
-        ctx.lineWidth = 0.95;
+
+        const alpha = 0.028 + merge * 0.05;
+        const lineW = 0.95 + merge * 0.35;
+
+        ctx.strokeStyle = `rgba(255,210,220,${alpha})`;
+        ctx.lineWidth = lineW;
         ctx.stroke();
       }
     }
@@ -646,9 +771,12 @@
       ctx.clearRect(0, 0, w, h);
 
       systems.forEach(drawGlow);
+      drawMergeGlow();
       systems.forEach(drawRings);
       systems.forEach(drawFloatThreads);
+      drawMergeRings();
       systems.forEach(drawSpokes);
+      drawMergeThreads();
       drawCrossLink();
       systems.forEach(drawCore);
 
