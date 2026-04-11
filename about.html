@@ -146,72 +146,6 @@
       z-index:1;
     }
 
-    .grid-bg{
-      position:absolute;
-      inset:-12%;
-      z-index:0;
-      pointer-events:none;
-      transform:translate3d(0, var(--parallaxY), 0) scale(1.05);
-      will-change:transform;
-    }
-
-    .grid-bg::before,
-    .grid-bg::after{
-      content:"";
-      position:absolute;
-      inset:0;
-    }
-
-    .grid-bg::before{
-      background-image:
-        linear-gradient(rgba(var(--grid-rgb), .16) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(var(--grid-rgb), .16) 1px, transparent 1px);
-      background-size:46px 46px;
-      transform:translate3d(0, 0, 0) rotate(13deg) scale(1.08);
-      opacity:.56;
-      animation:gridDrift 9s linear infinite;
-      filter:
-        drop-shadow(0 0 10px rgba(var(--grid-rgb), .08))
-        drop-shadow(0 0 18px rgba(var(--grid-rgb), .04));
-    }
-
-    .grid-bg::after{
-      background:
-        radial-gradient(circle at center, rgba(var(--grid-rgb), .055), transparent 58%);
-      opacity:.10;
-      filter:blur(28px);
-      transform:scale(1.08);
-    }
-
-    @keyframes gridDrift{
-      from{
-        transform:translate3d(0, 0, 0) rotate(13deg) scale(1.08);
-      }
-      to{
-        transform:translate3d(-46px, -46px, 0) rotate(13deg) scale(1.08);
-      }
-    }
-
-    .grid-vignette-left,
-    .grid-vignette-right{
-      position:absolute;
-      top:0;
-      bottom:0;
-      width:120px;
-      z-index:1;
-      pointer-events:none;
-    }
-
-    .grid-vignette-left{
-      left:0;
-      background:linear-gradient(90deg, rgba(0,0,0,.985), rgba(0,0,0,0));
-    }
-
-    .grid-vignette-right{
-      right:0;
-      background:linear-gradient(270deg, rgba(0,0,0,.985), rgba(0,0,0,0));
-    }
-
     .section-stack{
       position:relative;
       z-index:3;
@@ -330,20 +264,50 @@
       border-radius:24px;
       border:1px solid rgba(255,255,255,.085);
       background:
-        linear-gradient(180deg, rgba(255,255,255,.006), rgba(255,255,255,.001)),
+        linear-gradient(180deg, rgba(255,255,255,.008), rgba(255,255,255,.002)),
         rgba(0,0,0,.975);
       box-shadow:0 18px 50px rgba(0,0,0,.46);
       min-height:100%;
       transition:border-color .18s ease, transform .18s ease, box-shadow .18s ease;
     }
 
+    .founder-card::before{
+      content:"";
+      position:absolute;
+      inset:-10%;
+      z-index:0;
+      pointer-events:none;
+      background-image:
+        linear-gradient(rgba(var(--grid-rgb), .22) 1.15px, transparent 1.15px),
+        linear-gradient(90deg, rgba(var(--grid-rgb), .22) 1.15px, transparent 1.15px);
+      background-size:44px 44px;
+      transform:rotate(13deg) scale(1.08);
+      animation:gridDrift 8s linear infinite;
+      opacity:.72;
+      filter:
+        drop-shadow(0 0 8px rgba(var(--grid-rgb), .10))
+        drop-shadow(0 0 16px rgba(var(--grid-rgb), .05));
+    }
+
     .founder-card::after{
       content:"";
       position:absolute;
       inset:0;
-      background:linear-gradient(180deg, rgba(0,0,0,.18), rgba(0,0,0,.10));
+      background:
+        radial-gradient(circle at 20% 18%, rgba(var(--grid-rgb), .08), transparent 26%),
+        radial-gradient(circle at 80% 82%, rgba(var(--grid-rgb), .06), transparent 30%),
+        linear-gradient(180deg, rgba(0,0,0,.28), rgba(0,0,0,.14));
       z-index:1;
       pointer-events:none;
+    }
+
+    @keyframes gridDrift{
+      from{
+        background-position:0 0, 0 0;
+      }
+      to{
+        background-position:-44px -44px, -44px -44px;
+      }
     }
 
     .founder-card:hover{
@@ -481,15 +445,6 @@
     }
 
     @media (max-width: 1024px){
-      .grid-bg{
-        inset:-8%;
-        transform:translate3d(0, 0, 0) scale(1.04);
-      }
-
-      .grid-bg::before{
-        opacity:.50;
-      }
-
       .cursor-glow{
         display:none;
       }
@@ -513,19 +468,6 @@
 
       .showcase{
         background:#000;
-      }
-
-      .showcase::before{
-        display:none;
-      }
-
-      .grid-bg{
-        display:none;
-      }
-
-      .grid-vignette-left,
-      .grid-vignette-right{
-        display:none;
       }
 
       .topbar-inner{
@@ -580,6 +522,13 @@
 
       .founder-card{
         border-radius:18px;
+      }
+
+      .founder-card::before{
+        background-size:40px 40px;
+        background-image:
+          linear-gradient(rgba(var(--grid-rgb), .24) 1.1px, transparent 1.1px),
+          linear-gradient(90deg, rgba(var(--grid-rgb), .24) 1.1px, transparent 1.1px);
       }
 
       .founder-inner{
@@ -661,10 +610,6 @@
 
   <main class="page-wrap">
     <section class="showcase">
-      <div class="grid-bg" aria-hidden="true"></div>
-      <div class="grid-vignette-left" aria-hidden="true"></div>
-      <div class="grid-vignette-right" aria-hidden="true"></div>
-
       <div class="section-stack">
         <section class="hero-card">
           <div class="hero-inner">
@@ -731,27 +676,6 @@
   </main>
 
   <script>
-    const rootStyle = document.documentElement.style;
-    let tickingParallax = false;
-
-    function updateParallax() {
-      tickingParallax = false;
-
-      if (window.innerWidth <= 1024) {
-        rootStyle.setProperty("--parallaxY", "0px");
-        return;
-      }
-
-      const y = Math.min(window.scrollY * 0.12, 42);
-      rootStyle.setProperty("--parallaxY", `${y}px`);
-    }
-
-    function requestParallax() {
-      if (tickingParallax) return;
-      tickingParallax = true;
-      requestAnimationFrame(updateParallax);
-    }
-
     const glowCards = document.querySelectorAll(".glow-card");
 
     if (window.innerWidth > 1024) {
@@ -777,10 +701,6 @@
         });
       });
     }
-
-    window.addEventListener("scroll", requestParallax, { passive: true });
-    window.addEventListener("resize", updateParallax);
-    requestAnimationFrame(updateParallax);
   </script>
 </body>
 </html>
