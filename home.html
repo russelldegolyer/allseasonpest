@@ -216,10 +216,6 @@
         background-position:-46px -46px, -46px -46px;
       }
     }
-      to{
-        background-position:-48px -48px, -48px -48px;
-      }
-    }
 
     .section{
       position:relative;
@@ -279,7 +275,6 @@
     }
 
     .card.box-grid{
-      background:linear-gradient(180deg, rgba(255,255,255,.04), rgba(255,255,255,.025));
       border:1px solid var(--border-soft);
       border-radius:28px;
       padding:28px;
@@ -310,23 +305,20 @@
     }
 
     .list-card,
-    .cta-box.box-grid{
+    .cta-box{
       height:100%;
       border-radius:30px;
       box-shadow:var(--shadow);
       backdrop-filter:blur(3px);
     }
 
-    .list-card.box-grid{
-      background:linear-gradient(180deg, rgba(255,255,255,.04), rgba(255,255,255,.02));
+    .list-card{
+      background:linear-gradient(180deg, rgba(12,12,12,.96), rgba(8,8,8,.94));
       border:1px solid var(--border-soft);
       padding:30px;
     }
 
     .cta-box.box-grid{
-      background:
-        linear-gradient(135deg, rgba(197,18,18,.24), rgba(255,255,255,.03)),
-        #0b0b0b;
       border:1px solid rgba(255,255,255,.10);
       padding:30px;
       display:flex;
@@ -360,7 +352,6 @@
     .expect-box.box-grid{
       border-radius:18px;
       border:1px solid rgba(255,255,255,.07);
-      background:rgba(255,255,255,.025);
       padding:18px 18px;
       backdrop-filter:blur(2px);
     }
@@ -638,7 +629,7 @@
         margin-top:30px;
       }
 
-      .card,
+      .card.box-grid,
       .list-card,
       .cta-box.box-grid{
         padding:22px;
@@ -752,6 +743,7 @@
   </section>
 
   <div class="content-shell">
+
     <section class="section">
       <div class="section-inner">
         <span class="eyebrow">Built for homeowners and renters</span>
@@ -791,7 +783,7 @@
         <h2>Built around clear service, not confusion.</h2>
 
         <div class="split">
-          <div class="list-card box-grid">
+          <div class="list-card">
             <h3>What you can expect</h3>
 
             <div class="expect-grid">
