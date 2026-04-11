@@ -874,7 +874,7 @@
         icon: "target",
         kicker: "Specialized Treatment",
         title: "German Roach Treatment",
-        buttonTitle: "German Roaches",
+        buttonTitle: "German Roach Treatment",
         desc: "Built for active infestations that need more aggressive and targeted attention than standard routine pest service.",
         sub: "Treatment may include detailed inspection, targeted crack-and-crevice applications, baiting, and follow-up service depending on the level of activity and conditions inside the home.",
         box1Label: "Best For",
@@ -1032,18 +1032,10 @@
       updateRailClasses(targetButton);
     }
 
-    function isBoundaryJump(fromId, toId) {
-      return (
-        (fromId === "weed" && toId === "general") ||
-        (fromId === "general" && toId === "weed")
-      );
-    }
-
     function setActiveService(id, shouldCenter = false, clickedButton = null) {
       const service = baseServices.find(item => item.id === id);
       if (!service) return;
 
-      const previousId = currentActiveId;
       currentActiveId = id;
       document.documentElement.style.setProperty("--active", service.color);
 
@@ -1062,13 +1054,13 @@
         centerButton(centerTarget, true);
         updateRailClasses(centerTarget);
 
-        if (isBoundaryJump(previousId, id)) {
-          setTimeout(() => {
-            const middleButton = getMiddleSetButton(id);
+        setTimeout(() => {
+          const middleButton = getMiddleSetButton(id);
+          if (middleButton) {
             centerButton(middleButton, false);
             updateRailClasses(middleButton);
-          }, 240);
-        }
+          }
+        }, 260);
       } else {
         const middleButton = getMiddleSetButton(id);
         updateRailClasses(middleButton || centerTarget);
