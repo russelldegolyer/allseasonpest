@@ -2,49 +2,71 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+  />
   <title>About | All Season Pest Control</title>
   <meta
     name="description"
     content="Meet the people behind All Season Pest Control."
   />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;600;700&family=Sora:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
   <style>
     :root{
-      --bg:#000000;
-      --panel:#0d0d0d;
       --text:#ffffff;
-      --muted:rgba(255,255,255,.76);
-      --muted-soft:rgba(255,255,255,.50);
-      --red:#ff2a2a;
+      --muted:rgba(255,255,255,.80);
+      --muted-soft:rgba(255,255,255,.54);
+      --shadow:0 18px 60px rgba(0,0,0,.58);
+
+      --red:#ff5c5c;
+      --gold:#ffd05c;
       --line:rgba(255,255,255,.08);
-      --glow:0 0 22px rgba(255, 42, 42, 0.22);
+
+      --active:#ff5c5c;
       --max:1200px;
+      --glow:0 0 22px rgba(255,255,255,.12);
+      --grid-rgb:255,92,92;
+      --parallaxY:0px;
     }
 
     *{
       box-sizing:border-box;
       margin:0;
       padding:0;
+      min-width:0;
     }
 
     html{
       scroll-behavior:smooth;
+      background:#000;
     }
 
     body{
       background:
-        radial-gradient(circle at top left, rgba(255,42,42,.07), transparent 24%),
-        radial-gradient(circle at 85% 10%, rgba(255,42,42,.05), transparent 20%),
-        linear-gradient(180deg, #020202 0%, #000000 100%);
+        radial-gradient(circle at top, rgba(var(--grid-rgb), .045), transparent 28%),
+        linear-gradient(180deg, #000000 0%, #000000 100%);
+      background-color:#000;
       color:var(--text);
-      font-family:Inter, Arial, Helvetica, sans-serif;
-      overflow-x:hidden;
+      font-family:"Sora", Inter, Arial, Helvetica, sans-serif;
       min-height:100vh;
+      overflow-x:hidden;
+      padding-bottom:max(24px, env(safe-area-inset-bottom));
     }
 
     a{
       color:inherit;
       text-decoration:none;
+    }
+
+    button,
+    a{
+      -webkit-tap-highlight-color: transparent;
+      font: inherit;
     }
 
     .topbar{
@@ -54,8 +76,8 @@
       width:100%;
       z-index:1000;
       backdrop-filter:blur(14px);
-      background:rgba(0,0,0,.72);
-      border-bottom:1px solid rgba(255,42,42,.22);
+      background:rgba(0, 0, 0, 0.86);
+      border-bottom:1px solid rgba(255,255,255,.24);
     }
 
     .topbar-inner{
@@ -76,159 +98,361 @@
 
     .nav a{
       padding:11px 18px;
-      border:1px solid rgba(255,42,42,.34);
+      border:1px solid rgba(255,255,255,.34);
       border-radius:999px;
-      background:rgba(255,255,255,.03);
+      background:rgba(255,255,255,.01);
       color:#fff;
-      font-weight:700;
-      font-size:.95rem;
-      letter-spacing:.02em;
-      transition:.2s ease;
+      font-family:"Oswald", Arial, sans-serif;
+      font-weight:600;
+      font-size:0.98rem;
+      letter-spacing:0.04em;
+      text-transform:uppercase;
+      transition:0.2s ease;
     }
- 
+
     .nav a:hover,
     .nav a.active{
-      border-color:rgba(255,42,42,.75);
+      border-color:rgba(255,255,255,.84);
       box-shadow:var(--glow);
       transform:translateY(-1px);
     }
 
-    .page{
-      max-width:980px;
+    .page-wrap{
+      max-width:1240px;
       margin:0 auto;
-      padding:110px 20px 70px;
+      padding:104px 20px 64px;
+      overflow-x:hidden;
     }
 
-    .about-logo{
+    .showcase{
+      position:relative;
+      width:100%;
+      border-radius:28px;
+      border:1px solid rgba(255,255,255,.08);
+      background:
+        linear-gradient(180deg, rgba(255,255,255,.004), rgba(255,255,255,.001)),
+        rgba(0,0,0,.995);
+      box-shadow:var(--shadow);
+      overflow:hidden;
+      isolation:isolate;
+    }
+
+    .showcase::before{
+      content:"";
+      position:absolute;
+      inset:0;
+      background:
+        radial-gradient(circle at 14% 18%, rgba(var(--grid-rgb), .03), transparent 22%),
+        radial-gradient(circle at 82% 14%, rgba(var(--grid-rgb), .02), transparent 24%),
+        radial-gradient(circle at 54% 100%, rgba(var(--grid-rgb), .03), transparent 34%);
+      pointer-events:none;
+      z-index:1;
+    }
+
+    .grid-bg{
+      position:absolute;
+      inset:-12%;
+      z-index:0;
+      pointer-events:none;
+      transform:translate3d(0, var(--parallaxY), 0) scale(1.05);
+      will-change:transform;
+    }
+
+    .grid-bg::before,
+    .grid-bg::after{
+      content:"";
+      position:absolute;
+      inset:0;
+    }
+
+    .grid-bg::before{
+      background-image:
+        linear-gradient(rgba(var(--grid-rgb), .15) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(var(--grid-rgb), .15) 1px, transparent 1px);
+      background-size:48px 48px;
+      transform:translate3d(0, 0, 0) rotate(9deg) scale(1.08);
+      opacity:.50;
+      animation:gridDriftAlt 10s linear infinite;
+      filter:
+        drop-shadow(0 0 10px rgba(var(--grid-rgb), .08))
+        drop-shadow(0 0 18px rgba(var(--grid-rgb), .04));
+    }
+
+    .grid-bg::after{
+      background:
+        radial-gradient(circle at center, rgba(var(--grid-rgb), .055), transparent 58%);
+      opacity:.10;
+      filter:blur(30px);
+      transform:scale(1.08);
+    }
+
+    @keyframes gridDriftAlt{
+      from{
+        transform:translate3d(26px, -18px, 0) rotate(9deg) scale(1.08);
+      }
+      to{
+        transform:translate3d(-26px, 18px, 0) rotate(9deg) scale(1.08);
+      }
+    }
+
+    .grid-vignette-left,
+    .grid-vignette-right{
+      position:absolute;
+      top:0;
+      bottom:0;
+      width:120px;
+      z-index:1;
+      pointer-events:none;
+    }
+
+    .grid-vignette-left{
+      left:0;
+      background:linear-gradient(90deg, rgba(0,0,0,.985), rgba(0,0,0,0));
+    }
+
+    .grid-vignette-right{
+      right:0;
+      background:linear-gradient(270deg, rgba(0,0,0,.985), rgba(0,0,0,0));
+    }
+
+    .section-stack{
+      position:relative;
+      z-index:3;
+      padding:22px 22px 18px;
       display:flex;
-      justify-content:center;
+      flex-direction:column;
+      gap:20px;
+    }
+
+    .hero-card{
+      position:relative;
+      border-radius:28px;
+      border:1px solid rgba(255,255,255,.085);
+      background:
+        linear-gradient(180deg, rgba(255,255,255,.006), rgba(255,255,255,.001)),
+        rgba(0,0,0,.975);
+      backdrop-filter:blur(4px);
+      box-shadow:0 18px 60px rgba(0,0,0,.62);
+      overflow:hidden;
+      padding:34px 30px 28px;
+    }
+
+    .hero-card::before{
+      content:"";
+      position:absolute;
+      inset:0;
+      background:
+        radial-gradient(circle at 18% 20%, rgba(var(--grid-rgb), .08), transparent 22%),
+        radial-gradient(circle at 82% 82%, rgba(var(--grid-rgb), .05), transparent 28%);
+      pointer-events:none;
+      z-index:0;
+    }
+
+    .hero-inner{
+      position:relative;
+      z-index:2;
+      display:grid;
+      grid-template-columns:1.05fr .95fr;
+      gap:26px;
       align-items:center;
-      margin:24px auto 38px;
     }
 
-    .about-logo img{
+    .hero-copy{
+      min-width:0;
+    }
+
+    .hero-kicker{
+      text-transform:uppercase;
+      letter-spacing:.18em;
+      font-size:.74rem;
+      font-weight:900;
+      color:var(--active);
+      margin-bottom:10px;
+      font-family:"Oswald", Arial, sans-serif;
+    }
+
+    .hero-title{
+      font-family:"Oswald", Arial, sans-serif;
+      font-size:clamp(2.2rem, 5vw, 4.6rem);
+      font-weight:600;
+      line-height:.95;
+      letter-spacing:-.03em;
+      text-transform:uppercase;
+      margin-bottom:14px;
+    }
+
+    .hero-text{
+      color:var(--muted);
+      font-size:1.02rem;
+      line-height:1.78;
+      max-width:60ch;
+    }
+
+    .logo-panel{
+      border:1px solid rgba(255,255,255,.07);
+      border-radius:24px;
+      background:
+        linear-gradient(180deg, rgba(255,255,255,.01), rgba(255,255,255,.002)),
+        rgba(0,0,0,.9);
+      min-height:260px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      padding:24px;
+      position:relative;
+      overflow:hidden;
+    }
+
+    .logo-panel::before{
+      content:"";
+      position:absolute;
+      inset:-20%;
+      background-image:
+        linear-gradient(rgba(255,255,255,.045) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,.045) 1px, transparent 1px);
+      background-size:34px 34px;
+      transform:rotate(12deg) scale(1.08);
+      opacity:.16;
+      pointer-events:none;
+    }
+
+    .logo-panel img{
+      position:relative;
+      z-index:2;
       display:block;
-      width:min(100%, 560px);
+      width:min(100%, 480px);
       height:auto;
+      filter:drop-shadow(0 12px 34px rgba(0,0,0,.42));
     }
 
-    .founders{
+    .founders-grid{
       display:grid;
       grid-template-columns:1fr 1fr;
       gap:20px;
-      align-items:stretch;
     }
 
-    .founder{
+    .founder-card{
       position:relative;
-      border-radius:20px;
-      padding:30px 26px;
-      overflow:hidden;
-      border:2px solid rgba(255,255,255,.10);
+      border-radius:24px;
+      border:1px solid rgba(255,255,255,.08);
       background:
-        radial-gradient(
-          380px circle at var(--mouse-x, 50%) var(--mouse-y, 50%),
-          rgba(255, 50, 50, 0.14),
-          rgba(255, 50, 50, 0.06) 20%,
-          rgba(255, 50, 50, 0.02) 38%,
-          rgba(255, 50, 50, 0) 62%
-        ),
-        #0a0a0a;
-      box-shadow:
-        0 0 0 1px rgba(255,255,255,.02) inset,
-        0 0 24px rgba(255, 50, 50, 0.05);
-      transition:border-color .2s ease, transform .2s ease, box-shadow .2s ease;
+        linear-gradient(180deg, rgba(255,255,255,.006), rgba(255,255,255,.001)),
+        rgba(0,0,0,.97);
+      box-shadow:0 18px 50px rgba(0,0,0,.46);
+      overflow:hidden;
+      min-height:100%;
+      transition:border-color .18s ease, transform .18s ease, box-shadow .18s ease;
     }
 
-    .founder:hover{
+    .founder-card:hover{
       transform:translateY(-2px);
-      border-color:rgba(255,255,255,.16);
-      box-shadow:
-        0 0 0 1px rgba(255,255,255,.03) inset,
-        0 0 28px rgba(255, 50, 50, 0.08);
+      border-color:rgba(255,255,255,.14);
+    }
+
+    .cursor-glow{
+      position:absolute;
+      width:140px;
+      height:140px;
+      border-radius:50%;
+      pointer-events:none;
+      left:0;
+      top:0;
+      transform:translate(-50%, -50%);
+      opacity:0;
+      transition:opacity .18s ease;
+      z-index:1;
+      background:radial-gradient(
+        circle,
+        color-mix(in srgb, var(--active) 26%, transparent) 0%,
+        color-mix(in srgb, var(--active) 12%, transparent) 34%,
+        transparent 72%
+      );
+      filter:blur(9px);
+    }
+
+    .founder-inner{
+      position:relative;
+      z-index:2;
+      padding:26px 24px 24px;
     }
 
     .founder-label{
       text-transform:uppercase;
-      letter-spacing:1.6px;
-      font-size:.76rem;
-      font-weight:700;
-      color:rgba(255,255,255,.52);
-      margin-bottom:14px;
-      position:relative;
-      z-index:1;
+      letter-spacing:.16em;
+      font-size:.72rem;
+      font-weight:900;
+      color:var(--active);
+      margin-bottom:10px;
+      font-family:"Oswald", Arial, sans-serif;
     }
 
-    .founder h2{
-      font-size:2rem;
-      line-height:1.05;
+    .founder-name{
+      font-family:"Oswald", Arial, sans-serif;
+      font-size:2.1rem;
+      line-height:1;
+      font-weight:600;
+      text-transform:uppercase;
       margin-bottom:10px;
-      color:#ffffff;
-      position:relative;
-      z-index:1;
     }
 
     .founder-sub{
-      color:#ff5c5c;
-      font-size:.95rem;
-      font-weight:700;
-      line-height:1.5;
-      margin-bottom:18px;
-      position:relative;
-      z-index:1;
-    }
-
-    .founder p{
-      color:var(--muted);
+      color:#ffffff;
       font-size:1rem;
-      line-height:1.8;
-      position:relative;
-      z-index:1;
+      line-height:1.7;
+      margin-bottom:16px;
+      opacity:.95;
     }
 
-    .bottom-cta{
-      max-width:760px;
-      margin:24px auto 0;
-      text-align:center;
+    .founder-copy{
+      color:var(--muted);
+      font-size:.97rem;
+      line-height:1.76;
+    }
+
+    .cta-panel{
+      border-radius:22px;
+      border:1px solid rgba(255,255,255,.08);
+      background:
+        linear-gradient(180deg, rgba(255,255,255,.004), rgba(255,255,255,.001)),
+        rgba(0,0,0,.97);
+      padding:20px;
     }
 
     .cta-row{
-      display:flex;
-      justify-content:center;
+      display:grid;
+      grid-template-columns:repeat(3, minmax(0,1fr));
       gap:12px;
-      flex-wrap:wrap;
     }
 
     .cta-row a{
-      display:inline-flex;
+      display:flex;
       align-items:center;
       justify-content:center;
-      min-width:170px;
-      padding:13px 16px;
-      border-radius:12px;
-      border:1px solid rgba(255,255,255,0.1);
+      min-height:58px;
+      border-radius:16px;
+      border:1px solid rgba(255,255,255,.09);
       background:
-        linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.015)),
-        #0a0a0a;
-      color:#ffffff;
-      text-decoration:none;
+        linear-gradient(180deg, rgba(255,255,255,.01), rgba(255,255,255,.002)),
+        rgba(0,0,0,.95);
+      color:#fff;
+      font-family:"Oswald", Arial, sans-serif;
+      font-size:.96rem;
+      font-weight:600;
+      letter-spacing:.08em;
       text-transform:uppercase;
-      font-size:0.82rem;
-      font-weight:700;
-      letter-spacing:1.3px;
-      transition:border-color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+      transition:border-color .18s ease, box-shadow .18s ease, transform .18s ease;
     }
 
     .cta-row a:hover{
-      border-color:rgba(255, 190, 70, 0.7);
-      transform:translateY(-2px);
-      box-shadow:0 0 20px rgba(255, 190, 70, 0.14);
+      border-color:rgba(255,255,255,.84);
+      box-shadow:var(--glow);
+      transform:translateY(-1px);
     }
 
     .footer{
-      max-width:980px;
-      margin:0 auto;
-      padding:0 20px 24px;
+      position:relative;
+      z-index:3;
+      padding:0 22px 22px;
     }
 
     .footer-inner{
@@ -242,48 +466,55 @@
       font-size:.94rem;
     }
 
-    @media (max-width: 768px){
-      .page{
-        padding:102px 16px 50px;
+    @media (max-width: 1024px){
+      .grid-bg{
+        inset:-8%;
+        transform:translate3d(0, 0, 0) scale(1.04);
       }
 
-      .about-logo{
-        margin:18px auto 28px;
+      .grid-bg::before{
+        opacity:.46;
       }
 
-      .about-logo img{
-        width:min(100%, 430px);
+      .cursor-glow{
+        display:none;
       }
 
-      .founders{
+      .hero-inner{
         grid-template-columns:1fr;
-      }
-
-      .founder{
-        padding:22px 18px;
-        border-radius:16px;
-      }
-
-      .founder h2{
-        font-size:1.8rem;
-      }
-
-      .founder p{
-        font-size:.95rem;
-        line-height:1.72;
-      }
-
-      .cta-row a{
-        min-width:100%;
-        font-size:0.76rem;
-      }
-
-      .footer{
-        padding:0 16px 20px;
       }
     }
 
-    @media (max-width: 700px){
+    @media (max-width: 900px){
+      .page-wrap{
+        padding:98px 24px 46px;
+      }
+    }
+
+    @media (max-width: 768px){
+      body{
+        background:#000;
+        background-color:#000;
+      }
+
+      .showcase{
+        background:#000;
+        border-radius:22px;
+      }
+
+      .showcase::before{
+        display:none;
+      }
+
+      .grid-bg{
+        display:none;
+      }
+
+      .grid-vignette-left,
+      .grid-vignette-right{
+        display:none;
+      }
+
       .topbar-inner{
         padding:14px 14px;
       }
@@ -291,6 +522,88 @@
       .nav a{
         padding:10px 14px;
         font-size:0.9rem;
+      }
+
+      .page-wrap{
+        padding:92px 10px 34px;
+      }
+
+      .section-stack{
+        padding:12px 12px 12px;
+        gap:14px;
+      }
+
+      .hero-card{
+        border-radius:20px;
+        padding:20px 16px 16px;
+        background:
+          linear-gradient(180deg, rgba(255,255,255,.01), rgba(255,255,255,.002)),
+          rgba(0,0,0,.985);
+      }
+
+      .hero-title{
+        font-size:2.35rem;
+      }
+
+      .hero-text{
+        font-size:.98rem;
+        line-height:1.68;
+      }
+
+      .logo-panel{
+        min-height:190px;
+        border-radius:18px;
+        padding:16px;
+      }
+
+      .founders-grid{
+        grid-template-columns:1fr;
+        gap:12px;
+      }
+
+      .founder-card{
+        border-radius:18px;
+      }
+
+      .founder-inner{
+        padding:18px 16px 16px;
+      }
+
+      .founder-name{
+        font-size:1.8rem;
+      }
+
+      .founder-sub{
+        font-size:.97rem;
+        line-height:1.62;
+      }
+
+      .founder-copy{
+        font-size:.95rem;
+        line-height:1.66;
+      }
+
+      .cta-panel{
+        border-radius:18px;
+        padding:12px;
+      }
+
+      .cta-row{
+        grid-template-columns:1fr;
+      }
+
+      .cta-row a{
+        min-height:52px;
+        border-radius:14px;
+        font-size:.9rem;
+      }
+
+      .footer{
+        padding:0 12px 14px;
+      }
+
+      .footer-inner{
+        font-size:.88rem;
       }
     }
 
@@ -308,16 +621,12 @@
         font-size:.84rem;
       }
 
-      .page{
-        padding:96px 14px 42px;
+      .page-wrap{
+        padding:88px 8px 28px;
       }
 
-      .about-logo{
-        margin:14px auto 24px;
-      }
-
-      .footer{
-        padding:0 14px 18px;
+      .hero-title{
+        font-size:2.02rem;
       }
     }
   </style>
@@ -333,60 +642,128 @@
     </div>
   </header>
 
-  <main class="page">
-    <section class="about-logo">
-      <img src="logo.jpg" alt="All Season Pest Control banner logo" />
-    </section>
+  <main class="page-wrap">
+    <section class="showcase">
+      <div class="grid-bg" id="gridBg" aria-hidden="true"></div>
+      <div class="grid-vignette-left" aria-hidden="true"></div>
+      <div class="grid-vignette-right" aria-hidden="true"></div>
 
-    <section class="founders">
-      <article class="founder">
-        <div class="founder-label">Founder</div>
-        <h2>Russell</h2>
-        <div class="founder-sub">Field experience, real-world knowledge, and a standard for doing things right.</div>
-        <p>
-          Russell helped build this company around a simple idea: give customers the kind of service they actually want. That means honest communication, clean work, and dependable follow-through. Licensed pesticide applicator here in Arkansas.
-        </p>
-      </article>
+      <div class="section-stack">
+        <section class="hero-card">
+          <div class="hero-inner">
+            <div class="hero-copy">
+              <div class="hero-kicker">About All Season</div>
+              <h1 class="hero-title">Built Around Real Service</h1>
+              <p class="hero-text">
+                All Season Pest Control was built to feel different from the typical corporate pest company. The focus is straightforward communication, clean work, dependable follow-through, and service that feels personal instead of sales-driven.
+              </p>
+            </div>
 
-      <article class="founder">
-        <div class="founder-label">Founder</div>
-        <h2>Zamir</h2>
-        <div class="founder-sub">Backed the vision early and helped shape the company from the ground up.</div>
-        <p>
-          Zamir helped shape the company around being easy to work with and easy to trust. That means clear communication, a more personal experience, and a company that feels different from the typical corporate approach people are used to.
-        </p>
-      </article>
-    </section>
+            <div class="logo-panel">
+              <img src="logo.jpg" alt="All Season Pest Control banner logo" />
+            </div>
+          </div>
+        </section>
 
-    <section class="bottom-cta">
-      <div class="cta-row">
-        <a href="tel:8709197114">Call</a>
-        <a href="sms:8709197114">Text</a>
-        <a href="mailto:gmail@allseasonpestllc.com">Email</a>
+        <section class="founders-grid">
+          <article class="founder-card glow-card">
+            <div class="cursor-glow"></div>
+            <div class="founder-inner">
+              <div class="founder-label">Founder</div>
+              <h2 class="founder-name">Russell</h2>
+              <div class="founder-sub">
+                Field experience, real-world knowledge, and a standard for doing things right.
+              </div>
+              <p class="founder-copy">
+                Russell helped build this company around a simple idea: give customers the kind of service they actually want. That means honest communication, clean work, and dependable follow-through. Licensed pesticide applicator here in Arkansas.
+              </p>
+            </div>
+          </article>
+
+          <article class="founder-card glow-card">
+            <div class="cursor-glow"></div>
+            <div class="founder-inner">
+              <div class="founder-label">Founder</div>
+              <h2 class="founder-name">Zamir</h2>
+              <div class="founder-sub">
+                Backed the vision early and helped shape the company from the ground up.
+              </div>
+              <p class="founder-copy">
+                Zamir helped shape the company around being easy to work with and easy to trust. That means clear communication, a more personal experience, and a company that feels different from the typical corporate approach people are used to.
+              </p>
+            </div>
+          </article>
+        </section>
+
+        <section class="cta-panel">
+          <div class="cta-row">
+            <a href="tel:8709197114">Call</a>
+            <a href="sms:8709197114">Text</a>
+            <a href="mailto:gmail@allseasonpestllc.com">Email</a>
+          </div>
+        </section>
       </div>
+
+      <footer class="footer">
+        <div class="footer-inner">
+          <span>© 2026 All Season Pest Control</span>
+          <span>Jonesboro, Arkansas</span>
+        </div>
+      </footer>
     </section>
   </main>
 
-  <footer class="footer">
-    <div class="footer-inner">
-      <span>© 2026 All Season Pest Control</span>
-      <span>Jonesboro, Arkansas</span>
-    </div>
-  </footer>
-
   <script>
-    const glowCards = document.querySelectorAll('.founder');
+    const rootStyle = document.documentElement.style;
+    let tickingParallax = false;
 
-    glowCards.forEach((card) => {
-      card.addEventListener('mousemove', (e) => {
-        const rect = card.getBoundingClientRect();
-        const x = e.clientX - rect.left;
-        const y = e.clientY - rect.top;
+    function updateParallax() {
+      tickingParallax = false;
 
-        card.style.setProperty('--mouse-x', `${x}px`);
-        card.style.setProperty('--mouse-y', `${y}px`);
+      if (window.innerWidth <= 1024) {
+        rootStyle.setProperty("--parallaxY", "0px");
+        return;
+      }
+
+      const y = Math.min(window.scrollY * 0.1, 38);
+      rootStyle.setProperty("--parallaxY", `${y}px`);
+    }
+
+    function requestParallax() {
+      if (tickingParallax) return;
+      tickingParallax = true;
+      requestAnimationFrame(updateParallax);
+    }
+
+    const glowCards = document.querySelectorAll(".glow-card");
+
+    if (window.innerWidth > 1024) {
+      glowCards.forEach((card) => {
+        const glow = card.querySelector(".cursor-glow");
+
+        card.addEventListener("mousemove", (event) => {
+          const rect = card.getBoundingClientRect();
+          const x = event.clientX - rect.left;
+          const y = event.clientY - rect.top;
+
+          glow.style.left = `${x}px`;
+          glow.style.top = `${y}px`;
+          glow.style.opacity = "1";
+        });
+
+        card.addEventListener("mouseenter", () => {
+          glow.style.opacity = "1";
+        });
+
+        card.addEventListener("mouseleave", () => {
+          glow.style.opacity = "0";
+        });
       });
-    });
+    }
+
+    window.addEventListener("scroll", requestParallax, { passive: true });
+    window.addEventListener("resize", updateParallax);
+    requestAnimationFrame(updateParallax);
   </script>
 </body>
 </html>
