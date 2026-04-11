@@ -321,12 +321,13 @@
     }
 
     .focus-title{
-      font-size:clamp(2rem, 3.9vw, 3.2rem);
-      line-height:.96;
+      font-size:clamp(1.65rem, 3vw, 2.85rem);
+      line-height:1;
       letter-spacing:-.05em;
       margin-bottom:14px;
-      max-width:11ch;
-      overflow-wrap:anywhere;
+      white-space:nowrap;
+      overflow:hidden;
+      text-overflow:ellipsis;
     }
 
     .focus-desc{
@@ -574,6 +575,10 @@
       .page-wrap{
         padding:98px 24px 46px;
       }
+
+      .focus-title{
+        font-size:clamp(1.45rem, 2.9vw, 2.3rem);
+      }
     }
 
     @media (max-width: 768px){
@@ -633,9 +638,8 @@
       }
 
       .focus-title{
-        font-size:1.68rem;
+        font-size:1.4rem;
         margin-bottom:10px;
-        max-width:12ch;
       }
 
       .focus-desc{
@@ -774,7 +778,7 @@
       }
 
       .focus-title{
-        font-size:1.46rem;
+        font-size:1.16rem;
       }
     }
   </style>
@@ -1157,6 +1161,7 @@
 
       focusKicker.textContent = service.kicker;
       focusTitle.textContent = service.title;
+      focusTitle.title = service.title;
       focusDesc.textContent = service.desc;
       focusSub.textContent = service.sub;
       box1Label.textContent = service.box1Label;
