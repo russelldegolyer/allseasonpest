@@ -9,7 +9,7 @@
   <title>About | All Season Pest Control</title>
   <meta
     name="description"
-    content="About page web field experiment."
+    content="About page spider web experiment."
   />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -120,14 +120,13 @@
       min-height:calc(100vh - 160px);
       border:1px solid rgba(255,255,255,.08);
       background:
-        radial-gradient(circle at 24% 38%, rgba(255,46,46,.03), transparent 28%),
-        radial-gradient(circle at 78% 66%, rgba(255,255,255,.02), transparent 30%),
-        radial-gradient(circle at 50% 52%, rgba(255,120,140,.012), transparent 22%),
+        radial-gradient(circle at 24% 40%, rgba(255,64,64,.05), transparent 24%),
+        radial-gradient(circle at 78% 68%, rgba(255,255,255,.035), transparent 26%),
+        radial-gradient(circle at 54% 54%, rgba(255,160,170,.02), transparent 18%),
         linear-gradient(180deg, rgba(255,255,255,.01), rgba(255,255,255,.002)),
         #000;
       box-shadow:var(--shadow);
       isolation:isolate;
-      touch-action:none;
     }
 
     .about-stage::before{
@@ -137,9 +136,9 @@
       z-index:2;
       pointer-events:none;
       background:
-        radial-gradient(circle at 28% 40%, rgba(255,60,60,.035), transparent 18%),
-        radial-gradient(circle at 74% 64%, rgba(255,255,255,.02), transparent 16%),
-        radial-gradient(circle at 52% 52%, rgba(255,170,180,.018), transparent 20%);
+        radial-gradient(circle at 24% 40%, rgba(255,60,60,.035), transparent 18%),
+        radial-gradient(circle at 78% 68%, rgba(255,255,255,.02), transparent 16%),
+        radial-gradient(circle at 54% 54%, rgba(255,170,185,.015), transparent 16%);
       mix-blend-mode:screen;
     }
 
@@ -150,7 +149,7 @@
       z-index:3;
       pointer-events:none;
       background:
-        radial-gradient(circle at 50% 50%, rgba(0,0,0,0) 0%, rgba(0,0,0,.10) 70%, rgba(0,0,0,.18) 100%),
+        radial-gradient(circle at 50% 50%, rgba(0,0,0,0) 0%, rgba(0,0,0,.08) 68%, rgba(0,0,0,.18) 100%),
         linear-gradient(180deg, rgba(0,0,0,.05), rgba(0,0,0,.10));
     }
 
@@ -163,9 +162,9 @@
       display:block;
       pointer-events:none;
       filter:
-        drop-shadow(0 0 5px rgba(255,70,70,.09))
+        drop-shadow(0 0 5px rgba(255,70,70,.10))
         drop-shadow(0 0 7px rgba(255,255,255,.05))
-        drop-shadow(0 0 16px rgba(255,160,170,.02));
+        drop-shadow(0 0 14px rgba(255,180,190,.02));
     }
 
     .content{
@@ -272,34 +271,19 @@
     let w = 0;
     let h = 0;
     let dpr = Math.min(window.devicePixelRatio || 1, 2);
-    let t = 0;
-
-    let anchors = [];
-    let rings = [];
-    let bridges = [];
-    let fineThreads = [];
-
-    let redField = { x: 0, y: 0, r: 0 };
-    let draggingRed = false;
-    let dragOffsetX = 0;
-    let dragOffsetY = 0;
+    let tick = 0;
+    let webs = [];
 
     function rand(min, max) {
       return Math.random() * (max - min) + min;
-    }
-
-    function lerp(a, b, p) {
-      return a + (b - a) * p;
     }
 
     function clamp(v, min, max) {
       return Math.max(min, Math.min(max, v));
     }
 
-    function dist(ax, ay, bx, by) {
-      const dx = bx - ax;
-      const dy = by - ay;
-      return Math.sqrt(dx * dx + dy * dy);
+    function lerp(a, b, t) {
+      return a + (b - a) * t;
     }
 
     function resizeCanvas() {
@@ -315,232 +299,265 @@
 
       ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
 
-      buildScene();
+      buildWebs();
     }
 
-    function redInfluence(x, y) {
-      const d = dist(x, y, redField.x, redField.y);
-      const norm = clamp(1 - d / redField.r, 0, 1);
-      return norm * norm;
+    function buildWeb(cx, cy, radius, theme = "red") {
+      const mobile = window.innerWidth < 768;
+      const spokeCount = mobile ? Math.floor(rand(11, 15)) : Math.floor(rand(13, 18));
+      const ringCount = mobile ? Math.floor(rand(9, 13)) : Math.floor(rand(11, 15));
+
+      const spokes = [];
+      let angle = rand(0, Math.PI * 2);
+
+      for (let i = 0; i < spokeCount; i++) {
+        angle += (Math.PI * 2 / spokeCount) + rand(-0.11, 0.11);
+
+        spokes.push({
+          angle,
+          reach: radius * rand(0.84, 1.10),
+          thickness: theme === "red" ? rand(1.1, 2.4) : rand(1.0, 2.0),
+          alpha: theme === "red" ? rand(0.18, 0.46) : rand(0.10, 0.28),
+          curve: rand(-18, 18),
+          wobble: rand(2, 8),
+          phase: rand(0, Math.PI * 2),
+          breakStart: Math.random() < 0.25 ? rand(0.58, 0.86) : null,
+          breakLen: rand(0.02, 0.06)
+        });
+      }
+
+      const rings = [];
+      let ratio = 0.12;
+      for (let i = 0; i < ringCount; i++) {
+        ratio += rand(0.055, 0.078);
+        rings.push({
+          ratio,
+          thickness: theme === "red" ? rand(1.1, 2.1) : rand(1.0, 1.8),
+          alpha: theme === "red" ? rand(0.10, 0.22) : rand(0.08, 0.17),
+          sag: rand(-8, 10),
+          jitter: rand(1.2, 4.0),
+          partialStart: rand(0, 0.18),
+          partialEnd: rand(0.82, 1),
+        });
+      }
+
+      return {
+        cx,
+        cy,
+        radius,
+        theme,
+        spokes,
+        rings,
+        glow: theme === "red" ? "255,72,72" : "255,255,255",
+        line: theme === "red" ? "255,82,82" : "255,255,255",
+        pulse: rand(0, Math.PI * 2)
+      };
     }
 
-    function mixColorAt(x, y, baseAlpha, brighten = 1) {
-      const rInf = redInfluence(x, y);
-      const whiteWeight = 1 - rInf;
-
-      const rr = lerp(255, 255, whiteWeight);
-      const gg = lerp(74, 255, whiteWeight);
-      const bb = lerp(74, 255, whiteWeight);
-
-      const a = baseAlpha * brighten;
-      return `rgba(${rr.toFixed(0)},${gg.toFixed(0)},${bb.toFixed(0)},${a})`;
-    }
-
-    function buildScene() {
-      anchors = [];
-      rings = [];
-      bridges = [];
-      fineThreads = [];
-
+    function buildWebs() {
       const mobile = window.innerWidth < 768;
 
-      redField = {
-        x: w * (mobile ? 0.34 : 0.32),
-        y: h * (mobile ? 0.43 : 0.44),
-        r: Math.max(w, h) * (mobile ? 0.55 : 0.52)
-      };
-
-      const cols = mobile ? 5 : 7;
-      const rows = mobile ? 6 : 7;
-      const xGap = w / (cols - 1);
-      const yGap = h / (rows - 1);
-
-      for (let y = 0; y < rows; y++) {
-        for (let x = 0; x < cols; x++) {
-          const baseX = x * xGap;
-          const baseY = y * yGap;
-
-          anchors.push({
-            x: baseX + rand(-xGap * 0.22, xGap * 0.22),
-            y: baseY + rand(-yGap * 0.22, yGap * 0.22),
-            driftX: rand(-8, 8),
-            driftY: rand(-8, 8),
-            phase: rand(0, Math.PI * 2),
-            pull: rand(-18, 18)
-          });
-        }
-      }
-
-      const ringCount = mobile ? 28 : 40;
-      for (let i = 0; i < ringCount; i++) {
-        const cx = rand(-w * 0.08, w * 1.08);
-        const cy = rand(-h * 0.08, h * 1.08);
-        const radius = rand(Math.min(w, h) * 0.08, Math.min(w, h) * 0.28);
-
-        rings.push({
-          cx,
-          cy,
-          radius,
-          squash: rand(0.62, 1.18),
-          rotate: rand(0, Math.PI * 2),
-          alpha: rand(0.03, 0.14),
-          width: rand(0.9, 2.3),
-          wobble: rand(3, 14),
-          phase: rand(0, Math.PI * 2),
-          segments: Math.floor(rand(24, 44)),
-          gapChance: rand(0.02, 0.15)
-        });
-      }
-
-      for (let i = 0; i < anchors.length; i++) {
-        for (let j = i + 1; j < anchors.length; j++) {
-          const a = anchors[i];
-          const b = anchors[j];
-          const d = dist(a.x, a.y, b.x, b.y);
-
-          if (d < Math.min(w, h) * 0.35 && Math.random() < 0.26) {
-            bridges.push({
-              a: i,
-              b: j,
-              alpha: rand(0.025, 0.14),
-              width: rand(0.8, 2.0),
-              curve: rand(-34, 34),
-              phase: rand(0, Math.PI * 2)
-            });
-          }
-        }
-      }
-
-      const fineCount = mobile ? 44 : 68;
-      for (let i = 0; i < fineCount; i++) {
-        fineThreads.push({
-          a: Math.floor(rand(0, anchors.length)),
-          b: Math.floor(rand(0, anchors.length)),
-          cBias: rand(-26, 26),
-          alpha: rand(0.02, 0.06),
-          width: rand(0.55, 1.0),
-          phase: rand(0, Math.PI * 2)
-        });
-      }
+      webs = [
+        buildWeb(
+          w * (mobile ? 0.18 : 0.16),
+          h * (mobile ? 0.44 : 0.42),
+          Math.max(w, h) * (mobile ? 0.50 : 0.54),
+          "red"
+        ),
+        buildWeb(
+          w * (mobile ? 0.84 : 0.88),
+          h * (mobile ? 0.66 : 0.68),
+          Math.max(w, h) * (mobile ? 0.44 : 0.48),
+          "white"
+        ),
+        buildWeb(
+          w * (mobile ? 0.58 : 0.56),
+          h * (mobile ? 0.10 : 0.08),
+          Math.max(w, h) * (mobile ? 0.28 : 0.30),
+          "white"
+        )
+      ];
     }
 
-    function getAnchorPoint(anchor, index) {
+    function getMixedColor(x, y, alphaBase) {
+      const redWeb = webs[0];
+      const whiteWeb = webs[1];
+
+      const dRed = Math.hypot(x - redWeb.cx, y - redWeb.cy);
+      const dWhite = Math.hypot(x - whiteWeb.cx, y - whiteWeb.cy);
+
+      const redInf = clamp(1 - dRed / redWeb.radius, 0, 1);
+      const whiteInf = clamp(1 - dWhite / whiteWeb.radius, 0, 1);
+
+      const total = Math.max(0.0001, redInf + whiteInf);
+      const mix = whiteInf / total;
+
+      const r = 255;
+      const g = lerp(82, 255, mix);
+      const b = lerp(82, 255, mix);
+      const a = alphaBase * (0.75 + Math.max(redInf, whiteInf) * 0.45);
+
+      return `rgba(${r.toFixed(0)},${g.toFixed(0)},${b.toFixed(0)},${a})`;
+    }
+
+    function pointOnSpoke(web, spoke, t, extraSag = 0) {
+      const baseR = spoke.reach * t;
+      const nx = Math.cos(spoke.angle + Math.PI / 2);
+      const ny = Math.sin(spoke.angle + Math.PI / 2);
+
+      const wiggle =
+        Math.sin(tick * 0.004 + spoke.phase + t * 4) *
+        spoke.wobble *
+        (0.15 + t * 0.25);
+
+      const curve = Math.sin((t * Math.PI) + spoke.phase * 0.35) * spoke.curve * t;
+
       return {
-        x: anchor.x + Math.sin(t * 0.003 + anchor.phase + index * 0.1) * anchor.driftX,
-        y: anchor.y + Math.cos(t * 0.003 + anchor.phase + index * 0.08) * anchor.driftY
+        x: web.cx + Math.cos(spoke.angle) * baseR + nx * (wiggle + curve * 0.25),
+        y: web.cy + Math.sin(spoke.angle) * baseR + ny * (wiggle + extraSag + curve * 0.25)
       };
     }
 
-    function drawGlowField() {
-      const g1 = ctx.createRadialGradient(redField.x, redField.y, 0, redField.x, redField.y, redField.r);
-      g1.addColorStop(0, "rgba(255,72,72,0.07)");
-      g1.addColorStop(0.25, "rgba(255,72,72,0.028)");
-      g1.addColorStop(1, "rgba(255,72,72,0)");
-      ctx.fillStyle = g1;
-      ctx.fillRect(0, 0, w, h);
+    function isBroken(spoke, t) {
+      if (spoke.breakStart === null) return false;
+      return t >= spoke.breakStart && t <= (spoke.breakStart + spoke.breakLen);
+    }
 
-      const g2 = ctx.createRadialGradient(w * 0.78, h * 0.65, 0, w * 0.78, h * 0.65, Math.max(w, h) * 0.36);
-      g2.addColorStop(0, "rgba(255,255,255,0.035)");
-      g2.addColorStop(0.24, "rgba(255,255,255,0.015)");
-      g2.addColorStop(1, "rgba(255,255,255,0)");
-      ctx.fillStyle = g2;
+    function drawGlow(web) {
+      const g = ctx.createRadialGradient(web.cx, web.cy, 0, web.cx, web.cy, web.radius * 1.05);
+      const baseA = web.theme === "red" ? 0.06 : 0.03;
+      g.addColorStop(0, `rgba(${web.glow},${baseA})`);
+      g.addColorStop(0.18, `rgba(${web.glow},${baseA * 0.4})`);
+      g.addColorStop(0.4, `rgba(${web.glow},${baseA * 0.12})`);
+      g.addColorStop(1, `rgba(${web.glow},0)`);
+      ctx.fillStyle = g;
       ctx.fillRect(0, 0, w, h);
     }
 
-    function drawRings() {
-      rings.forEach((ring, index) => {
+    function drawSpokes(web) {
+      web.spokes.forEach((spoke) => {
+        const steps = 26;
+        let started = false;
+        let prev = null;
+
         ctx.beginPath();
 
-        let started = false;
-        for (let i = 0; i <= ring.segments; i++) {
-          const p = i / ring.segments;
-          const ang = p * Math.PI * 2 + ring.rotate;
-          if (Math.random() < ring.gapChance * 0.08 && i !== 0 && i !== ring.segments) {
+        for (let i = 0; i <= steps; i++) {
+          const t = i / steps;
+          if (isBroken(spoke, t)) {
             started = false;
+            prev = null;
             continue;
           }
 
-          const wob = Math.sin(t * 0.004 + ring.phase + i * 0.4) * ring.wobble;
-          const rx = Math.cos(ang) * (ring.radius + wob);
-          const ry = Math.sin(ang) * ((ring.radius * ring.squash) + wob * 0.55);
-
-          const x = ring.cx + rx;
-          const y = ring.cy + ry;
+          const pt = pointOnSpoke(web, spoke, t);
 
           if (!started) {
-            ctx.moveTo(x, y);
+            ctx.moveTo(pt.x, pt.y);
             started = true;
-          } else {
-            ctx.lineTo(x, y);
+          } else if (prev) {
+            const mx = (prev.x + pt.x) * 0.5;
+            const my = (prev.y + pt.y) * 0.5;
+            ctx.quadraticCurveTo(prev.x, prev.y, mx, my);
           }
+
+          prev = pt;
         }
 
-        ctx.strokeStyle = mixColorAt(ring.cx, ring.cy, ring.alpha, 1);
-        ctx.lineWidth = ring.width;
-        ctx.lineJoin = "round";
+        const sample = pointOnSpoke(web, spoke, 0.55);
+        ctx.strokeStyle = getMixedColor(sample.x, sample.y, spoke.alpha);
+        ctx.lineWidth = spoke.thickness;
         ctx.lineCap = "round";
+        ctx.lineJoin = "round";
         ctx.stroke();
       });
     }
 
-    function drawBridges() {
-      bridges.forEach((bridge, index) => {
-        const a0 = getAnchorPoint(anchors[bridge.a], bridge.a);
-        const b0 = getAnchorPoint(anchors[bridge.b], bridge.b);
+    function drawRings(web) {
+      const sorted = [...web.spokes].sort((a, b) => a.angle - b.angle);
 
-        const mx = (a0.x + b0.x) * 0.5 + Math.sin(t * 0.004 + bridge.phase) * bridge.curve;
-        const my = (a0.y + b0.y) * 0.5 + Math.cos(t * 0.004 + bridge.phase) * (bridge.curve * 0.6);
+      web.rings.forEach((ring, ringIndex) => {
+        const points = [];
 
-        const midInf = redInfluence(mx, my);
-        const alphaBoost = 1 + midInf * 0.45;
+        sorted.forEach((spoke, i) => {
+          const t = ring.ratio;
+          if (t < ring.partialStart || t > ring.partialEnd) return;
+          if (isBroken(spoke, t)) return;
+
+          const pt = pointOnSpoke(
+            web,
+            spoke,
+            t,
+            Math.sin(tick * 0.004 + i + ringIndex) * ring.jitter + ring.sag * 0.06
+          );
+
+          points.push(pt);
+        });
+
+        if (points.length < 4) return;
 
         ctx.beginPath();
-        ctx.moveTo(a0.x, a0.y);
-        ctx.quadraticCurveTo(mx, my, b0.x, b0.y);
-        ctx.strokeStyle = mixColorAt(mx, my, bridge.alpha, alphaBoost);
-        ctx.lineWidth = bridge.width;
+        ctx.moveTo(points[0].x, points[0].y);
+
+        for (let i = 1; i < points.length - 1; i++) {
+          const mx = (points[i].x + points[i + 1].x) * 0.5;
+          const my = (points[i].y + points[i + 1].y) * 0.5;
+          ctx.quadraticCurveTo(points[i].x, points[i].y, mx, my);
+        }
+
+        ctx.lineTo(points[points.length - 1].x, points[points.length - 1].y);
+
+        const centerPoint = points[Math.floor(points.length / 2)];
+        ctx.strokeStyle = getMixedColor(centerPoint.x, centerPoint.y, ring.alpha);
+        ctx.lineWidth = ring.thickness;
         ctx.lineCap = "round";
         ctx.lineJoin = "round";
         ctx.stroke();
       });
     }
 
-    function drawFineThreads() {
-      fineThreads.forEach((thread, idx) => {
-        const a = anchors[thread.a];
-        const b = anchors[thread.b];
-        if (!a || !b || thread.a === thread.b) return;
+    function drawCrossStitches() {
+      const webA = webs[0];
+      const webB = webs[1];
 
-        const p1 = getAnchorPoint(a, thread.a);
-        const p2 = getAnchorPoint(b, thread.b);
+      const count = 16;
+      for (let i = 0; i < count; i++) {
+        const spokeA = webA.spokes[i % webA.spokes.length];
+        const spokeB = webB.spokes[(i * 2 + 3) % webB.spokes.length];
 
-        if (dist(p1.x, p1.y, p2.x, p2.y) > Math.min(w, h) * 0.52) return;
+        const ta = 0.28 + (i % 5) * 0.10;
+        const tb = 0.24 + ((i + 2) % 5) * 0.11;
 
-        const mx = (p1.x + p2.x) * 0.5 + Math.sin(t * 0.003 + thread.phase) * thread.cBias;
-        const my = (p1.y + p2.y) * 0.5 + Math.cos(t * 0.003 + thread.phase) * (thread.cBias * 0.55);
+        if (isBroken(spokeA, ta) || isBroken(spokeB, tb)) continue;
+
+        const p1 = pointOnSpoke(webA, spokeA, clamp(ta, 0, 0.95));
+        const p2 = pointOnSpoke(webB, spokeB, clamp(tb, 0, 0.95));
+
+        const mx = (p1.x + p2.x) * 0.5 + Math.sin(tick * 0.003 + i) * 18;
+        const my = (p1.y + p2.y) * 0.5 + Math.cos(tick * 0.003 + i) * 12;
 
         ctx.beginPath();
         ctx.moveTo(p1.x, p1.y);
         ctx.quadraticCurveTo(mx, my, p2.x, p2.y);
-        ctx.strokeStyle = mixColorAt(mx, my, thread.alpha, 1);
-        ctx.lineWidth = thread.width;
+        ctx.strokeStyle = getMixedColor(mx, my, 0.05);
+        ctx.lineWidth = 0.95;
         ctx.stroke();
-      });
+      }
     }
 
     function drawKnotNoise() {
       const knots = [
-        { x: redField.x, y: redField.y, r: redField.r * 0.12 },
-        { x: w * 0.77, y: h * 0.64, r: Math.max(w, h) * 0.08 },
-        { x: (redField.x + w * 0.77) * 0.5, y: (redField.y + h * 0.64) * 0.5, r: Math.max(w, h) * 0.06 }
+        { x: webs[0].cx + webs[0].radius * 0.14, y: webs[0].cy + webs[0].radius * 0.04, r: webs[0].radius * 0.10 },
+        { x: webs[1].cx - webs[1].radius * 0.10, y: webs[1].cy - webs[1].radius * 0.04, r: webs[1].radius * 0.08 },
+        { x: w * 0.56, y: h * 0.50, r: Math.max(w, h) * 0.06 }
       ];
 
       knots.forEach((knot, idx) => {
-        for (let i = 0; i < 12; i++) {
-          const a1 = (Math.PI * 2 * i / 12) + Math.sin(t * 0.003 + i + idx) * 0.3;
-          const a2 = a1 + rand(0.4, 1.2);
-          const r1 = knot.r * rand(0.2, 0.95);
-          const r2 = knot.r * rand(0.2, 0.95);
+        for (let i = 0; i < 10; i++) {
+          const a1 = (Math.PI * 2 * i / 10) + Math.sin(tick * 0.003 + i + idx) * 0.25;
+          const a2 = a1 + rand(0.4, 1.0);
+          const r1 = knot.r * rand(0.18, 0.95);
+          const r2 = knot.r * rand(0.18, 0.95);
 
           const x1 = knot.x + Math.cos(a1) * r1;
           const y1 = knot.y + Math.sin(a1) * r1;
@@ -553,36 +570,24 @@
           ctx.beginPath();
           ctx.moveTo(x1, y1);
           ctx.quadraticCurveTo(mx, my, x2, y2);
-          ctx.strokeStyle = mixColorAt(mx, my, idx === 0 ? 0.06 : 0.035, 1);
-          ctx.lineWidth = idx === 0 ? 1.15 : 0.8;
+          ctx.strokeStyle = getMixedColor(mx, my, idx === 0 ? 0.06 : 0.04);
+          ctx.lineWidth = idx === 0 ? 1.0 : 0.8;
           ctx.stroke();
         }
       });
     }
 
     function drawTravelFlickers() {
-      for (let i = 0; i < 8; i++) {
-        const bridge = bridges[(Math.floor(t * 0.03) + i * 7) % bridges.length];
-        if (!bridge) continue;
+      const web = webs[0];
 
-        const a0 = getAnchorPoint(anchors[bridge.a], bridge.a);
-        const b0 = getAnchorPoint(anchors[bridge.b], bridge.b);
-        const p = (Math.sin(t * 0.02 + i) + 1) * 0.5;
-
-        const cx = (a0.x + b0.x) * 0.5 + Math.sin(t * 0.004 + bridge.phase) * bridge.curve;
-        const cy = (a0.y + b0.y) * 0.5 + Math.cos(t * 0.004 + bridge.phase) * (bridge.curve * 0.6);
-
-        const qx1 = lerp(a0.x, cx, p);
-        const qy1 = lerp(a0.y, cy, p);
-        const qx2 = lerp(cx, b0.x, p);
-        const qy2 = lerp(cy, b0.y, p);
-
-        const x = lerp(qx1, qx2, p);
-        const y = lerp(qy1, qy2, p);
+      for (let i = 0; i < 6; i++) {
+        const spoke = web.spokes[(Math.floor(tick * 0.02) + i * 2) % web.spokes.length];
+        const p = (Math.sin(tick * 0.02 + i) + 1) * 0.5;
+        const point = pointOnSpoke(web, spoke, 0.18 + p * 0.44);
 
         ctx.beginPath();
-        ctx.arc(x, y, 1.2 + (i % 3) * 0.3, 0, Math.PI * 2);
-        ctx.fillStyle = mixColorAt(x, y, 0.09, 1.4);
+        ctx.arc(point.x, point.y, 1.2 + (i % 3) * 0.25, 0, Math.PI * 2);
+        ctx.fillStyle = getMixedColor(point.x, point.y, 0.09);
         ctx.fill();
       }
     }
@@ -590,68 +595,16 @@
     function render() {
       ctx.clearRect(0, 0, w, h);
 
-      drawGlowField();
-      drawRings();
-      drawFineThreads();
-      drawBridges();
+      webs.forEach(drawGlow);
+      webs.forEach(drawRings);
+      webs.forEach(drawSpokes);
+      drawCrossStitches();
       drawKnotNoise();
       drawTravelFlickers();
 
-      t += 1;
+      tick += 1;
       requestAnimationFrame(render);
     }
-
-    function getPointerPosition(event) {
-      const rect = stage.getBoundingClientRect();
-      let clientX;
-      let clientY;
-
-      if (event.touches && event.touches.length) {
-        clientX = event.touches[0].clientX;
-        clientY = event.touches[0].clientY;
-      } else {
-        clientX = event.clientX;
-        clientY = event.clientY;
-      }
-
-      return {
-        x: clientX - rect.left,
-        y: clientY - rect.top
-      };
-    }
-
-    function startDrag(event) {
-      const pos = getPointerPosition(event);
-      const hitRadius = Math.max(70, redField.r * 0.18);
-
-      if (dist(pos.x, pos.y, redField.x, redField.y) <= hitRadius) {
-        draggingRed = true;
-        dragOffsetX = pos.x - redField.x;
-        dragOffsetY = pos.y - redField.y;
-        event.preventDefault();
-      }
-    }
-
-    function moveDrag(event) {
-      if (!draggingRed) return;
-
-      const pos = getPointerPosition(event);
-      redField.x = clamp(pos.x - dragOffsetX, -w * 0.08, w * 1.08);
-      redField.y = clamp(pos.y - dragOffsetY, -h * 0.08, h * 1.08);
-      event.preventDefault();
-    }
-
-    function endDrag() {
-      draggingRed = false;
-    }
-
-    stage.addEventListener("mousedown", startDrag);
-    window.addEventListener("mousemove", moveDrag);
-    window.addEventListener("mouseup", endDrag);
-
-    stage.addEventListener("touchstart", startDrag, { passive: false });
-    window.addEventListener("touchmove", moveDrag, { passive: false });
-    window.addEventListener("touchend", endDrag);
 
     window.addEventListener("resize", resizeCanvas, { passive: true });
 
