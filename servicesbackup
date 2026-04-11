@@ -1,0 +1,1413 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+  />
+  <title>Services | All Season Pest Control</title>
+  <meta
+    name="description"
+    content="Pest control services from All Season Pest Control in Jonesboro, Arkansas."
+  />
+  <style>
+    :root{
+      --text:#ffffff;
+      --muted:rgba(255,255,255,.76);
+      --shadow:0 18px 60px rgba(0,0,0,.45);
+
+      --gold:#ffd05c;
+      --silver:#dddddd;
+      --green:#58e08f;
+      --red:#ff5c5c;
+      --brown:#d09a65;
+      --blue:#6ee7eb;
+
+      --active:#ffd05c;
+      --max:1200px;
+      --glow:0 0 22px rgba(255, 42, 42, 0.22);
+    }
+
+    *{
+      box-sizing:border-box;
+      margin:0;
+      padding:0;
+      min-width:0;
+    }
+
+    html{
+      scroll-behavior:smooth;
+    }
+
+    body{
+      background:
+        radial-gradient(circle at top, rgba(255,42,42,.08), transparent 28%),
+        linear-gradient(180deg, #030303 0%, #000000 100%);
+      color:var(--text);
+      font-family:Inter, Arial, Helvetica, sans-serif;
+      min-height:100vh;
+      overflow-x:hidden;
+    }
+
+    a{
+      color:inherit;
+      text-decoration:none;
+    }
+
+    button,
+    a,
+    .service-btn{
+      -webkit-tap-highlight-color: transparent;
+      font: inherit;
+    }
+
+    .topbar{
+      position:fixed;
+      top:0;
+      left:0;
+      width:100%;
+      z-index:1000;
+      backdrop-filter:blur(14px);
+      background:rgba(0, 0, 0, 0.72);
+      border-bottom:1px solid rgba(255, 42, 42, 0.22);
+    }
+
+    .topbar-inner{
+      max-width:var(--max);
+      margin:0 auto;
+      padding:14px 20px;
+      display:flex;
+      justify-content:center;
+      align-items:center;
+    }
+
+    .nav{
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+      justify-content:center;
+    }
+
+    .nav a{
+      padding:11px 18px;
+      border:1px solid rgba(255, 42, 42, 0.34);
+      border-radius:999px;
+      background:rgba(255, 255, 255, 0.03);
+      color:#fff;
+      font-weight:700;
+      font-size:0.95rem;
+      letter-spacing:0.02em;
+      transition:0.2s ease;
+    }
+
+    .nav a:hover,
+    .nav a.active{
+      border-color:rgba(255, 42, 42, 0.75);
+      box-shadow:var(--glow);
+      transform:translateY(-1px);
+    }
+
+    .page-wrap{
+      max-width:1240px;
+      margin:0 auto;
+      padding:104px 20px 64px;
+      overflow-x:hidden;
+    }
+
+    .showcase{
+      position:relative;
+      width:100%;
+      border-radius:28px;
+      border:1px solid rgba(255,255,255,.12);
+      background:
+        linear-gradient(180deg, rgba(255,255,255,.04), rgba(255,255,255,.015)),
+        rgba(8,10,15,.92);
+      box-shadow:var(--shadow);
+      overflow:hidden;
+      isolation:isolate;
+    }
+
+    .showcase::before{
+      content:"";
+      position:absolute;
+      inset:0;
+      background:
+        radial-gradient(circle at 20% 18%, rgba(255,255,255,.05), transparent 22%),
+        radial-gradient(circle at 80% 25%, rgba(255,255,255,.025), transparent 24%),
+        radial-gradient(circle at 50% 100%, rgba(255,42,42,.06), transparent 32%);
+      pointer-events:none;
+    }
+
+    .code-bg{
+      position:absolute;
+      inset:0;
+      z-index:1;
+      overflow:hidden;
+      pointer-events:none;
+      user-select:none;
+      mask-image: linear-gradient(to bottom, rgba(0,0,0,.96), rgba(0,0,0,.90) 58%, rgba(0,0,0,.50) 84%, transparent 100%);
+      -webkit-mask-image: linear-gradient(to bottom, rgba(0,0,0,.96), rgba(0,0,0,.90) 58%, rgba(0,0,0,.50) 84%, transparent 100%);
+    }
+
+    .code-grid{
+      position:absolute;
+      inset:-140px 0 0 0;
+      background-image:
+        linear-gradient(rgba(255,255,255,.022) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,.016) 1px, transparent 1px);
+      background-size:100% 38px, 38px 100%;
+      opacity:.14;
+      animation:gridDrift 18s linear infinite;
+    }
+
+    @keyframes gridDrift{
+      from{ transform:translateY(0); }
+      to{ transform:translateY(38px); }
+    }
+
+    .code-fade-left,
+    .code-fade-right{
+      position:absolute;
+      top:0;
+      bottom:0;
+      width:110px;
+      z-index:2;
+      pointer-events:none;
+    }
+
+    .code-fade-left{
+      left:0;
+      background:linear-gradient(90deg, rgba(8,10,15,.90), rgba(8,10,15,0));
+    }
+
+    .code-fade-right{
+      right:0;
+      background:linear-gradient(270deg, rgba(8,10,15,.92), rgba(8,10,15,0));
+    }
+
+    .code-stream{
+      position:absolute;
+      inset:0;
+      z-index:1;
+      font-family:ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+      font-size:clamp(.83rem, .98vw, 1rem);
+      line-height:1.65;
+      padding:22px 30px 30px;
+      color:rgba(232,238,255,.10);
+      white-space:pre-wrap;
+      word-break:break-word;
+      animation:codeDrift 26s linear infinite;
+      will-change:transform;
+    }
+
+    @keyframes codeDrift{
+      0%{ transform:translateY(0); }
+      100%{ transform:translateY(52px); }
+    }
+
+    .code-line{
+      min-height:1.65em;
+      opacity:.94;
+    }
+
+    .tok-green{ color:rgba(88,224,143,.30); }
+    .tok-blue{ color:rgba(110,231,235,.28); }
+    .tok-gold{ color:rgba(255,208,92,.30); }
+    .tok-red{ color:rgba(255,92,92,.24); }
+    .tok-silver{ color:rgba(221,221,221,.18); }
+    .tok-brown{ color:rgba(208,154,101,.24); }
+
+    .code-cursor{
+      display:inline-block;
+      width:.62ch;
+      color:rgba(255,255,255,.28);
+      animation:blinkCursor .85s step-end infinite;
+    }
+
+    @keyframes blinkCursor{
+      0%, 48% { opacity:1; }
+      49%, 100% { opacity:0; }
+    }
+
+    .panel-wrap{
+      position:relative;
+      z-index:3;
+      padding:22px 22px 8px;
+    }
+
+    .focus-card{
+      width:100%;
+      max-width:840px;
+      margin:0 auto;
+      border-radius:28px;
+      border:1px solid rgba(255,255,255,.12);
+      background:
+        linear-gradient(180deg, rgba(255,255,255,.055), rgba(255,255,255,.02)),
+        rgba(10,12,18,.84);
+      backdrop-filter:blur(14px);
+      box-shadow:0 18px 60px rgba(0,0,0,.42);
+      overflow:hidden;
+      transition:border-color .18s ease, box-shadow .18s ease;
+      position:relative;
+    }
+
+    .cursor-glow{
+      position:absolute;
+      width:260px;
+      height:260px;
+      border-radius:50%;
+      pointer-events:none;
+      left:0;
+      top:0;
+      transform:translate(-50%, -50%);
+      opacity:0;
+      transition:opacity .18s ease;
+      z-index:1;
+      background:radial-gradient(
+        circle,
+        color-mix(in srgb, var(--active) 22%, transparent) 0%,
+        color-mix(in srgb, var(--active) 10%, transparent) 30%,
+        transparent 72%
+      );
+      filter:blur(10px);
+    }
+
+    .focus-top,
+    .focus-content{
+      position:relative;
+      z-index:2;
+    }
+
+    .focus-top{
+      padding:28px 28px 20px;
+      border-bottom:1px solid rgba(255,255,255,.08);
+      overflow:hidden;
+      background:
+        linear-gradient(180deg, rgba(255,255,255,.02), rgba(255,255,255,0)),
+        radial-gradient(circle at top right, color-mix(in srgb, var(--active) 18%, transparent), transparent 46%);
+    }
+
+    .focus-top::after{
+      content:"";
+      position:absolute;
+      inset:auto -90px -90px auto;
+      width:230px;
+      height:230px;
+      border-radius:50%;
+      background:radial-gradient(circle, color-mix(in srgb, var(--active) 34%, transparent) 0%, transparent 68%);
+      pointer-events:none;
+      filter:blur(2px);
+    }
+
+    .focus-head{
+      position:relative;
+      z-index:2;
+      display:flex;
+      align-items:flex-start;
+      gap:16px;
+      width:100%;
+    }
+
+    .focus-copy{
+      flex:1 1 auto;
+      min-width:0;
+    }
+
+    .focus-badge{
+      width:56px;
+      height:56px;
+      border-radius:18px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      flex:none;
+      border:1px solid rgba(255,255,255,.12);
+      background:linear-gradient(180deg, rgba(255,255,255,.08), rgba(255,255,255,.03));
+      color:var(--active);
+      box-shadow:0 0 22px color-mix(in srgb, var(--active) 12%, transparent);
+    }
+
+    .focus-badge svg{
+      width:28px;
+      height:28px;
+      stroke:currentColor;
+      fill:none;
+      stroke-width:1.9;
+      stroke-linecap:round;
+      stroke-linejoin:round;
+    }
+
+    .focus-kicker{
+      text-transform:uppercase;
+      letter-spacing:.18em;
+      font-size:.72rem;
+      font-weight:900;
+      color:var(--active);
+      margin-bottom:10px;
+    }
+
+    .focus-title{
+      font-size:clamp(1.65rem, 3vw, 2.85rem);
+      line-height:1;
+      letter-spacing:-.05em;
+      margin-bottom:14px;
+      white-space:nowrap;
+      overflow:hidden;
+      text-overflow:ellipsis;
+    }
+
+    .focus-desc{
+      color:var(--muted);
+      font-size:.98rem;
+      line-height:1.76;
+      max-width:60ch;
+      overflow-wrap:anywhere;
+    }
+
+    .focus-content{
+      padding:20px 28px 28px;
+      width:100%;
+    }
+
+    .focus-sub{
+      color:rgba(255,255,255,.95);
+      font-size:.96rem;
+      line-height:1.8;
+      margin-bottom:18px;
+      overflow-wrap:anywhere;
+    }
+
+    .info-grid{
+      display:grid;
+      grid-template-columns:repeat(2, minmax(0,1fr));
+      gap:14px;
+      width:100%;
+    }
+
+    .info-box{
+      border:1px solid rgba(255,255,255,.10);
+      border-radius:18px;
+      background:rgba(255,255,255,.03);
+      padding:15px 15px 14px;
+    }
+
+    .info-box .label{
+      text-transform:uppercase;
+      letter-spacing:.15em;
+      font-size:.68rem;
+      font-weight:900;
+      color:var(--active);
+      margin-bottom:8px;
+    }
+
+    .info-box p{
+      color:#f3f3f3;
+      line-height:1.72;
+      font-size:.93rem;
+      overflow-wrap:anywhere;
+    }
+
+    .service-selector-bottom{
+      position:relative;
+      z-index:3;
+      padding:14px 18px 18px;
+      border-top:1px solid rgba(255,255,255,.08);
+      background:linear-gradient(180deg, rgba(5,7,11,.10), rgba(5,7,11,.28));
+      backdrop-filter:blur(6px);
+    }
+
+    .service-rail{
+      display:flex;
+      gap:14px;
+      overflow-x:auto;
+      overflow-y:hidden;
+      padding:14px 26px 18px;
+      margin:0 -8px;
+      scrollbar-width:none;
+      -webkit-overflow-scrolling:touch;
+      overscroll-behavior-x:contain;
+      justify-content:flex-start;
+      align-items:center;
+      scroll-snap-type:x mandatory;
+      scroll-padding-inline:26px;
+      scroll-behavior:auto;
+      touch-action:pan-x;
+    }
+
+    .service-rail::-webkit-scrollbar{
+      display:none;
+    }
+
+    .service-btn{
+      flex:0 0 212px;
+      border:1px solid rgba(255,255,255,.08);
+      background:rgba(255,255,255,.03);
+      color:#fff;
+      border-radius:20px;
+      padding:15px 15px 14px;
+      text-align:left;
+      cursor:pointer;
+      transition:
+        border-color .18s ease,
+        box-shadow .18s ease,
+        background .18s ease,
+        transform .22s ease,
+        opacity .22s ease;
+      transform:scale(.92);
+      opacity:.66;
+      scroll-snap-align:center;
+    }
+
+    .service-btn.near-active{
+      transform:scale(.96);
+      opacity:.86;
+    }
+
+    .service-btn.active{
+      border-color:color-mix(in srgb, var(--active) 58%, transparent);
+      background:linear-gradient(
+        180deg,
+        color-mix(in srgb, var(--active) 12%, rgba(255,255,255,.03)),
+        rgba(255,255,255,.03)
+      );
+      box-shadow:
+        0 0 0 1px color-mix(in srgb, var(--active) 18%, transparent) inset,
+        0 0 28px color-mix(in srgb, var(--active) 12%, transparent);
+      transform:scale(1);
+      opacity:1;
+    }
+
+    .service-btn-top{
+      display:flex;
+      align-items:center;
+      gap:10px;
+      margin-bottom:6px;
+    }
+
+    .service-icon{
+      width:36px;
+      height:36px;
+      border-radius:12px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      border:1px solid rgba(255,255,255,.09);
+      background:rgba(255,255,255,.04);
+      color:var(--active);
+      flex:none;
+      transition:width .22s ease, height .22s ease, border-radius .22s ease;
+    }
+
+    .service-icon svg{
+      width:18px;
+      height:18px;
+      stroke:currentColor;
+      fill:none;
+      stroke-width:1.9;
+      stroke-linecap:round;
+      stroke-linejoin:round;
+    }
+
+    .service-btn .kicker{
+      display:block;
+      font-size:.62rem;
+      letter-spacing:.15em;
+      text-transform:uppercase;
+      color:rgba(255,255,255,.56);
+      font-weight:800;
+      margin-bottom:4px;
+      transition:font-size .22s ease;
+    }
+
+    .service-btn.active .kicker{
+      font-size:.68rem;
+    }
+
+    .service-btn .name{
+      display:block;
+      font-size:.94rem;
+      font-weight:800;
+      letter-spacing:-.02em;
+      line-height:1.1;
+      word-break:break-word;
+      transition:font-size .22s ease;
+      min-height:2.25em;
+    }
+
+    .service-btn.active .name{
+      font-size:1.08rem;
+    }
+
+    .service-btn .name.force-two{
+      line-height:1.06;
+    }
+
+    @media (max-width: 1024px){
+      .code-bg{
+        display:none;
+      }
+
+      .cursor-glow{
+        display:none;
+      }
+    }
+
+    @media (max-width: 900px){
+      .page-wrap{
+        padding:98px 24px 46px;
+      }
+
+      .focus-title{
+        font-size:clamp(1.45rem, 2.9vw, 2.3rem);
+      }
+    }
+
+    @media (max-width: 768px){
+      .topbar-inner{
+        padding:14px 14px;
+      }
+
+      .nav a{
+        padding:10px 14px;
+        font-size:0.9rem;
+      }
+
+      .page-wrap{
+        padding:92px 10px 34px;
+      }
+
+      .showcase{
+        border-radius:22px;
+      }
+
+      .panel-wrap{
+        padding:10px 10px 4px;
+      }
+
+      .focus-card{
+        border-radius:20px;
+      }
+
+      .focus-top{
+        padding:18px 16px 14px;
+      }
+
+      .focus-top::after{
+        width:170px;
+        height:170px;
+        inset:auto -64px -64px auto;
+      }
+
+      .focus-head{
+        gap:12px;
+      }
+
+      .focus-badge{
+        width:44px;
+        height:44px;
+        border-radius:14px;
+      }
+
+      .focus-badge svg{
+        width:22px;
+        height:22px;
+      }
+
+      .focus-kicker{
+        font-size:.62rem;
+        margin-bottom:8px;
+      }
+
+      .focus-title{
+        font-size:1.4rem;
+        margin-bottom:10px;
+      }
+
+      .focus-desc{
+        font-size:.9rem;
+        line-height:1.58;
+      }
+
+      .focus-content{
+        padding:14px 16px 16px;
+      }
+
+      .focus-sub{
+        font-size:.9rem;
+        line-height:1.6;
+        margin-bottom:14px;
+      }
+
+      .info-grid{
+        grid-template-columns:1fr;
+        gap:10px;
+      }
+
+      .info-box{
+        border-radius:14px;
+        padding:13px 13px 12px;
+      }
+
+      .info-box .label{
+        font-size:.62rem;
+        margin-bottom:7px;
+      }
+
+      .info-box p{
+        font-size:.87rem;
+        line-height:1.58;
+      }
+
+      .service-selector-bottom{
+        padding:10px 10px 14px;
+      }
+
+      .service-rail{
+        gap:8px;
+        padding:10px 16px 10px;
+        scroll-padding-inline:16px;
+      }
+
+      .service-btn{
+        flex:0 0 148px;
+        border-radius:14px;
+        padding:10px;
+        transform:scale(.88);
+        opacity:.62;
+      }
+
+      .service-btn.near-active{
+        transform:scale(.95);
+        opacity:.84;
+      }
+
+      .service-btn.active{
+        padding:10px;
+        transform:scale(1);
+        opacity:1;
+      }
+
+      .service-icon{
+        width:30px;
+        height:30px;
+        border-radius:10px;
+      }
+
+      .service-icon svg{
+        width:15px;
+        height:15px;
+      }
+
+      .service-btn .kicker{
+        font-size:.54rem;
+      }
+
+      .service-btn.active .kicker{
+        font-size:.60rem;
+      }
+
+      .service-btn .name{
+        font-size:.78rem;
+        min-height:2.28em;
+      }
+
+      .service-btn.active .name{
+        font-size:.92rem;
+      }
+    }
+
+    @media (max-width: 430px){
+      .topbar-inner{
+        padding:12px 10px;
+      }
+
+      .nav{
+        gap:8px;
+      }
+
+      .nav a{
+        padding:9px 12px;
+        font-size:.84rem;
+      }
+
+      .page-wrap{
+        padding:88px 8px 28px;
+      }
+
+      .focus-title{
+        font-size:1.16rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <div class="topbar-inner">
+      <nav class="nav">
+        <a href="home.html">Home</a>
+        <a href="services.html" class="active">Services</a>
+        <a href="about.html">About</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="page-wrap">
+    <section class="showcase">
+      <div class="code-bg" aria-hidden="true">
+        <div class="code-grid"></div>
+        <div class="code-stream" id="codeStream"></div>
+        <div class="code-fade-left"></div>
+        <div class="code-fade-right"></div>
+      </div>
+
+      <div class="panel-wrap">
+        <div class="focus-card" id="focusCard">
+          <div class="cursor-glow" id="cursorGlow"></div>
+
+          <div class="focus-top">
+            <div class="focus-head">
+              <div class="focus-badge" id="focusBadge"></div>
+
+              <div class="focus-copy">
+                <div class="focus-kicker" id="focusKicker"></div>
+                <h2 class="focus-title" id="focusTitle"></h2>
+                <p class="focus-desc" id="focusDesc"></p>
+              </div>
+            </div>
+          </div>
+
+          <div class="focus-content">
+            <p class="focus-sub" id="focusSub"></p>
+
+            <div class="info-grid">
+              <div class="info-box">
+                <div class="label" id="box1Label"></div>
+                <p id="box1Text"></p>
+              </div>
+              <div class="info-box">
+                <div class="label" id="box2Label"></div>
+                <p id="box2Text"></p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="service-selector-bottom">
+        <div class="service-rail" id="serviceRail"></div>
+      </div>
+    </section>
+  </main>
+
+  <script>
+    const iconMap = {
+      bug: `
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M12 8.5c2.2 0 4 1.8 4 4.1V16c0 2.2-1.8 4-4 4s-4-1.8-4-4v-3.4c0-2.3 1.8-4.1 4-4.1Z"/>
+          <path d="M10.5 5.5 12 4l1.5 1.5"/>
+          <path d="M8 10 5.5 8.5M16 10l2.5-1.5M8 14H5M19 14h-3M8.5 18l-2 1.5M15.5 18l2 1.5"/>
+        </svg>
+      `,
+      shield: `
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M12 3l7 3v5c0 4.8-2.8 8.4-7 10-4.2-1.6-7-5.2-7-10V6l7-3Z"/>
+          <path d="M9.5 12.5 11 14l3.5-4"/>
+        </svg>
+      `,
+      paw: `
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M8 11.5c-1.2 0-2-1.3-2-2.8S6.8 6 8 6s2 1.3 2 2.7-.8 2.8-2 2.8ZM16 11.5c-1.2 0-2-1.3-2-2.8S14.8 6 16 6s2 1.3 2 2.7-.8 2.8-2 2.8ZM5.5 15.5c-1 0-1.7-1.1-1.7-2.4s.7-2.4 1.7-2.4 1.7 1.1 1.7 2.4-.7 2.4-1.7 2.4ZM18.5 15.5c-1 0-1.7-1.1-1.7-2.4s.7-2.4 1.7-2.4 1.7 1.1 1.7 2.4-.7 2.4-1.7 2.4Z"/>
+          <path d="M12 19.5c2.3 0 4.5-1.1 4.5-3.2 0-1.8-1.4-3.1-3.1-3.1-.7 0-1.1.2-1.4.5-.3-.3-.7-.5-1.4-.5-1.7 0-3.1 1.3-3.1 3.1 0 2.1 2.2 3.2 4.5 3.2Z"/>
+        </svg>
+      `,
+      mosquito: `
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M12 12v7"/>
+          <path d="M12 12 7 7M12 12l5-5M12 12l6 2M12 12 6 14"/>
+          <path d="M12 7.5c1.2 0 2-.8 2-1.8S13.2 4 12 4s-2 .8-2 1.7.8 1.8 2 1.8Z"/>
+          <path d="M10.5 19.5h3"/>
+        </svg>
+      `,
+      target: `
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <circle cx="12" cy="12" r="7"/>
+          <circle cx="12" cy="12" r="3"/>
+          <path d="M12 5V3M19 12h2M12 21v-2M3 12h2"/>
+        </svg>
+      `,
+      leaf: `
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M19 4c-7.5.4-12 4.8-12 10.5 0 3 2.2 5.5 5.4 5.5C18.3 20 20 13.9 19 4Z"/>
+          <path d="M8 16c2.5-2.4 4.8-4 8-5.5"/>
+        </svg>
+      `
+    };
+
+    const baseServices = [
+      {
+        id: "general",
+        color: "#ffd05c",
+        icon: "bug",
+        kicker: "Core Service",
+        title: "General Pest Control",
+        buttonTitle: "General Pest Control",
+        desc: "Built for common pest pressure around the home and designed to help keep activity down through consistent, dependable treatment.",
+        sub: "This service typically targets pests such as ants, spiders, crickets, earwigs, silverfish, centipedes, millipedes, and other common invading insects. It does not cover bed bugs or termites.",
+        box1Label: "Typical Coverage",
+        box1Text: "Exterior foundation and eave treatment with full front to back curb spot treatment as needed.",
+        box2Label: "Important Note",
+        box2Text: "Interior/garage sprays are optional, not mandatory."
+      },
+      {
+        id: "rodent",
+        color: "#dddddd",
+        icon: "shield",
+        kicker: "Monitoring + Control",
+        title: "Rodent Control",
+        buttonTitle: "Rodent Control",
+        desc: "Focused on reducing and monitoring rodent activity through strategic bait placement and ongoing follow-up where needed.",
+        sub: "Service includes inspection of active areas, exterior bait stations, sticky traps, and recommendations to help reduce conditions that contribute to rodent pressure around the home.",
+        box1Label: "Service Focus",
+        box1Text: "Ongoing monitoring, activity reduction, baiting, and follow-up based on the level of rodent pressure.",
+        box2Label: "Important Note",
+        box2Text: "Does not include moles, snakes, skunks, or squirrels."
+      },
+      {
+        id: "tickflea",
+        color: "#58e08f",
+        icon: "paw",
+        kicker: "Granular Service",
+        title: "Tick & Flea Treatment",
+        buttonTitle: "Tick & Flea Treatment",
+        desc: "Designed for properties dealing with biting pests in the yard, around pet areas, or in outdoor spaces where activity builds up.",
+        sub: "These treatments focus on helping reduce active populations and improving control in the areas where ticks and fleas are most likely to be found. This is a granular product used in the yard.",
+        box1Label: "Best For",
+        box1Text: "Homes with pets, shaded yards, wildlife traffic, or recurring tick and flea activity outside.",
+        box2Label: "Important Note",
+        box2Text: "This is an optional add-on service for general pests."
+      },
+      {
+        id: "mosquito",
+        color: "#ff5c5c",
+        icon: "mosquito",
+        kicker: "Seasonal Treatment",
+        title: "Mosquito Treatment",
+        buttonTitle: "Mosquito Treatment",
+        desc: "Designed to help reduce mosquito pressure in the yard so you can enjoy outdoor areas more comfortably during the warmer months.",
+        sub: "Treatment is typically focused on shaded foliage, harborage areas, and other outdoor zones where mosquitoes like to rest and build up. This is a recurring service from April-September.",
+        box1Label: "Best For",
+        box1Text: "Homes with patios, backyards, pets, or heavy mosquito pressure during the season.",
+        box2Label: "Service Approach",
+        box2Text: "Treating nesting and breeding points in the yard."
+      },
+      {
+        id: "roach",
+        color: "#d09a65",
+        icon: "target",
+        kicker: "Specialized Treatment",
+        title: "German Roach Treatment",
+        buttonTitle: "German Roach Treatment",
+        desc: "Built for active infestations that need more aggressive and targeted attention than standard routine pest service.",
+        sub: "Treatment may include detailed inspection, targeted crack-and-crevice applications, baiting, and follow-up service depending on the level of activity and conditions inside the home.",
+        box1Label: "Best For",
+        box1Text: "Active german roach infestations that need more than routine recurring service.",
+        box2Label: "Important Note",
+        box2Text: "Results depend heavily on severity and sanitation."
+      },
+      {
+        id: "weed",
+        color: "#6ee7eb",
+        icon: "leaf",
+        kicker: "Specialized Treatment",
+        title: "Weed Control",
+        buttonTitle: "Weed Control",
+        desc: "Designed to help reduce unwanted weed growth and improve the overall appearance of the property.",
+        sub: "Treatment plans are based on the season, weed pressure, and the overall condition of the area being treated. Treatments are done in the early spring and again in late summer.",
+        box1Label: "Best For",
+        box1Text: "Properties dealing with visible weed pressure in the rocks, along edges, or throughout the yard.",
+        box2Label: "Service Approach",
+        box2Text: "Price varies by total square feet of treatment."
+      }
+    ];
+
+    const serviceRail = document.getElementById("serviceRail");
+    const focusCard = document.getElementById("focusCard");
+    const cursorGlow = document.getElementById("cursorGlow");
+    const focusBadge = document.getElementById("focusBadge");
+    const focusKicker = document.getElementById("focusKicker");
+    const focusTitle = document.getElementById("focusTitle");
+    const focusDesc = document.getElementById("focusDesc");
+    const focusSub = document.getElementById("focusSub");
+    const box1Label = document.getElementById("box1Label");
+    const box1Text = document.getElementById("box1Text");
+    const box2Label = document.getElementById("box2Label");
+    const box2Text = document.getElementById("box2Text");
+    const codeStream = document.getElementById("codeStream");
+
+    const cloneRepeat = 2;
+    let currentActiveId = "general";
+    let touchStartX = 0;
+    let touchStartY = 0;
+    let touchLocked = false;
+    let isAnimatingSwipe = false;
+    let suppressTapAfterSwipe = false;
+
+    function getRailServices() {
+      const before = [];
+      const after = [];
+
+      for (let i = 0; i < cloneRepeat; i++) {
+        before.push(...baseServices);
+        after.push(...baseServices);
+      }
+
+      return [...before, ...baseServices, ...after];
+    }
+
+    function renderButtons() {
+      serviceRail.innerHTML = "";
+      const railServices = getRailServices();
+
+      railServices.forEach((service, index) => {
+        const button = document.createElement("button");
+        button.className = "service-btn";
+        button.dataset.id = service.id;
+        button.dataset.index = index;
+        button.style.setProperty("--active", service.color);
+
+        button.innerHTML = `
+          <div class="service-btn-top">
+            <div class="service-icon">${iconMap[service.icon]}</div>
+            <div>
+              <span class="kicker">${service.kicker}</span>
+              <span class="name">${service.buttonTitle || service.title}</span>
+            </div>
+          </div>
+        `;
+
+        button.addEventListener("click", () => {
+          if (suppressTapAfterSwipe || isAnimatingSwipe) return;
+          setActiveService(service.id, true, button);
+        });
+
+        serviceRail.appendChild(button);
+      });
+    }
+
+    function getButtonsById(id) {
+      return [...document.querySelectorAll(`.service-btn[data-id="${id}"]`)];
+    }
+
+    function getCenterCandidateButtons(id) {
+      const buttons = getButtonsById(id);
+      const railRect = serviceRail.getBoundingClientRect();
+      const railCenter = railRect.left + railRect.width / 2;
+
+      return buttons
+        .map((button) => {
+          const rect = button.getBoundingClientRect();
+          const center = rect.left + rect.width / 2;
+          return {
+            button,
+            distance: Math.abs(center - railCenter)
+          };
+        })
+        .sort((a, b) => a.distance - b.distance);
+    }
+
+    function getMiddleSetButton(id) {
+      const buttons = getButtonsById(id);
+      const segmentLength = baseServices.length;
+      const middleIndexStart = segmentLength * cloneRepeat;
+
+      return buttons.find(btn => {
+        const idx = Number(btn.dataset.index);
+        return idx >= middleIndexStart && idx < middleIndexStart + segmentLength;
+      }) || buttons[0] || null;
+    }
+
+    function centerButton(button, smooth = true) {
+      if (!button) return;
+
+      const targetLeft =
+        button.offsetLeft - (serviceRail.clientWidth / 2) + (button.clientWidth / 2);
+
+      serviceRail.scrollTo({
+        left: targetLeft,
+        behavior: smooth ? "smooth" : "auto"
+      });
+    }
+
+    function updateRailClasses(activeButton) {
+      const allButtons = [...document.querySelectorAll(".service-btn")];
+      allButtons.forEach(btn => btn.classList.remove("near-active"));
+
+      if (!activeButton) return;
+
+      const rect = activeButton.getBoundingClientRect();
+      const activeCenter = rect.left + rect.width / 2;
+
+      allButtons.forEach(btn => {
+        if (btn === activeButton) return;
+        const r = btn.getBoundingClientRect();
+        const center = r.left + r.width / 2;
+        const dist = Math.abs(center - activeCenter);
+        if (dist < 340) {
+          btn.classList.add("near-active");
+        }
+      });
+    }
+
+    function normalizeRailPosition() {
+      const targetButton = getMiddleSetButton(currentActiveId);
+      if (!targetButton) return;
+      centerButton(targetButton, false);
+      updateRailClasses(targetButton);
+    }
+
+    function setActiveService(id, shouldCenter = false, clickedButton = null) {
+      const service = baseServices.find(item => item.id === id);
+      if (!service) return;
+
+      currentActiveId = id;
+      document.documentElement.style.setProperty("--active", service.color);
+
+      document.querySelectorAll(".service-btn").forEach(btn => {
+        btn.classList.toggle("active", btn.dataset.id === id);
+      });
+
+      let centerTarget = clickedButton;
+
+      if (!centerTarget) {
+        const candidates = getCenterCandidateButtons(id);
+        centerTarget = candidates.length ? candidates[0].button : null;
+      }
+
+      if (shouldCenter && centerTarget) {
+        centerButton(centerTarget, true);
+        updateRailClasses(centerTarget);
+
+        setTimeout(() => {
+          const middleButton = getMiddleSetButton(id);
+          if (middleButton) {
+            centerButton(middleButton, false);
+            updateRailClasses(middleButton);
+          }
+        }, 260);
+      } else {
+        const middleButton = getMiddleSetButton(id);
+        updateRailClasses(middleButton || centerTarget);
+      }
+
+      focusBadge.innerHTML = iconMap[service.icon];
+      focusBadge.style.color = service.color;
+
+      focusKicker.textContent = service.kicker;
+      focusTitle.textContent = service.title;
+      focusTitle.title = service.title;
+      focusDesc.textContent = service.desc;
+      focusSub.textContent = service.sub;
+      box1Label.textContent = service.box1Label;
+      box1Text.textContent = service.box1Text;
+      box2Label.textContent = service.box2Label;
+      box2Text.textContent = service.box2Text;
+
+      focusKicker.style.color = service.color;
+      document.querySelectorAll(".label").forEach(label => {
+        label.style.color = service.color;
+      });
+
+      focusCard.style.borderColor = `${service.color}44`;
+      focusCard.style.boxShadow = `0 18px 60px rgba(0,0,0,.42), 0 0 34px ${service.color}14`;
+    }
+
+    function getServiceIndexById(id) {
+      return baseServices.findIndex(service => service.id === id);
+    }
+
+    function goToServiceIndex(index) {
+      const total = baseServices.length;
+      const wrappedIndex = (index + total) % total;
+      const nextService = baseServices[wrappedIndex];
+      const targetButton = getMiddleSetButton(nextService.id);
+
+      if (!targetButton) return;
+
+      isAnimatingSwipe = true;
+      setActiveService(nextService.id, false, targetButton);
+      centerButton(targetButton, true);
+
+      setTimeout(() => {
+        const middleButton = getMiddleSetButton(nextService.id);
+        centerButton(middleButton, false);
+        updateRailClasses(middleButton);
+        isAnimatingSwipe = false;
+      }, 260);
+    }
+
+    function stepService(direction) {
+      if (isAnimatingSwipe) return;
+
+      const currentIndex = getServiceIndexById(currentActiveId);
+      if (currentIndex === -1) return;
+
+      goToServiceIndex(currentIndex + direction);
+    }
+
+    renderButtons();
+    setActiveService("general", false);
+
+    requestAnimationFrame(() => {
+      normalizeRailPosition();
+    });
+
+    serviceRail.addEventListener("touchstart", (event) => {
+      if (window.innerWidth > 768) return;
+      if (!event.touches.length) return;
+
+      touchStartX = event.touches[0].clientX;
+      touchStartY = event.touches[0].clientY;
+      touchLocked = false;
+      suppressTapAfterSwipe = false;
+    }, { passive: true });
+
+    serviceRail.addEventListener("touchmove", (event) => {
+      if (window.innerWidth > 768) return;
+      if (!event.touches.length || isAnimatingSwipe) return;
+
+      const deltaX = event.touches[0].clientX - touchStartX;
+      const deltaY = event.touches[0].clientY - touchStartY;
+
+      if (touchLocked) {
+        event.preventDefault();
+        return;
+      }
+
+      if (Math.abs(deltaX) > 22 && Math.abs(deltaX) > Math.abs(deltaY)) {
+        touchLocked = true;
+        suppressTapAfterSwipe = true;
+        event.preventDefault();
+      }
+    }, { passive: false });
+
+    serviceRail.addEventListener("touchend", (event) => {
+      if (window.innerWidth > 768) return;
+      if (isAnimatingSwipe) return;
+
+      const changedTouch = event.changedTouches && event.changedTouches[0];
+      if (!changedTouch) return;
+
+      const deltaX = changedTouch.clientX - touchStartX;
+      const deltaY = changedTouch.clientY - touchStartY;
+
+      if (Math.abs(deltaX) > 38 && Math.abs(deltaX) > Math.abs(deltaY)) {
+        if (deltaX < 0) {
+          stepService(1);
+        } else {
+          stepService(-1);
+        }
+
+        setTimeout(() => {
+          suppressTapAfterSwipe = false;
+        }, 250);
+      } else {
+        const middleButton = getMiddleSetButton(currentActiveId);
+        centerButton(middleButton, true);
+        updateRailClasses(middleButton);
+        suppressTapAfterSwipe = false;
+      }
+
+      touchLocked = false;
+    }, { passive: true });
+
+    serviceRail.addEventListener("scroll", () => {
+      if (window.innerWidth > 768 || isAnimatingSwipe) return;
+      const middleButton = getMiddleSetButton(currentActiveId);
+      updateRailClasses(middleButton);
+    }, { passive: true });
+
+    window.addEventListener("resize", () => {
+      setActiveService(currentActiveId, false);
+      normalizeRailPosition();
+      isAnimatingSwipe = false;
+      suppressTapAfterSwipe = false;
+    });
+
+    if (window.innerWidth > 1024) {
+      focusCard.addEventListener("mousemove", (event) => {
+        const rect = focusCard.getBoundingClientRect();
+        const x = event.clientX - rect.left;
+        const y = event.clientY - rect.top;
+
+        cursorGlow.style.left = `${x}px`;
+        cursorGlow.style.top = `${y}px`;
+        cursorGlow.style.opacity = "1";
+      });
+
+      focusCard.addEventListener("mouseenter", () => {
+        cursorGlow.style.opacity = "1";
+      });
+
+      focusCard.addEventListener("mouseleave", () => {
+        cursorGlow.style.opacity = "0";
+      });
+    }
+
+    const codeLines = [
+      `<span class="tok-red">const</span> <span class="tok-silver">propertyProfile</span> = {`,
+      `  <span class="tok-silver">city</span>: <span class="tok-gold">"Jonesboro"</span>,`,
+      `  <span class="tok-silver">season</span>: <span class="tok-gold">"spring"</span>,`,
+      `  <span class="tok-silver">pressure</span>: <span class="tok-red">"moderate"</span>`,
+      `};`,
+      ``,
+      `<span class="tok-red">let</span> <span class="tok-silver">targetPests</span> = [<span class="tok-silver">"ants"</span>, <span class="tok-silver">"spiders"</span>, <span class="tok-silver">"earwigs"</span>, <span class="tok-silver">"crickets"</span>];`,
+      `<span class="tok-red">let</span> <span class="tok-silver">perimeterZones</span> = [<span class="tok-silver">"foundation"</span>, <span class="tok-silver">"garageDoor"</span>, <span class="tok-silver">"rearFence"</span>, <span class="tok-silver">"weepHoles"</span>];`,
+      `<span class="tok-blue">serviceData</span>.<span class="tok-green">forEach</span>((service) => {`,
+      `  <span class="tok-blue">serviceRail</span>.<span class="tok-green">addEventListener</span>(<span class="tok-gold">"click"</span>, () => {`,
+      `    <span class="tok-silver">activeService</span> = <span class="tok-blue">service</span>.<span class="tok-silver">name</span>;`,
+      `    <span class="tok-silver">entryPointRisk</span> = <span class="tok-blue">inspect</span>(<span class="tok-gold">"doorSweep"</span>, <span class="tok-gold">"windowGap"</span>, <span class="tok-gold">"utilityLine"</span>);`,
+      `    <span class="tok-silver">harborageZones</span> = <span class="tok-blue">mapAreas</span>(<span class="tok-gold">"mulchBeds"</span>, <span class="tok-gold">"shedLine"</span>, <span class="tok-gold">"ACPad"</span>);`,
+      `    <span class="tok-blue">applyTreatment</span>(<span class="tok-blue">service</span>.<span class="tok-gold">title</span>);`,
+      `  });`,
+      `});`,
+      ``,
+      `<span class="tok-red">const</span> <span class="tok-silver">mosquitoPlan</span> = {`,
+      `  <span class="tok-silver">focus</span>: [<span class="tok-green">"shadedFoliage"</span>, <span class="tok-green">"standingWaterRisk"</span>, <span class="tok-green">"rearPatio"</span>],`,
+      `  <span class="tok-silver">interval</span>: <span class="tok-gold">"monthly"</span>,`,
+      `  <span class="tok-silver">seasonWindow</span>: <span class="tok-gold">"April-September"</span>`,
+      `};`,
+      ``,
+      `<span class="tok-red">const</span> <span class="tok-silver">rodentStations</span> = [<span class="tok-silver">"northWall"</span>, <span class="tok-silver">"garageCorner"</span>, <span class="tok-silver">"rearACUnit"</span>];`,
+      `<span class="tok-blue">rodentStations</span>.<span class="tok-green">forEach</span>((station) => {`,
+      `  <span class="tok-blue">checkBait</span>(station);`,
+      `  <span class="tok-blue">logRodentActivity</span>(station, <span class="tok-gold">"weekly"</span>);`,
+      `  <span class="tok-blue">replaceIfLow</span>(station);`,
+      `});`,
+      ``,
+      `<span class="tok-red">const</span> <span class="tok-silver">roachProtocol</span> = {`,
+      `  <span class="tok-silver">inspectionPoints</span>: [<span class="tok-silver">"sinkBase"</span>, <span class="tok-silver">"dishwasherVoid"</span>, <span class="tok-silver">"stoveGap"</span>],`,
+      `  <span class="tok-silver">treatmentMode</span>: <span class="tok-gold">"baiting + crackAndCrevice"</span>,`,
+      `  <span class="tok-silver">followUp</span>: <span class="tok-gold">"required"</span>`,
+      `};`,
+      ``,
+      `<span class="tok-red">const</span> <span class="tok-silver">tickFleaZones</span> = [<span class="tok-silver">"petRun"</span>, <span class="tok-silver">"shadeLine"</span>, <span class="tok-silver">"underDeck"</span>, <span class="tok-silver">"fencePerimeter"</span>];`,
+      `<span class="tok-blue">tickFleaZones</span>.<span class="tok-green">forEach</span>((zone) => {`,
+      `  <span class="tok-blue">treatHotSpot</span>(zone);`,
+      `  <span class="tok-blue">markFollowUp</span>(zone);`,
+      `});`,
+      ``,
+      `<span class="tok-red">const</span> <span class="tok-silver">weedPlan</span> = {`,
+      `  <span class="tok-silver">squareFeet</span>: <span class="tok-blue">measure</span>(<span class="tok-gold">"frontYard"</span>) + <span class="tok-blue">measure</span>(<span class="tok-gold">"rockBeds"</span>) + <span class="tok-blue">measure</span>(<span class="tok-gold">"driveEdge"</span>),`,
+      `  <span class="tok-silver">pressureZones</span>: [<span class="tok-silver">"curbLine"</span>, <span class="tok-silver">"fenceEdge"</span>, <span class="tok-silver">"landscapeBorders"</span>],`,
+      `  <span class="tok-silver">timing</span>: [<span class="tok-gold">"spring"</span>, <span class="tok-gold">"lateSummer"</span>]`,
+      `};`,
+      ``,
+      `<span class="tok-red">if</span> (<span class="tok-silver">activityLevel</span> > <span class="tok-blue">threshold</span>) {`,
+      `  <span class="tok-blue">scheduleReservice</span>(<span class="tok-gold">"focusedTreatment"</span>);`,
+      `  <span class="tok-blue">serviceNotes</span>.<span class="tok-green">push</span>(<span class="tok-gold">"focus on rear fence line, garage threshold, and utility penetrations"</span>);`,
+      `}`,
+      ``,
+      `<span class="tok-blue">finalPass</span>(<span class="tok-gold">"yard"</span>, <span class="tok-gold">"foundation"</span>, <span class="tok-gold">"entryPoints"</span>);`
+    ];
+
+    const prefilledCount = 20;
+    const maxVisibleLines = 36;
+    let typedLines = codeLines.slice(0, prefilledCount);
+    let sourceIndex = prefilledCount % codeLines.length;
+    let charIndex = 0;
+    let typingForward = true;
+
+    function stripHTML(html) {
+      const temp = document.createElement("div");
+      temp.innerHTML = html;
+      return temp.textContent || temp.innerText || "";
+    }
+
+    function sliceHTMLPreserveTags(html, count) {
+      let result = "";
+      let textCount = 0;
+      let i = 0;
+      const stack = [];
+
+      while (i < html.length && textCount < count) {
+        if (html[i] === "<") {
+          const close = html.indexOf(">", i);
+          if (close === -1) break;
+          const tag = html.slice(i, close + 1);
+          result += tag;
+
+          const isClosing = /^<\//.test(tag);
+          const isSelfClosing = /\/>$/.test(tag);
+          const openMatch = tag.match(/^<([a-zA-Z0-9]+)/);
+          const closeMatch = tag.match(/^<\/([a-zA-Z0-9]+)/);
+
+          if (!isClosing && !isSelfClosing && openMatch) {
+            stack.push(openMatch[1]);
+          } else if (isClosing && closeMatch) {
+            const tagName = closeMatch[1];
+            const idx = stack.lastIndexOf(tagName);
+            if (idx !== -1) stack.splice(idx, 1);
+          }
+
+          i = close + 1;
+        } else {
+          result += html[i];
+          textCount++;
+          i++;
+        }
+      }
+
+      for (let j = stack.length - 1; j >= 0; j--) {
+        result += `</${stack[j]}>`;
+      }
+
+      return result;
+    }
+
+    function renderCodeStream(activeLineHTML = "") {
+      const lines = [...typedLines];
+      if (activeLineHTML) lines.push(activeLineHTML);
+
+      codeStream.innerHTML = lines
+        .slice(-maxVisibleLines)
+        .map(line => `<div class="code-line">${line}</div>`)
+        .join("");
+    }
+
+    function tickCode() {
+      const currentLine = codeLines[sourceIndex];
+      const rawText = stripHTML(currentLine);
+
+      if (typingForward) {
+        charIndex++;
+        const partial = sliceHTMLPreserveTags(currentLine, charIndex);
+        renderCodeStream(`${partial}<span class="code-cursor">|</span>`);
+
+        if (charIndex >= rawText.length) {
+          typingForward = false;
+          setTimeout(tickCode, rawText.length < 4 ? 60 : 180);
+          return;
+        }
+
+        setTimeout(tickCode, rawText.length < 4 ? 36 : 14);
+      } else {
+        typedLines.push(currentLine);
+        if (typedLines.length > 80) typedLines.shift();
+
+        sourceIndex = (sourceIndex + 1) % codeLines.length;
+        charIndex = 0;
+        typingForward = true;
+
+        renderCodeStream(`<span class="code-cursor">|</span>`);
+        setTimeout(tickCode, 40);
+      }
+    }
+
+    if (window.innerWidth > 1024) {
+      renderCodeStream(`<span class="code-cursor">|</span>`);
+      setTimeout(tickCode, 180);
+    }
+  </script>
+</body>
+</html>
