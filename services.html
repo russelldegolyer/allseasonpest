@@ -355,7 +355,6 @@
       display:grid;
       grid-template-columns:repeat(2, minmax(0,1fr));
       gap:14px;
-      margin-bottom:18px;
       width:100%;
     }
 
@@ -380,38 +379,6 @@
       line-height:1.72;
       font-size:.93rem;
       overflow-wrap:anywhere;
-    }
-
-    .cta-row{
-      display:flex;
-      gap:12px;
-      flex-wrap:wrap;
-      width:100%;
-    }
-
-    .cta-row a{
-      display:inline-flex;
-      align-items:center;
-      justify-content:center;
-      min-width:156px;
-      padding:13px 16px;
-      border-radius:14px;
-      border:1px solid rgba(255,255,255,.11);
-      background:
-        linear-gradient(180deg, rgba(255,255,255,.04), rgba(255,255,255,.018)),
-        rgba(10,10,10,.8);
-      color:#fff;
-      text-transform:uppercase;
-      font-size:.78rem;
-      font-weight:900;
-      letter-spacing:.15em;
-      transition:.2s ease;
-    }
-
-    .cta-row a:hover{
-      transform:translateY(-2px);
-      border-color:color-mix(in srgb, var(--active) 50%, transparent);
-      box-shadow:0 0 20px color-mix(in srgb, var(--active) 14%, transparent);
     }
 
     .service-selector-bottom{
@@ -644,7 +611,6 @@
       .info-grid{
         grid-template-columns:1fr;
         gap:10px;
-        margin-bottom:14px;
       }
 
       .info-box{
@@ -660,17 +626,6 @@
       .info-box p{
         font-size:.87rem;
         line-height:1.58;
-      }
-
-      .cta-row{
-        gap:9px;
-      }
-
-      .cta-row a{
-        min-width:100%;
-        padding:12px 14px;
-        font-size:.74rem;
-        border-radius:12px;
       }
 
       .service-selector-bottom{
@@ -801,12 +756,6 @@
                 <div class="label" id="box2Label"></div>
                 <p id="box2Text"></p>
               </div>
-            </div>
-
-            <div class="cta-row">
-              <a href="tel:8709197114">Call</a>
-              <a href="sms:8709197114">Text</a>
-              <a href="mailto:gmail@allseasonpestllc.com">Email</a>
             </div>
           </div>
         </div>
@@ -968,6 +917,7 @@
     let touchStartY = 0;
     let touchLocked = false;
     let isAnimatingSwipe = false;
+    let suppressTapAfterSwipe = false;
 
     function getRailServices() {
       const before = [];
@@ -1003,7 +953,7 @@
         `;
 
         button.addEventListener("click", () => {
-          if (window.innerWidth <= 768) return;
+          if (suppressTapAfterSwipe || isAnimatingSwipe) return;
           setActiveService(service.id, true, button);
         });
 
@@ -1193,6 +1143,7 @@
       touchStartX = event.touches[0].clientX;
       touchStartY = event.touches[0].clientY;
       touchLocked = false;
+      suppressTapAfterSwipe = false;
     }, { passive: true });
 
     serviceRail.addEventListener("touchmove", (event) => {
@@ -1209,6 +1160,7 @@
 
       if (Math.abs(deltaX) > 22 && Math.abs(deltaX) > Math.abs(deltaY)) {
         touchLocked = true;
+        suppressTapAfterSwipe = true;
         event.preventDefault();
       }
     }, { passive: false });
@@ -1229,10 +1181,15 @@
         } else {
           stepService(-1);
         }
+
+        setTimeout(() => {
+          suppressTapAfterSwipe = false;
+        }, 250);
       } else {
         const middleButton = getMiddleSetButton(currentActiveId);
         centerButton(middleButton, true);
         updateRailClasses(middleButton);
+        suppressTapAfterSwipe = false;
       }
 
       touchLocked = false;
@@ -1248,6 +1205,7 @@
       setActiveService(currentActiveId, false);
       normalizeRailPosition();
       isAnimatingSwipe = false;
+      suppressTapAfterSwipe = false;
     });
 
     const codeLines = [
