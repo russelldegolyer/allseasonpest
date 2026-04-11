@@ -11,6 +11,11 @@
     name="description"
     content="Pest control services from All Season Pest Control in Jonesboro, Arkansas."
   />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;600;700&family=Sora:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
   <style>
     :root{
       --text:#ffffff;
@@ -49,7 +54,7 @@
         linear-gradient(180deg, #000000 0%, #000000 100%);
       background-color:#000;
       color:var(--text);
-      font-family:Inter, Arial, Helvetica, sans-serif;
+      font-family:"Sora", Inter, Arial, Helvetica, sans-serif;
       min-height:100vh;
       overflow-x:hidden;
       padding-bottom:max(24px, env(safe-area-inset-bottom));
@@ -100,9 +105,11 @@
       border-radius:999px;
       background:rgba(255,255,255,.01);
       color:#fff;
-      font-weight:700;
-      font-size:0.95rem;
-      letter-spacing:0.02em;
+      font-family:"Oswald", Arial, sans-serif;
+      font-weight:600;
+      font-size:0.98rem;
+      letter-spacing:0.04em;
+      text-transform:uppercase;
       transition:0.2s ease;
     }
 
@@ -311,16 +318,20 @@
       font-weight:900;
       color:var(--active);
       margin-bottom:8px;
+      font-family:"Oswald", Arial, sans-serif;
     }
 
     .focus-title{
+      font-family:"Oswald", Arial, sans-serif;
       font-size:clamp(1.65rem, 3vw, 2.85rem);
+      font-weight:600;
       line-height:1;
-      letter-spacing:-.05em;
+      letter-spacing:-.02em;
       margin-bottom:12px;
       white-space:nowrap;
       overflow:hidden;
       text-overflow:ellipsis;
+      text-transform:uppercase;
     }
 
     .focus-desc{
@@ -367,6 +378,7 @@
       font-weight:900;
       color:var(--active);
       margin-bottom:8px;
+      font-family:"Oswald", Arial, sans-serif;
     }
 
     .info-box p{
@@ -485,6 +497,7 @@
       font-weight:800;
       margin-bottom:4px;
       transition:font-size .22s ease;
+      font-family:"Oswald", Arial, sans-serif;
     }
 
     .service-btn.active .kicker{
@@ -493,13 +506,15 @@
 
     .service-btn .name{
       display:block;
+      font-family:"Oswald", Arial, sans-serif;
       font-size:.94rem;
-      font-weight:800;
-      letter-spacing:-.02em;
+      font-weight:600;
+      letter-spacing:.01em;
       line-height:1.1;
       word-break:break-word;
       transition:font-size .22s ease;
       min-height:2.25em;
+      text-transform:uppercase;
     }
 
     .service-btn.active .name{
@@ -586,18 +601,18 @@
       }
 
       .focus-kicker{
-        font-size:.62rem;
+        font-size:.74rem;
         margin-bottom:8px;
       }
 
       .focus-title{
-        font-size:1.4rem;
+        font-size:1.55rem;
         margin-bottom:10px;
       }
 
       .focus-desc{
-        font-size:.9rem;
-        line-height:1.56;
+        font-size:.98rem;
+        line-height:1.64;
       }
 
       .focus-content{
@@ -605,8 +620,8 @@
       }
 
       .focus-sub{
-        font-size:.9rem;
-        line-height:1.58;
+        font-size:.98rem;
+        line-height:1.66;
         margin-bottom:12px;
       }
 
@@ -621,13 +636,13 @@
       }
 
       .info-box .label{
-        font-size:.62rem;
+        font-size:.74rem;
         margin-bottom:7px;
       }
 
       .info-box p{
-        font-size:.87rem;
-        line-height:1.52;
+        font-size:.95rem;
+        line-height:1.6;
       }
 
       .service-selector-bottom{
@@ -707,7 +722,23 @@
       }
 
       .focus-title{
-        font-size:1.16rem;
+        font-size:1.42rem;
+      }
+
+      .focus-desc{
+        font-size:.94rem;
+      }
+
+      .focus-sub{
+        font-size:.94rem;
+      }
+
+      .info-box .label{
+        font-size:.7rem;
+      }
+
+      .info-box p{
+        font-size:.92rem;
       }
     }
   </style>
