@@ -8,6 +8,11 @@
     name="description"
     content="Professional pest control for homes in Jonesboro, Arkansas and Northeast Arkansas. Safe treatments. Dependable service. Real protection."
   />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;600;700&family=Sora:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
   <style>
     :root{
       --bg:#050505;
@@ -21,7 +26,7 @@
       --red:#ff2a2a;
       --red-deep:#b30000;
       --line:rgba(255, 42, 42, 0.55);
-      --glow:0 0 22px rgba(255, 42, 42, 0.22);
+      --glow:0 0 22px rgba(255,255,255,.12);
       --glow-strong:0 0 30px rgba(255, 42, 42, 0.3);
       --max:1200px;
     }
@@ -34,12 +39,13 @@
 
     html{
       scroll-behavior:smooth;
+      background:#000;
     }
 
     body{
       background:#000;
       color:var(--text);
-      font-family:Inter, Arial, Helvetica, sans-serif;
+      font-family:"Sora", Inter, Arial, Helvetica, sans-serif;
       overflow-x:hidden;
     }
 
@@ -60,8 +66,8 @@
       width:100%;
       z-index:1000;
       backdrop-filter:blur(14px);
-      background:rgba(0, 0, 0, 0.72);
-      border-bottom:1px solid rgba(255, 42, 42, 0.22);
+      background:rgba(0, 0, 0, 0.86);
+      border-bottom:1px solid rgba(255,255,255,.24);
     }
 
     .topbar-inner{
@@ -82,19 +88,21 @@
 
     .nav a{
       padding:11px 18px;
-      border:1px solid rgba(255, 42, 42, 0.34);
+      border:1px solid rgba(255,255,255,.34);
       border-radius:999px;
-      background:rgba(255, 255, 255, 0.03);
+      background:rgba(255,255,255,.01);
       color:#fff;
-      font-weight:700;
-      font-size:0.95rem;
-      letter-spacing:0.02em;
+      font-family:"Oswald", Arial, sans-serif;
+      font-weight:600;
+      font-size:0.98rem;
+      letter-spacing:0.04em;
+      text-transform:uppercase;
       transition:0.2s ease;
     }
 
     .nav a:hover,
     .nav a.active{
-      border-color:rgba(255, 42, 42, 0.75);
+      border-color:rgba(255,255,255,.84);
       box-shadow:var(--glow);
       transform:translateY(-1px);
     }
@@ -130,18 +138,21 @@
       backdrop-filter:blur(8px);
       box-shadow:var(--shadow);
       color:#fff;
+      font-family:"Oswald", Arial, sans-serif;
       font-size:1rem;
-      font-weight:800;
+      font-weight:600;
       letter-spacing:.08em;
       text-transform:uppercase;
       margin:10px 0 20px;
     }
 
     .hero h1{
+      font-family:"Oswald", Arial, sans-serif;
       font-size:clamp(3.25rem, 5.35vw, 5.85rem);
       line-height:.94;
       letter-spacing:-0.055em;
-      font-weight:900;
+      font-weight:600;
+      text-transform:uppercase;
       max-width:760px;
       margin-bottom:22px;
     }
@@ -175,17 +186,20 @@
     .eyebrow{
       display:inline-block;
       color:var(--red);
+      font-family:"Oswald", Arial, sans-serif;
       font-size:.9rem;
-      font-weight:800;
+      font-weight:600;
       letter-spacing:.14em;
       text-transform:uppercase;
       margin-bottom:18px;
     }
 
     .section h2{
+      font-family:"Oswald", Arial, sans-serif;
       font-size:clamp(2.2rem, 4vw, 4rem);
       line-height:1;
       letter-spacing:-0.04em;
+      text-transform:uppercase;
       margin-bottom:20px;
     }
 
@@ -212,7 +226,9 @@
     }
 
     .card h3{
+      font-family:"Oswald", Arial, sans-serif;
       font-size:1.35rem;
+      text-transform:uppercase;
       margin-bottom:12px;
       letter-spacing:-0.03em;
     }
@@ -256,8 +272,10 @@
 
     .list-card h3,
     .cta-box h3{
+      font-family:"Oswald", Arial, sans-serif;
       font-size:1.8rem;
       line-height:1.05;
+      text-transform:uppercase;
       margin-bottom:16px;
       letter-spacing:-0.04em;
     }
@@ -284,8 +302,10 @@
     }
 
     .expect-box h4{
+      font-family:"Oswald", Arial, sans-serif;
       font-size:1.02rem;
       line-height:1.2;
+      text-transform:uppercase;
       margin-bottom:7px;
       letter-spacing:-0.02em;
     }
@@ -319,9 +339,11 @@
 
     .process-step-title{
       display:inline-block;
+      font-family:"Oswald", Arial, sans-serif;
       font-size:1.02rem;
-      font-weight:800;
+      font-weight:600;
       color:#fff;
+      text-transform:uppercase;
       letter-spacing:-0.02em;
       line-height:1.2;
     }
@@ -361,16 +383,17 @@
       color:#ffffff;
       text-decoration:none;
       text-transform:uppercase;
+      font-family:"Oswald", Arial, sans-serif;
       font-size:0.82rem;
-      font-weight:700;
+      font-weight:600;
       letter-spacing:1.3px;
       transition:border-color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
     }
 
     .cta-row a:hover{
-      border-color:rgba(255, 43, 43, 0.55);
+      border-color:rgba(255,255,255,.16);
       transform:translateY(-2px);
-      box-shadow:0 0 18px rgba(255, 43, 43, 0.1);
+      box-shadow:0 0 18px rgba(255,255,255,.08);
     }
 
     .footer{
@@ -456,6 +479,14 @@
       .cta-row a{
         min-width:100%;
         font-size:0.76rem;
+      }
+
+      .footer{
+        padding:0 12px 14px;
+      }
+
+      .footer-inner{
+        font-size:.88rem;
       }
     }
 
