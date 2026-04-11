@@ -188,7 +188,7 @@
 
     .panel-grid{
       position:absolute;
-      inset:-12%;
+      inset:-18%;
       z-index:0;
       pointer-events:none;
       transform:translate3d(0, var(--parallaxY), 0) scale(1.05);
@@ -200,7 +200,7 @@
     .panel-grid::after{
       content:"";
       position:absolute;
-      inset:0;
+      inset:-18%;
     }
 
     .panel-grid::before{
@@ -208,13 +208,15 @@
         linear-gradient(rgba(var(--grid-rgb), .26) 1px, transparent 1px),
         linear-gradient(90deg, rgba(var(--grid-rgb), .26) 1px, transparent 1px);
       background-size:44px 44px;
-      background-position:0 0, 0 0;
-      transform:rotate(13deg) scale(1.08);
-      opacity:.88;
-      animation:gridScrollSeamless 10s linear infinite;
+      background-repeat:repeat;
+      transform:rotate(13deg) scale(1.14);
+      transform-origin:center;
+      opacity:.9;
+      animation:gridDriftDiagonal 4.6s linear infinite;
       filter:
         drop-shadow(0 0 10px rgba(var(--grid-rgb), .13))
         drop-shadow(0 0 22px rgba(var(--grid-rgb), .08));
+      will-change:transform;
     }
 
     .panel-grid::after{
@@ -227,12 +229,12 @@
       transform:scale(1.08);
     }
 
-    @keyframes gridScrollSeamless{
+    @keyframes gridDriftDiagonal{
       from{
-        background-position:0 0, 0 0;
+        transform:translate3d(0,0,0) rotate(13deg) scale(1.14);
       }
       to{
-        background-position:-44px 22px, -44px 22px;
+        transform:translate3d(-44px,-44px,0) rotate(13deg) scale(1.14);
       }
     }
 
@@ -324,6 +326,10 @@
       background:none;
       z-index:1;
       pointer-events:none;
+    }
+
+    .logo-panel .panel-grid{
+      display:none;
     }
 
     .logo-panel img{
@@ -496,8 +502,8 @@
 
     @media (max-width: 1024px){
       .panel-grid{
-        inset:-8%;
-        transform:translate3d(0, 0, 0) scale(1.04);
+        inset:-12%;
+        transform:translate3d(0, 0, 0) scale(1.03);
       }
 
       .cursor-glow{
@@ -629,14 +635,15 @@
 
       .panel-grid::before{
         background-size:38px 38px;
+        animation:gridDriftDiagonalMobile 4.1s linear infinite;
       }
 
-      @keyframes gridScrollSeamless{
+      @keyframes gridDriftDiagonalMobile{
         from{
-          background-position:0 0, 0 0;
+          transform:translate3d(0,0,0) rotate(13deg) scale(1.12);
         }
         to{
-          background-position:-38px 19px, -38px 19px;
+          transform:translate3d(-38px,-38px,0) rotate(13deg) scale(1.12);
         }
       }
 
