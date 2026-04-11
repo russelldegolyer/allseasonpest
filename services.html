@@ -56,6 +56,7 @@
     .service-btn{
       -webkit-tap-highlight-color: transparent;
       touch-action: manipulation;
+      font: inherit;
     }
 
     .topbar{
@@ -166,24 +167,68 @@
       backdrop-filter:blur(10px);
     }
 
-    .selector-label{
-      font-size:.74rem;
-      letter-spacing:.18em;
-      text-transform:uppercase;
-      color:rgba(255,255,255,.5);
-      font-weight:800;
+    .selector-head{
+      display:flex;
+      justify-content:flex-start;
+      align-items:center;
       margin-bottom:12px;
-      padding:0 6px;
-      text-align:left;
+    }
+
+    .selector-toggle{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap:10px;
+      padding:11px 18px;
+      border:1px solid rgba(255,42,42,.28);
+      border-radius:999px;
+      background:rgba(255,255,255,.03);
+      color:#fff;
+      font-weight:700;
+      font-size:.95rem;
+      letter-spacing:.02em;
+      cursor:pointer;
+      transition:border-color .18s ease, box-shadow .18s ease, transform .18s ease, background .18s ease;
+    }
+
+    .selector-toggle:hover{
+      border-color:rgba(255,42,42,.65);
+      transform:translateY(-1px);
+      box-shadow:0 0 20px rgba(255,42,42,.14);
+    }
+
+    .selector-toggle svg{
+      width:14px;
+      height:14px;
+      stroke:currentColor;
+      fill:none;
+      stroke-width:2.2;
+      stroke-linecap:round;
+      stroke-linejoin:round;
+      transition:transform .2s ease;
+    }
+
+    .selector-wrap.open .selector-toggle svg{
+      transform:rotate(180deg);
+    }
+
+    .selector-panel{
+      max-height:0;
+      overflow:hidden;
+      transition:max-height .28s ease;
+    }
+
+    .selector-wrap.open .selector-panel{
+      max-height:260px;
     }
 
     .service-rail{
       display:flex;
-      gap:12px;
+      gap:14px;
       overflow-x:auto;
       overflow-y:hidden;
-      padding:12px 20px 14px;
-      margin:0 -2px;
+      padding:14px 26px 18px;
+      margin:0 -8px;
       scrollbar-width:none;
       -webkit-overflow-scrolling:touch;
       overscroll-behavior-x:contain;
@@ -197,12 +242,12 @@
     }
 
     .service-btn{
-      flex:0 0 238px;
+      flex:0 0 212px;
       border:1px solid rgba(255,255,255,.08);
       background:rgba(255,255,255,.03);
       color:#fff;
       border-radius:20px;
-      padding:16px;
+      padding:15px 15px 14px;
       text-align:left;
       cursor:pointer;
       transition:
@@ -211,18 +256,20 @@
         background .18s ease,
         transform .22s ease,
         opacity .22s ease,
-        flex-basis .22s ease;
-      transform:scale(.92);
-      opacity:.72;
+        flex-basis .22s ease,
+        padding .22s ease;
+      transform:scale(.88);
+      opacity:.60;
     }
 
     .service-btn.near-active{
-      transform:scale(.965);
-      opacity:.9;
+      transform:scale(.95);
+      opacity:.84;
     }
 
     .service-btn.active{
-      flex-basis:278px;
+      flex-basis:296px;
+      padding:19px 18px 18px;
       border-color:color-mix(in srgb, var(--active) 58%, transparent);
       background:linear-gradient(
         180deg,
@@ -231,7 +278,7 @@
       );
       box-shadow:
         0 0 0 1px color-mix(in srgb, var(--active) 18%, transparent) inset,
-        0 0 26px color-mix(in srgb, var(--active) 12%, transparent);
+        0 0 28px color-mix(in srgb, var(--active) 12%, transparent);
       transform:scale(1);
       opacity:1;
     }
@@ -254,6 +301,13 @@
       background:rgba(255,255,255,.04);
       color:var(--active);
       flex:none;
+      transition:width .22s ease, height .22s ease, border-radius .22s ease;
+    }
+
+    .service-btn.active .service-icon{
+      width:42px;
+      height:42px;
+      border-radius:14px;
     }
 
     .service-icon svg{
@@ -264,25 +318,41 @@
       stroke-width:1.9;
       stroke-linecap:round;
       stroke-linejoin:round;
+      transition:width .22s ease, height .22s ease;
+    }
+
+    .service-btn.active .service-icon svg{
+      width:20px;
+      height:20px;
     }
 
     .service-btn .kicker{
       display:block;
-      font-size:.64rem;
+      font-size:.62rem;
       letter-spacing:.15em;
       text-transform:uppercase;
       color:var(--muted-soft);
       font-weight:800;
       margin-bottom:4px;
+      transition:font-size .22s ease;
+    }
+
+    .service-btn.active .kicker{
+      font-size:.68rem;
     }
 
     .service-btn .name{
       display:block;
-      font-size:1rem;
+      font-size:.94rem;
       font-weight:800;
       letter-spacing:-.02em;
       line-height:1.1;
       word-break:break-word;
+      transition:font-size .22s ease;
+    }
+
+    .service-btn.active .name{
+      font-size:1.08rem;
     }
 
     .panel-wrap{
@@ -502,31 +572,42 @@
         padding:12px 10px 10px;
       }
 
-      .selector-label{
-        font-size:.63rem;
-        letter-spacing:.16em;
-        padding:0 4px;
+      .selector-head{
+        margin-bottom:10px;
+      }
+
+      .selector-toggle{
+        padding:9px 14px;
+        font-size:.84rem;
+      }
+
+      .selector-wrap.open .selector-panel{
+        max-height:220px;
       }
 
       .service-rail{
         gap:8px;
-        padding:10px 14px 8px;
+        padding:10px 16px 10px;
       }
 
       .service-btn{
-        flex:0 0 148px;
+        flex:0 0 132px;
         border-radius:14px;
-        padding:11px;
-        transform:scale(.92);
+        padding:10px;
+        transform:scale(.86);
+        opacity:.58;
       }
 
       .service-btn.near-active{
-        transform:scale(.965);
+        transform:scale(.94);
+        opacity:.84;
       }
 
       .service-btn.active{
-        flex-basis:172px;
+        flex-basis:186px;
+        padding:13px 12px 12px;
         transform:scale(1);
+        opacity:1;
       }
 
       .service-icon{
@@ -535,17 +616,36 @@
         border-radius:10px;
       }
 
+      .service-btn.active .service-icon{
+        width:36px;
+        height:36px;
+        border-radius:12px;
+      }
+
       .service-icon svg{
         width:15px;
         height:15px;
       }
 
+      .service-btn.active .service-icon svg{
+        width:17px;
+        height:17px;
+      }
+
       .service-btn .kicker{
-        font-size:.56rem;
+        font-size:.54rem;
+      }
+
+      .service-btn.active .kicker{
+        font-size:.60rem;
       }
 
       .service-btn .name{
-        font-size:.84rem;
+        font-size:.78rem;
+      }
+
+      .service-btn.active .name{
+        font-size:.92rem;
       }
 
       .panel-wrap{
@@ -707,22 +807,30 @@ serviceData.<span class="green">forEach</span>((service, index) =&gt; {
 
 const generalPest = {
   type: <span class="gold">"core"</span>,
-  service: <span class="gold">"General Pest Control"</span>,
-  pests: [<span class="silver">ants</span>, <span class="silver">spiders</span>, <span class="silver">crickets</span>, <span class="silver">earwigs</span>]
+  service: <span class="gold">"General Pest Control"</span>
 };
 
 const weedControl = {
   type: <span class="gold">"specialized"</span>,
-  service: <span class="gold">"Weed Control"</span>,
-  focus: [<span class="silver">edges</span>, <span class="silver">rocks</span>, <span class="silver">yard appearance</span>]
+  service: <span class="gold">"Weed Control"</span>
 };
 
 render(<span class="red">premiumServiceExperience</span>);
       </div>
 
-      <div class="selector-wrap">
-        <div class="selector-label">Choose a service</div>
-        <div class="service-rail" id="serviceRail"></div>
+      <div class="selector-wrap open" id="selectorWrap">
+        <div class="selector-head">
+          <button class="selector-toggle" id="selectorToggle" type="button" aria-expanded="true">
+            Services
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path d="m6 9 6 6 6-6"></path>
+            </svg>
+          </button>
+        </div>
+
+        <div class="selector-panel" id="selectorPanel">
+          <div class="service-rail" id="serviceRail"></div>
+        </div>
       </div>
 
       <div class="panel-wrap">
@@ -897,6 +1005,8 @@ render(<span class="red">premiumServiceExperience</span>);
       }
     ];
 
+    const selectorWrap = document.getElementById("selectorWrap");
+    const selectorToggle = document.getElementById("selectorToggle");
     const serviceRail = document.getElementById("serviceRail");
     const focusCard = document.getElementById("focusCard");
     const focusBadge = document.getElementById("focusBadge");
@@ -1013,7 +1123,7 @@ render(<span class="red">premiumServiceExperience</span>);
         const r = btn.getBoundingClientRect();
         const center = r.left + r.width / 2;
         const dist = Math.abs(center - activeCenter);
-        if (dist < 330) {
+        if (dist < 340) {
           btn.classList.add("near-active");
         }
       });
@@ -1096,6 +1206,19 @@ render(<span class="red">premiumServiceExperience</span>);
       focusCard.style.borderColor = `${service.color}44`;
       focusCard.style.boxShadow = `0 18px 60px rgba(0,0,0,.42), 0 0 34px ${service.color}14`;
     }
+
+    selectorToggle.addEventListener("click", () => {
+      const isOpen = selectorWrap.classList.toggle("open");
+      selectorToggle.setAttribute("aria-expanded", isOpen ? "true" : "false");
+
+      if (isOpen) {
+        setTimeout(() => {
+          const middleButton = getMiddleSetButton(currentActiveId);
+          centerButton(middleButton, false);
+          updateRailClasses(middleButton);
+        }, 180);
+      }
+    });
 
     renderButtons();
     setActiveService("general", false);
