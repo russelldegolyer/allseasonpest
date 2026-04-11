@@ -101,10 +101,15 @@
 
     .page-menu{
       position:relative;
-      display:inline-block;
+      display:flex;
+      flex-direction:column;
+      align-items:flex-end;
+      gap:8px;
     }
 
-    .page-menu-toggle{
+    .page-menu-toggle,
+    .page-menu-link{
+      width:138px;
       display:inline-flex;
       align-items:center;
       justify-content:center;
@@ -118,10 +123,19 @@
       font-size:.95rem;
       letter-spacing:.02em;
       cursor:pointer;
-      transition:border-color .18s ease, box-shadow .18s ease, transform .18s ease, background .18s ease;
+      transition:
+        border-color .18s ease,
+        box-shadow .18s ease,
+        transform .18s ease,
+        background .18s ease,
+        opacity .18s ease,
+        max-height .22s ease,
+        margin .22s ease,
+        padding .22s ease;
     }
 
-    .page-menu-toggle:hover{
+    .page-menu-toggle:hover,
+    .page-menu-link:hover{
       border-color:rgba(255,42,42,.65);
       transform:translateY(-1px);
       box-shadow:0 0 20px rgba(255,42,42,.14);
@@ -142,55 +156,34 @@
       transform:rotate(180deg);
     }
 
-    .page-menu-panel{
-      position:absolute;
-      top:calc(100% + 10px);
-      right:0;
-      min-width:240px;
-      padding:12px;
-      border:1px solid rgba(255,255,255,.10);
-      border-radius:18px;
-      background:rgba(9,11,16,.96);
-      backdrop-filter:blur(14px);
-      box-shadow:0 18px 50px rgba(0,0,0,.42);
-      opacity:0;
-      pointer-events:none;
-      transform:translateY(-8px);
-      transition:opacity .18s ease, transform .18s ease;
-    }
-
-    .page-menu.open .page-menu-panel{
-      opacity:1;
-      pointer-events:auto;
-      transform:translateY(0);
-    }
-
-    .page-menu-links{
+    .page-menu-dropdown{
       display:flex;
       flex-direction:column;
+      align-items:flex-end;
       gap:8px;
+      width:138px;
     }
 
-    .page-menu-links a{
-      display:flex;
-      align-items:center;
-      justify-content:flex-start;
-      padding:12px 14px;
-      border:1px solid rgba(255,255,255,.08);
-      border-radius:14px;
-      background:rgba(255,255,255,.03);
-      color:#fff;
-      font-weight:700;
-      font-size:.95rem;
-      letter-spacing:.01em;
-      transition:border-color .18s ease, background .18s ease, transform .18s ease;
+    .page-menu-link{
+      text-decoration:none;
+      overflow:hidden;
+      max-height:0;
+      opacity:0;
+      pointer-events:none;
+      padding-top:0;
+      padding-bottom:0;
+      margin-top:-4px;
+      margin-bottom:-4px;
     }
 
-    .page-menu-links a:hover,
-    .page-menu-links a.active{
-      border-color:rgba(255,42,42,.52);
-      background:rgba(255,255,255,.05);
-      transform:translateY(-1px);
+    .page-menu.open .page-menu-link{
+      max-height:44px;
+      opacity:1;
+      pointer-events:auto;
+      padding-top:11px;
+      padding-bottom:11px;
+      margin-top:0;
+      margin-bottom:0;
     }
 
     .code-bg{
@@ -200,19 +193,19 @@
       overflow:hidden;
       pointer-events:none;
       user-select:none;
-      mask-image: linear-gradient(to bottom, rgba(0,0,0,.95), rgba(0,0,0,.88) 56%, rgba(0,0,0,.48) 82%, transparent 100%);
-      -webkit-mask-image: linear-gradient(to bottom, rgba(0,0,0,.95), rgba(0,0,0,.88) 56%, rgba(0,0,0,.48) 82%, transparent 100%);
+      mask-image: linear-gradient(to bottom, rgba(0,0,0,.96), rgba(0,0,0,.90) 58%, rgba(0,0,0,.50) 84%, transparent 100%);
+      -webkit-mask-image: linear-gradient(to bottom, rgba(0,0,0,.96), rgba(0,0,0,.90) 58%, rgba(0,0,0,.50) 84%, transparent 100%);
     }
 
     .code-grid{
       position:absolute;
-      inset:-120px 0 0 0;
+      inset:-140px 0 0 0;
       background-image:
-        linear-gradient(rgba(255,255,255,.025) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(255,255,255,.018) 1px, transparent 1px);
+        linear-gradient(rgba(255,255,255,.022) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,.016) 1px, transparent 1px);
       background-size: 100% 38px, 38px 100%;
       opacity:.14;
-      animation:gridDrift 20s linear infinite;
+      animation:gridDrift 18s linear infinite;
     }
 
     @keyframes gridDrift{
@@ -257,12 +250,12 @@
 
     @keyframes codeDrift{
       0%{ transform:translateY(0); }
-      100%{ transform:translateY(48px); }
+      100%{ transform:translateY(52px); }
     }
 
     .code-line{
       min-height:1.65em;
-      opacity:.92;
+      opacity:.94;
     }
 
     .tok-green{ color:rgba(88,224,143,.30); }
@@ -276,7 +269,7 @@
       display:inline-block;
       width:.62ch;
       color:rgba(255,255,255,.28);
-      animation:blinkCursor .95s step-end infinite;
+      animation:blinkCursor .85s step-end infinite;
     }
 
     @keyframes blinkCursor{
@@ -643,19 +636,11 @@
         padding:12px 10px 4px;
       }
 
-      .page-menu-toggle{
+      .page-menu-toggle,
+      .page-menu-link{
+        width:126px;
         padding:9px 14px;
         font-size:.84rem;
-      }
-
-      .page-menu-panel{
-        min-width:200px;
-        padding:10px;
-      }
-
-      .page-menu-links a{
-        padding:11px 12px;
-        font-size:.88rem;
       }
 
       .service-selector{
@@ -868,12 +853,9 @@
             </svg>
           </button>
 
-          <div class="page-menu-panel" id="pageMenuPanel">
-            <div class="page-menu-links">
-              <a href="home.html">Home</a>
-              <a href="services.html" class="active">Services</a>
-              <a href="about.html">About</a>
-            </div>
+          <div class="page-menu-dropdown">
+            <a class="page-menu-link" href="home.html">Home</a>
+            <a class="page-menu-link" href="about.html">About</a>
           </div>
         </div>
       </div>
@@ -1257,7 +1239,8 @@
       focusCard.style.boxShadow = `0 18px 60px rgba(0,0,0,.42), 0 0 34px ${service.color}14`;
     }
 
-    pageMenuToggle.addEventListener("click", () => {
+    pageMenuToggle.addEventListener("click", (event) => {
+      event.stopPropagation();
       const isOpen = pageMenu.classList.toggle("open");
       pageMenuToggle.setAttribute("aria-expanded", isOpen ? "true" : "false");
     });
@@ -1290,50 +1273,63 @@
 
     const codeLines = [
       `<span class="tok-red">const</span> <span class="tok-silver">propertyProfile</span> = {`,
-      `  <span class="tok-silver">serviceArea</span>: <span class="tok-gold">"Jonesboro"</span>,`,
-      `  <span class="tok-silver">pressureLevel</span>: <span class="tok-red">"moderate"</span>,`,
-      `  <span class="tok-silver">season</span>: <span class="tok-gold">"spring"</span>`,
+      `  <span class="tok-silver">city</span>: <span class="tok-gold">"Jonesboro"</span>,`,
+      `  <span class="tok-silver">season</span>: <span class="tok-gold">"spring"</span>,`,
+      `  <span class="tok-silver">pressure</span>: <span class="tok-red">"moderate"</span>`,
       `};`,
       ``,
-      `<span class="tok-red">const</span> <span class="tok-silver">targetPests</span> = [<span class="tok-silver">"ants"</span>, <span class="tok-silver">"spiders"</span>, <span class="tok-silver">"earwigs"</span>, <span class="tok-silver">"crickets"</span>];`,
-      `<span class="tok-red">let</span> <span class="tok-silver">treatmentZones</span> = [<span class="tok-silver">"foundation"</span>, <span class="tok-silver">"entryPoints"</span>, <span class="tok-silver">"eaves"</span>];`,
-      `<span class="tok-blue">serviceData</span>.<span class="tok-green">forEach</span>((service, index) => {`,
+      `<span class="tok-red">let</span> <span class="tok-silver">targetPests</span> = [<span class="tok-silver">"ants"</span>, <span class="tok-silver">"spiders"</span>, <span class="tok-silver">"earwigs"</span>, <span class="tok-silver">"crickets"</span>];`,
+      `<span class="tok-red">let</span> <span class="tok-silver">perimeterZones</span> = [<span class="tok-silver">"foundation"</span>, <span class="tok-silver">"garageDoor"</span>, <span class="tok-silver">"rearFence"</span>, <span class="tok-silver">"weepHoles"</span>];`,
+      `<span class="tok-blue">serviceData</span>.<span class="tok-green">forEach</span>((service) => {`,
       `  <span class="tok-blue">serviceRail</span>.<span class="tok-green">addEventListener</span>(<span class="tok-gold">"click"</span>, () => {`,
       `    <span class="tok-silver">activeService</span> = <span class="tok-blue">service</span>.<span class="tok-silver">name</span>;`,
-      `    <span class="tok-silver">harborageZones</span> = <span class="tok-blue">inspect</span>(<span class="tok-gold">"mulchBeds"</span>, <span class="tok-gold">"rearFence"</span>, <span class="tok-gold">"utilityLine"</span>);`,
-      `    <span class="tok-silver">entryPointRisk</span> = <span class="tok-blue">check</span>(<span class="tok-gold">"garageSeal"</span>, <span class="tok-gold">"doorSweep"</span>, <span class="tok-gold">"weepHoles"</span>);`,
-      `    <span class="tok-blue">updatePanel</span>(<span class="tok-blue">service</span>.<span class="tok-gold">title</span>, <span class="tok-blue">service</span>.<span class="tok-silver">description</span>);`,
+      `    <span class="tok-silver">entryPointRisk</span> = <span class="tok-blue">inspect</span>(<span class="tok-gold">"doorSweep"</span>, <span class="tok-gold">"windowGap"</span>, <span class="tok-gold">"utilityLine"</span>);`,
+      `    <span class="tok-silver">harborageZones</span> = <span class="tok-blue">mapAreas</span>(<span class="tok-gold">"mulchBeds"</span>, <span class="tok-gold">"shedLine"</span>, <span class="tok-gold">"ACPad"</span>);`,
+      `    <span class="tok-blue">applyTreatment</span>(<span class="tok-blue">service</span>.<span class="tok-gold">title</span>);`,
       `  });`,
       `});`,
       ``,
       `<span class="tok-red">const</span> <span class="tok-silver">mosquitoPlan</span> = {`,
-      `  <span class="tok-silver">focus</span>: [<span class="tok-green">"shadedFoliage"</span>, <span class="tok-green">"standingWaterRisk"</span>, <span class="tok-green">"rearPatioHarborage"</span>],`,
+      `  <span class="tok-silver">focus</span>: [<span class="tok-green">"shadedFoliage"</span>, <span class="tok-green">"standingWaterRisk"</span>, <span class="tok-green">"rearPatio"</span>],`,
       `  <span class="tok-silver">interval</span>: <span class="tok-gold">"monthly"</span>,`,
       `  <span class="tok-silver">seasonWindow</span>: <span class="tok-gold">"April-September"</span>`,
       `};`,
       ``,
       `<span class="tok-red">const</span> <span class="tok-silver">rodentStations</span> = [<span class="tok-silver">"northWall"</span>, <span class="tok-silver">"garageCorner"</span>, <span class="tok-silver">"rearACUnit"</span>];`,
       `<span class="tok-blue">rodentStations</span>.<span class="tok-green">forEach</span>((station) => {`,
-      `  <span class="tok-blue">monitor</span>(station);`,
-      `  <span class="tok-blue">logActivity</span>(station, <span class="tok-gold">"weekly"</span>);`,
+      `  <span class="tok-blue">checkBait</span>(station);`,
+      `  <span class="tok-blue">logRodentActivity</span>(station, <span class="tok-gold">"weekly"</span>);`,
+      `  <span class="tok-blue">replaceIfLow</span>(station);`,
+      `});`,
+      ``,
+      `<span class="tok-red">const</span> <span class="tok-silver">roachProtocol</span> = {`,
+      `  <span class="tok-silver">inspectionPoints</span>: [<span class="tok-silver">"sinkBase"</span>, <span class="tok-silver">"dishwasherVoid"</span>, <span class="tok-silver">"stoveGap"</span>],`,
+      `  <span class="tok-silver">treatmentMode</span>: <span class="tok-gold">"baiting + crackAndCrevice"</span>,`,
+      `  <span class="tok-silver">followUp</span>: <span class="tok-gold">"required"</span>`,
+      `};`,
+      ``,
+      `<span class="tok-red">const</span> <span class="tok-silver">tickFleaZones</span> = [<span class="tok-silver">"petRun"</span>, <span class="tok-silver">"shadeLine"</span>, <span class="tok-silver">"underDeck"</span>, <span class="tok-silver">"fencePerimeter"</span>];`,
+      `<span class="tok-blue">tickFleaZones</span>.<span class="tok-green">forEach</span>((zone) => {`,
+      `  <span class="tok-blue">treatHotSpot</span>(zone);`,
+      `  <span class="tok-blue">markFollowUp</span>(zone);`,
       `});`,
       ``,
       `<span class="tok-red">const</span> <span class="tok-silver">weedPlan</span> = {`,
-      `  <span class="tok-silver">squareFeet</span>: <span class="tok-blue">measure</span>(<span class="tok-gold">"frontYard"</span>) + <span class="tok-blue">measure</span>(<span class="tok-gold">"rockBeds"</span>),`,
+      `  <span class="tok-silver">squareFeet</span>: <span class="tok-blue">measure</span>(<span class="tok-gold">"frontYard"</span>) + <span class="tok-blue">measure</span>(<span class="tok-gold">"rockBeds"</span>) + <span class="tok-blue">measure</span>(<span class="tok-gold">"driveEdge"</span>),`,
       `  <span class="tok-silver">pressureZones</span>: [<span class="tok-silver">"curbLine"</span>, <span class="tok-silver">"fenceEdge"</span>, <span class="tok-silver">"landscapeBorders"</span>],`,
       `  <span class="tok-silver">timing</span>: [<span class="tok-gold">"spring"</span>, <span class="tok-gold">"lateSummer"</span>]`,
       `};`,
       ``,
       `<span class="tok-red">if</span> (<span class="tok-silver">activityLevel</span> > <span class="tok-blue">threshold</span>) {`,
       `  <span class="tok-blue">scheduleReservice</span>(<span class="tok-gold">"focusedTreatment"</span>);`,
-      `  <span class="tok-blue">serviceNotes</span>.<span class="tok-green">push</span>(<span class="tok-gold">"treat rear fence line and utility penetrations"</span>);`,
+      `  <span class="tok-blue">serviceNotes</span>.<span class="tok-green">push</span>(<span class="tok-gold">"focus on rear fence line, garage threshold, and utility penetrations"</span>);`,
       `}`,
       ``,
-      `<span class="tok-blue">render</span>(<span class="tok-red">premiumServiceExperience</span>);`
+      `<span class="tok-blue">finalPass</span>(<span class="tok-gold">"yard"</span>, <span class="tok-gold">"foundation"</span>, <span class="tok-gold">"entryPoints"</span>);`
     ];
 
-    const prefilledCount = 14;
-    const maxVisibleLines = 28;
+    const prefilledCount = 20;
+    const maxVisibleLines = 36;
     let typedLines = codeLines.slice(0, prefilledCount);
     let sourceIndex = prefilledCount % codeLines.length;
     let charIndex = 0;
@@ -1407,26 +1403,26 @@
 
         if (charIndex >= rawText.length) {
           typingForward = false;
-          setTimeout(tickCode, rawText.length < 4 ? 100 : 320);
+          setTimeout(tickCode, rawText.length < 4 ? 60 : 180);
           return;
         }
 
-        setTimeout(tickCode, rawText.length < 4 ? 60 : 22);
+        setTimeout(tickCode, rawText.length < 4 ? 36 : 14);
       } else {
         typedLines.push(currentLine);
-        if (typedLines.length > 60) typedLines.shift();
+        if (typedLines.length > 80) typedLines.shift();
 
         sourceIndex = (sourceIndex + 1) % codeLines.length;
         charIndex = 0;
         typingForward = true;
 
         renderCodeStream(`<span class="code-cursor">|</span>`);
-        setTimeout(tickCode, 70);
+        setTimeout(tickCode, 40);
       }
     }
 
     renderCodeStream(`<span class="code-cursor">|</span>`);
-    setTimeout(tickCode, 260);
+    setTimeout(tickCode, 180);
   </script>
 </body>
 </html>
