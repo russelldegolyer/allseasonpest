@@ -9,7 +9,7 @@
   <title>About | All Season Pest Control</title>
   <meta
     name="description"
-    content="About page experiment."
+    content="About page spider web experiment."
   />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -20,10 +20,8 @@
       --text:#ffffff;
       --muted-soft:rgba(255,255,255,.56);
       --purple:#8b5cf6;
-      --active:#8b5cf6;
       --max:1200px;
       --glow:0 0 22px rgba(255,255,255,.12);
-      --grid-rgb:139,92,246;
       --shadow:0 18px 60px rgba(0,0,0,.58);
     }
 
@@ -120,55 +118,71 @@
       min-height:calc(100vh - 160px);
       border:1px solid rgba(255,255,255,.08);
       background:
-        radial-gradient(circle at 20% 18%, rgba(var(--grid-rgb), .11), transparent 24%),
-        radial-gradient(circle at 78% 82%, rgba(var(--grid-rgb), .09), transparent 28%),
-        linear-gradient(180deg, rgba(255,255,255,.015), rgba(255,255,255,.003)),
+        radial-gradient(circle at 18% 22%, rgba(139,92,246,.12), transparent 24%),
+        radial-gradient(circle at 82% 78%, rgba(139,92,246,.07), transparent 28%),
+        linear-gradient(180deg, rgba(255,255,255,.012), rgba(255,255,255,.003)),
         #000;
       box-shadow:var(--shadow);
       isolation:isolate;
-    }
-
-    .about-stage::before{
-      content:"";
-      position:absolute;
-      inset:-22%;
-      z-index:0;
-      pointer-events:none;
-      background-image:
-        linear-gradient(rgba(var(--grid-rgb), .34) 1.4px, transparent 1.4px),
-        linear-gradient(90deg, rgba(var(--grid-rgb), .34) 1.4px, transparent 1.4px);
-      background-size:40px 40px;
-      transform:rotate(13deg) scale(1.18);
-      animation:gridDrift 16s linear infinite;
-      opacity:.98;
-      filter:
-        drop-shadow(0 0 12px rgba(var(--grid-rgb), .18))
-        drop-shadow(0 0 26px rgba(var(--grid-rgb), .10));
     }
 
     .about-stage::after{
       content:"";
       position:absolute;
       inset:0;
-      z-index:1;
+      z-index:3;
       pointer-events:none;
       background:
-        linear-gradient(180deg, rgba(0,0,0,.22), rgba(0,0,0,.12)),
+        linear-gradient(180deg, rgba(0,0,0,.16), rgba(0,0,0,.10)),
         radial-gradient(circle at 50% 50%, transparent 0%, rgba(0,0,0,.08) 100%);
     }
 
-    @keyframes gridDrift{
+    .web-layer{
+      position:absolute;
+      inset:-10%;
+      width:120%;
+      height:120%;
+      pointer-events:none;
+      z-index:1;
+      opacity:.95;
+      filter:
+        drop-shadow(0 0 10px rgba(139,92,246,.28))
+        drop-shadow(0 0 24px rgba(139,92,246,.12));
+      animation:webDrift 20s linear infinite;
+      transform-origin:center;
+    }
+
+    .web-layer.back{
+      opacity:.34;
+      transform:scale(1.18) rotate(-8deg);
+      animation-duration:28s;
+      filter:
+        drop-shadow(0 0 14px rgba(139,92,246,.18))
+        drop-shadow(0 0 30px rgba(139,92,246,.08));
+    }
+
+    .web-layer.front{
+      transform:scale(1.02) rotate(4deg);
+    }
+
+    @keyframes webDrift{
       from{
-        transform:translate3d(-66px, 44px, 0) rotate(13deg) scale(1.18);
+        translate:-42px 30px;
       }
       to{
-        transform:translate3d(66px, -44px, 0) rotate(13deg) scale(1.18);
+        translate:42px -30px;
       }
+    }
+
+    .web-svg{
+      width:100%;
+      height:100%;
+      display:block;
     }
 
     .content{
       position:relative;
-      z-index:3;
+      z-index:4;
       min-height:calc(100vh - 160px);
       display:flex;
       align-items:flex-end;
@@ -188,6 +202,33 @@
       font-size:.94rem;
     }
 
+    .strand{
+      fill:none;
+      stroke:rgba(167,123,255,.78);
+      stroke-linecap:round;
+      stroke-linejoin:round;
+    }
+
+    .strand.thin{
+      stroke-width:1.2;
+      opacity:.7;
+    }
+
+    .strand.mid{
+      stroke-width:1.8;
+      opacity:.82;
+    }
+
+    .strand.bold{
+      stroke-width:2.4;
+      opacity:.95;
+    }
+
+    .strand.faint{
+      stroke-width:1;
+      opacity:.34;
+    }
+
     @media (max-width: 900px){
       .page-wrap{
         padding:98px 16px 28px;
@@ -204,8 +245,10 @@
         min-height:calc(100vh - 132px);
       }
 
-      .about-stage::before{
-        background-size:34px 34px;
+      .web-layer{
+        inset:-18%;
+        width:136%;
+        height:136%;
       }
 
       .content{
@@ -255,6 +298,72 @@
 
   <main class="page-wrap">
     <section class="about-stage">
+
+      <div class="web-layer back" aria-hidden="true">
+        <svg class="web-svg" viewBox="0 0 1600 1100" preserveAspectRatio="xMidYMid slice">
+          <g>
+            <path class="strand faint" d="M150 80 L760 510" />
+            <path class="strand faint" d="M300 30 L760 510" />
+            <path class="strand faint" d="M520 10 L760 510" />
+            <path class="strand faint" d="M760 0 L760 510" />
+            <path class="strand faint" d="M1010 10 L760 510" />
+            <path class="strand faint" d="M1280 40 L760 510" />
+            <path class="strand faint" d="M1470 120 L760 510" />
+
+            <path class="strand faint" d="M90 280 L760 510" />
+            <path class="strand faint" d="M40 520 L760 510" />
+            <path class="strand faint" d="M120 760 L760 510" />
+            <path class="strand faint" d="M330 970 L760 510" />
+            <path class="strand faint" d="M760 1080 L760 510" />
+            <path class="strand faint" d="M1170 980 L760 510" />
+            <path class="strand faint" d="M1440 800 L760 510" />
+            <path class="strand faint" d="M1560 560 L760 510" />
+
+            <path class="strand faint" d="M470 295 Q760 210 1055 295" />
+            <path class="strand faint" d="M330 405 Q760 295 1190 405" />
+            <path class="strand faint" d="M240 545 Q760 395 1295 545" />
+            <path class="strand faint" d="M290 710 Q760 525 1235 710" />
+            <path class="strand faint" d="M405 855 Q760 645 1110 855" />
+          </g>
+        </svg>
+      </div>
+
+      <div class="web-layer front" aria-hidden="true">
+        <svg class="web-svg" viewBox="0 0 1600 1100" preserveAspectRatio="xMidYMid slice">
+          <g>
+            <path class="strand mid" d="M180 70 L760 510" />
+            <path class="strand thin" d="M340 15 L760 510" />
+            <path class="strand mid" d="M560 0 L760 510" />
+            <path class="strand bold" d="M760 0 L760 510" />
+            <path class="strand mid" d="M980 0 L760 510" />
+            <path class="strand thin" d="M1215 35 L760 510" />
+            <path class="strand mid" d="M1445 125 L760 510" />
+
+            <path class="strand thin" d="M90 250 L760 510" />
+            <path class="strand bold" d="M0 510 L760 510" />
+            <path class="strand thin" d="M110 760 L760 510" />
+            <path class="strand mid" d="M330 1010 L760 510" />
+            <path class="strand bold" d="M760 1100 L760 510" />
+            <path class="strand mid" d="M1160 1000 L760 510" />
+            <path class="strand thin" d="M1450 785 L760 510" />
+            <path class="strand bold" d="M1600 525 L760 510" />
+
+            <path class="strand thin" d="M515 225 Q760 155 1005 225" />
+            <path class="strand mid" d="M420 305 Q760 210 1095 305" />
+            <path class="strand thin" d="M335 400 Q760 285 1180 400" />
+            <path class="strand bold" d="M255 515 Q760 360 1265 515" />
+            <path class="strand thin" d="M300 640 Q760 455 1215 640" />
+            <path class="strand mid" d="M375 770 Q760 560 1140 770" />
+            <path class="strand thin" d="M475 900 Q760 690 1045 900" />
+
+            <path class="strand faint" d="M210 115 Q480 250 610 475" />
+            <path class="strand faint" d="M1380 170 Q1125 290 905 480" />
+            <path class="strand faint" d="M230 865 Q465 730 650 555" />
+            <path class="strand faint" d="M1340 860 Q1110 720 870 550" />
+          </g>
+        </svg>
+      </div>
+
       <div class="content">
         <footer class="footer">
           <span>© 2026 All Season Pest Control</span>
