@@ -192,8 +192,8 @@
     }
 
     .mobile-nav-link.active{
-      border-color:rgba(255,208,92,.7);
-      box-shadow:0 0 18px rgba(255,208,92,.14);
+      border-color:rgba(255,92,92,.72);
+      box-shadow:0 0 18px rgba(255,92,92,.16);
       background:rgba(255,255,255,.05);
     }
 
@@ -632,10 +632,21 @@
       line-height:1.1;
       word-break:break-word;
       transition:font-size .22s ease;
+      min-height:2.25em;
     }
 
     .service-btn.active .name{
       font-size:1.08rem;
+    }
+
+    .service-btn .name.force-two{
+      line-height:1.06;
+    }
+
+    @media (max-width: 1024px){
+      .code-bg{
+        display:none;
+      }
     }
 
     @media (max-width: 768px){
@@ -823,21 +834,11 @@
 
       .service-btn .name{
         font-size:.78rem;
+        min-height:2.28em;
       }
 
       .service-btn.active .name{
         font-size:.92rem;
-      }
-
-      .code-stream{
-        font-size:.68rem;
-        line-height:1.42;
-        padding:16px 16px 12px;
-      }
-
-      .code-fade-left,
-      .code-fade-right{
-        width:52px;
       }
     }
 
@@ -850,10 +851,6 @@
         min-width:80px;
         padding:8px 12px;
         font-size:.78rem;
-      }
-
-      .code-bg{
-        opacity:.86;
       }
     }
   </style>
@@ -986,6 +983,7 @@
         icon: "bug",
         kicker: "Core Service",
         title: "General Pest Control",
+        buttonTitle: "General Pest Control",
         desc: "Built for common pest pressure around the home and designed to help keep activity down through consistent, dependable treatment.",
         sub: "This service typically targets pests such as ants, spiders, crickets, earwigs, silverfish, centipedes, millipedes, and other common invading insects. It does not cover bed bugs or termites.",
         box1Label: "Typical Coverage",
@@ -1000,6 +998,8 @@
         icon: "shield",
         kicker: "Monitoring + Control",
         title: "Rodent Control",
+        buttonTitle: "Rodent<br>Control",
+        forceTwo: true,
         desc: "Focused on reducing and monitoring rodent activity through strategic bait placement and ongoing follow-up where needed.",
         sub: "Service includes inspection of active areas, exterior bait stations, sticky traps, and recommendations to help reduce conditions that contribute to rodent pressure around the home.",
         box1Label: "Service Focus",
@@ -1014,6 +1014,7 @@
         icon: "paw",
         kicker: "Targeted Outdoor Service",
         title: "Tick & Flea Treatment",
+        buttonTitle: "Tick & Flea Treatment",
         desc: "Designed for properties dealing with biting pests in the yard, around pet areas, or in outdoor spaces where activity tends to build up.",
         sub: "These treatments focus on helping reduce active populations and improving control in the areas where ticks and fleas are most likely to be found.",
         box1Label: "Best For",
@@ -1028,6 +1029,8 @@
         icon: "mosquito",
         kicker: "Seasonal Treatment",
         title: "Mosquito Treatment",
+        buttonTitle: "Mosquito<br>Treatment",
+        forceTwo: true,
         desc: "Designed to help reduce mosquito pressure in the yard so you can enjoy outdoor areas more comfortably during the warmer months.",
         sub: "Treatment is typically focused on shaded foliage, harborage areas, and other outdoor zones where mosquitoes like to rest and build up.",
         box1Label: "Best For",
@@ -1042,6 +1045,7 @@
         icon: "target",
         kicker: "Specialized Treatment",
         title: "German Roach Treatment",
+        buttonTitle: "German Roach Treatment",
         desc: "Built for active infestations that need more aggressive and targeted attention than standard routine pest service.",
         sub: "Treatment may include detailed inspection, targeted crack-and-crevice applications, baiting, and follow-up service depending on the level of activity and conditions inside the home.",
         box1Label: "Best For",
@@ -1056,6 +1060,7 @@
         icon: "leaf",
         kicker: "Specialized Treatment",
         title: "Weed Control",
+        buttonTitle: "Weed Control",
         desc: "Designed to help reduce unwanted weed growth and improve the overall appearance of the property.",
         sub: "Treatment plans may vary based on the season, weed pressure, and overall condition of the turf, but the goal stays the same: cleaner, more controlled outdoor spaces.",
         box1Label: "Best For",
@@ -1117,12 +1122,14 @@
         button.dataset.index = index;
         button.style.setProperty("--active", service.color);
 
+        const nameClass = service.forceTwo ? "name force-two" : "name";
+
         button.innerHTML = `
           <div class="service-btn-top">
             <div class="service-icon">${iconMap[service.icon]}</div>
             <div>
               <span class="kicker">${service.kicker}</span>
-              <span class="name">${service.title}</span>
+              <span class="${nameClass}">${service.buttonTitle || service.title}</span>
             </div>
           </div>
         `;
@@ -1549,8 +1556,10 @@
       }
     }
 
-    renderCodeStream(`<span class="code-cursor">|</span>`);
-    setTimeout(tickCode, 180);
+    if (window.innerWidth > 1024) {
+      renderCodeStream(`<span class="code-cursor">|</span>`);
+      setTimeout(tickCode, 180);
+    }
   </script>
 </body>
 </html>
