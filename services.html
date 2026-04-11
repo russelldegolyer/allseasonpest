@@ -90,27 +90,129 @@
       pointer-events:none;
     }
 
+    .shell-top{
+      position:relative;
+      z-index:4;
+      display:flex;
+      justify-content:flex-end;
+      align-items:flex-start;
+      padding:18px 18px 6px;
+    }
+
+    .page-menu{
+      position:relative;
+      display:inline-block;
+    }
+
+    .page-menu-toggle{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap:10px;
+      padding:11px 18px;
+      border:1px solid rgba(255,42,42,.30);
+      border-radius:999px;
+      background:rgba(255,255,255,.03);
+      color:#fff;
+      font-weight:800;
+      font-size:.95rem;
+      letter-spacing:.02em;
+      cursor:pointer;
+      transition:border-color .18s ease, box-shadow .18s ease, transform .18s ease, background .18s ease;
+    }
+
+    .page-menu-toggle:hover{
+      border-color:rgba(255,42,42,.65);
+      transform:translateY(-1px);
+      box-shadow:0 0 20px rgba(255,42,42,.14);
+    }
+
+    .page-menu-toggle svg{
+      width:14px;
+      height:14px;
+      stroke:currentColor;
+      fill:none;
+      stroke-width:2.2;
+      stroke-linecap:round;
+      stroke-linejoin:round;
+      transition:transform .2s ease;
+    }
+
+    .page-menu.open .page-menu-toggle svg{
+      transform:rotate(180deg);
+    }
+
+    .page-menu-panel{
+      position:absolute;
+      top:calc(100% + 10px);
+      right:0;
+      min-width:240px;
+      padding:12px;
+      border:1px solid rgba(255,255,255,.10);
+      border-radius:18px;
+      background:rgba(9,11,16,.96);
+      backdrop-filter:blur(14px);
+      box-shadow:0 18px 50px rgba(0,0,0,.42);
+      opacity:0;
+      pointer-events:none;
+      transform:translateY(-8px);
+      transition:opacity .18s ease, transform .18s ease;
+    }
+
+    .page-menu.open .page-menu-panel{
+      opacity:1;
+      pointer-events:auto;
+      transform:translateY(0);
+    }
+
+    .page-menu-links{
+      display:flex;
+      flex-direction:column;
+      gap:8px;
+    }
+
+    .page-menu-links a{
+      display:flex;
+      align-items:center;
+      justify-content:flex-start;
+      padding:12px 14px;
+      border:1px solid rgba(255,255,255,.08);
+      border-radius:14px;
+      background:rgba(255,255,255,.03);
+      color:#fff;
+      font-weight:700;
+      font-size:.95rem;
+      letter-spacing:.01em;
+      transition:border-color .18s ease, background .18s ease, transform .18s ease;
+    }
+
+    .page-menu-links a:hover,
+    .page-menu-links a.active{
+      border-color:rgba(255,42,42,.52);
+      background:rgba(255,255,255,.05);
+      transform:translateY(-1px);
+    }
+
     .code-bg{
       position:absolute;
       inset:0;
       z-index:1;
-      padding:24px 28px;
       overflow:hidden;
       pointer-events:none;
       user-select:none;
-      mask-image: linear-gradient(to bottom, rgba(0,0,0,.95), rgba(0,0,0,.82) 58%, rgba(0,0,0,.35) 82%, transparent 100%);
-      -webkit-mask-image: linear-gradient(to bottom, rgba(0,0,0,.95), rgba(0,0,0,.82) 58%, rgba(0,0,0,.35) 82%, transparent 100%);
+      mask-image: linear-gradient(to bottom, rgba(0,0,0,.95), rgba(0,0,0,.88) 56%, rgba(0,0,0,.48) 82%, transparent 100%);
+      -webkit-mask-image: linear-gradient(to bottom, rgba(0,0,0,.95), rgba(0,0,0,.88) 56%, rgba(0,0,0,.48) 82%, transparent 100%);
     }
 
     .code-grid{
       position:absolute;
-      inset:-80px 0 0 0;
+      inset:-120px 0 0 0;
       background-image:
         linear-gradient(rgba(255,255,255,.025) 1px, transparent 1px),
         linear-gradient(90deg, rgba(255,255,255,.018) 1px, transparent 1px);
       background-size: 100% 38px, 38px 100%;
-      opacity:.16;
-      animation:gridDrift 14s linear infinite;
+      opacity:.14;
+      animation:gridDrift 20s linear infinite;
     }
 
     @keyframes gridDrift{
@@ -130,7 +232,7 @@
 
     .code-fade-left{
       left:0;
-      background:linear-gradient(90deg, rgba(8,10,15,.9), rgba(8,10,15,0));
+      background:linear-gradient(90deg, rgba(8,10,15,.90), rgba(8,10,15,0));
     }
 
     .code-fade-right{
@@ -145,37 +247,35 @@
       font-family:ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
       font-size:clamp(.83rem, .98vw, 1rem);
       line-height:1.65;
-      padding:24px 30px 30px;
+      padding:22px 30px 30px;
       color:rgba(232,238,255,.10);
       white-space:pre-wrap;
       word-break:break-word;
-      animation:codeDrift 18s linear infinite;
+      animation:codeDrift 26s linear infinite;
       will-change:transform;
     }
 
     @keyframes codeDrift{
       0%{ transform:translateY(0); }
-      50%{ transform:translateY(-18px); }
-      100%{ transform:translateY(-36px); }
+      100%{ transform:translateY(48px); }
     }
 
     .code-line{
       min-height:1.65em;
       opacity:.92;
-      transform:translateY(0);
     }
 
     .tok-green{ color:rgba(88,224,143,.30); }
     .tok-blue{ color:rgba(110,231,235,.28); }
-    .tok-gold{ color:rgba(255,208,92,.28); }
+    .tok-gold{ color:rgba(255,208,92,.30); }
     .tok-red{ color:rgba(255,92,92,.24); }
     .tok-silver{ color:rgba(221,221,221,.18); }
-    .tok-brown{ color:rgba(208,154,101,.22); }
+    .tok-brown{ color:rgba(208,154,101,.24); }
 
     .code-cursor{
       display:inline-block;
       width:.62ch;
-      color:rgba(255,255,255,.26);
+      color:rgba(255,255,255,.28);
       animation:blinkCursor .95s step-end infinite;
     }
 
@@ -184,103 +284,13 @@
       49%, 100% { opacity:0; }
     }
 
-    .selector-wrap{
+    .service-selector{
       position:relative;
       z-index:3;
-      padding:18px 18px 14px;
+      padding:2px 18px 10px;
       border-bottom:1px solid rgba(255,255,255,.08);
-      background:linear-gradient(180deg, rgba(5,7,11,.78), rgba(5,7,11,.54));
-      backdrop-filter:blur(10px);
-    }
-
-    .selector-head{
-      display:flex;
-      justify-content:flex-start;
-      align-items:center;
-      margin-bottom:12px;
-    }
-
-    .selector-toggle{
-      display:inline-flex;
-      align-items:center;
-      justify-content:center;
-      gap:10px;
-      padding:11px 18px;
-      border:1px solid rgba(255,42,42,.28);
-      border-radius:999px;
-      background:rgba(255,255,255,.03);
-      color:#fff;
-      font-weight:700;
-      font-size:.95rem;
-      letter-spacing:.02em;
-      cursor:pointer;
-      transition:border-color .18s ease, box-shadow .18s ease, transform .18s ease, background .18s ease;
-    }
-
-    .selector-toggle:hover{
-      border-color:rgba(255,42,42,.65);
-      transform:translateY(-1px);
-      box-shadow:0 0 20px rgba(255,42,42,.14);
-    }
-
-    .selector-toggle svg{
-      width:14px;
-      height:14px;
-      stroke:currentColor;
-      fill:none;
-      stroke-width:2.2;
-      stroke-linecap:round;
-      stroke-linejoin:round;
-      transition:transform .2s ease;
-    }
-
-    .selector-wrap.open .selector-toggle svg{
-      transform:rotate(180deg);
-    }
-
-    .selector-panel{
-      max-height:0;
-      overflow:hidden;
-      transition:max-height .28s ease;
-    }
-
-    .selector-wrap.open .selector-panel{
-      max-height:340px;
-    }
-
-    .menu-links{
-      display:flex;
-      gap:10px;
-      flex-wrap:wrap;
-      padding:0 4px 12px;
-    }
-
-    .menu-links a{
-      padding:10px 16px;
-      border:1px solid rgba(255,255,255,.10);
-      border-radius:999px;
-      background:rgba(255,255,255,.03);
-      color:#fff;
-      font-weight:700;
-      font-size:.9rem;
-      letter-spacing:.02em;
-      transition:border-color .18s ease, box-shadow .18s ease, transform .18s ease;
-    }
-
-    .menu-links a:hover,
-    .menu-links a.active{
-      border-color:rgba(255,42,42,.55);
-      transform:translateY(-1px);
-      box-shadow:0 0 16px rgba(255,42,42,.12);
-    }
-
-    .rail-label{
-      font-size:.70rem;
-      letter-spacing:.16em;
-      text-transform:uppercase;
-      color:rgba(255,255,255,.46);
-      font-weight:800;
-      padding:0 6px 8px;
+      background:linear-gradient(180deg, rgba(5,7,11,.42), rgba(5,7,11,.18));
+      backdrop-filter:blur(6px);
     }
 
     .service-rail{
@@ -629,36 +639,27 @@
         border-radius:22px;
       }
 
-      .selector-wrap{
-        padding:12px 10px 10px;
+      .shell-top{
+        padding:12px 10px 4px;
       }
 
-      .selector-head{
-        margin-bottom:10px;
-      }
-
-      .selector-toggle{
+      .page-menu-toggle{
         padding:9px 14px;
         font-size:.84rem;
       }
 
-      .selector-wrap.open .selector-panel{
-        max-height:300px;
+      .page-menu-panel{
+        min-width:200px;
+        padding:10px;
       }
 
-      .menu-links{
-        gap:8px;
-        padding:0 2px 10px;
+      .page-menu-links a{
+        padding:11px 12px;
+        font-size:.88rem;
       }
 
-      .menu-links a{
-        padding:9px 13px;
-        font-size:.82rem;
-      }
-
-      .rail-label{
-        font-size:.62rem;
-        padding:0 4px 8px;
+      .service-selector{
+        padding:0 10px 10px;
       }
 
       .service-rail{
@@ -825,14 +826,10 @@
         border-radius:12px;
       }
 
-      .code-bg{
-        padding:14px 16px 10px;
-      }
-
       .code-stream{
         font-size:.68rem;
         line-height:1.42;
-        padding:14px 16px 12px;
+        padding:16px 16px 12px;
       }
 
       .code-fade-left,
@@ -862,26 +859,27 @@
         <div class="code-fade-right"></div>
       </div>
 
-      <div class="selector-wrap open" id="selectorWrap">
-        <div class="selector-head">
-          <button class="selector-toggle" id="selectorToggle" type="button" aria-expanded="true">
-            Menu
+      <div class="shell-top">
+        <div class="page-menu" id="pageMenu">
+          <button class="page-menu-toggle" id="pageMenuToggle" type="button" aria-expanded="false">
+            Services
             <svg viewBox="0 0 24 24" aria-hidden="true">
               <path d="m6 9 6 6 6-6"></path>
             </svg>
           </button>
-        </div>
 
-        <div class="selector-panel" id="selectorPanel">
-          <div class="menu-links">
-            <a href="home.html">Home</a>
-            <a href="services.html" class="active">Services</a>
-            <a href="about.html">About</a>
+          <div class="page-menu-panel" id="pageMenuPanel">
+            <div class="page-menu-links">
+              <a href="home.html">Home</a>
+              <a href="services.html" class="active">Services</a>
+              <a href="about.html">About</a>
+            </div>
           </div>
-
-          <div class="rail-label">Choose a service</div>
-          <div class="service-rail" id="serviceRail"></div>
         </div>
+      </div>
+
+      <div class="service-selector">
+        <div class="service-rail" id="serviceRail"></div>
       </div>
 
       <div class="panel-wrap">
@@ -1056,8 +1054,8 @@
       }
     ];
 
-    const selectorWrap = document.getElementById("selectorWrap");
-    const selectorToggle = document.getElementById("selectorToggle");
+    const pageMenu = document.getElementById("pageMenu");
+    const pageMenuToggle = document.getElementById("pageMenuToggle");
     const serviceRail = document.getElementById("serviceRail");
     const focusCard = document.getElementById("focusCard");
     const focusBadge = document.getElementById("focusBadge");
@@ -1259,16 +1257,15 @@
       focusCard.style.boxShadow = `0 18px 60px rgba(0,0,0,.42), 0 0 34px ${service.color}14`;
     }
 
-    selectorToggle.addEventListener("click", () => {
-      const isOpen = selectorWrap.classList.toggle("open");
-      selectorToggle.setAttribute("aria-expanded", isOpen ? "true" : "false");
+    pageMenuToggle.addEventListener("click", () => {
+      const isOpen = pageMenu.classList.toggle("open");
+      pageMenuToggle.setAttribute("aria-expanded", isOpen ? "true" : "false");
+    });
 
-      if (isOpen) {
-        setTimeout(() => {
-          const middleButton = getMiddleSetButton(currentActiveId);
-          centerButton(middleButton, false);
-          updateRailClasses(middleButton);
-        }, 180);
+    document.addEventListener("click", (event) => {
+      if (!pageMenu.contains(event.target)) {
+        pageMenu.classList.remove("open");
+        pageMenuToggle.setAttribute("aria-expanded", "false");
       }
     });
 
@@ -1292,38 +1289,53 @@
     });
 
     const codeLines = [
+      `<span class="tok-red">const</span> <span class="tok-silver">propertyProfile</span> = {`,
+      `  <span class="tok-silver">serviceArea</span>: <span class="tok-gold">"Jonesboro"</span>,`,
+      `  <span class="tok-silver">pressureLevel</span>: <span class="tok-red">"moderate"</span>,`,
+      `  <span class="tok-silver">season</span>: <span class="tok-gold">"spring"</span>`,
+      `};`,
+      ``,
+      `<span class="tok-red">const</span> <span class="tok-silver">targetPests</span> = [<span class="tok-silver">"ants"</span>, <span class="tok-silver">"spiders"</span>, <span class="tok-silver">"earwigs"</span>, <span class="tok-silver">"crickets"</span>];`,
+      `<span class="tok-red">let</span> <span class="tok-silver">treatmentZones</span> = [<span class="tok-silver">"foundation"</span>, <span class="tok-silver">"entryPoints"</span>, <span class="tok-silver">"eaves"</span>];`,
       `<span class="tok-blue">serviceData</span>.<span class="tok-green">forEach</span>((service, index) => {`,
       `  <span class="tok-blue">serviceRail</span>.<span class="tok-green">addEventListener</span>(<span class="tok-gold">"click"</span>, () => {`,
       `    <span class="tok-silver">activeService</span> = <span class="tok-blue">service</span>.<span class="tok-silver">name</span>;`,
-      `    <span class="tok-silver">targetZones</span> = <span class="tok-blue">service</span>.<span class="tok-green">coverage</span>;`,
-      `    <span class="tok-silver">pressureLevel</span> = <span class="tok-blue">service</span>.<span class="tok-red">bestFor</span>;`,
+      `    <span class="tok-silver">harborageZones</span> = <span class="tok-blue">inspect</span>(<span class="tok-gold">"mulchBeds"</span>, <span class="tok-gold">"rearFence"</span>, <span class="tok-gold">"utilityLine"</span>);`,
+      `    <span class="tok-silver">entryPointRisk</span> = <span class="tok-blue">check</span>(<span class="tok-gold">"garageSeal"</span>, <span class="tok-gold">"doorSweep"</span>, <span class="tok-gold">"weepHoles"</span>);`,
       `    <span class="tok-blue">updatePanel</span>(<span class="tok-blue">service</span>.<span class="tok-gold">title</span>, <span class="tok-blue">service</span>.<span class="tok-silver">description</span>);`,
-      `    <span class="tok-blue">centerActiveService</span>(<span class="tok-blue">service</span>.<span class="tok-gold">id</span>);`,
       `  });`,
       `});`,
       ``,
-      `<span class="tok-red">const</span> <span class="tok-silver">generalPest</span> = {`,
-      `  <span class="tok-silver">type</span>: <span class="tok-gold">"core"</span>,`,
-      `  <span class="tok-silver">service</span>: <span class="tok-gold">"General Pest Control"</span>,`,
-      `  <span class="tok-silver">pests</span>: [<span class="tok-silver">ants</span>, <span class="tok-silver">spiders</span>, <span class="tok-silver">crickets</span>, <span class="tok-silver">earwigs</span>]`,
+      `<span class="tok-red">const</span> <span class="tok-silver">mosquitoPlan</span> = {`,
+      `  <span class="tok-silver">focus</span>: [<span class="tok-green">"shadedFoliage"</span>, <span class="tok-green">"standingWaterRisk"</span>, <span class="tok-green">"rearPatioHarborage"</span>],`,
+      `  <span class="tok-silver">interval</span>: <span class="tok-gold">"monthly"</span>,`,
+      `  <span class="tok-silver">seasonWindow</span>: <span class="tok-gold">"April-September"</span>`,
       `};`,
       ``,
-      `<span class="tok-red">const</span> <span class="tok-silver">mosquitoService</span> = {`,
-      `  <span class="tok-silver">type</span>: <span class="tok-gold">"seasonal"</span>,`,
-      `  <span class="tok-silver">target</span>: [<span class="tok-green">shadedFoliage</span>, <span class="tok-green">harborageAreas</span>, <span class="tok-green">outdoorZones</span>]`,
+      `<span class="tok-red">const</span> <span class="tok-silver">rodentStations</span> = [<span class="tok-silver">"northWall"</span>, <span class="tok-silver">"garageCorner"</span>, <span class="tok-silver">"rearACUnit"</span>];`,
+      `<span class="tok-blue">rodentStations</span>.<span class="tok-green">forEach</span>((station) => {`,
+      `  <span class="tok-blue">monitor</span>(station);`,
+      `  <span class="tok-blue">logActivity</span>(station, <span class="tok-gold">"weekly"</span>);`,
+      `});`,
+      ``,
+      `<span class="tok-red">const</span> <span class="tok-silver">weedPlan</span> = {`,
+      `  <span class="tok-silver">squareFeet</span>: <span class="tok-blue">measure</span>(<span class="tok-gold">"frontYard"</span>) + <span class="tok-blue">measure</span>(<span class="tok-gold">"rockBeds"</span>),`,
+      `  <span class="tok-silver">pressureZones</span>: [<span class="tok-silver">"curbLine"</span>, <span class="tok-silver">"fenceEdge"</span>, <span class="tok-silver">"landscapeBorders"</span>],`,
+      `  <span class="tok-silver">timing</span>: [<span class="tok-gold">"spring"</span>, <span class="tok-gold">"lateSummer"</span>]`,
       `};`,
       ``,
-      `<span class="tok-red">const</span> <span class="tok-silver">weedControl</span> = {`,
-      `  <span class="tok-silver">type</span>: <span class="tok-gold">"specialized"</span>,`,
-      `  <span class="tok-silver">focus</span>: [<span class="tok-silver">edges</span>, <span class="tok-silver">rocks</span>, <span class="tok-silver">yardAppearance</span>]`,
-      `};`,
+      `<span class="tok-red">if</span> (<span class="tok-silver">activityLevel</span> > <span class="tok-blue">threshold</span>) {`,
+      `  <span class="tok-blue">scheduleReservice</span>(<span class="tok-gold">"focusedTreatment"</span>);`,
+      `  <span class="tok-blue">serviceNotes</span>.<span class="tok-green">push</span>(<span class="tok-gold">"treat rear fence line and utility penetrations"</span>);`,
+      `}`,
       ``,
       `<span class="tok-blue">render</span>(<span class="tok-red">premiumServiceExperience</span>);`
     ];
 
-    const maxVisibleLines = 18;
-    let typedLines = new Array(maxVisibleLines).fill("");
-    let sourceIndex = 0;
+    const prefilledCount = 14;
+    const maxVisibleLines = 28;
+    let typedLines = codeLines.slice(0, prefilledCount);
+    let sourceIndex = prefilledCount % codeLines.length;
     let charIndex = 0;
     let typingForward = true;
 
@@ -1376,10 +1388,10 @@
 
     function renderCodeStream(activeLineHTML = "") {
       const lines = [...typedLines];
-      lines.push(activeLineHTML);
+      if (activeLineHTML) lines.push(activeLineHTML);
 
       codeStream.innerHTML = lines
-        .filter(line => line !== "")
+        .slice(-maxVisibleLines)
         .map(line => `<div class="code-line">${line}</div>`)
         .join("");
     }
@@ -1395,21 +1407,21 @@
 
         if (charIndex >= rawText.length) {
           typingForward = false;
-          setTimeout(tickCode, rawText.length < 4 ? 120 : 360);
+          setTimeout(tickCode, rawText.length < 4 ? 100 : 320);
           return;
         }
 
-        setTimeout(tickCode, rawText.length < 4 ? 70 : 24);
+        setTimeout(tickCode, rawText.length < 4 ? 60 : 22);
       } else {
         typedLines.push(currentLine);
-        if (typedLines.length > maxVisibleLines) typedLines.shift();
+        if (typedLines.length > 60) typedLines.shift();
 
         sourceIndex = (sourceIndex + 1) % codeLines.length;
         charIndex = 0;
         typingForward = true;
 
         renderCodeStream(`<span class="code-cursor">|</span>`);
-        setTimeout(tickCode, 90);
+        setTimeout(tickCode, 70);
       }
     }
 
