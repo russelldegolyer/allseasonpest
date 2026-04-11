@@ -299,6 +299,7 @@
       scroll-behavior:smooth;
       justify-content:flex-start;
       align-items:center;
+      scroll-snap-type:x mandatory;
     }
 
     .service-rail::-webkit-scrollbar{
@@ -324,6 +325,7 @@
         padding .22s ease;
       transform:scale(.88);
       opacity:.60;
+      scroll-snap-align:center;
     }
 
     .service-btn.near-active{
@@ -650,6 +652,7 @@
       .service-rail{
         gap:8px;
         padding:10px 16px 10px;
+        scroll-snap-type:x mandatory;
       }
 
       .service-btn{
@@ -658,6 +661,7 @@
         padding:10px;
         transform:scale(.86);
         opacity:.58;
+        scroll-snap-align:center;
       }
 
       .service-btn.near-active{
@@ -1092,7 +1096,11 @@
           </div>
         `;
 
-        button.addEventListener("click", () => setActiveService(service.id, true, button));
+        button.addEventListener("click", () => {
+          if (window.innerWidth <= 768) return;
+          setActiveService(service.id, true, button);
+        });
+
         serviceRail.appendChild(button);
       });
     }
@@ -1259,16 +1267,56 @@
       normalizeRailPosition();
     });
 
-    serviceRail.addEventListener("scroll", () => {
-      const activeCandidates = getCenterCandidateButtons(currentActiveId);
-      if (activeCandidates.length) {
-        updateRailClasses(activeCandidates[0].button);
+    let railScrollRAF = null;
+    let lastSyncedId = currentActiveId;
+
+    function syncActiveFromScroll() {
+      const allButtons = [...document.querySelectorAll(".service-btn")];
+      if (!allButtons.length) return;
+
+      const railRect = serviceRail.getBoundingClientRect();
+      const railCenter = railRect.left + railRect.width / 2;
+
+      let closestButton = null;
+      let closestDistance = Infinity;
+
+      allButtons.forEach((button) => {
+        const rect = button.getBoundingClientRect();
+        const center = rect.left + rect.width / 2;
+        const distance = Math.abs(center - railCenter);
+
+        if (distance < closestDistance) {
+          closestDistance = distance;
+          closestButton = button;
+        }
+      });
+
+      if (!closestButton) return;
+
+      updateRailClasses(closestButton);
+
+      if (window.innerWidth <= 768) {
+        const newId = closestButton.dataset.id;
+
+        if (newId !== lastSyncedId) {
+          lastSyncedId = newId;
+          setActiveService(newId, false, closestButton);
+        }
       }
+    }
+
+    serviceRail.addEventListener("scroll", () => {
+      if (railScrollRAF) cancelAnimationFrame(railScrollRAF);
+
+      railScrollRAF = requestAnimationFrame(() => {
+        syncActiveFromScroll();
+      });
     }, { passive: true });
 
     window.addEventListener("resize", () => {
       setActiveService(currentActiveId, false);
       normalizeRailPosition();
+      lastSyncedId = currentActiveId;
     });
 
     const codeLines = [
