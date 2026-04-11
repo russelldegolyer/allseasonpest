@@ -29,7 +29,6 @@
       --glow:0 0 22px rgba(255, 42, 42, 0.22);
       --grid-rgb:255,208,92;
       --parallaxY:0px;
-      --gridShift:0px;
     }
 
     *{
@@ -45,7 +44,7 @@
 
     body{
       background:
-        radial-gradient(circle at top, rgba(var(--grid-rgb), .08), transparent 28%),
+        radial-gradient(circle at top, rgba(var(--grid-rgb), .09), transparent 28%),
         linear-gradient(180deg, #030303 0%, #000000 100%);
       color:var(--text);
       font-family:Inter, Arial, Helvetica, sans-serif;
@@ -136,9 +135,9 @@
       position:absolute;
       inset:0;
       background:
-        radial-gradient(circle at 18% 14%, rgba(var(--grid-rgb), .08), transparent 22%),
-        radial-gradient(circle at 82% 20%, rgba(var(--grid-rgb), .04), transparent 24%),
-        radial-gradient(circle at 50% 100%, rgba(var(--grid-rgb), .08), transparent 34%);
+        radial-gradient(circle at 18% 14%, rgba(var(--grid-rgb), .10), transparent 22%),
+        radial-gradient(circle at 82% 20%, rgba(var(--grid-rgb), .05), transparent 24%),
+        radial-gradient(circle at 50% 100%, rgba(var(--grid-rgb), .10), transparent 34%);
       pointer-events:none;
       z-index:1;
     }
@@ -161,19 +160,21 @@
 
     .grid-bg::before{
       background-image:
-        linear-gradient(rgba(var(--grid-rgb), .11) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(var(--grid-rgb), .11) 1px, transparent 1px);
+        linear-gradient(rgba(var(--grid-rgb), .18) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(var(--grid-rgb), .18) 1px, transparent 1px);
       background-size:46px 46px;
-      transform:translate3d(var(--gridShift), calc(var(--gridShift) * .65), 0) rotate(-8deg) scale(1.08);
-      opacity:.38;
-      animation:gridDrift 20s linear infinite;
-      filter:drop-shadow(0 0 12px rgba(var(--grid-rgb), .08));
+      transform:translate3d(0, 0, 0) rotate(-8deg) scale(1.08);
+      opacity:.62;
+      animation:gridDrift 18s linear infinite;
+      filter:
+        drop-shadow(0 0 12px rgba(var(--grid-rgb), .14))
+        drop-shadow(0 0 26px rgba(var(--grid-rgb), .08));
     }
 
     .grid-bg::after{
       background:
-        radial-gradient(circle at center, rgba(var(--grid-rgb), .14), transparent 58%);
-      opacity:.18;
+        radial-gradient(circle at center, rgba(var(--grid-rgb), .18), transparent 58%);
+      opacity:.22;
       filter:blur(30px);
       transform:scale(1.08);
     }
@@ -527,7 +528,7 @@
       }
 
       .grid-bg::before{
-        opacity:.28;
+        opacity:.52;
       }
     }
 
@@ -985,7 +986,7 @@
         button.addEventListener("click", () => {
           if (suppressTapAfterSwipe || isAnimatingSwipe) return;
           triggerHaptic(12);
-          setActiveService(service.id, true, button);
+          goToServiceById(service.id);
         });
 
         serviceRail.appendChild(button);
@@ -994,23 +995,6 @@
 
     function getButtonsById(id) {
       return [...document.querySelectorAll(`.service-btn[data-id="${id}"]`)];
-    }
-
-    function getCenterCandidateButtons(id) {
-      const buttons = getButtonsById(id);
-      const railRect = serviceRail.getBoundingClientRect();
-      const railCenter = railRect.left + railRect.width / 2;
-
-      return buttons
-        .map((button) => {
-          const rect = button.getBoundingClientRect();
-          const center = rect.left + rect.width / 2;
-          return {
-            button,
-            distance: Math.abs(center - railCenter)
-          };
-        })
-        .sort((a, b) => a.distance - b.distance);
     }
 
     function getMiddleSetButton(id) {
@@ -1068,39 +1052,13 @@
       rootStyle.setProperty("--grid-rgb", service.rgb);
     }
 
-    function setActiveService(id, shouldCenter = false, clickedButton = null) {
-      const service = baseServices.find(item => item.id === id);
-      if (!service) return;
-
-      currentActiveId = id;
+    function updateServiceContent(service) {
+      currentActiveId = service.id;
       setThemeColor(service);
 
       document.querySelectorAll(".service-btn").forEach(btn => {
-        btn.classList.toggle("active", btn.dataset.id === id);
+        btn.classList.toggle("active", btn.dataset.id === service.id);
       });
-
-      let centerTarget = clickedButton;
-
-      if (!centerTarget) {
-        const candidates = getCenterCandidateButtons(id);
-        centerTarget = candidates.length ? candidates[0].button : null;
-      }
-
-      if (shouldCenter && centerTarget) {
-        centerButton(centerTarget, true);
-        updateRailClasses(centerTarget);
-
-        setTimeout(() => {
-          const middleButton = getMiddleSetButton(id);
-          if (middleButton) {
-            centerButton(middleButton, false);
-            updateRailClasses(middleButton);
-          }
-        }, 260);
-      } else {
-        const middleButton = getMiddleSetButton(id);
-        updateRailClasses(middleButton || centerTarget);
-      }
 
       focusBadge.innerHTML = iconMap[service.icon];
       focusBadge.style.color = service.color;
@@ -1132,20 +1090,28 @@
       const total = baseServices.length;
       const wrappedIndex = (index + total) % total;
       const nextService = baseServices[wrappedIndex];
-      const targetButton = getMiddleSetButton(nextService.id);
+      const middleButton = getMiddleSetButton(nextService.id);
 
-      if (!targetButton) return;
+      if (!middleButton) return;
 
       isAnimatingSwipe = true;
-      setActiveService(nextService.id, false, targetButton);
-      centerButton(targetButton, true);
+      updateServiceContent(nextService);
+
+      centerButton(middleButton, true);
+      updateRailClasses(middleButton);
 
       setTimeout(() => {
-        const middleButton = getMiddleSetButton(nextService.id);
-        centerButton(middleButton, false);
-        updateRailClasses(middleButton);
+        const snapButton = getMiddleSetButton(nextService.id);
+        centerButton(snapButton, false);
+        updateRailClasses(snapButton);
         isAnimatingSwipe = false;
       }, 260);
+    }
+
+    function goToServiceById(id) {
+      const index = getServiceIndexById(id);
+      if (index === -1) return;
+      goToServiceIndex(index);
     }
 
     function stepService(direction) {
@@ -1177,7 +1143,7 @@
     }
 
     renderButtons();
-    setActiveService("general", false);
+    updateServiceContent(baseServices[0]);
 
     requestAnimationFrame(() => {
       normalizeRailPosition();
@@ -1250,7 +1216,7 @@
     }, { passive: true });
 
     window.addEventListener("resize", () => {
-      setActiveService(currentActiveId, false);
+      updateServiceContent(baseServices[getServiceIndexById(currentActiveId)] || baseServices[0]);
       normalizeRailPosition();
       isAnimatingSwipe = false;
       suppressTapAfterSwipe = false;
