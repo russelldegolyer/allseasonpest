@@ -19,7 +19,7 @@
   <style>
     :root{
       --text:#ffffff;
-      --muted:rgba(255,255,255,.80);
+      --muted:rgba(255,255,255,.82);
       --muted-soft:rgba(255,255,255,.54);
       --shadow:0 18px 60px rgba(0,0,0,.58);
 
@@ -48,7 +48,7 @@
 
     body{
       background:
-        radial-gradient(circle at top, rgba(var(--grid-rgb), .045), transparent 28%),
+        radial-gradient(circle at top, rgba(255,255,255,.015), transparent 30%),
         linear-gradient(180deg, #000000 0%, #000000 100%);
       background-color:#000;
       color:var(--text);
@@ -129,9 +129,7 @@
       width:100%;
       border-radius:28px;
       border:1px solid rgba(255,255,255,.08);
-      background:
-        linear-gradient(180deg, rgba(255,255,255,.004), rgba(255,255,255,.001)),
-        rgba(0,0,0,.995);
+      background:#000;
       box-shadow:var(--shadow);
       overflow:hidden;
       isolation:isolate;
@@ -142,57 +140,10 @@
       position:absolute;
       inset:0;
       background:
-        radial-gradient(circle at 14% 18%, rgba(var(--grid-rgb), .03), transparent 22%),
-        radial-gradient(circle at 82% 14%, rgba(var(--grid-rgb), .02), transparent 24%),
-        radial-gradient(circle at 54% 100%, rgba(var(--grid-rgb), .03), transparent 34%);
+        radial-gradient(circle at 12% 10%, rgba(255,255,255,.02), transparent 22%),
+        radial-gradient(circle at 88% 18%, rgba(255,255,255,.015), transparent 22%);
       pointer-events:none;
       z-index:1;
-    }
-
-    .grid-bg{
-      position:absolute;
-      inset:-12%;
-      z-index:0;
-      pointer-events:none;
-      transform:translate3d(0, var(--parallaxY), 0) scale(1.05);
-      will-change:transform;
-    }
-
-    .grid-bg::before,
-    .grid-bg::after{
-      content:"";
-      position:absolute;
-      inset:0;
-    }
-
-    .grid-bg::before{
-      background-image:
-        linear-gradient(rgba(var(--grid-rgb), .15) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(var(--grid-rgb), .15) 1px, transparent 1px);
-      background-size:48px 48px;
-      transform:translate3d(0, 0, 0) rotate(9deg) scale(1.08);
-      opacity:.50;
-      animation:gridDriftAlt 10s linear infinite;
-      filter:
-        drop-shadow(0 0 10px rgba(var(--grid-rgb), .08))
-        drop-shadow(0 0 18px rgba(var(--grid-rgb), .04));
-    }
-
-    .grid-bg::after{
-      background:
-        radial-gradient(circle at center, rgba(var(--grid-rgb), .055), transparent 58%);
-      opacity:.10;
-      filter:blur(30px);
-      transform:scale(1.08);
-    }
-
-    @keyframes gridDriftAlt{
-      from{
-        transform:translate3d(26px, -18px, 0) rotate(9deg) scale(1.08);
-      }
-      to{
-        transform:translate3d(-26px, 18px, 0) rotate(9deg) scale(1.08);
-      }
     }
 
     .grid-vignette-left,
@@ -224,28 +175,82 @@
       gap:20px;
     }
 
-    .hero-card{
+    .panel-grid{
+      position:absolute;
+      inset:-12%;
+      z-index:0;
+      pointer-events:none;
+      transform:translate3d(0, var(--parallaxY), 0) scale(1.05);
+      will-change:transform;
+    }
+
+    .panel-grid::before,
+    .panel-grid::after{
+      content:"";
+      position:absolute;
+      inset:0;
+    }
+
+    .panel-grid::before{
+      background-image:
+        linear-gradient(rgba(var(--grid-rgb), .26) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(var(--grid-rgb), .26) 1px, transparent 1px);
+      background-size:44px 44px;
+      transform:translate3d(0,0,0) rotate(13deg) scale(1.08);
+      opacity:.88;
+      animation:gridDriftAlt 8.5s linear infinite;
+      filter:
+        drop-shadow(0 0 10px rgba(var(--grid-rgb), .13))
+        drop-shadow(0 0 22px rgba(var(--grid-rgb), .08));
+    }
+
+    .panel-grid::after{
+      background:
+        radial-gradient(circle at 18% 18%, rgba(var(--grid-rgb), .14), transparent 24%),
+        radial-gradient(circle at 82% 78%, rgba(var(--grid-rgb), .11), transparent 28%),
+        radial-gradient(circle at center, rgba(var(--grid-rgb), .08), transparent 56%);
+      opacity:.9;
+      filter:blur(16px);
+      transform:scale(1.08);
+    }
+
+    @keyframes gridDriftAlt{
+      from{
+        transform:translate3d(24px, -18px, 0) rotate(13deg) scale(1.08);
+      }
+      to{
+        transform:translate3d(-24px, 18px, 0) rotate(13deg) scale(1.08);
+      }
+    }
+
+    .hero-card,
+    .founder-card,
+    .cta-panel,
+    .logo-panel{
       position:relative;
+      overflow:hidden;
+      isolation:isolate;
+    }
+
+    .hero-card{
       border-radius:28px;
       border:1px solid rgba(255,255,255,.085);
       background:
-        linear-gradient(180deg, rgba(255,255,255,.006), rgba(255,255,255,.001)),
+        linear-gradient(180deg, rgba(255,255,255,.012), rgba(255,255,255,.003)),
         rgba(0,0,0,.975);
       backdrop-filter:blur(4px);
       box-shadow:0 18px 60px rgba(0,0,0,.62);
-      overflow:hidden;
       padding:34px 30px 28px;
     }
 
-    .hero-card::before{
+    .hero-card::after{
       content:"";
       position:absolute;
       inset:0;
       background:
-        radial-gradient(circle at 18% 20%, rgba(var(--grid-rgb), .08), transparent 22%),
-        radial-gradient(circle at 82% 82%, rgba(var(--grid-rgb), .05), transparent 28%);
+        linear-gradient(180deg, rgba(0,0,0,.26), rgba(0,0,0,.16));
+      z-index:1;
       pointer-events:none;
-      z-index:0;
     }
 
     .hero-inner{
@@ -292,27 +297,21 @@
       border:1px solid rgba(255,255,255,.07);
       border-radius:24px;
       background:
-        linear-gradient(180deg, rgba(255,255,255,.01), rgba(255,255,255,.002)),
-        rgba(0,0,0,.9);
+        linear-gradient(180deg, rgba(255,255,255,.015), rgba(255,255,255,.003)),
+        rgba(0,0,0,.92);
       min-height:260px;
       display:flex;
       align-items:center;
       justify-content:center;
       padding:24px;
-      position:relative;
-      overflow:hidden;
     }
 
-    .logo-panel::before{
+    .logo-panel::after{
       content:"";
       position:absolute;
-      inset:-20%;
-      background-image:
-        linear-gradient(rgba(255,255,255,.045) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(255,255,255,.045) 1px, transparent 1px);
-      background-size:34px 34px;
-      transform:rotate(12deg) scale(1.08);
-      opacity:.16;
+      inset:0;
+      background:linear-gradient(180deg, rgba(0,0,0,.20), rgba(0,0,0,.12));
+      z-index:1;
       pointer-events:none;
     }
 
@@ -332,16 +331,23 @@
     }
 
     .founder-card{
-      position:relative;
       border-radius:24px;
       border:1px solid rgba(255,255,255,.08);
       background:
-        linear-gradient(180deg, rgba(255,255,255,.006), rgba(255,255,255,.001)),
+        linear-gradient(180deg, rgba(255,255,255,.012), rgba(255,255,255,.003)),
         rgba(0,0,0,.97);
       box-shadow:0 18px 50px rgba(0,0,0,.46);
-      overflow:hidden;
       min-height:100%;
       transition:border-color .18s ease, transform .18s ease, box-shadow .18s ease;
+    }
+
+    .founder-card::after{
+      content:"";
+      position:absolute;
+      inset:0;
+      background:linear-gradient(180deg, rgba(0,0,0,.18), rgba(0,0,0,.10));
+      z-index:1;
+      pointer-events:none;
     }
 
     .founder-card:hover{
@@ -360,11 +366,11 @@
       transform:translate(-50%, -50%);
       opacity:0;
       transition:opacity .18s ease;
-      z-index:1;
+      z-index:2;
       background:radial-gradient(
         circle,
-        color-mix(in srgb, var(--active) 26%, transparent) 0%,
-        color-mix(in srgb, var(--active) 12%, transparent) 34%,
+        color-mix(in srgb, var(--active) 28%, transparent) 0%,
+        color-mix(in srgb, var(--active) 13%, transparent) 34%,
         transparent 72%
       );
       filter:blur(9px);
@@ -372,7 +378,7 @@
 
     .founder-inner{
       position:relative;
-      z-index:2;
+      z-index:3;
       padding:26px 24px 24px;
     }
 
@@ -413,12 +419,23 @@
       border-radius:22px;
       border:1px solid rgba(255,255,255,.08);
       background:
-        linear-gradient(180deg, rgba(255,255,255,.004), rgba(255,255,255,.001)),
+        linear-gradient(180deg, rgba(255,255,255,.01), rgba(255,255,255,.003)),
         rgba(0,0,0,.97);
       padding:20px;
     }
 
+    .cta-panel::after{
+      content:"";
+      position:absolute;
+      inset:0;
+      background:linear-gradient(180deg, rgba(0,0,0,.18), rgba(0,0,0,.12));
+      z-index:1;
+      pointer-events:none;
+    }
+
     .cta-row{
+      position:relative;
+      z-index:2;
       display:grid;
       grid-template-columns:repeat(3, minmax(0,1fr));
       gap:12px;
@@ -430,10 +447,10 @@
       justify-content:center;
       min-height:58px;
       border-radius:16px;
-      border:1px solid rgba(255,255,255,.09);
+      border:1px solid rgba(255,255,255,.12);
       background:
-        linear-gradient(180deg, rgba(255,255,255,.01), rgba(255,255,255,.002)),
-        rgba(0,0,0,.95);
+        linear-gradient(180deg, rgba(255,255,255,.014), rgba(255,255,255,.003)),
+        rgba(0,0,0,.86);
       color:#fff;
       font-family:"Oswald", Arial, sans-serif;
       font-size:.96rem;
@@ -467,13 +484,9 @@
     }
 
     @media (max-width: 1024px){
-      .grid-bg{
+      .panel-grid{
         inset:-8%;
         transform:translate3d(0, 0, 0) scale(1.04);
-      }
-
-      .grid-bg::before{
-        opacity:.46;
       }
 
       .cursor-glow{
@@ -502,14 +515,6 @@
         border-radius:22px;
       }
 
-      .showcase::before{
-        display:none;
-      }
-
-      .grid-bg{
-        display:none;
-      }
-
       .grid-vignette-left,
       .grid-vignette-right{
         display:none;
@@ -536,9 +541,6 @@
       .hero-card{
         border-radius:20px;
         padding:20px 16px 16px;
-        background:
-          linear-gradient(180deg, rgba(255,255,255,.01), rgba(255,255,255,.002)),
-          rgba(0,0,0,.985);
       }
 
       .hero-title{
@@ -605,6 +607,15 @@
       .footer-inner{
         font-size:.88rem;
       }
+
+      .panel-grid::before{
+        background-size:38px 38px;
+        opacity:.82;
+      }
+
+      .panel-grid::after{
+        opacity:.95;
+      }
     }
 
     @media (max-width: 430px){
@@ -644,12 +655,12 @@
 
   <main class="page-wrap">
     <section class="showcase">
-      <div class="grid-bg" id="gridBg" aria-hidden="true"></div>
       <div class="grid-vignette-left" aria-hidden="true"></div>
       <div class="grid-vignette-right" aria-hidden="true"></div>
 
       <div class="section-stack">
         <section class="hero-card">
+          <div class="panel-grid" aria-hidden="true"></div>
           <div class="hero-inner">
             <div class="hero-copy">
               <div class="hero-kicker">About All Season</div>
@@ -660,6 +671,7 @@
             </div>
 
             <div class="logo-panel">
+              <div class="panel-grid" aria-hidden="true"></div>
               <img src="logo.jpg" alt="All Season Pest Control banner logo" />
             </div>
           </div>
@@ -667,6 +679,7 @@
 
         <section class="founders-grid">
           <article class="founder-card glow-card">
+            <div class="panel-grid" aria-hidden="true"></div>
             <div class="cursor-glow"></div>
             <div class="founder-inner">
               <div class="founder-label">Founder</div>
@@ -681,6 +694,7 @@
           </article>
 
           <article class="founder-card glow-card">
+            <div class="panel-grid" aria-hidden="true"></div>
             <div class="cursor-glow"></div>
             <div class="founder-inner">
               <div class="founder-label">Founder</div>
@@ -696,6 +710,7 @@
         </section>
 
         <section class="cta-panel">
+          <div class="panel-grid" aria-hidden="true"></div>
           <div class="cta-row">
             <a href="tel:8709197114">Call</a>
             <a href="sms:8709197114">Text</a>
@@ -725,7 +740,7 @@
         return;
       }
 
-      const y = Math.min(window.scrollY * 0.1, 38);
+      const y = Math.min(window.scrollY * 0.1, 34);
       rootStyle.setProperty("--parallaxY", `${y}px`);
     }
 
