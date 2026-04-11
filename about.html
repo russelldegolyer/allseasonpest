@@ -14,17 +14,18 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;600;700&family=Sora:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
   <style>
     :root{
       --text:#ffffff;
-      --muted:rgba(255,255,255,.80);
-      --muted-soft:rgba(255,255,255,.54);
-      --shadow:0 18px 60px rgba(0,0,0,.58);
+      --muted:rgba(255,255,255,.84);
+      --muted-soft:rgba(255,255,255,.56);
       --purple:#8b5cf6;
       --active:#8b5cf6;
       --max:1200px;
       --glow:0 0 22px rgba(255,255,255,.12);
       --grid-rgb:139,92,246;
+      --shadow:0 18px 60px rgba(0,0,0,.58);
     }
 
     *{
@@ -40,10 +41,7 @@
     }
 
     body{
-      background:
-        radial-gradient(circle at top, rgba(var(--grid-rgb), .05), transparent 28%),
-        linear-gradient(180deg, #000000 0%, #000000 100%);
-      background-color:#000;
+      background:#000;
       color:var(--text);
       font-family:"Sora", Inter, Arial, Helvetica, sans-serif;
       min-height:100vh;
@@ -69,7 +67,7 @@
       width:100%;
       z-index:1000;
       backdrop-filter:blur(14px);
-      background:rgba(0, 0, 0, 0.86);
+      background:rgba(0,0,0,.86);
       border-bottom:1px solid rgba(255,255,255,.24);
     }
 
@@ -98,9 +96,9 @@
       font-family:"Oswald", Arial, sans-serif;
       font-weight:600;
       font-size:0.98rem;
-      letter-spacing:0.04em;
+      letter-spacing:.04em;
       text-transform:uppercase;
-      transition:0.2s ease;
+      transition:.2s ease;
     }
 
     .nav a:hover,
@@ -113,96 +111,51 @@
     .page-wrap{
       max-width:1240px;
       margin:0 auto;
-      padding:104px 20px 64px;
-      overflow-x:hidden;
+      padding:104px 20px 40px;
     }
 
-    .showcase{
+    .about-stage{
       position:relative;
-      width:100%;
+      overflow:hidden;
       border-radius:28px;
+      min-height:calc(100vh - 160px);
       border:1px solid rgba(255,255,255,.08);
       background:
-        linear-gradient(180deg, rgba(255,255,255,.004), rgba(255,255,255,.001)),
-        rgba(0,0,0,.995);
+        radial-gradient(circle at 20% 18%, rgba(var(--grid-rgb), .11), transparent 24%),
+        radial-gradient(circle at 78% 82%, rgba(var(--grid-rgb), .09), transparent 28%),
+        linear-gradient(180deg, rgba(255,255,255,.015), rgba(255,255,255,.003)),
+        #000;
       box-shadow:var(--shadow);
-      overflow:hidden;
       isolation:isolate;
     }
 
-    .showcase::before{
+    .about-stage::before{
       content:"";
       position:absolute;
-      inset:0;
-      background:
-        radial-gradient(circle at 18% 14%, rgba(var(--grid-rgb), .045), transparent 22%),
-        radial-gradient(circle at 82% 20%, rgba(var(--grid-rgb), .025), transparent 24%),
-        radial-gradient(circle at 50% 100%, rgba(var(--grid-rgb), .04), transparent 34%);
-      pointer-events:none;
-      z-index:1;
-    }
-
-    .section-stack{
-      position:relative;
-      z-index:3;
-      padding:22px 22px 18px;
-      display:flex;
-      flex-direction:column;
-      gap:20px;
-    }
-
-    .founders-grid{
-      display:grid;
-      grid-template-columns:1fr 1fr;
-      gap:20px;
-    }
-
-    .founder-card,
-    .cta-panel{
-      position:relative;
-      overflow:hidden;
-      isolation:isolate;
-    }
-
-    .founder-card{
-      border-radius:24px;
-      border:1px solid rgba(255,255,255,.09);
-      background:
-        linear-gradient(180deg, rgba(255,255,255,.009), rgba(255,255,255,.002)),
-        rgba(0,0,0,.975);
-      box-shadow:0 18px 50px rgba(0,0,0,.46);
-      min-height:100%;
-      transition:border-color .18s ease, transform .18s ease, box-shadow .18s ease;
-    }
-
-    .founder-card::before{
-      content:"";
-      position:absolute;
-      inset:-24%;
+      inset:-22%;
       z-index:0;
       pointer-events:none;
       background-image:
-        linear-gradient(rgba(var(--grid-rgb), .34) 1.35px, transparent 1.35px),
-        linear-gradient(90deg, rgba(var(--grid-rgb), .34) 1.35px, transparent 1.35px);
-      background-size:38px 38px;
+        linear-gradient(rgba(var(--grid-rgb), .34) 1.4px, transparent 1.4px),
+        linear-gradient(90deg, rgba(var(--grid-rgb), .34) 1.4px, transparent 1.4px);
+      background-size:40px 40px;
       transform:rotate(13deg) scale(1.18);
       animation:gridDrift 16s linear infinite;
-      opacity:.95;
+      opacity:.98;
       filter:
         drop-shadow(0 0 12px rgba(var(--grid-rgb), .18))
-        drop-shadow(0 0 24px rgba(var(--grid-rgb), .09));
+        drop-shadow(0 0 26px rgba(var(--grid-rgb), .10));
     }
 
-    .founder-card::after{
+    .about-stage::after{
       content:"";
       position:absolute;
       inset:0;
-      background:
-        radial-gradient(circle at 20% 18%, rgba(var(--grid-rgb), .14), transparent 26%),
-        radial-gradient(circle at 80% 82%, rgba(var(--grid-rgb), .10), transparent 30%),
-        linear-gradient(180deg, rgba(0,0,0,.34), rgba(0,0,0,.16));
       z-index:1;
       pointer-events:none;
+      background:
+        linear-gradient(180deg, rgba(0,0,0,.34), rgba(0,0,0,.18)),
+        radial-gradient(circle at 50% 50%, transparent 0%, rgba(0,0,0,.10) 100%);
     }
 
     @keyframes gridDrift{
@@ -214,97 +167,68 @@
       }
     }
 
-    .founder-card:hover{
-      transform:translateY(-4px);
-      border-color:rgba(255,255,255,.22);
-      box-shadow:0 24px 70px rgba(0,0,0,.58);
-    }
-
-    .cursor-glow{
-      position:absolute;
-      width:140px;
-      height:140px;
-      border-radius:50%;
-      pointer-events:none;
-      left:0;
-      top:0;
-      transform:translate(-50%, -50%);
-      opacity:0;
-      transition:opacity .18s ease;
-      z-index:2;
-      background:radial-gradient(
-        circle,
-        color-mix(in srgb, var(--active) 32%, transparent) 0%,
-        color-mix(in srgb, var(--active) 16%, transparent) 34%,
-        transparent 72%
-      );
-      filter:blur(9px);
-    }
-
-    .founder-inner{
+    .content{
       position:relative;
       z-index:3;
-      padding:26px 24px 24px;
+      min-height:calc(100vh - 160px);
+      display:flex;
+      flex-direction:column;
+      justify-content:space-between;
+      padding:40px 34px 24px;
+    }
+
+    .founders-grid{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:34px;
+      align-items:start;
+      margin-top:8px;
+    }
+
+    .founder{
+      position:relative;
+      padding:18px 6px;
     }
 
     .founder-label{
+      font-family:"Oswald", Arial, sans-serif;
       text-transform:uppercase;
       letter-spacing:.15em;
-      font-size:.68rem;
-      font-weight:900;
+      font-size:.72rem;
+      font-weight:700;
       color:var(--active);
-      margin-bottom:8px;
-      font-family:"Oswald", Arial, sans-serif;
+      margin-bottom:10px;
     }
 
     .founder-name{
       font-family:"Oswald", Arial, sans-serif;
-      font-size:2.05rem;
+      font-size:3rem;
       line-height:1;
-      font-weight:600;
       text-transform:uppercase;
-      margin-bottom:10px;
+      margin-bottom:14px;
+      text-shadow:0 0 18px rgba(var(--grid-rgb), .14);
     }
 
     .founder-sub{
-      color:#ffffff;
-      font-size:.96rem;
-      line-height:1.75;
-      margin-bottom:14px;
-      overflow-wrap:anywhere;
+      font-size:1.02rem;
+      line-height:1.8;
+      color:#fff;
+      max-width:520px;
+      margin-bottom:16px;
     }
 
     .founder-copy{
       color:var(--muted);
-      font-size:.93rem;
-      line-height:1.68;
-      overflow-wrap:anywhere;
-    }
-
-    .cta-panel{
-      border-radius:22px;
-      border:1px solid rgba(255,255,255,.085);
-      background:
-        linear-gradient(180deg, rgba(255,255,255,.006), rgba(255,255,255,.001)),
-        rgba(0,0,0,.975);
-      padding:20px;
-    }
-
-    .cta-panel::after{
-      content:"";
-      position:absolute;
-      inset:0;
-      background:linear-gradient(180deg, rgba(0,0,0,.18), rgba(0,0,0,.12));
-      z-index:1;
-      pointer-events:none;
+      font-size:.98rem;
+      line-height:1.82;
+      max-width:560px;
     }
 
     .cta-row{
-      position:relative;
-      z-index:2;
       display:grid;
       grid-template-columns:repeat(3, minmax(0,1fr));
       gap:12px;
+      margin-top:40px;
     }
 
     .cta-row a{
@@ -313,34 +237,29 @@
       justify-content:center;
       min-height:58px;
       border-radius:16px;
-      border:1px solid rgba(255,255,255,.065);
-      background:
-        linear-gradient(180deg, rgba(255,255,255,.003), rgba(255,255,255,.001)),
-        rgba(0,0,0,.96);
+      border:1px solid rgba(255,255,255,.14);
+      background:rgba(0,0,0,.30);
+      backdrop-filter:blur(4px);
       color:#fff;
       font-family:"Oswald", Arial, sans-serif;
       font-size:.96rem;
       font-weight:600;
       letter-spacing:.08em;
       text-transform:uppercase;
-      transition:border-color .18s ease, box-shadow .18s ease, transform .18s ease;
+      transition:border-color .18s ease, box-shadow .18s ease, transform .18s ease, background .18s ease;
     }
 
     .cta-row a:hover{
-      border-color:rgba(255,255,255,.22);
-      box-shadow:var(--glow);
+      border-color:rgba(255,255,255,.28);
+      box-shadow:0 0 22px rgba(var(--grid-rgb), .12);
+      background:rgba(0,0,0,.42);
       transform:translateY(-2px);
     }
 
     .footer{
-      position:relative;
-      z-index:3;
-      padding:0 22px 22px;
-    }
-
-    .footer-inner{
-      border-top:1px solid rgba(255,255,255,.08);
+      margin-top:28px;
       padding-top:18px;
+      border-top:1px solid rgba(255,255,255,.12);
       display:flex;
       justify-content:space-between;
       gap:12px;
@@ -349,90 +268,65 @@
       font-size:.94rem;
     }
 
-    @media (max-width: 1024px){
-      .cursor-glow{
-        display:none;
-      }
-    }
-
     @media (max-width: 900px){
       .page-wrap{
-        padding:98px 24px 46px;
+        padding:98px 16px 28px;
+      }
+
+      .content{
+        padding:26px 18px 18px;
+      }
+
+      .founders-grid{
+        gap:24px;
+      }
+
+      .founder-name{
+        font-size:2.45rem;
       }
     }
 
     @media (max-width: 768px){
-      body{
-        background:#000;
-        background-color:#000;
-      }
-
-      .showcase{
-        background:#000;
-      }
-
-      .topbar-inner{
-        padding:14px 14px;
-      }
-
-      .nav a{
-        padding:10px 14px;
-        font-size:0.9rem;
-      }
-
-      .page-wrap{
-        padding:92px 10px 34px;
-      }
-
-      .showcase{
+      .about-stage{
         border-radius:22px;
+        min-height:auto;
       }
 
-      .section-stack{
-        padding:12px 12px 12px;
-        gap:14px;
+      .about-stage::before{
+        background-size:34px 34px;
+      }
+
+      .content{
+        min-height:auto;
+        padding:22px 14px 14px;
       }
 
       .founders-grid{
         grid-template-columns:1fr;
-        gap:12px;
+        gap:22px;
       }
 
-      .founder-card{
-        border-radius:18px;
-      }
-
-      .founder-card::before{
-        background-size:34px 34px;
-        animation:gridDrift 16s linear infinite;
-        opacity:.98;
-      }
-
-      .founder-inner{
-        padding:18px 16px 16px;
+      .founder{
+        padding:8px 2px;
       }
 
       .founder-name{
-        font-size:1.8rem;
+        font-size:2rem;
       }
 
       .founder-sub{
         font-size:.97rem;
-        line-height:1.62;
+        line-height:1.66;
       }
 
       .founder-copy{
         font-size:.95rem;
-        line-height:1.66;
-      }
-
-      .cta-panel{
-        border-radius:18px;
-        padding:12px;
+        line-height:1.7;
       }
 
       .cta-row{
         grid-template-columns:1fr;
+        margin-top:24px;
       }
 
       .cta-row a{
@@ -442,10 +336,7 @@
       }
 
       .footer{
-        padding:0 12px 14px;
-      }
-
-      .footer-inner{
+        margin-top:22px;
         font-size:.88rem;
       }
     }
@@ -465,7 +356,11 @@
       }
 
       .page-wrap{
-        padding:88px 8px 28px;
+        padding:88px 8px 22px;
+      }
+
+      .content{
+        padding:18px 12px 12px;
       }
     }
   </style>
@@ -482,12 +377,11 @@
   </header>
 
   <main class="page-wrap">
-    <section class="showcase">
-      <div class="section-stack">
-        <section class="founders-grid">
-          <article class="founder-card glow-card">
-            <div class="cursor-glow"></div>
-            <div class="founder-inner">
+    <section class="about-stage">
+      <div class="content">
+        <div>
+          <section class="founders-grid">
+            <article class="founder">
               <div class="founder-label">Founder</div>
               <h2 class="founder-name">Russell</h2>
               <div class="founder-sub">
@@ -496,12 +390,9 @@
               <p class="founder-copy">
                 Russell helped build this company around a simple idea: give customers the kind of service they actually want. That means honest communication, clean work, and dependable follow-through. Licensed pesticide applicator here in Arkansas.
               </p>
-            </div>
-          </article>
+            </article>
 
-          <article class="founder-card glow-card">
-            <div class="cursor-glow"></div>
-            <div class="founder-inner">
+            <article class="founder">
               <div class="founder-label">Founder</div>
               <h2 class="founder-name">Zamir</h2>
               <div class="founder-sub">
@@ -510,53 +401,22 @@
               <p class="founder-copy">
                 Zamir helped shape the company around being easy to work with and easy to trust. That means clear communication, a more personal experience, and a company that feels different from the typical corporate approach people are used to.
               </p>
-            </div>
-          </article>
-        </section>
+            </article>
+          </section>
 
-        <section class="cta-panel">
-          <div class="cta-row">
+          <section class="cta-row">
             <a href="tel:8709197114">Call</a>
             <a href="sms:8709197114">Text</a>
             <a href="mailto:gmail@allseasonpestllc.com">Email</a>
-          </div>
-        </section>
-      </div>
+          </section>
+        </div>
 
-      <footer class="footer">
-        <div class="footer-inner">
+        <footer class="footer">
           <span>© 2026 All Season Pest Control</span>
           <span>Jonesboro, Arkansas</span>
-        </div>
-      </footer>
+        </footer>
+      </div>
     </section>
   </main>
-
-  <script>
-    const glowCards = document.querySelectorAll(".glow-card");
-
-    if (window.innerWidth > 1024) {
-      glowCards.forEach((card) => {
-        const glow = card.querySelector(".cursor-glow");
-
-        card.addEventListener("mousemove", (event) => {
-          const rect = card.getBoundingClientRect();
-          const x = event.clientX - rect.left;
-          const y = event.clientY - rect.top;
-          glow.style.left = `${x}px`;
-          glow.style.top = `${y}px`;
-          glow.style.opacity = "1";
-        });
-
-        card.addEventListener("mouseenter", () => {
-          glow.style.opacity = "1";
-        });
-
-        card.addEventListener("mouseleave", () => {
-          glow.style.opacity = "0";
-        });
-      });
-    }
-  </script>
 </body>
 </html>
