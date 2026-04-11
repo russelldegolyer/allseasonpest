@@ -9,7 +9,7 @@
   <title>About | All Season Pest Control</title>
   <meta
     name="description"
-    content="About page spider web experiment v2."
+    content="About page red lightning web experiment."
   />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -19,7 +19,6 @@
     :root{
       --text:#ffffff;
       --muted-soft:rgba(255,255,255,.56);
-      --purple:#8b5cf6;
       --max:1200px;
       --glow:0 0 22px rgba(255,255,255,.12);
       --shadow:0 18px 60px rgba(0,0,0,.58);
@@ -118,10 +117,11 @@
       min-height:calc(100vh - 160px);
       border:1px solid rgba(255,255,255,.08);
       background:
-        radial-gradient(circle at 46% 43%, rgba(139,92,246,.11), transparent 14%),
-        radial-gradient(circle at 18% 22%, rgba(139,92,246,.05), transparent 28%),
-        radial-gradient(circle at 82% 78%, rgba(139,92,246,.04), transparent 30%),
-        linear-gradient(180deg, rgba(255,255,255,.012), rgba(255,255,255,.003)),
+        radial-gradient(circle at 38% 42%, rgba(255,30,30,.08), transparent 16%),
+        radial-gradient(circle at 72% 58%, rgba(255,20,20,.06), transparent 18%),
+        radial-gradient(circle at 18% 22%, rgba(255,20,20,.025), transparent 28%),
+        radial-gradient(circle at 82% 78%, rgba(255,20,20,.02), transparent 30%),
+        linear-gradient(180deg, rgba(255,255,255,.01), rgba(255,255,255,.002)),
         #000;
       box-shadow:var(--shadow);
       isolation:isolate;
@@ -134,8 +134,8 @@
       z-index:3;
       pointer-events:none;
       background:
-        radial-gradient(circle at 46% 43%, rgba(0,0,0,.02) 0%, rgba(0,0,0,.22) 72%, rgba(0,0,0,.34) 100%),
-        linear-gradient(180deg, rgba(0,0,0,.12), rgba(0,0,0,.12));
+        radial-gradient(circle at 38% 42%, rgba(0,0,0,.02) 0%, rgba(0,0,0,.18) 68%, rgba(0,0,0,.3) 100%),
+        linear-gradient(180deg, rgba(0,0,0,.1), rgba(0,0,0,.12));
     }
 
     .web-canvas{
@@ -147,8 +147,9 @@
       display:block;
       pointer-events:none;
       filter:
-        drop-shadow(0 0 5px rgba(139,92,246,.34))
-        drop-shadow(0 0 16px rgba(139,92,246,.16));
+        drop-shadow(0 0 4px rgba(255,60,60,.4))
+        drop-shadow(0 0 12px rgba(255,20,20,.2))
+        drop-shadow(0 0 28px rgba(255,0,0,.12));
     }
 
     .center-glow{
@@ -157,7 +158,8 @@
       z-index:2;
       pointer-events:none;
       background:
-        radial-gradient(circle at 46% 43%, rgba(139,92,246,.16) 0%, rgba(139,92,246,.08) 6%, rgba(139,92,246,.03) 14%, transparent 24%);
+        radial-gradient(circle at 38% 42%, rgba(255,40,40,.12) 0%, rgba(255,20,20,.05) 8%, transparent 22%),
+        radial-gradient(circle at 72% 58%, rgba(255,40,40,.08) 0%, rgba(255,20,20,.03) 7%, transparent 19%);
       mix-blend-mode:screen;
     }
 
@@ -266,19 +268,18 @@
     let w = 0;
     let h = 0;
     let dpr = Math.min(window.devicePixelRatio || 1, 2);
-
-    let backSpokes = [];
-    let frontSpokes = [];
-    let ringBands = [];
-    let motes = [];
-    let phase = 0;
+    let time = 0;
+    let bolts = [];
+    let nodes = [];
 
     function rand(min, max) {
       return Math.random() * (max - min) + min;
     }
 
-    function choose(arr) {
-      return arr[Math.floor(Math.random() * arr.length)];
+    function distance(a, b) {
+      const dx = a.x - b.x;
+      const dy = a.y - b.y;
+      return Math.sqrt(dx * dx + dy * dy);
     }
 
     function resizeCanvas() {
@@ -294,375 +295,279 @@
 
       ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
 
-      initWeb();
+      initSystem();
     }
 
-    function getCenter() {
-      return {
-        x: w * 0.46,
-        y: h * 0.43
-      };
-    }
-
-    function makeSpoke(angleBase, layer = "front") {
-      const outer = Math.max(w, h) * (layer === "front" ? rand(0.50, 0.83) : rand(0.42, 0.72));
-      const brokenCount = Math.random() < 0.65 ? Math.floor(rand(1, 3.99)) : 0;
-      const breaks = [];
-
-      for (let i = 0; i < brokenCount; i++) {
-        const start = rand(0.18, 0.86);
-        const length = rand(0.03, 0.12);
-        breaks.push([start, Math.min(0.94, start + length)]);
-      }
-
-      breaks.sort((a, b) => a[0] - b[0]);
-
-      return {
-        angle: angleBase + rand(-0.16, 0.16),
-        maxR: outer,
-        currentR: rand(8, 32),
-        speed: layer === "front" ? rand(1.0, 1.9) : rand(0.55, 1.15),
-        alpha: layer === "front" ? rand(0.48, 0.96) : rand(0.14, 0.34),
-        thickness: layer === "front" ? rand(0.75, 2.25) : rand(0.45, 1.1),
-        wobble: layer === "front" ? rand(5, 22) : rand(4, 12),
-        wobblePhase: rand(0, Math.PI * 2),
-        wobbleFreq: rand(3.5, 7.8),
-        curl: rand(-0.28, 0.28),
-        retracting: false,
-        layer,
-        breaks,
-        bias: rand(0.82, 1.18),
-        kink: rand(-0.14, 0.14),
-        twitch: rand(0.004, 0.018)
-      };
-    }
-
-    function initWeb() {
-      backSpokes = [];
-      frontSpokes = [];
-      ringBands = [];
-      motes = [];
-      phase = 0;
-
+    function createNodeSet() {
       const mobile = window.innerWidth < 768;
-      const frontCount = mobile ? 17 : 24;
-      const backCount = mobile ? 10 : 14;
 
-      let angle = -Math.PI * 0.95;
-      for (let i = 0; i < frontCount; i++) {
-        angle += rand(0.16, 0.42);
-        frontSpokes.push(makeSpoke(angle, "front"));
-      }
-
-      angle = -Math.PI * 0.90;
-      for (let i = 0; i < backCount; i++) {
-        angle += rand(0.24, 0.54);
-        backSpokes.push(makeSpoke(angle, "back"));
-      }
-
-      const ringCount = mobile ? 8 : 11;
-      for (let i = 0; i < ringCount; i++) {
-        ringBands.push({
-          ratio: 0.11 + i * rand(0.058, 0.085),
-          alpha: i < 2 ? rand(0.12, 0.22) : rand(0.18, 0.48),
-          thickness: rand(0.4, 1.5),
-          reveal: rand(0.35, 0.98),
-          drift: rand(-0.0008, 0.0008),
-          sag: rand(-14, 22),
-          brokenChance: rand(0.18, 0.48),
-          jitter: rand(2, 10)
-        });
-      }
-
-      for (let i = 0; i < (mobile ? 16 : 24); i++) {
-        motes.push({
-          angle: rand(0, Math.PI * 2),
-          radius: rand(10, Math.max(w, h) * 0.10),
-          size: rand(0.6, 1.8),
-          alpha: rand(0.08, 0.22),
-          speed: rand(0.002, 0.01),
-          drift: rand(-0.2, 0.2)
-        });
-      }
-    }
-
-    function resetSpoke(spoke) {
-      const baseAngle = spoke.angle + rand(-0.3, 0.3);
-      const replacement = makeSpoke(baseAngle, spoke.layer);
-      Object.assign(spoke, replacement);
-    }
-
-    function updateSpokes(group) {
-      group.forEach((spoke) => {
-        if (!spoke.retracting) {
-          spoke.currentR += spoke.speed * spoke.bias;
-          if (spoke.currentR >= spoke.maxR) {
-            spoke.retracting = true;
-          }
-        } else {
-          spoke.currentR -= spoke.speed * rand(0.75, 1.12);
-          if (spoke.currentR <= rand(8, 30)) {
-            resetSpoke(spoke);
-          }
+      return [
+        {
+          x: w * (mobile ? 0.42 : 0.38),
+          y: h * (mobile ? 0.43 : 0.42),
+          radius: Math.max(w, h) * (mobile ? 0.42 : 0.36),
+          strength: 1.0
+        },
+        {
+          x: w * (mobile ? 0.68 : 0.72),
+          y: h * (mobile ? 0.60 : 0.58),
+          radius: Math.max(w, h) * (mobile ? 0.34 : 0.28),
+          strength: 0.72
         }
-
-        spoke.wobblePhase += 0.012 + spoke.twitch;
-        spoke.angle += Math.sin(phase * 0.6 + spoke.wobblePhase) * 0.0007;
-      });
+      ];
     }
 
-    function updateBands() {
-      ringBands.forEach((band, i) => {
-        band.ratio += band.drift;
-        band.reveal += rand(-0.008, 0.008);
-        band.reveal = Math.max(0.18, Math.min(1, band.reveal));
-        band.sag += Math.sin(phase * 0.45 + i) * 0.02;
+    function createBolt(origin, strength = 1, isBranch = false) {
+      const angle = rand(0, Math.PI * 2);
+      const len = origin.radius * rand(isBranch ? 0.12 : 0.22, isBranch ? 0.28 : 0.50) * strength;
+      const segments = Math.floor(rand(isBranch ? 5 : 8, isBranch ? 10 : 15));
 
-        const minRatio = 0.09 + i * 0.055;
-        const maxRatio = minRatio + 0.045;
-        if (band.ratio < minRatio || band.ratio > maxRatio) {
-          band.drift *= -1;
-        }
-      });
-    }
+      const pts = [];
+      let x = origin.x;
+      let y = origin.y;
+      pts.push({ x, y });
 
-    function updateMotes() {
-      motes.forEach((m) => {
-        m.angle += m.speed;
-        m.radius += m.drift * 0.03;
-      });
-    }
+      let currentAngle = angle;
+      const step = len / segments;
 
-    function pointOnSpoke(center, spoke, t, extraSag = 0) {
-      const r = spoke.currentR * t;
-      const curl = spoke.curl * (t * t) * 85;
-      const wobble = Math.sin((t * spoke.wobbleFreq) + spoke.wobblePhase) * spoke.wobble * (0.18 + t * 0.28);
-      const kink = Math.sin((t * 10) + spoke.wobblePhase * 0.65) * spoke.kink * 28 * t;
+      for (let i = 0; i < segments; i++) {
+        currentAngle += rand(-0.38, 0.38);
+        const pullX = (origin.x - x) * rand(-0.004, 0.001);
+        const pullY = (origin.y - y) * rand(-0.004, 0.001);
 
-      const baseX = center.x + Math.cos(spoke.angle) * r;
-      const baseY = center.y + Math.sin(spoke.angle) * r;
+        x += Math.cos(currentAngle) * step + rand(-10, 10) + pullX;
+        y += Math.sin(currentAngle) * step + rand(-10, 10) + pullY;
 
-      const normalX = Math.cos(spoke.angle + Math.PI / 2);
-      const normalY = Math.sin(spoke.angle + Math.PI / 2);
+        pts.push({ x, y });
+      }
 
       return {
-        x: baseX + normalX * (wobble + curl + kink),
-        y: baseY + normalY * (wobble + kink) + extraSag
+        origin,
+        points: pts,
+        age: 0,
+        life: rand(isBranch ? 10 : 14, isBranch ? 18 : 28),
+        alpha: rand(isBranch ? 0.28 : 0.55, isBranch ? 0.58 : 0.95) * strength,
+        width: rand(isBranch ? 0.7 : 1.2, isBranch ? 1.4 : 2.4) * strength,
+        branchChance: isBranch ? 0 : rand(0.18, 0.42),
+        isBranch,
+        progress: 0,
+        growSpeed: rand(isBranch ? 0.14 : 0.18, isBranch ? 0.28 : 0.34),
+        jitter: rand(0.4, 1.2),
+        colorShift: rand(0, 1)
       };
     }
 
-    function segmentBlocked(spoke, t) {
-      for (const [a, b] of spoke.breaks) {
-        if (t >= a && t <= b) return true;
+    function initSystem() {
+      nodes = createNodeSet();
+      bolts = [];
+
+      for (let i = 0; i < 28; i++) {
+        const node = nodes[i % nodes.length];
+        bolts.push(createBolt(node, node.strength));
       }
-      return false;
     }
 
-    function drawGlow(center) {
-      const g = ctx.createRadialGradient(center.x, center.y, 0, center.x, center.y, Math.max(w, h) * 0.22);
-      g.addColorStop(0, "rgba(139,92,246,0.18)");
-      g.addColorStop(0.10, "rgba(139,92,246,0.10)");
-      g.addColorStop(0.22, "rgba(139,92,246,0.045)");
-      g.addColorStop(1, "rgba(139,92,246,0)");
-      ctx.fillStyle = g;
-      ctx.fillRect(0, 0, w, h);
+    function spawnBolts() {
+      const mobile = window.innerWidth < 768;
+      const target = mobile ? 34 : 48;
+
+      while (bolts.length < target) {
+        const node = Math.random() < 0.65 ? nodes[0] : nodes[1];
+        bolts.push(createBolt(node, node.strength));
+
+        if (Math.random() < 0.45) {
+          bolts.push(createBolt(node, node.strength * rand(0.45, 0.8), true));
+        }
+      }
     }
 
-    function drawCenterKnot(center) {
-      for (let i = 0; i < 3; i++) {
-        ctx.beginPath();
-        ctx.arc(center.x, center.y, 6 + i * 7 + Math.sin(phase * 1.2 + i) * 1.1, 0, Math.PI * 2);
-        ctx.strokeStyle = `rgba(170,125,255,${0.16 - i * 0.04})`;
-        ctx.lineWidth = 1.1 - i * 0.2;
-        ctx.stroke();
+    function updateBolts() {
+      const newBranches = [];
+
+      for (const bolt of bolts) {
+        bolt.age += 1;
+        bolt.progress = Math.min(1, bolt.progress + bolt.growSpeed);
+
+        if (!bolt.isBranch && bolt.age < bolt.life * 0.45 && Math.random() < bolt.branchChance * 0.08) {
+          const idx = Math.floor(rand(1, Math.max(2, bolt.points.length - 2)));
+          const p = bolt.points[idx];
+          const tempNode = {
+            x: p.x,
+            y: p.y,
+            radius: bolt.origin.radius * 0.42
+          };
+          newBranches.push(createBolt(tempNode, rand(0.45, 0.8), true));
+        }
       }
+
+      bolts.push(...newBranches);
+      bolts = bolts.filter((b) => b.age < b.life);
+    }
+
+    function drawBackgroundGlow() {
+      for (const node of nodes) {
+        const g = ctx.createRadialGradient(node.x, node.y, 0, node.x, node.y, node.radius * 0.95);
+        g.addColorStop(0, `rgba(255,30,30,${0.09 * node.strength})`);
+        g.addColorStop(0.18, `rgba(255,10,10,${0.045 * node.strength})`);
+        g.addColorStop(0.45, `rgba(180,0,0,${0.016 * node.strength})`);
+        g.addColorStop(1, "rgba(0,0,0,0)");
+        ctx.fillStyle = g;
+        ctx.fillRect(0, 0, w, h);
+      }
+    }
+
+    function drawBolt(bolt) {
+      const visibleCount = Math.max(2, Math.floor((bolt.points.length - 1) * bolt.progress) + 1);
+      const pts = bolt.points.slice(0, visibleCount);
+
+      if (pts.length < 2) return;
+
+      const fade = 1 - (bolt.age / bolt.life);
+      const alpha = bolt.alpha * fade;
+
+      const coreColor = bolt.colorShift > 0.5
+        ? `rgba(255,120,120,${alpha})`
+        : `rgba(255,90,90,${alpha})`;
+
+      const outerColor = bolt.colorShift > 0.5
+        ? `rgba(255,30,30,${alpha * 0.42})`
+        : `rgba(220,0,0,${alpha * 0.42})`;
 
       ctx.beginPath();
-      ctx.arc(center.x, center.y, 3.4, 0, Math.PI * 2);
-      ctx.fillStyle = "rgba(200,175,255,0.55)";
+      ctx.moveTo(pts[0].x, pts[0].y);
+
+      for (let i = 1; i < pts.length; i++) {
+        const p = pts[i];
+        const offsetX = Math.sin(time * 0.08 + i + bolt.age) * bolt.jitter;
+        const offsetY = Math.cos(time * 0.08 + i * 1.3 + bolt.age) * bolt.jitter;
+        ctx.lineTo(p.x + offsetX, p.y + offsetY);
+      }
+
+      ctx.strokeStyle = outerColor;
+      ctx.lineWidth = bolt.width * 2.5;
+      ctx.lineCap = "round";
+      ctx.lineJoin = "round";
+      ctx.stroke();
+
+      ctx.beginPath();
+      ctx.moveTo(pts[0].x, pts[0].y);
+
+      for (let i = 1; i < pts.length; i++) {
+        const p = pts[i];
+        const offsetX = Math.sin(time * 0.08 + i + bolt.age) * bolt.jitter;
+        const offsetY = Math.cos(time * 0.08 + i * 1.3 + bolt.age) * bolt.jitter;
+        ctx.lineTo(p.x + offsetX, p.y + offsetY);
+      }
+
+      ctx.strokeStyle = coreColor;
+      ctx.lineWidth = bolt.width;
+      ctx.lineCap = "round";
+      ctx.lineJoin = "round";
+      ctx.stroke();
+
+      const end = pts[pts.length - 1];
+      ctx.beginPath();
+      ctx.arc(end.x, end.y, Math.max(0.8, bolt.width * 0.9), 0, Math.PI * 2);
+      ctx.fillStyle = `rgba(255,180,180,${alpha * 0.8})`;
       ctx.fill();
     }
 
-    function drawSpokeGroup(group) {
-      const center = getCenter();
+    function drawConnections() {
+      const activeEnds = [];
 
-      group.forEach((spoke) => {
-        const steps = 34;
-        let penDown = false;
-        let lastPoint = null;
-
-        ctx.beginPath();
-
-        for (let i = 0; i <= steps; i++) {
-          const t = i / steps;
-
-          if (segmentBlocked(spoke, t)) {
-            penDown = false;
-            continue;
-          }
-
-          const pt = pointOnSpoke(center, spoke, t);
-
-          if (!penDown) {
-            ctx.moveTo(pt.x, pt.y);
-            penDown = true;
-          } else {
-            if (lastPoint) {
-              const midX = (lastPoint.x + pt.x) * 0.5;
-              const midY = (lastPoint.y + pt.y) * 0.5;
-              ctx.quadraticCurveTo(lastPoint.x, lastPoint.y, midX, midY);
-            } else {
-              ctx.lineTo(pt.x, pt.y);
-            }
-          }
-
-          lastPoint = pt;
+      for (const bolt of bolts) {
+        const visibleCount = Math.max(2, Math.floor((bolt.points.length - 1) * bolt.progress) + 1);
+        const pts = bolt.points.slice(0, visibleCount);
+        if (pts.length > 1) {
+          activeEnds.push({
+            point: pts[pts.length - 1],
+            alpha: bolt.alpha * (1 - bolt.age / bolt.life),
+            branch: bolt.isBranch
+          });
         }
+      }
 
-        ctx.strokeStyle =
-          spoke.layer === "front"
-            ? `rgba(172,126,255,${spoke.alpha})`
-            : `rgba(155,110,245,${spoke.alpha})`;
+      for (let i = 0; i < activeEnds.length; i++) {
+        for (let j = i + 1; j < activeEnds.length; j++) {
+          const a = activeEnds[i];
+          const b = activeEnds[j];
+          const dist = distance(a.point, b.point);
 
-        ctx.lineWidth = spoke.thickness;
-        ctx.lineCap = "round";
-        ctx.lineJoin = "round";
-        ctx.stroke();
+          if (dist < 120 && Math.random() < 0.12) {
+            const alpha = Math.min(a.alpha, b.alpha) * (1 - dist / 120) * 0.55;
 
-        if (lastPoint && !spoke.retracting) {
-          ctx.beginPath();
-          ctx.arc(lastPoint.x, lastPoint.y, Math.max(0.6, spoke.thickness * 0.72), 0, Math.PI * 2);
-          ctx.fillStyle = `rgba(205,180,255,${Math.min(0.85, spoke.alpha * 0.7)})`;
-          ctx.fill();
-        }
-      });
-    }
+            ctx.beginPath();
+            ctx.moveTo(a.point.x, a.point.y);
 
-    function drawBandsForGroup(group, softness = 1) {
-      const center = getCenter();
-      const sorted = [...group].sort((a, b) => a.angle - b.angle);
+            const midX = (a.point.x + b.point.x) * 0.5 + rand(-12, 12);
+            const midY = (a.point.y + b.point.y) * 0.5 + rand(-12, 12);
 
-      ringBands.forEach((band, bandIndex) => {
-        const points = [];
-
-        sorted.forEach((spoke, index) => {
-          const t = band.ratio;
-          const minRequired = 14 + bandIndex * 8;
-
-          if (spoke.currentR * t < minRequired) return;
-          if (segmentBlocked(spoke, t)) return;
-          if (Math.random() < band.brokenChance * 0.16) return;
-
-          const pt = pointOnSpoke(center, spoke, t, Math.sin(index + phase + bandIndex) * band.jitter * 0.05 + band.sag * 0.03);
-          points.push({ ...pt, angle: spoke.angle });
-        });
-
-        if (points.length < 4) return;
-
-        const visibleCount = Math.max(3, Math.floor(points.length * band.reveal));
-        const use = points.slice(0, visibleCount);
-
-        let started = false;
-        ctx.beginPath();
-
-        for (let i = 0; i < use.length; i++) {
-          if (i > 0 && Math.random() < band.brokenChance * 0.22) {
-            started = false;
-            continue;
+            ctx.quadraticCurveTo(midX, midY, b.point.x, b.point.y);
+            ctx.strokeStyle = `rgba(255,55,55,${alpha})`;
+            ctx.lineWidth = a.branch || b.branch ? 0.8 : 1.15;
+            ctx.stroke();
           }
-
-          const p = use[i];
-
-          if (!started) {
-            ctx.moveTo(p.x, p.y);
-            started = true;
-            continue;
-          }
-
-          const prev = use[i - 1];
-          const midX = (prev.x + p.x) * 0.5;
-          const midY = (prev.y + p.y) * 0.5 + Math.sin(i + phase + bandIndex) * band.sag * 0.08 * softness;
-          ctx.quadraticCurveTo(prev.x, prev.y, midX, midY);
         }
-
-        ctx.strokeStyle =
-          group === frontSpokes
-            ? `rgba(183,140,255,${band.alpha})`
-            : `rgba(156,112,241,${band.alpha * 0.62})`;
-
-        ctx.lineWidth = band.thickness * softness;
-        ctx.lineCap = "round";
-        ctx.lineJoin = "round";
-        ctx.stroke();
-      });
-    }
-
-    function drawCrossThreads() {
-      const center = getCenter();
-      const candidates = [...frontSpokes]
-        .filter(s => s.currentR > Math.max(w, h) * 0.24)
-        .sort((a, b) => a.angle - b.angle);
-
-      for (let i = 0; i < candidates.length - 2; i += 2) {
-        if (Math.random() > 0.22) continue;
-
-        const a = candidates[i];
-        const b = candidates[i + 2];
-        const ta = rand(0.28, 0.74);
-        const tb = rand(0.28, 0.74);
-
-        if (segmentBlocked(a, ta) || segmentBlocked(b, tb)) continue;
-
-        const p1 = pointOnSpoke(center, a, ta);
-        const p2 = pointOnSpoke(center, b, tb);
-        const bendX = (p1.x + p2.x) * 0.5 + rand(-22, 22);
-        const bendY = (p1.y + p2.y) * 0.5 + rand(-18, 24);
-
-        ctx.beginPath();
-        ctx.moveTo(p1.x, p1.y);
-        ctx.quadraticCurveTo(bendX, bendY, p2.x, p2.y);
-        ctx.strokeStyle = `rgba(170,128,255,${rand(0.08, 0.18)})`;
-        ctx.lineWidth = rand(0.45, 1.0);
-        ctx.stroke();
       }
     }
 
-    function drawMotes() {
-      const center = getCenter();
-      motes.forEach((m, i) => {
-        const x = center.x + Math.cos(m.angle + phase * 0.12) * m.radius;
-        const y = center.y + Math.sin(m.angle + phase * 0.12) * (m.radius * 0.78);
+    function drawNodeCore() {
+      for (const node of nodes) {
+        for (let i = 0; i < 3; i++) {
+          ctx.beginPath();
+          ctx.arc(
+            node.x,
+            node.y,
+            5 + i * 8 + Math.sin(time * 0.05 + i) * 1.4,
+            0,
+            Math.PI * 2
+          );
+          ctx.strokeStyle = `rgba(255,50,50,${0.17 - i * 0.04})`;
+          ctx.lineWidth = 1.2 - i * 0.18;
+          ctx.stroke();
+        }
 
         ctx.beginPath();
-        ctx.arc(x, y, m.size + Math.sin(phase + i) * 0.08, 0, Math.PI * 2);
-        ctx.fillStyle = `rgba(190,160,255,${m.alpha})`;
+        ctx.arc(node.x, node.y, 3.8, 0, Math.PI * 2);
+        ctx.fillStyle = "rgba(255,190,190,0.66)";
         ctx.fill();
-      });
+      }
     }
 
-    function update() {
-      phase += 0.01;
-      updateSpokes(backSpokes);
-      updateSpokes(frontSpokes);
-      updateBands();
-      updateMotes();
+    function drawRedDust() {
+      for (const node of nodes) {
+        for (let i = 0; i < 10; i++) {
+          const angle = time * 0.01 + i * (Math.PI * 2 / 10);
+          const radius = 12 + i * 5 + Math.sin(time * 0.03 + i) * 2.2;
+          const x = node.x + Math.cos(angle) * radius;
+          const y = node.y + Math.sin(angle) * radius;
+
+          ctx.beginPath();
+          ctx.arc(x, y, 0.9 + (i % 3) * 0.25, 0, Math.PI * 2);
+          ctx.fillStyle = "rgba(255,110,110,0.13)";
+          ctx.fill();
+        }
+      }
     }
 
     function render() {
       ctx.clearRect(0, 0, w, h);
 
-      const center = getCenter();
+      drawBackgroundGlow();
+      drawConnections();
 
-      drawGlow(center);
-      drawBandsForGroup(backSpokes, 0.9);
-      drawSpokeGroup(backSpokes);
-      drawCrossThreads();
-      drawBandsForGroup(frontSpokes, 1);
-      drawSpokeGroup(frontSpokes);
-      drawCenterKnot(center);
-      drawMotes();
+      bolts.sort((a, b) => a.width - b.width);
+      for (const bolt of bolts) {
+        drawBolt(bolt);
+      }
 
-      update();
+      drawNodeCore();
+      drawRedDust();
+
+      updateBolts();
+      spawnBolts();
+      time += 1;
+
       requestAnimationFrame(render);
     }
 
