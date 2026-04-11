@@ -40,16 +40,19 @@
 
     html{
       scroll-behavior:smooth;
+      background:#000;
     }
 
     body{
       background:
         radial-gradient(circle at top, rgba(var(--grid-rgb), .045), transparent 28%),
         linear-gradient(180deg, #000000 0%, #000000 100%);
+      background-color:#000;
       color:var(--text);
       font-family:Inter, Arial, Helvetica, sans-serif;
       min-height:100vh;
       overflow-x:hidden;
+      padding-bottom:max(24px, env(safe-area-inset-bottom));
     }
 
     a{
