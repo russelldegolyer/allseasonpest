@@ -2,764 +2,670 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0, viewport-fit=cover"
+  />
   <title>Services | All Season Pest Control</title>
+  <meta
+    name="description"
+    content="All Season Pest Control services in Jonesboro, Arkansas including general pest, rodent control, ticks and fleas, mosquito control, German roaches, and weed control."
+  />
+
   <style>
     :root{
-      --bg:#050505;
-      --panel:rgba(17,17,17,.88);
-      --text:#ffffff;
-      --muted:rgba(255,255,255,.82);
-      --muted-soft:rgba(255,255,255,.68);
-      --border:rgba(255,255,255,.18);
-      --border-soft:rgba(255,255,255,.08);
-      --shadow:0 10px 40px rgba(0,0,0,.35);
-      --red:#ff2a2a;
-      --red-deep:#b30000;
-      --line:rgba(255, 42, 42, 0.55);
-      --glow:0 0 22px rgba(255, 42, 42, 0.22);
-      --glow-strong:0 0 30px rgba(255, 42, 42, 0.3);
-      --max:1200px;
+      --bg:#000000;
+      --panel:#0a0a0d;
+      --panel-2:#101015;
+      --line:rgba(255,255,255,.10);
+      --line-strong:rgba(255,255,255,.16);
+      --text:#f5f5f5;
+      --muted:rgba(255,255,255,.68);
+      --shadow:0 18px 60px rgba(0,0,0,.45);
+
+      --gold:#d7aa3c;
+      --silver:#b9bec7;
+      --green:#3fa96c;
+      --red:#c44040;
+      --brown:#7d563f;
+      --blue:#2a91b8;
+
+      --card-radius:28px;
+      --pill-radius:999px;
+      --wrap:1180px;
     }
 
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
+    *{box-sizing:border-box}
+
+    html{
+      scroll-behavior:smooth;
     }
 
-    html {
-      scroll-behavior: smooth;
+    body{
+      margin:0;
+      color:var(--text);
+      font-family:Arial, Helvetica, sans-serif;
+      background:
+        radial-gradient(circle at 20% 20%, rgba(32,48,82,.20), transparent 30%),
+        radial-gradient(circle at 80% 25%, rgba(255,255,255,.04), transparent 28%),
+        radial-gradient(circle at 40% 80%, rgba(17,48,70,.18), transparent 32%),
+        linear-gradient(180deg, #020203 0%, #000000 100%);
+      overflow-x:hidden;
+      position:relative;
     }
 
-    body {
-      background: #000000;
-      color: #ffffff;
-      font-family: Inter, Arial, Helvetica, sans-serif;
-      min-height: 100vh;
-      overflow-x: hidden;
+    body::before,
+    body::after{
+      content:"";
+      position:fixed;
+      inset:auto;
+      border-radius:50%;
+      pointer-events:none;
+      filter:blur(80px);
+      z-index:0;
+      opacity:.32;
+      mix-blend-mode:screen;
     }
 
-    a {
-      color: inherit;
-      text-decoration: none;
+    body::before{
+      width:38vw;
+      height:38vw;
+      min-width:280px;
+      min-height:280px;
+      top:-8vw;
+      left:-10vw;
+      background:radial-gradient(circle, rgba(70,105,170,.34) 0%, rgba(70,105,170,.06) 48%, transparent 72%);
+      animation:driftOne 18s ease-in-out infinite alternate;
+    }
+
+    body::after{
+      width:34vw;
+      height:34vw;
+      min-width:240px;
+      min-height:240px;
+      right:-10vw;
+      bottom:4vh;
+      background:radial-gradient(circle, rgba(100,100,130,.22) 0%, rgba(100,100,130,.06) 46%, transparent 72%);
+      animation:driftTwo 22s ease-in-out infinite alternate;
+    }
+
+    .grain{
+      position:fixed;
+      inset:0;
+      pointer-events:none;
+      z-index:0;
+      opacity:.045;
+      background-image:
+        linear-gradient(rgba(255,255,255,.10) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,.08) 1px, transparent 1px);
+      background-size:3px 3px, 4px 4px;
+      animation:grainMove 14s linear infinite;
+    }
+
+    @keyframes driftOne{
+      0%{transform:translate3d(0,0,0) scale(1)}
+      100%{transform:translate3d(8vw,6vh,0) scale(1.12)}
+    }
+
+    @keyframes driftTwo{
+      0%{transform:translate3d(0,0,0) scale(1)}
+      100%{transform:translate3d(-7vw,-8vh,0) scale(1.14)}
+    }
+
+    @keyframes grainMove{
+      0%{transform:translate(0,0)}
+      25%{transform:translate(-1%,1%)}
+      50%{transform:translate(1%,-1%)}
+      75%{transform:translate(1%,1%)}
+      100%{transform:translate(0,0)}
+    }
+
+    a{
+      color:inherit;
+      text-decoration:none;
+    }
+
+    .page{
+      position:relative;
+      z-index:1;
+      width:100%;
+    }
+
+    .shell{
+      width:min(calc(100% - 28px), var(--wrap));
+      margin:0 auto;
     }
 
     .topbar{
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      z-index: 1000;
-      backdrop-filter: blur(14px);
-      background: rgba(0, 0, 0, 0.72);
-      border-bottom: 1px solid rgba(255, 42, 42, 0.22);
+      padding:18px 0 8px;
     }
 
-    .topbar-inner{
-      max-width: var(--max);
-      margin: 0 auto;
-      padding: 14px 20px;
-      display: flex;
-      justify-content: center;
-      align-items: center;
+    .nav-wrap{
+      display:flex;
+      justify-content:center;
     }
 
     .nav{
-      display: flex;
-      gap: 10px;
-      flex-wrap: wrap;
-      justify-content: center;
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+      justify-content:center;
+      align-items:center;
+      padding:10px;
+      border:1px solid rgba(255,255,255,.08);
+      border-radius:999px;
+      background:rgba(10,10,14,.76);
+      backdrop-filter:blur(14px);
+      box-shadow:0 10px 36px rgba(0,0,0,.28);
     }
 
     .nav a{
-      padding: 11px 18px;
-      border: 1px solid rgba(255, 42, 42, 0.34);
-      border-radius: 999px;
-      background: rgba(255, 255, 255, 0.03);
-      color: #fff;
-      font-weight: 700;
-      font-size: 0.95rem;
-      letter-spacing: 0.02em;
-      transition: 0.2s ease;
+      min-width:96px;
+      text-align:center;
+      padding:12px 18px;
+      border-radius:999px;
+      font-size:.88rem;
+      letter-spacing:.17em;
+      text-transform:uppercase;
+      color:rgba(255,255,255,.86);
+      border:1px solid transparent;
+      transition:transform .18s ease, background .18s ease, border-color .18s ease, color .18s ease;
+      white-space:nowrap;
     }
 
-    .nav a:hover,
+    .nav a:hover{
+      transform:translateY(-1px);
+      background:rgba(255,255,255,.05);
+      border-color:rgba(255,255,255,.08);
+    }
+
     .nav a.active{
-      border-color: rgba(255, 42, 42, 0.75);
-      box-shadow: var(--glow);
-      transform: translateY(-1px);
+      background:rgba(255,255,255,.08);
+      border-color:rgba(255,255,255,.14);
+      color:#fff;
     }
 
-    .page-wrap {
-      max-width: 980px;
-      margin: 0 auto;
-      padding: 110px 20px 70px;
+    .hero{
+      padding:30px 0 26px;
+      text-align:center;
     }
 
-    .service-card {
-      position: relative;
-      border-radius: 20px;
-      padding: 30px 26px;
-      margin-bottom: 20px;
-      overflow: hidden;
-      transition: border-color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
-      scroll-margin-top: 110px;
-      border-width: 2px;
-      border-style: solid;
+    .eyebrow{
+      margin:0 0 10px;
+      color:rgba(255,255,255,.62);
+      text-transform:uppercase;
+      letter-spacing:.22em;
+      font-size:.78rem;
     }
 
-    .service-card:hover {
-      transform: translateY(-2px);
+    .hero h1{
+      margin:0;
+      font-size:clamp(2rem, 5vw, 4.35rem);
+      line-height:.94;
+      letter-spacing:.08em;
+      text-transform:uppercase;
+      font-weight:800;
     }
 
-    .service-kicker {
-      text-transform: uppercase;
-      letter-spacing: 1.8px;
-      font-size: 0.78rem;
-      font-weight: 700;
-      margin-bottom: 10px;
-      position: relative;
-      z-index: 1;
+    .hero p{
+      width:min(760px, 100%);
+      margin:18px auto 0;
+      color:var(--muted);
+      font-size:clamp(1rem, 2vw, 1.08rem);
+      line-height:1.7;
     }
 
-    .service-card h2 {
-      font-size: clamp(1.55rem, 3.4vw, 2.2rem);
-      line-height: 1.1;
-      margin-bottom: 18px;
-      position: relative;
-      z-index: 1;
-      transition: color 0.2s ease;
+    .services-grid{
+      display:grid;
+      grid-template-columns:repeat(2, minmax(0, 1fr));
+      gap:18px;
+      padding:10px 0 22px;
     }
 
-    .service-card p {
-      font-size: 1rem;
-      line-height: 1.8;
-      position: relative;
-      z-index: 1;
-      margin-bottom: 14px;
-    }
-
-    .service-grid {
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 14px;
-      margin-top: 18px;
-      position: relative;
-      z-index: 1;
-    }
-
-    .mini-box {
-      border-radius: 14px;
-      padding: 16px 16px;
-      border-width: 1.5px;
-      border-style: solid;
-    }
-
-    .mini-label {
-      text-transform: uppercase;
-      letter-spacing: 1.3px;
-      font-size: 0.74rem;
-      font-weight: 700;
-      margin-bottom: 8px;
-    }
-
-    .mini-box p {
-      margin: 0;
-      font-size: 0.95rem;
-      line-height: 1.7;
-    }
-
-    .theme-gold {
+    .service-card{
+      position:relative;
+      overflow:hidden;
+      min-height:285px;
       background:
-        radial-gradient(
-          380px circle at var(--mouse-x, 50%) var(--mouse-y, 50%),
-          rgba(255, 195, 60, 0.24),
-          rgba(255, 195, 60, 0.12) 18%,
-          rgba(255, 195, 60, 0.055) 34%,
-          rgba(255, 195, 60, 0.018) 48%,
-          rgba(255, 195, 60, 0) 64%
-        ),
-        #0a0a0a;
-      border-color: rgba(255, 200, 80, 0.44);
-      box-shadow:
-        0 0 0 1px rgba(255, 200, 80, 0.04) inset,
-        0 0 24px rgba(255, 200, 80, 0.08);
+        linear-gradient(180deg, rgba(255,255,255,.02), rgba(255,255,255,.01)),
+        linear-gradient(180deg, #0d0d11, #09090b);
+      border:1px solid var(--line);
+      border-radius:var(--card-radius);
+      box-shadow:var(--shadow);
+      padding:24px;
+      isolation:isolate;
     }
 
-    .theme-gold:hover {
-      border-color: rgba(255, 210, 100, 0.70);
-      box-shadow:
-        0 0 0 1px rgba(255, 200, 80, 0.05) inset,
-        0 0 30px rgba(255, 200, 80, 0.14);
+    .service-card::before{
+      content:"";
+      position:absolute;
+      inset:0;
+      border-radius:inherit;
+      padding:2px;
+      background:linear-gradient(135deg, var(--accent), rgba(255,255,255,.03) 42%, rgba(255,255,255,.02) 68%, var(--accent));
+      -webkit-mask:
+        linear-gradient(#000 0 0) content-box,
+        linear-gradient(#000 0 0);
+      -webkit-mask-composite:xor;
+              mask-composite:exclude;
+      opacity:.92;
+      pointer-events:none;
     }
 
-    .theme-gold .service-kicker,
-    .theme-gold .mini-label {
-      color: #ffd05c;
+    .service-card::after{
+      content:"";
+      position:absolute;
+      width:160px;
+      height:160px;
+      right:-36px;
+      top:-34px;
+      border-radius:50%;
+      background:radial-gradient(circle, color-mix(in srgb, var(--accent) 24%, transparent) 0%, transparent 68%);
+      filter:blur(8px);
+      pointer-events:none;
+      opacity:.6;
     }
 
-    .theme-gold h2 {
-      color: #ffe29b;
+    .service-card.gold{--accent:var(--gold)}
+    .service-card.silver{--accent:var(--silver)}
+    .service-card.green{--accent:var(--green)}
+    .service-card.red{--accent:var(--red)}
+    .service-card.brown{--accent:var(--brown)}
+    .service-card.blue{--accent:var(--blue)}
+
+    .service-top{
+      display:flex;
+      align-items:flex-start;
+      justify-content:space-between;
+      gap:14px;
+      margin-bottom:16px;
     }
 
-    .theme-gold p,
-    .theme-gold .mini-box p {
-      color: #f7f4ea;
+    .service-title-wrap{
+      min-width:0;
     }
 
-    .theme-gold .mini-box {
-      border-color: rgba(255, 208, 92, 0.18);
-      background: rgba(255, 208, 92, 0.04);
+    .service-kicker{
+      color:var(--accent);
+      text-transform:uppercase;
+      letter-spacing:.2em;
+      font-size:.73rem;
+      margin-bottom:8px;
+      font-weight:700;
     }
 
-    .theme-silver {
+    .service-title{
+      margin:0;
+      text-transform:uppercase;
+      letter-spacing:.08em;
+      line-height:1;
+      font-size:clamp(1.35rem, 2.2vw, 2rem);
+    }
+
+    .badge{
+      flex:0 0 auto;
+      padding:9px 12px;
+      border-radius:999px;
+      border:1px solid rgba(255,255,255,.10);
+      color:#fff;
+      font-size:.72rem;
+      text-transform:uppercase;
+      letter-spacing:.16em;
+      background:rgba(255,255,255,.04);
+    }
+
+    .service-copy{
+      color:rgba(255,255,255,.76);
+      line-height:1.7;
+      font-size:1rem;
+      margin:0 0 18px;
+      max-width:58ch;
+    }
+
+    .service-points{
+      list-style:none;
+      padding:0;
+      margin:0;
+      display:grid;
+      gap:10px;
+    }
+
+    .service-points li{
+      position:relative;
+      padding:12px 14px 12px 40px;
+      border-radius:16px;
+      border:1px solid rgba(255,255,255,.08);
+      background:rgba(255,255,255,.03);
+      color:#f1f1f1;
+      line-height:1.5;
+    }
+
+    .service-points li::before{
+      content:"";
+      position:absolute;
+      left:15px;
+      top:50%;
+      transform:translateY(-50%);
+      width:11px;
+      height:11px;
+      border-radius:50%;
+      background:var(--accent);
+      box-shadow:0 0 0 4px color-mix(in srgb, var(--accent) 22%, transparent);
+    }
+
+    .bottom-panel{
+      margin:18px 0 40px;
+      padding:22px;
+      border-radius:34px;
+      border:1px solid rgba(255,255,255,.10);
       background:
-        radial-gradient(
-          380px circle at var(--mouse-x, 50%) var(--mouse-y, 50%),
-          rgba(215, 215, 215, 0.20),
-          rgba(215, 215, 215, 0.10) 18%,
-          rgba(215, 215, 215, 0.045) 34%,
-          rgba(215, 215, 215, 0.014) 48%,
-          rgba(215, 215, 215, 0) 64%
-        ),
-        #0a0a0a;
-      border-color: rgba(205, 205, 205, 0.34);
-      box-shadow:
-        0 0 0 1px rgba(215, 215, 215, 0.035) inset,
-        0 0 24px rgba(215, 215, 215, 0.07);
+        linear-gradient(180deg, rgba(255,255,255,.02), rgba(255,255,255,.01)),
+        linear-gradient(180deg, rgba(10,10,14,.95), rgba(8,8,11,.95));
+      box-shadow:0 20px 60px rgba(0,0,0,.30);
     }
 
-    .theme-silver:hover {
-      border-color: rgba(230, 230, 230, 0.56);
-      box-shadow:
-        0 0 0 1px rgba(215, 215, 215, 0.05) inset,
-        0 0 30px rgba(215, 215, 215, 0.11);
+    .contact-row{
+      display:grid;
+      grid-template-columns:repeat(3, minmax(0, 1fr));
+      gap:14px;
+      align-items:center;
     }
 
-    .theme-silver .service-kicker,
-    .theme-silver .mini-label {
-      color: #dddddd;
-    }
-
-    .theme-silver h2 {
-      color: #f0f0f0;
-    }
-
-    .theme-silver p,
-    .theme-silver .mini-box p {
-      color: #f3f3f3;
-    }
-
-    .theme-silver .mini-box {
-      border-color: rgba(220, 220, 220, 0.16);
-      background: rgba(255,255,255,0.03);
-    }
-
-    .theme-green {
+    .contact-btn{
+      min-height:78px;
+      border-radius:24px;
+      border:1px solid rgba(255,255,255,.11);
       background:
-        radial-gradient(
-          380px circle at var(--mouse-x, 50%) var(--mouse-y, 50%),
-          rgba(55, 214, 120, 0.24),
-          rgba(55, 214, 120, 0.115) 18%,
-          rgba(55, 214, 120, 0.05) 34%,
-          rgba(55, 214, 120, 0.015) 48%,
-          rgba(55, 214, 120, 0) 64%
-        ),
-        #0a0a0a;
-      border-color: rgba(65, 219, 129, 0.40);
-      box-shadow:
-        0 0 0 1px rgba(65, 219, 129, 0.035) inset,
-        0 0 24px rgba(65, 219, 129, 0.08);
+        linear-gradient(180deg, rgba(255,255,255,.025), rgba(255,255,255,.015)),
+        linear-gradient(180deg, #0b0b10, #07070a);
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      text-align:center;
+      text-transform:uppercase;
+      letter-spacing:.22em;
+      font-size:clamp(.95rem, 2vw, 1.08rem);
+      font-weight:700;
+      color:#fff;
+      transition:transform .18s ease, border-color .18s ease, background .18s ease;
+      box-shadow:inset 0 1px 0 rgba(255,255,255,.03);
     }
 
-    .theme-green:hover {
-      border-color: rgba(77, 230, 141, 0.64);
-      box-shadow:
-        0 0 0 1px rgba(65, 219, 129, 0.05) inset,
-        0 0 30px rgba(65, 219, 129, 0.13);
-    }
-
-    .theme-green .service-kicker,
-    .theme-green .mini-label {
-      color: #58e08f;
-    }
-
-    .theme-green h2 {
-      color: #91efb4;
-    }
-
-    .theme-green p,
-    .theme-green .mini-box p {
-      color: #f3f3f3;
-    }
-
-    .theme-green .mini-box {
-      border-color: rgba(88, 224, 143, 0.18);
-      background: rgba(88, 224, 143, 0.035);
-    }
-
-    .theme-red {
+    .contact-btn:hover{
+      transform:translateY(-2px);
+      border-color:rgba(255,255,255,.18);
       background:
-        radial-gradient(
-          380px circle at var(--mouse-x, 50%) var(--mouse-y, 50%),
-          rgba(255, 50, 50, 0.24),
-          rgba(255, 50, 50, 0.12) 18%,
-          rgba(255, 50, 50, 0.055) 34%,
-          rgba(255, 50, 50, 0.018) 48%,
-          rgba(255, 50, 50, 0) 64%
-        ),
-        #0a0a0a;
-      border-color: rgba(255, 60, 60, 0.44);
-      box-shadow:
-        0 0 0 1px rgba(255, 60, 60, 0.04) inset,
-        0 0 24px rgba(255, 60, 60, 0.08);
+        linear-gradient(180deg, rgba(255,255,255,.045), rgba(255,255,255,.02)),
+        linear-gradient(180deg, #0d0d12, #08080b);
     }
 
-    .theme-red:hover {
-      border-color: rgba(255, 75, 75, 0.70);
-      box-shadow:
-        0 0 0 1px rgba(255, 60, 60, 0.05) inset,
-        0 0 30px rgba(255, 60, 60, 0.14);
+    .footer-space{
+      height:16px;
     }
 
-    .theme-red .service-kicker,
-    .theme-red .mini-label {
-      color: #ff5c5c;
-    }
-
-    .theme-red h2 {
-      color: #ff9b9b;
-    }
-
-    .theme-red p,
-    .theme-red .mini-box p {
-      color: #f4f4f4;
-    }
-
-    .theme-red .mini-box {
-      border-color: rgba(255, 92, 92, 0.18);
-      background: rgba(255, 92, 92, 0.04);
-    }
-
-    .theme-brown {
-      background:
-        radial-gradient(
-          430px circle at var(--mouse-x, 50%) var(--mouse-y, 50%),
-          rgba(150, 95, 45, 0.28),
-          rgba(150, 95, 45, 0.14) 18%,
-          rgba(150, 95, 45, 0.065) 34%,
-          rgba(150, 95, 45, 0.02) 50%,
-          rgba(150, 95, 45, 0) 67%
-        ),
-        linear-gradient(180deg, rgba(150, 95, 45, 0.05), rgba(150, 95, 45, 0.018)),
-        #090909;
-      border-color: rgba(185, 125, 72, 0.42);
-      box-shadow:
-        0 0 0 1px rgba(185, 125, 72, 0.045) inset,
-        0 0 30px rgba(150, 95, 45, 0.10);
-    }
-
-    .theme-brown:hover {
-      border-color: rgba(205, 144, 88, 0.66);
-      box-shadow:
-        0 0 0 1px rgba(185, 125, 72, 0.06) inset,
-        0 0 36px rgba(150, 95, 45, 0.15);
-    }
-
-    .theme-brown .service-kicker,
-    .theme-brown .mini-label {
-      color: #d09a65;
-    }
-
-    .theme-brown h2 {
-      color: #e0b286;
-    }
-
-    .theme-brown p,
-    .theme-brown .mini-box p {
-      color: #f5efe8;
-    }
-
-    .theme-brown .mini-box {
-      border-color: rgba(208, 154, 101, 0.20);
-      background: rgba(150, 95, 45, 0.05);
-    }
-
-    .theme-turquoise {
-      background:
-        radial-gradient(
-          390px circle at var(--mouse-x, 50%) var(--mouse-y, 50%),
-          rgba(55, 210, 215, 0.24),
-          rgba(55, 210, 215, 0.115) 18%,
-          rgba(55, 210, 215, 0.05) 34%,
-          rgba(55, 210, 215, 0.015) 48%,
-          rgba(55, 210, 215, 0) 64%
-        ),
-        #0a0a0a;
-      border-color: rgba(70, 220, 225, 0.42);
-      box-shadow:
-        0 0 0 1px rgba(70, 220, 225, 0.035) inset,
-        0 0 24px rgba(70, 220, 225, 0.08);
-    }
-
-    .theme-turquoise:hover {
-      border-color: rgba(95, 232, 236, 0.66);
-      box-shadow:
-        0 0 0 1px rgba(70, 220, 225, 0.05) inset,
-        0 0 30px rgba(70, 220, 225, 0.13);
-    }
-
-    .theme-turquoise .service-kicker,
-    .theme-turquoise .mini-label {
-      color: #6ee7eb;
-    }
-
-    .theme-turquoise h2 {
-      color: #9ef4f6;
-    }
-
-    .theme-turquoise p,
-    .theme-turquoise .mini-box p {
-      color: #f2fbfb;
-    }
-
-    .theme-turquoise .mini-box {
-      border-color: rgba(110, 231, 235, 0.18);
-      background: rgba(110, 231, 235, 0.04);
-    }
-
-    .bottom-cta {
-      max-width: 760px;
-      margin: 18px auto 0;
-      text-align: center;
-    }
-
-    .cta-row {
-      display: flex;
-      justify-content: center;
-      gap: 12px;
-      flex-wrap: wrap;
-    }
-
-    .cta-row a {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      min-width: 170px;
-      padding: 13px 16px;
-      border-radius: 12px;
-      border: 1px solid rgba(255,255,255,0.1);
-      background:
-        linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.015)),
-        #0a0a0a;
-      color: #ffffff;
-      text-decoration: none;
-      text-transform: uppercase;
-      font-size: 0.82rem;
-      font-weight: 700;
-      letter-spacing: 1.3px;
-      transition: border-color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
-    }
-
-    .cta-row a:hover {
-      border-color: rgba(255, 190, 70, 0.7);
-      transform: translateY(-2px);
-      box-shadow: 0 0 20px rgba(255, 190, 70, 0.14);
-    }
-
-    @media (max-width: 768px) {
-      .page-wrap {
-        padding: 102px 16px 50px;
-      }
-
-      .service-card {
-        padding: 22px 18px;
-        border-radius: 16px;
-      }
-
-      .service-kicker {
-        font-size: 0.72rem;
-        letter-spacing: 1.4px;
-      }
-
-      .service-card h2 {
-        margin-bottom: 16px;
-      }
-
-      .service-card p {
-        font-size: 0.95rem;
-        line-height: 1.72;
-      }
-
-      .service-grid {
-        grid-template-columns: 1fr;
-        gap: 12px;
-      }
-
-      .mini-box {
-        padding: 14px 14px;
-      }
-
-      .mini-box p {
-        font-size: 0.92rem;
-      }
-
-      .cta-row a {
-        min-width: 100%;
-        font-size: 0.76rem;
+    @media (max-width: 980px){
+      .services-grid{
+        grid-template-columns:1fr;
       }
     }
 
-    @media (max-width: 700px){
-      .topbar-inner{
-        padding: 14px 14px;
-      }
-
-      .nav a{
-        padding: 10px 14px;
-        font-size: 0.9rem;
-      }
-    }
-
-    @media (max-width: 430px){
-      .topbar-inner{
-        padding: 12px 10px;
+    @media (max-width: 760px){
+      .topbar{
+        padding-top:14px;
       }
 
       .nav{
-        gap: 8px;
+        width:100%;
+        max-width:100%;
+        border-radius:26px;
+        padding:10px;
+        gap:8px;
       }
 
       .nav a{
-        padding: 9px 12px;
-        font-size: .84rem;
+        flex:1 1 calc(50% - 8px);
+        min-width:0;
+        padding:12px 14px;
+        font-size:.78rem;
+        letter-spacing:.14em;
       }
 
-      .page-wrap{
-        padding: 96px 14px 42px;
+      .hero{
+        padding-top:24px;
+      }
+
+      .hero p{
+        line-height:1.65;
+      }
+
+      .service-card{
+        min-height:auto;
+        padding:20px;
+      }
+
+      .service-top{
+        flex-direction:column;
+        align-items:flex-start;
+      }
+
+      .badge{
+        padding:8px 11px;
+      }
+
+      .bottom-panel{
+        padding:16px;
+        border-radius:26px;
+      }
+
+      .contact-row{
+        grid-template-columns:repeat(3, minmax(0, 1fr));
+        gap:10px;
+      }
+
+      .contact-btn{
+        min-height:64px;
+        border-radius:20px;
+        font-size:.84rem;
+        letter-spacing:.15em;
+        padding:0 8px;
+      }
+    }
+
+    @media (max-width: 520px){
+      .shell{
+        width:min(calc(100% - 18px), var(--wrap));
+      }
+
+      .nav a{
+        flex:1 1 calc(50% - 8px);
+      }
+
+      .hero h1{
+        letter-spacing:.06em;
+      }
+
+      .service-points li{
+        padding:11px 12px 11px 38px;
+      }
+
+      .contact-row{
+        grid-template-columns:1fr;
+      }
+
+      .contact-btn{
+        min-height:68px;
+        font-size:1rem;
+        letter-spacing:.18em;
       }
     }
   </style>
 </head>
 <body>
-  <header class="topbar">
-    <div class="topbar-inner">
-      <nav class="nav">
-        <a href="home.html">Home</a>
-        <a href="services.html" class="active">Services</a>
-        <a href="about.html">About</a>
-      </nav>
-    </div>
-  </header>
+  <div class="grain"></div>
 
-  <main class="page-wrap">
-    <section class="service-card theme-gold">
-      <div class="service-kicker">Core Service</div>
-      <h2>General Pest Control</h2>
-      <p>
-        Our general pest service is built for common pest pressure around the
-        home and is designed to help keep pest activity down through consistent,
-        dependable treatment.
-      </p>
-      <p>
-        This service typically targets pests such as ants, spiders,
-        crickets, earwigs, silverfish, centipedes, millipedes, and other common
-        invading insects. Does not cover bed bugs or termites.
-      </p>
-
-      <div class="service-grid">
-        <div class="mini-box">
-          <div class="mini-label">Typical Coverage</div>
-          <p>
-            Exterior foundation and eave treatment with full front to back curb spot treatment as needed based
-            on pest activity.
-          </p>
-        </div>
-        <div class="mini-box">
-          <div class="mini-label">Important Note</div>
-          <p>
-            Interior and garage treatments are optional, not mandatory.
-          </p>
+  <div class="page">
+    <header class="topbar">
+      <div class="shell">
+        <div class="nav-wrap">
+          <nav class="nav" aria-label="Primary Navigation">
+            <a href="home.html">Home</a>
+            <a href="services.html" class="active">Services</a>
+            <a href="process.html">Process</a>
+            <a href="about.html">About</a>
+          </nav>
         </div>
       </div>
-    </section>
+    </header>
 
-    <section class="service-card theme-silver">
-      <div class="service-kicker">Monitoring + Control</div>
-      <h2>Rodent Control</h2>
-      <p>
-        Our rodent control service focuses on reducing and monitoring rodent
-        activity through strategic bait placement and ongoing follow-up where
-        needed.
-      </p>
-      <p>
-        Service includes inspection of active areas, exterior bait stations, sticky traps, 
-        and recommendations to help reduce conditions that contribute to rodent
-        pressure around the home.
-      </p>
-
-      <div class="service-grid">
-        <div class="mini-box">
-          <div class="mini-label">Service Focus</div>
+    <main>
+      <section class="hero">
+        <div class="shell">
+          <p class="eyebrow">Jonesboro, Arkansas</p>
+          <h1>Services That Match Real Pest Pressure</h1>
           <p>
-            Ongoing monitoring, activity reduction, baiting, and follow-up based
-            on the level of rodent pressure.
+            Clean, straightforward treatments built around what actually helps:
+            better coverage, better follow-through, and no bloated service menu
+            full of stuff people do not need.
           </p>
         </div>
-        <div class="mini-box">
-          <div class="mini-label">Important Note</div>
-          <p>
-            Does not include moles, snakes, skunks, or squirrels.
-          </p>
+      </section>
+
+      <section>
+        <div class="shell">
+          <div class="services-grid">
+            <article class="service-card gold">
+              <div class="service-top">
+                <div class="service-title-wrap">
+                  <div class="service-kicker">Core Service</div>
+                  <h2 class="service-title">General Pest</h2>
+                </div>
+                <div class="badge">Gold Tier</div>
+              </div>
+              <p class="service-copy">
+                Our main recurring service for homes that want strong exterior
+                defense, clean interior attention when needed, and dependable
+                year-round protection without the corporate runaround.
+              </p>
+              <ul class="service-points">
+                <li>Exterior foundation treatment focused on active entry points and pressure zones.</li>
+                <li>Web removal, wasp attention, and treatment where pests actually build up.</li>
+                <li>Interior service available when needed instead of forcing it every visit.</li>
+              </ul>
+            </article>
+
+            <article class="service-card silver">
+              <div class="service-top">
+                <div class="service-title-wrap">
+                  <div class="service-kicker">Add-On / Problem Focus</div>
+                  <h2 class="service-title">Rodent Control</h2>
+                </div>
+                <div class="badge">Silver Tier</div>
+              </div>
+              <p class="service-copy">
+                Rodent work should not be guesswork. We focus on activity,
+                pressure points, and practical control that gives the home a real
+                shot at staying clear.
+              </p>
+              <ul class="service-points">
+                <li>Bait station placement based on real activity and likely travel routes.</li>
+                <li>Targeted control around garages, utility lines, fence lines, and exterior hiding spots.</li>
+                <li>Clear recommendations when exclusion or cleanup matters just as much as product.</li>
+              </ul>
+            </article>
+
+            <article class="service-card green">
+              <div class="service-top">
+                <div class="service-title-wrap">
+                  <div class="service-kicker">Warm Season Add-On</div>
+                  <h2 class="service-title">Tick &amp; Flea</h2>
+                </div>
+                <div class="badge">Green Tier</div>
+              </div>
+              <p class="service-copy">
+                Tick and flea issues can build fast, especially around pets,
+                shade, fence lines, and heavy vegetation. This treatment is built
+                for the spots where they actually hold.
+              </p>
+              <ul class="service-points">
+                <li>Focused treatment in shaded edges, pet zones, ornamental beds, and resting areas.</li>
+                <li>Coverage aimed at reducing active populations where people and pets spend time.</li>
+                <li>Best paired with yard cleanup and continued monitoring during peak season.</li>
+              </ul>
+            </article>
+
+            <article class="service-card red">
+              <div class="service-top">
+                <div class="service-title-wrap">
+                  <div class="service-kicker">Seasonal Add-On</div>
+                  <h2 class="service-title">Mosquito Control</h2>
+                </div>
+                <div class="badge">Red Tier</div>
+              </div>
+              <p class="service-copy">
+                Mosquito treatments are aimed at resting sites and shaded
+                foliage, not random spray for the sake of saying it was done.
+                Better timing and better placement matter.
+              </p>
+              <ul class="service-points">
+                <li>Targeted treatment of shaded foliage, cool resting zones, and protected harborage areas.</li>
+                <li>Application approach designed to stay smart around people, pets, and pollinators.</li>
+                <li>Ideal for patios, backyards, and homes that actually want to use their outdoor space.</li>
+              </ul>
+            </article>
+
+            <article class="service-card brown">
+              <div class="service-top">
+                <div class="service-title-wrap">
+                  <div class="service-kicker">Specialty Interior Service</div>
+                  <h2 class="service-title">German Roaches</h2>
+                </div>
+                <div class="badge">Brown Tier</div>
+              </div>
+              <p class="service-copy">
+                German roach work has to be detailed. Surface spray alone does
+                not cut it. This service is built around inspection, harborage
+                targeting, and the kind of follow-up these jobs usually need.
+              </p>
+              <ul class="service-points">
+                <li>Detailed treatment around kitchens, appliances, moisture areas, and known harborage zones.</li>
+                <li>Baiting and product placement based on activity instead of blanket over-application.</li>
+                <li>Follow-up matters because heavy roach work is rarely a one-visit issue.</li>
+              </ul>
+            </article>
+
+            <article class="service-card blue">
+              <div class="service-top">
+                <div class="service-title-wrap">
+                  <div class="service-kicker">Seasonal Exterior Service</div>
+                  <h2 class="service-title">Weed Control</h2>
+                </div>
+                <div class="badge">Blue Tier</div>
+              </div>
+              <p class="service-copy">
+                Weed control should make the property look tighter without
+                turning it into a chemistry experiment. This service focuses on
+                practical control where weeds actually show up and spread.
+              </p>
+              <ul class="service-points">
+                <li>Targeted treatment for cracks, edges, rock beds, fence lines, and problem growth zones.</li>
+                <li>Built to improve appearance while keeping the approach clean and measured.</li>
+                <li>Can be paired with recurring pest service for a stronger overall exterior program.</li>
+              </ul>
+            </article>
+          </div>
+
+          <div class="bottom-panel">
+            <div class="contact-row">
+              <a class="contact-btn" href="tel:+18705551234">Call</a>
+              <a class="contact-btn" href="sms:+18705551234">Text</a>
+              <a class="contact-btn" href="mailto:info@allseasonpestllc.com">Email</a>
+            </div>
+          </div>
+
+          <div class="footer-space"></div>
         </div>
-      </div>
-    </section>
-
-    <section class="service-card theme-green">
-      <div class="service-kicker">Targeted Outdoor Service</div>
-      <h2>Tick &amp; Flea Treatment</h2>
-      <p>
-        Tick and flea treatments are designed for properties dealing with biting
-        pests in the yard, around pet areas, or in outdoor spaces where activity
-        tends to build up.
-      </p>
-      <p>
-        These treatments focus on helping reduce active populations and improving
-        control in the areas where ticks and fleas are most likely to be found.
-      </p>
-
-      <div class="service-grid">
-        <div class="mini-box">
-          <div class="mini-label">Best For</div>
-          <p>
-            Homes with pets, shaded yards, wildlife traffic, or recurring tick
-            and flea activity outside.
-          </p>
-        </div>
-        <div class="mini-box">
-          <div class="mini-label">Important Note</div>
-          <p>
-            This is an optional add-on service for general pest control.
-          </p>
-        </div>
-      </div>
-    </section>
-
-    <section class="service-card theme-red">
-      <div class="service-kicker">Seasonal Treatment</div>
-      <h2>Mosquito Treatment</h2>
-      <p>
-        Our mosquito treatments are designed to help reduce mosquito pressure in
-        the yard so you can enjoy outdoor areas more comfortably during the
-        warmer months.
-      </p>
-      <p>
-        Treatment is typically focused on shaded foliage, harborage areas, and
-        other outdoor zones where mosquitoes like to rest and build up.
-      </p>
-
-      <div class="service-grid">
-        <div class="mini-box">
-          <div class="mini-label">Best For</div>
-          <p>
-            Homes with patios, backyards, pets, outdoor gatherings, or heavy
-            mosquito pressure during the season.
-          </p>
-        </div>
-        <div class="mini-box">
-          <div class="mini-label">Service Approach</div>
-          <p>
-            Monthly recurring treatments from April-September aimed at reducing biting pressure and breeding populations.
-          </p>
-        </div>
-      </div>
-    </section>
-
-    <section class="service-card theme-brown">
-      <div class="service-kicker">Specialized Treatment</div>
-      <h2>German Roach Treatment</h2>
-      <p>
-        German roach problems usually require a more aggressive and targeted
-        treatment plan than standard pest control. This service is built for
-        active infestations that need more focused attention.
-      </p>
-      <p>
-        Treatment may include detailed inspection, targeted crack-and-crevice
-        applications, baiting, and follow-up service depending on the level of
-        activity and conditions inside the home.
-      </p>
-
-      <div class="service-grid">
-        <div class="mini-box">
-          <div class="mini-label">Best For</div>
-          <p>
-            Active german roach infestations that need more than routine
-            recurring service.
-          </p>
-        </div>
-        <div class="mini-box">
-          <div class="mini-label">Important Note</div>
-          <p>
-            Success depends heavily on severity, sanitation, clutter levels, and
-            cooperation with preparation recommendations.
-          </p>
-        </div>
-      </div>
-    </section>
-
-    <section class="service-card theme-turquoise">
-      <div class="service-kicker">Specialized Treatment</div>
-      <h2>Weed Control</h2>
-      <p>
-        Our weed control service is designed to help reduce unwanted weed growth
-        and improve the overall appearance of your property.
-      </p>
-      <p>
-        Treatment plans may vary based on the season, weed pressure, and overall
-        condition of the turf, but the goal stays the same: cleaner, more
-        controlled outdoor spaces.
-      </p>
-
-      <div class="service-grid">
-        <div class="mini-box">
-          <div class="mini-label">Best For</div>
-          <p>
-            Properties dealing with visible weed pressure in the rocks, along
-            edges, or throughout the yard.
-          </p>
-        </div>
-        <div class="mini-box">
-          <div class="mini-label">Service Approach</div>
-          <p>
-            Price varies by total square feet of treatment. Treatments are done in spring (Mar/Apr) and late summer (Aug/Sep).
-          </p>
-        </div>
-      </div>
-    </section>
-
-    <section class="bottom-cta">
-      <div class="cta-row">
-        <a href="tel:8709197114">Call</a>
-        <a href="sms:8709197114">Text</a>
-        <a href="mailto:gmail@allseasonllc.com">Email</a>
-      </div>
-    </section>
-  </main>
-
-  <script>
-    const cards = document.querySelectorAll('.service-card');
-
-    cards.forEach((card) => {
-      card.addEventListener('mousemove', (e) => {
-        const rect = card.getBoundingClientRect();
-        const x = e.clientX - rect.left;
-        const y = e.clientY - rect.top;
-
-        card.style.setProperty('--mouse-x', `${x}px`);
-        card.style.setProperty('--mouse-y', `${y}px`);
-      });
-    });
-  </script>
+      </section>
+    </main>
+  </div>
 </body>
 </html>
