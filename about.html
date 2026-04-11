@@ -117,8 +117,8 @@
       min-height:calc(100vh - 160px);
       border:1px solid rgba(255,255,255,.08);
       background:
-        radial-gradient(circle at 35% 45%, rgba(255,40,40,.05), transparent 24%),
-        radial-gradient(circle at 72% 57%, rgba(255,255,255,.045), transparent 24%),
+        radial-gradient(circle at 22% 30%, rgba(255,40,40,.035), transparent 26%),
+        radial-gradient(circle at 88% 72%, rgba(255,255,255,.03), transparent 28%),
         linear-gradient(180deg, rgba(255,255,255,.01), rgba(255,255,255,.002)),
         #000;
       box-shadow:var(--shadow);
@@ -133,7 +133,7 @@
       z-index:3;
       pointer-events:none;
       background:
-        radial-gradient(circle at 35% 45%, rgba(0,0,0,.02) 0%, rgba(0,0,0,.14) 68%, rgba(0,0,0,.28) 100%),
+        radial-gradient(circle at 22% 30%, rgba(0,0,0,.02) 0%, rgba(0,0,0,.14) 66%, rgba(0,0,0,.28) 100%),
         linear-gradient(180deg, rgba(0,0,0,.08), rgba(0,0,0,.12));
     }
 
@@ -146,9 +146,9 @@
       display:block;
       pointer-events:none;
       filter:
-        drop-shadow(0 0 6px rgba(255,60,60,.12))
-        drop-shadow(0 0 8px rgba(255,255,255,.08))
-        drop-shadow(0 0 18px rgba(255,255,255,.03));
+        drop-shadow(0 0 6px rgba(255,60,60,.11))
+        drop-shadow(0 0 8px rgba(255,255,255,.07))
+        drop-shadow(0 0 20px rgba(255,255,255,.025));
     }
 
     .content{
@@ -288,40 +288,43 @@
       initSystems();
     }
 
-    function createSystem(x, y, colorName, colorRGB, glowRGB) {
+    function createSystem(x, y, colorName, colorRGB, glowRGB, options = {}) {
       const mobile = window.innerWidth < 768;
       const spokeCount = mobile ? 15 : 18;
-      const ringCount = mobile ? 8 : 10;
-      const maxRadius = Math.max(w, h) * (mobile ? 0.47 : 0.42);
+      const ringCount = mobile ? 7 : 9;
+      const maxRadius = Math.max(w, h) * (mobile ? 0.62 : 0.60);
 
       const spokes = [];
       const angleStep = (Math.PI * 2) / spokeCount;
 
       for (let i = 0; i < spokeCount; i++) {
-        const angle = i * angleStep + rand(-0.09, 0.09);
+        const angle = i * angleStep + rand(-0.11, 0.11);
+
         spokes.push({
           angle,
-          thickness: rand(1.6, 3.1),
-          alpha: rand(0.24, 0.78),
-          wobble: rand(2, 7),
+          thickness: colorName === "red" ? rand(1.9, 3.4) : rand(1.4, 2.7),
+          alpha: colorName === "red" ? rand(0.26, 0.82) : rand(0.14, 0.48),
+          wobble: rand(4, 11),
           wobblePhase: rand(0, Math.PI * 2),
-          wobbleFreq: rand(1.5, 3.1),
-          maxReach: maxRadius * rand(0.90, 1.08),
-          liveReach: rand(14, 30),
-          growth: rand(0.16, 0.36),
-          breakStart: Math.random() < 0.22 ? rand(0.52, 0.82) : null,
-          breakLen: rand(0.03, 0.07)
+          wobbleFreq: rand(1.5, 3.2),
+          curveBias: rand(-18, 18),
+          maxReach: maxRadius * rand(0.96, 1.16),
+          liveReach: rand(18, 34),
+          growth: rand(0.15, 0.30),
+          breakStart: Math.random() < 0.18 ? rand(0.56, 0.85) : null,
+          breakLen: rand(0.025, 0.06)
         });
       }
 
       const rings = [];
       for (let i = 0; i < ringCount; i++) {
         rings.push({
-          ratio: 0.10 + i * rand(0.075, 0.088),
-          alpha: rand(0.14, 0.34),
-          thickness: rand(1.0, 2.15),
-          sag: rand(-5, 7),
-          jitter: rand(0.8, 2.8)
+          ratio: 0.12 + i * rand(0.08, 0.10),
+          alpha: colorName === "red" ? rand(0.12, 0.28) : rand(0.10, 0.22),
+          thickness: colorName === "red" ? rand(1.3, 2.3) : rand(1.1, 1.9),
+          sag: rand(-7, 9),
+          jitter: rand(1.1, 3.4),
+          skipChance: rand(0.04, 0.15)
         });
       }
 
@@ -336,8 +339,9 @@
         maxRadius,
         webProgress: 0.04,
         targetProgress: 1,
-        growthRate: 0.00125,
-        pulse: rand(0, Math.PI * 2)
+        growthRate: options.growthRate ?? 0.0011,
+        pulse: rand(0, Math.PI * 2),
+        dominant: options.dominant ?? false
       };
     }
 
@@ -346,35 +350,40 @@
 
       systems = [
         createSystem(
-          w * (mobile ? 0.37 : 0.34),
-          h * (mobile ? 0.45 : 0.46),
+          w * (mobile ? 0.23 : 0.20),
+          h * (mobile ? 0.36 : 0.34),
           "red",
           "255,72,72",
-          "255,30,30"
+          "255,30,30",
+          { dominant: true, growthRate: 0.00115 }
         ),
         createSystem(
-          w * (mobile ? 0.74 : 0.73),
-          h * (mobile ? 0.58 : 0.57),
+          w * (mobile ? 0.88 : 0.91),
+          h * (mobile ? 0.67 : 0.70),
           "white",
           "255,255,255",
-          "255,255,255"
+          "255,255,255",
+          { dominant: false, growthRate: 0.0010 }
         )
       ];
     }
 
     function pointOnSpoke(system, spoke, t, extraSag = 0) {
       const r = spoke.liveReach * t;
+
       const wobble =
-        Math.sin((t * spoke.wobbleFreq) + spoke.wobblePhase + frame * 0.008) *
+        Math.sin((t * spoke.wobbleFreq) + spoke.wobblePhase + frame * 0.006) *
         spoke.wobble *
-        (0.16 + t * 0.26);
+        (0.16 + t * 0.30);
 
       const nx = Math.cos(spoke.angle + Math.PI / 2);
       const ny = Math.sin(spoke.angle + Math.PI / 2);
 
+      const curve = Math.sin((t * Math.PI) + spoke.wobblePhase * 0.35) * spoke.curveBias * t;
+
       return {
-        x: system.x + Math.cos(spoke.angle) * r + nx * wobble,
-        y: system.y + Math.sin(spoke.angle) * r + ny * (wobble + extraSag)
+        x: system.x + Math.cos(spoke.angle) * r + nx * (wobble + curve * 0.18),
+        y: system.y + Math.sin(spoke.angle) * r + ny * (wobble + extraSag + curve * 0.18)
       };
     }
 
@@ -385,7 +394,7 @@
 
     function updateSystems() {
       systems.forEach((system) => {
-        system.pulse += 0.006;
+        system.pulse += 0.005;
         system.webProgress = Math.min(system.targetProgress, system.webProgress + system.growthRate);
 
         system.spokes.forEach((spoke) => {
@@ -393,26 +402,27 @@
           if (spoke.liveReach < targetReach) {
             spoke.liveReach = Math.min(targetReach, spoke.liveReach + spoke.growth);
           }
-          spoke.wobblePhase += 0.0045;
+          spoke.wobblePhase += 0.0038;
         });
       });
     }
 
     function drawGlow(system) {
-      const g = ctx.createRadialGradient(system.x, system.y, 0, system.x, system.y, system.maxRadius * 1.06);
-      g.addColorStop(0, `rgba(${system.glowRGB},0.09)`);
-      g.addColorStop(0.14, `rgba(${system.glowRGB},0.04)`);
-      g.addColorStop(0.35, `rgba(${system.glowRGB},0.012)`);
+      const g = ctx.createRadialGradient(system.x, system.y, 0, system.x, system.y, system.maxRadius * 1.1);
+      const baseA = system.colorName === "red" ? 0.09 : 0.055;
+      g.addColorStop(0, `rgba(${system.glowRGB},${baseA})`);
+      g.addColorStop(0.14, `rgba(${system.glowRGB},${baseA * 0.45})`);
+      g.addColorStop(0.36, `rgba(${system.glowRGB},${baseA * 0.14})`);
       g.addColorStop(1, `rgba(${system.glowRGB},0)`);
       ctx.fillStyle = g;
       ctx.fillRect(0, 0, w, h);
     }
 
     function drawSpokes(system) {
-      system.spokes.forEach((spoke) => {
-        const steps = 28;
+      system.spokes.forEach((spoke, spokeIndex) => {
+        const steps = 30;
         let started = false;
-        let last = null;
+        let prev = null;
 
         ctx.beginPath();
 
@@ -422,6 +432,7 @@
 
           if (blocked(spoke, t)) {
             started = false;
+            prev = null;
             continue;
           }
 
@@ -430,13 +441,13 @@
           if (!started) {
             ctx.moveTo(pt.x, pt.y);
             started = true;
-          } else if (last) {
-            const midX = (last.x + pt.x) * 0.5;
-            const midY = (last.y + pt.y) * 0.5;
-            ctx.quadraticCurveTo(last.x, last.y, midX, midY);
+          } else if (prev) {
+            const mx = (prev.x + pt.x) * 0.5;
+            const my = (prev.y + pt.y) * 0.5;
+            ctx.quadraticCurveTo(prev.x, prev.y, mx, my);
           }
 
-          last = pt;
+          prev = pt;
         }
 
         ctx.strokeStyle = `rgba(${system.colorRGB},${spoke.alpha})`;
@@ -445,11 +456,34 @@
         ctx.lineJoin = "round";
         ctx.stroke();
 
-        if (last && system.webProgress > 0.14) {
+        if (prev && system.webProgress > 0.14) {
           ctx.beginPath();
-          ctx.arc(last.x, last.y, Math.max(1.0, spoke.thickness * 0.36), 0, Math.PI * 2);
-          ctx.fillStyle = `rgba(${system.colorRGB},${Math.min(0.58, spoke.alpha * 0.65)})`;
+          ctx.arc(prev.x, prev.y, Math.max(1.0, spoke.thickness * 0.34), 0, Math.PI * 2);
+          ctx.fillStyle = `rgba(${system.colorRGB},${Math.min(0.52, spoke.alpha * 0.55)})`;
           ctx.fill();
+        }
+
+        if (system.colorName === "red" && system.webProgress > 0.30 && spokeIndex % 4 === 0) {
+          const flicker = (Math.sin(frame * 0.025 + spokeIndex) + 1) * 0.5;
+          if (flicker > 0.86) {
+            ctx.beginPath();
+            let first = true;
+            for (let i = 0; i < 6; i++) {
+              const t = 0.14 + ((Math.min(system.webProgress, 0.38) - 0.14) * i / 5);
+              const p = pointOnSpoke(system, spoke, t);
+              const jx = rand(-2.8, 2.8);
+              const jy = rand(-2.8, 2.8);
+              if (first) {
+                ctx.moveTo(p.x + jx, p.y + jy);
+                first = false;
+              } else {
+                ctx.lineTo(p.x + jx, p.y + jy);
+              }
+            }
+            ctx.strokeStyle = `rgba(${system.colorRGB},${0.10 + flicker * 0.12})`;
+            ctx.lineWidth = 1.0;
+            ctx.stroke();
+          }
         }
       });
     }
@@ -461,17 +495,17 @@
         if (ring.ratio > system.webProgress) return;
 
         const points = [];
-
         sorted.forEach((spoke, i) => {
           const t = ring.ratio;
           if (blocked(spoke, t)) return;
-          if (spoke.liveReach * t < 18 + ringIndex * 10) return;
+          if (spoke.liveReach * t < 18 + ringIndex * 12) return;
+          if (Math.random() < ring.skipChance * 0.08) return;
 
           const pt = pointOnSpoke(
             system,
             spoke,
             t,
-            Math.sin(frame * 0.008 + i + ringIndex) * ring.jitter + ring.sag * 0.06
+            Math.sin(frame * 0.006 + i + ringIndex) * ring.jitter + ring.sag * 0.07
           );
 
           points.push(pt);
@@ -483,9 +517,9 @@
         ctx.moveTo(points[0].x, points[0].y);
 
         for (let i = 1; i < points.length - 1; i++) {
-          const midX = (points[i].x + points[i + 1].x) * 0.5;
-          const midY = (points[i].y + points[i + 1].y) * 0.5;
-          ctx.quadraticCurveTo(points[i].x, points[i].y, midX, midY);
+          const mx = (points[i].x + points[i + 1].x) * 0.5;
+          const my = (points[i].y + points[i + 1].y) * 0.5;
+          ctx.quadraticCurveTo(points[i].x, points[i].y, mx, my);
         }
 
         ctx.lineTo(points[points.length - 1].x, points[points.length - 1].y);
@@ -498,54 +532,17 @@
       });
     }
 
-    function drawLightningHints(system) {
-      if (system.webProgress < 0.30) return;
-
-      const candidates = system.spokes.filter((_, i) => i % 3 === 0);
-
-      candidates.forEach((spoke, idx) => {
-        const flicker = (Math.sin(frame * 0.02 + idx * 1.7) + 1) * 0.5;
-        if (flicker < 0.78) return;
-
-        const startT = 0.18 + (idx % 3) * 0.08;
-        const endT = Math.min(system.webProgress, startT + 0.16);
-
-        ctx.beginPath();
-        let started = false;
-
-        for (let i = 0; i < 6; i++) {
-          const t = startT + ((endT - startT) * i / 5);
-          const p = pointOnSpoke(system, spoke, t);
-          const jx = rand(-3.5, 3.5);
-          const jy = rand(-3.5, 3.5);
-
-          if (!started) {
-            ctx.moveTo(p.x + jx, p.y + jy);
-            started = true;
-          } else {
-            ctx.lineTo(p.x + jx, p.y + jy);
-          }
-        }
-
-        ctx.strokeStyle = `rgba(${system.colorRGB},${0.11 + flicker * 0.15})`;
-        ctx.lineWidth = 1.0;
-        ctx.lineCap = "round";
-        ctx.lineJoin = "round";
-        ctx.stroke();
-      });
-    }
-
     function drawCrossLink() {
       const red = systems[0];
       const white = systems[1];
       if (!red || !white) return;
 
-      const redSpokes = red.spokes.slice(3, 7);
-      const whiteSpokes = white.spokes.slice(8, 12);
+      const redSpokes = red.spokes.slice(5, 9);
+      const whiteSpokes = white.spokes.slice(10, 14);
 
       for (let i = 0; i < Math.min(redSpokes.length, whiteSpokes.length); i++) {
         const rt = Math.min(red.webProgress * 0.72, 0.72);
-        const wt = Math.min(white.webProgress * 0.68, 0.68);
+        const wt = Math.min(white.webProgress * 0.70, 0.70);
 
         if (rt < 0.28 || wt < 0.28) continue;
 
@@ -554,11 +551,11 @@
 
         ctx.beginPath();
         ctx.moveTo(p1.x, p1.y);
-        const mx = (p1.x + p2.x) * 0.5 + Math.sin(frame * 0.008 + i) * 14;
-        const my = (p1.y + p2.y) * 0.5 - 8;
+        const mx = (p1.x + p2.x) * 0.5 + Math.sin(frame * 0.006 + i) * 16;
+        const my = (p1.y + p2.y) * 0.5 - 10;
         ctx.quadraticCurveTo(mx, my, p2.x, p2.y);
-        ctx.strokeStyle = "rgba(255,255,255,0.045)";
-        ctx.lineWidth = 1.1;
+        ctx.strokeStyle = "rgba(255,255,255,0.035)";
+        ctx.lineWidth = 1.0;
         ctx.stroke();
       }
     }
@@ -573,14 +570,14 @@
           0,
           Math.PI * 2
         );
-        ctx.strokeStyle = `rgba(${system.colorRGB},${0.16 - i * 0.035})`;
-        ctx.lineWidth = 1.3;
+        ctx.strokeStyle = `rgba(${system.colorRGB},${0.15 - i * 0.032})`;
+        ctx.lineWidth = system.colorName === "red" ? 1.4 : 1.15;
         ctx.stroke();
       }
 
       ctx.beginPath();
-      ctx.arc(system.x, system.y, 4.2, 0, Math.PI * 2);
-      ctx.fillStyle = `rgba(${system.colorRGB},0.62)`;
+      ctx.arc(system.x, system.y, system.colorName === "red" ? 4.5 : 4.0, 0, Math.PI * 2);
+      ctx.fillStyle = `rgba(${system.colorRGB},${system.colorName === "red" ? 0.65 : 0.46})`;
       ctx.fill();
     }
 
@@ -590,7 +587,6 @@
       systems.forEach(drawGlow);
       systems.forEach(drawRings);
       systems.forEach(drawSpokes);
-      systems.forEach(drawLightningHints);
       drawCrossLink();
       systems.forEach(drawCore);
 
@@ -622,7 +618,7 @@
       if (!red) return;
 
       const pos = getPointerPosition(event);
-      const hitRadius = Math.max(48, red.maxRadius * 0.18);
+      const hitRadius = Math.max(56, red.maxRadius * 0.15);
 
       if (dist(pos.x, pos.y, red.x, red.y) <= hitRadius) {
         draggingRed = true;
@@ -638,8 +634,8 @@
       const red = systems[0];
       const pos = getPointerPosition(event);
 
-      red.x = Math.min(w - 40, Math.max(40, pos.x - dragOffsetX));
-      red.y = Math.min(h - 80, Math.max(40, pos.y - dragOffsetY));
+      red.x = Math.min(w - 30, Math.max(-w * 0.15, pos.x - dragOffsetX));
+      red.y = Math.min(h - 40, Math.max(-h * 0.10, pos.y - dragOffsetY));
 
       event.preventDefault();
     }
