@@ -29,6 +29,8 @@
       --glow:0 0 22px rgba(255,255,255,.12);
       --glow-strong:0 0 30px rgba(255, 42, 42, 0.3);
       --max:1200px;
+      --grid-rgb:255,42,42;
+      --parallaxY:0px;
     }
 
     *{
@@ -116,9 +118,64 @@
       background:
         linear-gradient(rgba(0,0,0,.46), rgba(0,0,0,.62)),
         url("stadium.jpg") center center / cover no-repeat;
+      overflow:hidden;
+      isolation:isolate;
+    }
+
+    .hero::before{
+      content:"";
+      position:absolute;
+      inset:0;
+      z-index:0;
+      pointer-events:none;
+      background:
+        radial-gradient(circle at 18% 16%, rgba(var(--grid-rgb), .05), transparent 18%),
+        radial-gradient(circle at 82% 22%, rgba(var(--grid-rgb), .022), transparent 22%),
+        radial-gradient(circle at 54% 92%, rgba(var(--grid-rgb), .04), transparent 28%);
+      mix-blend-mode:screen;
+    }
+
+    .hero-grid{
+      position:absolute;
+      inset:-16%;
+      z-index:0;
+      pointer-events:none;
+      transform:translate3d(0, var(--parallaxY), 0) scale(1.08);
+      will-change:transform;
+      opacity:.52;
+      mix-blend-mode:screen;
+    }
+
+    .hero-grid::before,
+    .hero-grid::after{
+      content:"";
+      position:absolute;
+      inset:0;
+    }
+
+    .hero-grid::before{
+      background-image:
+        linear-gradient(rgba(var(--grid-rgb), .18) 1.1px, transparent 1.1px),
+        linear-gradient(90deg, rgba(var(--grid-rgb), .18) 1.1px, transparent 1.1px);
+      background-size:50px 50px;
+      transform:rotate(17deg) scale(1.08);
+      animation:heroGridDrift 11s linear infinite;
+      filter:
+        drop-shadow(0 0 8px rgba(var(--grid-rgb), .08))
+        drop-shadow(0 0 18px rgba(var(--grid-rgb), .04));
+    }
+
+    .hero-grid::after{
+      background:
+        radial-gradient(circle at 50% 50%, rgba(var(--grid-rgb), .05), transparent 56%);
+      opacity:.18;
+      filter:blur(26px);
+      transform:scale(1.08);
     }
 
     .hero-inner{
+      position:relative;
+      z-index:1;
       width:100%;
       max-width:var(--max);
       margin:0 auto;
@@ -149,12 +206,13 @@
     .hero h1{
       font-family:"Oswald", Arial, sans-serif;
       font-size:clamp(3.25rem, 5.35vw, 5.85rem);
-      line-height:.94;
-      letter-spacing:-0.055em;
+      line-height:.92;
+      letter-spacing:.02em;
       font-weight:600;
       text-transform:uppercase;
       max-width:760px;
       margin-bottom:22px;
+      text-wrap:balance;
     }
 
     .hero p{
@@ -165,8 +223,78 @@
     }
 
     .section{
+      position:relative;
       padding:92px 32px;
       background:#050505;
+      overflow:hidden;
+      isolation:isolate;
+    }
+
+    .section::before{
+      content:"";
+      position:absolute;
+      inset:0;
+      z-index:0;
+      pointer-events:none;
+      background:
+        radial-gradient(circle at 16% 18%, rgba(var(--grid-rgb), .04), transparent 18%),
+        radial-gradient(circle at 84% 24%, rgba(var(--grid-rgb), .018), transparent 22%),
+        radial-gradient(circle at 52% 100%, rgba(var(--grid-rgb), .03), transparent 30%);
+    }
+
+    .section-grid{
+      position:absolute;
+      inset:-14%;
+      z-index:0;
+      pointer-events:none;
+      transform:translate3d(0, var(--parallaxY), 0) scale(1.04);
+      will-change:transform;
+      opacity:.58;
+    }
+
+    .section-grid::before,
+    .section-grid::after{
+      content:"";
+      position:absolute;
+      inset:0;
+    }
+
+    .section-grid::before{
+      background-image:
+        linear-gradient(rgba(var(--grid-rgb), .17) 1.05px, transparent 1.05px),
+        linear-gradient(90deg, rgba(var(--grid-rgb), .17) 1.05px, transparent 1.05px);
+      background-size:46px 46px;
+      transform:rotate(-19deg) scale(1.08);
+      animation:sectionGridDrift 10s linear infinite;
+      filter:
+        drop-shadow(0 0 8px rgba(var(--grid-rgb), .08))
+        drop-shadow(0 0 16px rgba(var(--grid-rgb), .035));
+    }
+
+    .section-grid::after{
+      background:
+        radial-gradient(circle at center, rgba(var(--grid-rgb), .04), transparent 58%);
+      opacity:.14;
+      filter:blur(24px);
+      transform:scale(1.1);
+    }
+
+    @keyframes heroGridDrift{
+      from{
+        transform:translate3d(-16px, 22px, 0) rotate(17deg) scale(1.08);
+      }
+      to{
+        transform:translate3d(18px, -24px, 0) rotate(17deg) scale(1.08);
+      }
+    }
+
+    @keyframes sectionGridDrift{
+      from{
+        transform:translate3d(22px, -14px, 0) rotate(-19deg) scale(1.08);
+      }
+      to{
+        transform:translate3d(-18px, 20px, 0) rotate(-19deg) scale(1.08);
+      }
     }
 
     .section:first-of-type{
@@ -179,6 +307,8 @@
     }
 
     .section-inner{
+      position:relative;
+      z-index:1;
       max-width:var(--max);
       margin:0 auto;
     }
@@ -223,6 +353,7 @@
       border-radius:28px;
       padding:28px;
       box-shadow:var(--shadow);
+      backdrop-filter:blur(3px);
     }
 
     .card h3{
@@ -252,6 +383,7 @@
       height:100%;
       border-radius:30px;
       box-shadow:var(--shadow);
+      backdrop-filter:blur(3px);
     }
 
     .list-card{
@@ -299,6 +431,7 @@
       border:1px solid rgba(255,255,255,.07);
       background:rgba(255,255,255,.025);
       padding:18px 18px;
+      backdrop-filter:blur(2px);
     }
 
     .expect-box h4{
@@ -349,10 +482,12 @@
     }
 
     .bottom-cta{
+      position:relative;
       max-width:760px;
       margin:0 auto 0;
       text-align:center;
       padding:0 32px 56px;
+      z-index:1;
     }
 
     .bottom-cta p{
@@ -397,8 +532,10 @@
     }
 
     .footer{
+      position:relative;
       padding:0 32px 34px;
       background:#050505;
+      z-index:1;
     }
 
     .footer-inner{
@@ -437,7 +574,8 @@
 
       .hero h1{
         font-size:clamp(3rem, 8vw, 4.7rem);
-        line-height:.98;
+        line-height:.96;
+        letter-spacing:.018em;
         margin-bottom:18px;
         max-width:680px;
       }
@@ -471,6 +609,19 @@
     }
 
     @media (max-width: 768px){
+      .hero-grid,
+      .section-grid{
+        opacity:.42;
+      }
+
+      .hero-grid::before{
+        background-size:44px 44px;
+      }
+
+      .section-grid::before{
+        background-size:42px 42px;
+      }
+
       .bottom-cta p{
         font-size:0.95rem;
         line-height:1.75;
@@ -520,9 +671,9 @@
       }
 
       .hero h1{
-        font-size:4.3rem;
+        font-size:4.15rem;
         line-height:.95;
-        letter-spacing:-0.055em;
+        letter-spacing:.016em;
         margin-bottom:16px;
         max-width:100%;
       }
@@ -625,9 +776,10 @@
       }
 
       .hero h1{
-        font-size:3.7rem;
+        font-size:3.58rem;
         line-height:.96;
         margin-bottom:14px;
+        letter-spacing:.014em;
       }
 
       .hero p{
@@ -671,6 +823,8 @@
   </header>
 
   <section class="hero">
+    <div class="hero-grid" aria-hidden="true"></div>
+
     <div class="hero-inner">
       <div class="hero-copy">
         <h1>Professional pest control for homes that want it done right every time.</h1>
@@ -680,6 +834,8 @@
   </section>
 
   <section class="section">
+    <div class="section-grid" aria-hidden="true"></div>
+
     <div class="section-inner">
       <span class="eyebrow">Built for homeowners and renters</span>
       <h2>Protection that feels local, straightforward, and dependable.</h2>
@@ -713,6 +869,8 @@
   </section>
 
   <section class="section">
+    <div class="section-grid" aria-hidden="true"></div>
+
     <div class="section-inner">
       <span class="eyebrow">Why homeowners and renters in Jonesboro choose us</span>
       <h2>Built around clear service, not confusion.</h2>
@@ -805,6 +963,33 @@
       <span>Jonesboro, Arkansas</span>
     </div>
   </footer>
+
+  <script>
+    const rootStyle = document.documentElement.style;
+    let tickingParallax = false;
+
+    function updateParallax() {
+      tickingParallax = false;
+
+      if (window.innerWidth <= 1024) {
+        rootStyle.setProperty("--parallaxY", "0px");
+        return;
+      }
+
+      const y = Math.min(window.scrollY * 0.1, 36);
+      rootStyle.setProperty("--parallaxY", `${y}px`);
+    }
+
+    function requestParallax() {
+      if (tickingParallax) return;
+      tickingParallax = true;
+      requestAnimationFrame(updateParallax);
+    }
+
+    updateParallax();
+    window.addEventListener("scroll", requestParallax, { passive: true });
+    window.addEventListener("resize", updateParallax);
+  </script>
 
 </body>
 </html>
