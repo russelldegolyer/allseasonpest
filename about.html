@@ -32,6 +32,10 @@
       --glow:0 0 22px rgba(255,255,255,.12);
       --grid-rgb:255,92,92;
       --parallaxY:0px;
+
+      --border-strong:rgba(255,255,255,.34);
+      --border-mid:rgba(255,255,255,.24);
+      --border-soft:rgba(255,255,255,.18);
     }
 
     *{
@@ -77,7 +81,7 @@
       z-index:1000;
       backdrop-filter:blur(14px);
       background:rgba(0, 0, 0, 0.86);
-      border-bottom:2px solid #ffffff;
+      border-bottom:2px solid var(--border-mid);
     }
 
     .topbar-inner{
@@ -98,9 +102,9 @@
 
     .nav a{
       padding:11px 18px;
-      border:2px solid #ffffff;
+      border:2px solid var(--border-strong);
       border-radius:999px;
-      background:#000;
+      background:rgba(0,0,0,.78);
       color:#fff;
       font-family:"Oswald", Arial, sans-serif;
       font-weight:600;
@@ -111,14 +115,14 @@
     }
 
     .nav a:hover{
-      border-color:#ffffff;
+      border-color:rgba(255,255,255,.54);
       box-shadow:var(--glow);
       transform:translateY(-1px);
     }
 
     .nav a.active{
-      border-color:#ffffff;
-      background:rgba(255,255,255,.22);
+      border-color:rgba(255,255,255,.40);
+      background:rgba(255,255,255,.16);
       color:#ffffff;
       box-shadow:none;
       transform:none;
@@ -135,7 +139,7 @@
       position:relative;
       width:100%;
       border-radius:28px;
-      border:2px solid #ffffff;
+      border:2px solid var(--border-soft);
       background:#000;
       box-shadow:var(--shadow);
       overflow:hidden;
@@ -189,6 +193,7 @@
       pointer-events:none;
       transform:translate3d(0, var(--parallaxY), 0) scale(1.05);
       will-change:transform;
+      overflow:hidden;
     }
 
     .panel-grid::before,
@@ -203,9 +208,10 @@
         linear-gradient(rgba(var(--grid-rgb), .26) 1px, transparent 1px),
         linear-gradient(90deg, rgba(var(--grid-rgb), .26) 1px, transparent 1px);
       background-size:44px 44px;
-      transform:translate3d(0,0,0) rotate(13deg) scale(1.08);
+      background-position:0 0, 0 0;
+      transform:rotate(13deg) scale(1.08);
       opacity:.88;
-      animation:gridDriftAlt 8.5s linear infinite;
+      animation:gridScrollSeamless 10s linear infinite;
       filter:
         drop-shadow(0 0 10px rgba(var(--grid-rgb), .13))
         drop-shadow(0 0 22px rgba(var(--grid-rgb), .08));
@@ -221,12 +227,12 @@
       transform:scale(1.08);
     }
 
-    @keyframes gridDriftAlt{
+    @keyframes gridScrollSeamless{
       from{
-        transform:translate3d(24px, -18px, 0) rotate(13deg) scale(1.08);
+        background-position:0 0, 0 0;
       }
       to{
-        transform:translate3d(-24px, 18px, 0) rotate(13deg) scale(1.08);
+        background-position:-44px 22px, -44px 22px;
       }
     }
 
@@ -241,7 +247,7 @@
 
     .hero-card{
       border-radius:28px;
-      border:2px solid #ffffff;
+      border:2px solid var(--border-soft);
       background:
         linear-gradient(180deg, rgba(255,255,255,.012), rgba(255,255,255,.003)),
         rgba(0,0,0,.975);
@@ -301,7 +307,7 @@
     }
 
     .logo-panel{
-      border:2px solid #ffffff;
+      border:2px solid var(--border-mid);
       border-radius:24px;
       background:#000;
       min-height:260px;
@@ -337,7 +343,7 @@
 
     .founder-card{
       border-radius:24px;
-      border:2px solid #ffffff;
+      border:2px solid var(--border-soft);
       background:
         linear-gradient(180deg, rgba(255,255,255,.012), rgba(255,255,255,.003)),
         rgba(0,0,0,.97);
@@ -357,7 +363,7 @@
 
     .founder-card:hover{
       transform:translateY(-2px);
-      border-color:#ffffff;
+      border-color:var(--border-mid);
     }
 
     .cursor-glow{
@@ -422,7 +428,7 @@
 
     .cta-panel{
       border-radius:22px;
-      border:2px solid #ffffff;
+      border:2px solid var(--border-soft);
       background:
         linear-gradient(180deg, rgba(255,255,255,.01), rgba(255,255,255,.003)),
         rgba(0,0,0,.97);
@@ -452,7 +458,7 @@
       justify-content:center;
       min-height:58px;
       border-radius:16px;
-      border:2px solid #ffffff;
+      border:2px solid var(--border-soft);
       background:
         linear-gradient(180deg, rgba(255,255,255,.014), rgba(255,255,255,.003)),
         rgba(0,0,0,.86);
@@ -466,7 +472,7 @@
     }
 
     .cta-row a:hover{
-      border-color:#ffffff;
+      border-color:var(--border-mid);
       box-shadow:var(--glow);
       transform:translateY(-1px);
     }
@@ -478,7 +484,7 @@
     }
 
     .footer-inner{
-      border-top:2px solid #ffffff;
+      border-top:2px solid var(--border-soft);
       padding-top:18px;
       display:flex;
       justify-content:space-between;
@@ -623,7 +629,15 @@
 
       .panel-grid::before{
         background-size:38px 38px;
-        opacity:.82;
+      }
+
+      @keyframes gridScrollSeamless{
+        from{
+          background-position:0 0, 0 0;
+        }
+        to{
+          background-position:-38px 19px, -38px 19px;
+        }
       }
 
       .panel-grid::after{
