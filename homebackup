@@ -8,10 +8,14 @@
     name="description"
     content="Professional pest control for homes in Jonesboro, Arkansas and Northeast Arkansas. Safe treatments. Dependable service. Real protection."
   />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;600;700&family=Sora:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
   <style>
     :root{
       --bg:#050505;
-      --panel:rgba(17,17,17,.88);
       --text:#ffffff;
       --muted:rgba(255,255,255,.82);
       --muted-soft:rgba(255,255,255,.68);
@@ -19,11 +23,9 @@
       --border-soft:rgba(255,255,255,.08);
       --shadow:0 10px 40px rgba(0,0,0,.35);
       --red:#ff2a2a;
-      --red-deep:#b30000;
-      --line:rgba(255, 42, 42, 0.55);
-      --glow:0 0 22px rgba(255, 42, 42, 0.22);
-      --glow-strong:0 0 30px rgba(255, 42, 42, 0.3);
+      --glow:0 0 22px rgba(255,255,255,.12);
       --max:1200px;
+      --grid-rgb:255,42,42;
     }
 
     *{
@@ -34,12 +36,13 @@
 
     html{
       scroll-behavior:smooth;
+      background:#000;
     }
 
     body{
       background:#000;
       color:var(--text);
-      font-family:Inter, Arial, Helvetica, sans-serif;
+      font-family:"Sora", Inter, Arial, Helvetica, sans-serif;
       overflow-x:hidden;
     }
 
@@ -60,8 +63,8 @@
       width:100%;
       z-index:1000;
       backdrop-filter:blur(14px);
-      background:rgba(0, 0, 0, 0.72);
-      border-bottom:1px solid rgba(255, 42, 42, 0.22);
+      background:rgba(0, 0, 0, 0.86);
+      border-bottom:1px solid rgba(255,255,255,.24);
     }
 
     .topbar-inner{
@@ -82,19 +85,21 @@
 
     .nav a{
       padding:11px 18px;
-      border:1px solid rgba(255, 42, 42, 0.34);
+      border:1px solid rgba(255,255,255,.34);
       border-radius:999px;
-      background:rgba(255, 255, 255, 0.03);
+      background:rgba(255,255,255,.01);
       color:#fff;
-      font-weight:700;
-      font-size:0.95rem;
-      letter-spacing:0.02em;
+      font-family:"Oswald", Arial, sans-serif;
+      font-weight:600;
+      font-size:0.98rem;
+      letter-spacing:0.04em;
+      text-transform:uppercase;
       transition:0.2s ease;
     }
 
     .nav a:hover,
     .nav a.active{
-      border-color:rgba(255, 42, 42, 0.75);
+      border-color:rgba(255,255,255,.84);
       box-shadow:var(--glow);
       transform:translateY(-1px);
     }
@@ -106,18 +111,21 @@
       align-items:center;
       padding:140px 32px 80px;
       background:
-        linear-gradient(rgba(0,0,0,.46), rgba(0,0,0,.62)),
+        linear-gradient(rgba(0,0,0,.40), rgba(0,0,0,.58)),
         url("stadium.jpg") center center / cover no-repeat;
+      overflow:hidden;
     }
 
     .hero-inner{
+      position:relative;
+      z-index:1;
       width:100%;
       max-width:var(--max);
       margin:0 auto;
     }
 
     .hero-copy{
-      max-width:760px;
+      max-width:820px;
     }
 
     .hero-pill{
@@ -130,32 +138,90 @@
       backdrop-filter:blur(8px);
       box-shadow:var(--shadow);
       color:#fff;
+      font-family:"Oswald", Arial, sans-serif;
       font-size:1rem;
-      font-weight:800;
+      font-weight:600;
       letter-spacing:.08em;
       text-transform:uppercase;
       margin:10px 0 20px;
     }
 
     .hero h1{
+      font-family:"Oswald", Arial, sans-serif;
       font-size:clamp(3.25rem, 5.35vw, 5.85rem);
-      line-height:.94;
-      letter-spacing:-0.055em;
-      font-weight:900;
-      max-width:760px;
+      line-height:.92;
+      letter-spacing:.035em;
+      font-weight:600;
+      text-transform:uppercase;
+      max-width:860px;
       margin-bottom:22px;
+      text-wrap:balance;
     }
 
-    .hero p{
-      max-width:700px;
-      font-size:clamp(1.05rem, 1.45vw, 1.35rem);
-      line-height:1.45;
-      color:var(--muted);
+    .content-shell{
+      position:relative;
+      background:#050505;
+      overflow:hidden;
+      isolation:isolate;
+    }
+
+    .box-grid{
+      position:relative;
+      overflow:hidden;
+      isolation:isolate;
+      background:linear-gradient(180deg, rgba(14,8,8,.96), rgba(10,5,5,.94));
+    }
+
+    .box-grid::before{
+      content:"";
+      position:absolute;
+      inset:-18%;
+      pointer-events:none;
+      background-image:
+        linear-gradient(rgba(var(--grid-rgb), .22) 1.15px, transparent 1.15px),
+        linear-gradient(90deg, rgba(var(--grid-rgb), .22) 1.15px, transparent 1.15px);
+      background-size:46px 46px;
+      transform:rotate(-17deg) scale(1.14);
+      transform-origin:center;
+      filter:
+        drop-shadow(0 0 10px rgba(var(--grid-rgb), .12))
+        drop-shadow(0 0 18px rgba(var(--grid-rgb), .06));
+      animation:boxGridFlow 8s linear infinite;
+      opacity:.9;
+      z-index:0;
+    }
+
+    .box-grid::after{
+      content:"";
+      position:absolute;
+      inset:0;
+      pointer-events:none;
+      background:
+        radial-gradient(circle at 18% 22%, rgba(var(--grid-rgb), .12), transparent 34%),
+        radial-gradient(circle at 80% 78%, rgba(var(--grid-rgb), .08), transparent 36%),
+        linear-gradient(180deg, rgba(0,0,0,.18), rgba(0,0,0,.36));
+      z-index:0;
+    }
+
+    .box-grid > *{
+      position:relative;
+      z-index:1;
+    }
+
+    @keyframes boxGridFlow{
+      from{
+        background-position:0 0, 0 0;
+      }
+      to{
+        background-position:-46px -46px, -46px -46px;
+      }
     }
 
     .section{
+      position:relative;
+      z-index:1;
       padding:92px 32px;
-      background:#050505;
+      background:transparent;
     }
 
     .section:first-of-type{
@@ -168,24 +234,29 @@
     }
 
     .section-inner{
+      position:relative;
+      z-index:1;
       max-width:var(--max);
       margin:0 auto;
     }
 
     .eyebrow{
-      display:inline-block;
-      color:var(--red);
-      font-size:.9rem;
-      font-weight:800;
-      letter-spacing:.14em;
-      text-transform:uppercase;
-      margin-bottom:18px;
-    }
+  display:inline-block;
+  color:var(--red);
+  font-family:"Oswald", Arial, sans-serif;
+  font-size:1.1rem;
+  font-weight:700;
+  letter-spacing:.16em;
+  text-transform:uppercase;
+  margin-bottom:18px;
+}
 
     .section h2{
+      font-family:"Oswald", Arial, sans-serif;
       font-size:clamp(2.2rem, 4vw, 4rem);
       line-height:1;
-      letter-spacing:-0.04em;
+      letter-spacing:.02em;
+      text-transform:uppercase;
       margin-bottom:20px;
     }
 
@@ -203,18 +274,20 @@
       margin-top:42px;
     }
 
-    .card{
-      background:linear-gradient(180deg, rgba(255,255,255,.04), rgba(255,255,255,.025));
+    .card.box-grid{
       border:1px solid var(--border-soft);
       border-radius:28px;
       padding:28px;
       box-shadow:var(--shadow);
+      backdrop-filter:blur(3px);
     }
 
     .card h3{
+      font-family:"Oswald", Arial, sans-serif;
       font-size:1.35rem;
+      text-transform:uppercase;
       margin-bottom:12px;
-      letter-spacing:-0.03em;
+      letter-spacing:.018em;
     }
 
     .card p{
@@ -236,18 +309,16 @@
       height:100%;
       border-radius:30px;
       box-shadow:var(--shadow);
+      backdrop-filter:blur(3px);
     }
 
     .list-card{
-      background:linear-gradient(180deg, rgba(255,255,255,.04), rgba(255,255,255,.02));
+      background:linear-gradient(180deg, rgba(12,12,12,.96), rgba(8,8,8,.94));
       border:1px solid var(--border-soft);
       padding:30px;
     }
 
-    .cta-box{
-      background:
-        linear-gradient(135deg, rgba(197,18,18,.24), rgba(255,255,255,.03)),
-        #0b0b0b;
+    .cta-box.box-grid{
       border:1px solid rgba(255,255,255,.10);
       padding:30px;
       display:flex;
@@ -256,10 +327,12 @@
 
     .list-card h3,
     .cta-box h3{
+      font-family:"Oswald", Arial, sans-serif;
       font-size:1.8rem;
       line-height:1.05;
+      text-transform:uppercase;
       margin-bottom:16px;
-      letter-spacing:-0.04em;
+      letter-spacing:.02em;
     }
 
     .cta-box > p{
@@ -276,18 +349,20 @@
       margin-top:6px;
     }
 
-    .expect-box{
+    .expect-box.box-grid{
       border-radius:18px;
       border:1px solid rgba(255,255,255,.07);
-      background:rgba(255,255,255,.025);
       padding:18px 18px;
+      backdrop-filter:blur(2px);
     }
 
     .expect-box h4{
+      font-family:"Oswald", Arial, sans-serif;
       font-size:1.02rem;
       line-height:1.2;
+      text-transform:uppercase;
       margin-bottom:7px;
-      letter-spacing:-0.02em;
+      letter-spacing:.015em;
     }
 
     .expect-box p{
@@ -319,25 +394,22 @@
 
     .process-step-title{
       display:inline-block;
+      font-family:"Oswald", Arial, sans-serif;
       font-size:1.02rem;
-      font-weight:800;
+      font-weight:600;
       color:#fff;
-      letter-spacing:-0.02em;
+      text-transform:uppercase;
+      letter-spacing:.015em;
       line-height:1.2;
     }
 
     .bottom-cta{
+      position:relative;
+      z-index:1;
       max-width:760px;
-      margin:0 auto 0;
+      margin:0 auto;
       text-align:center;
       padding:0 32px 56px;
-    }
-
-    .bottom-cta p{
-      color:#eaeaea;
-      font-size:1rem;
-      line-height:1.8;
-      margin-bottom:16px;
     }
 
     .cta-row{
@@ -359,23 +431,25 @@
         linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.015)),
         #0a0a0a;
       color:#ffffff;
-      text-decoration:none;
       text-transform:uppercase;
+      font-family:"Oswald", Arial, sans-serif;
       font-size:0.82rem;
-      font-weight:700;
+      font-weight:600;
       letter-spacing:1.3px;
       transition:border-color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
     }
 
     .cta-row a:hover{
-      border-color:rgba(255, 43, 43, 0.55);
+      border-color:rgba(255,255,255,.16);
       transform:translateY(-2px);
-      box-shadow:0 0 18px rgba(255, 43, 43, 0.1);
+      box-shadow:0 0 18px rgba(255,255,255,.08);
     }
 
     .footer{
+      position:relative;
+      z-index:1;
       padding:0 32px 34px;
-      background:#050505;
+      background:transparent;
     }
 
     .footer-inner{
@@ -414,15 +488,10 @@
 
       .hero h1{
         font-size:clamp(3rem, 8vw, 4.7rem);
-        line-height:.98;
+        line-height:.95;
+        letter-spacing:.028em;
         margin-bottom:18px;
-        max-width:680px;
-      }
-
-      .hero p{
-        font-size:1.16rem;
-        line-height:1.42;
-        max-width:640px;
+        max-width:720px;
       }
 
       .section{
@@ -448,6 +517,25 @@
     }
 
     @media (max-width: 768px){
+      .box-grid::before{
+        background-image:
+          linear-gradient(rgba(var(--grid-rgb), .3) 1.1px, transparent 1.1px),
+          linear-gradient(90deg, rgba(var(--grid-rgb), .3) 1.1px, transparent 1.1px);
+        background-size:38px 38px;
+        transform:rotate(-15deg) scale(1.2);
+        filter:
+          drop-shadow(0 0 12px rgba(var(--grid-rgb), .16))
+          drop-shadow(0 0 22px rgba(var(--grid-rgb), .08));
+        animation:boxGridFlowMobile 8s linear infinite;
+      }
+
+      .box-grid::after{
+        background:
+          radial-gradient(circle at 18% 22%, rgba(var(--grid-rgb), .14), transparent 34%),
+          radial-gradient(circle at 80% 78%, rgba(var(--grid-rgb), .1), transparent 36%),
+          linear-gradient(180deg, rgba(0,0,0,.16), rgba(0,0,0,.34));
+      }
+
       .bottom-cta p{
         font-size:0.95rem;
         line-height:1.75;
@@ -456,6 +544,23 @@
       .cta-row a{
         min-width:100%;
         font-size:0.76rem;
+      }
+
+      .footer{
+        padding:0 12px 14px;
+      }
+
+      .footer-inner{
+        font-size:.88rem;
+      }
+    }
+
+    @keyframes boxGridFlowMobile{
+      from{
+        background-position:0 0, 0 0;
+      }
+      to{
+        background-position:-38px -38px, -38px -38px;
       }
     }
 
@@ -489,18 +594,11 @@
       }
 
       .hero h1{
-        font-size:4.3rem;
+        font-size:4.1rem;
         line-height:.95;
-        letter-spacing:-0.055em;
+        letter-spacing:.022em;
         margin-bottom:16px;
         max-width:100%;
-      }
-
-      .hero p{
-        font-size:1rem;
-        line-height:1.38;
-        max-width:100%;
-        padding-right:4px;
       }
 
       .section{
@@ -531,9 +629,9 @@
         margin-top:30px;
       }
 
-      .card,
+      .card.box-grid,
       .list-card,
-      .cta-box{
+      .cta-box.box-grid{
         padding:22px;
         border-radius:24px;
       }
@@ -543,7 +641,7 @@
         font-size:1.55rem;
       }
 
-      .expect-box{
+      .expect-box.box-grid{
         padding:16px;
       }
 
@@ -594,14 +692,10 @@
       }
 
       .hero h1{
-        font-size:3.7rem;
+        font-size:3.52rem;
         line-height:.96;
         margin-bottom:14px;
-      }
-
-      .hero p{
-        font-size:.96rem;
-        line-height:1.36;
+        letter-spacing:.018em;
       }
 
       .section{
@@ -648,132 +742,135 @@
     </div>
   </section>
 
-  <section class="section">
-    <div class="section-inner">
-      <span class="eyebrow">Built for homeowners and renters</span>
-      <h2>Protection that feels local, straightforward, and dependable.</h2>
-      <p class="section-lead">
-        We keep it simple. Show up when we say we will, treat the property the right way, and build a service plan that actually fits the home instead of overselling things people do not need. Monthly billing can feel like a scam, which is why we only charge you after the completion of the full service.
-      </p>
+  <div class="content-shell">
 
-      <div class="grid">
-        <div class="card">
-          <h3>Safe, targeted treatments</h3>
-          <p>
-            We focus on targeted treatment plans designed for real pest pressure, not flashy upsells or overpriced services to boost sales commissions.
-          </p>
-        </div>
+    <section class="section">
+      <div class="section-inner">
+        <span class="eyebrow">Built for homeowners and renters</span>
+        <h2>Protection that feels local, straightforward, and dependable.</h2>
+        <p class="section-lead">
+          We keep it simple. Show up when we say we will, treat the property the right way, and build a service plan that actually fits the home instead of overselling things people do not need. Monthly billing can feel like a scam, which is why we only charge you after the completion of the full service.
+        </p>
 
-        <div class="card">
-          <h3>Dependable recurring service</h3>
-          <p>
-            Reliable pest control works best when it is consistent. We help keep homes protected through the seasons, not just for a few days after a spray.
-          </p>
-        </div>
+        <div class="grid">
+          <div class="card box-grid">
+            <h3>Safe, targeted treatments</h3>
+            <p>
+              We focus on targeted treatment plans designed for real pest pressure, not flashy upsells or overpriced services to boost sales commissions.
+            </p>
+          </div>
 
-        <div class="card">
-          <h3>Local knowledge matters</h3>
-          <p>
-            Homes in Northeast Arkansas deal with their own pest pressures. The service should reflect that instead of using a generic one-size-fits-all approach.
-          </p>
-        </div>
-      </div>
-    </div>
-  </section>
+          <div class="card box-grid">
+            <h3>Dependable recurring service</h3>
+            <p>
+              Reliable pest control works best when it is consistent. We help keep homes protected through the seasons, not just for a few days after a spray.
+            </p>
+          </div>
 
-  <section class="section">
-    <div class="section-inner">
-      <span class="eyebrow">Why homeowners and renters in Jonesboro choose us</span>
-      <h2>Built around clear service, not confusion.</h2>
-
-      <div class="split">
-        <div class="list-card">
-          <h3>What you can expect</h3>
-
-          <div class="expect-grid">
-            <div class="expect-box">
-              <h4>Straight answers</h4>
-              <p>No vague wording, no inflated promises, and no pretending every issue needs some massive treatment.</p>
-            </div>
-
-            <div class="expect-box">
-              <h4>Service with a plan</h4>
-              <p>We focus on treatment flow, pressure points, and follow-through so results actually build over time.</p>
-            </div>
-
-            <div class="expect-box">
-              <h4>Professional communication</h4>
-              <p>Homeowners should know what was done, why it was done, and what to expect next.</p>
-            </div>
-
-            <div class="expect-box">
-              <h4>Real Northeast Arkansas coverage</h4>
-              <p>Service built for the homes, weather, and seasonal pest activity in Jonesboro, Bono, Brookland, Truman, Lake City, and Paragould.</p>
-            </div>
-
-            <div class="expect-box">
-              <h4>Focused treatments</h4>
-              <p>We treat what matters instead of wasting time and product on unnecessary areas.</p>
-            </div>
+          <div class="card box-grid">
+            <h3>Local knowledge matters</h3>
+            <p>
+              Homes in Northeast Arkansas deal with their own pest pressures. The service should reflect that instead of using a generic one-size-fits-all approach.
+            </p>
           </div>
         </div>
+      </div>
+    </section>
 
-        <div class="cta-box">
-          <h3>Advantages of our general pest service</h3>
-          <p>
-            Built to protect the home without overcomplicating the service or burying people in confusing pricing and unnecessary add-ons.
-          </p>
+    <section class="section">
+      <div class="section-inner">
+        <span class="eyebrow">Why homeowners and renters in Jonesboro choose us</span>
+        <h2>Built around clear service, not confusion.</h2>
 
-          <ul class="advantage-list">
-            <li>
-              <span class="process-step-title">Exterior-first protection</span>
-              <p>Built for long-term control instead of a rushed spray-and-go visit that looks good for one day and fades out fast.</p>
-            </li>
+        <div class="split">
+          <div class="list-card">
+            <h3>What you can expect</h3>
 
-            <li>
-              <span class="process-step-title">Local pest focus</span>
-              <p>Designed around common Northeast Arkansas issues like ants, spiders, wasps, roaches, and other normal home invaders.</p>
-            </li>
+            <div class="expect-grid">
+              <div class="expect-box box-grid">
+                <h4>Straight answers</h4>
+                <p>No vague wording, no inflated promises, and no pretending every issue needs some massive treatment.</p>
+              </div>
 
-            <li>
-              <span class="process-step-title">Clear pricing</span>
-              <p>No bloated package structure, no weird add-on stacking, and no pressure to pay for services the home does not need.</p>
-            </li>
+              <div class="expect-box box-grid">
+                <h4>Service with a plan</h4>
+                <p>We focus on treatment flow, pressure points, and follow-through so results actually build over time.</p>
+              </div>
 
-            <li>
-              <span class="process-step-title">Recurring control that holds up</span>
-              <p>Helps keep pest pressure low through changing seasons instead of constantly restarting the problem from scratch.</p>
-            </li>
+              <div class="expect-box box-grid">
+                <h4>Professional communication</h4>
+                <p>Homeowners should know what was done, why it was done, and what to expect next.</p>
+              </div>
 
-            <li>
-              <span class="process-step-title">Easy communication</span>
-              <p>Simple ways to reach us by call, text, or email when something needs attention between visits.</p>
-            </li>
+              <div class="expect-box box-grid">
+                <h4>Real Northeast Arkansas coverage</h4>
+                <p>Service built for the homes, weather, and seasonal pest activity in Jonesboro, Bono, Brookland, Truman, Lake City, and Paragould.</p>
+              </div>
 
-            <li>
-              <span class="process-step-title">Unlimited free re-services</span>
-              <p>Unlimited free re-services between scheduled appointments if pest activity comes back and needs extra attention.</p>
-            </li>
-          </ul>
+              <div class="expect-box box-grid">
+                <h4>Focused treatments</h4>
+                <p>We treat what matters instead of wasting time and product on unnecessary areas.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="cta-box box-grid">
+            <h3>Advantages of our general pest service</h3>
+            <p>
+              Built to protect the home without overcomplicating the service or burying people in confusing pricing and unnecessary add-ons.
+            </p>
+
+            <ul class="advantage-list">
+              <li>
+                <span class="process-step-title">Exterior-first protection</span>
+                <p>Built for long-term control instead of a rushed spray-and-go visit that looks good for one day and fades out fast.</p>
+              </li>
+
+              <li>
+                <span class="process-step-title">Local pest focus</span>
+                <p>Designed around common Northeast Arkansas issues like ants, spiders, wasps, roaches, and other normal home invaders.</p>
+              </li>
+
+              <li>
+                <span class="process-step-title">Clear pricing</span>
+                <p>No bloated package structure, no weird add-on stacking, and no pressure to pay for services the home does not need.</p>
+              </li>
+
+              <li>
+                <span class="process-step-title">Recurring control that holds up</span>
+                <p>Helps keep pest pressure low through changing seasons instead of constantly restarting the problem from scratch.</p>
+              </li>
+
+              <li>
+                <span class="process-step-title">Easy communication</span>
+                <p>Simple ways to reach us by call, text, or email when something needs attention between visits.</p>
+              </li>
+
+              <li>
+                <span class="process-step-title">Unlimited free re-services</span>
+                <p>Unlimited free re-services between scheduled appointments if pest activity comes back and needs extra attention.</p>
+              </li>
+            </ul>
+          </div>
         </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <section class="bottom-cta">
-    <div class="cta-row">
-      <a href="tel:8709197114">Call</a>
-      <a href="sms:8709197114">Text</a>
-      <a href="mailto:gmail@allseasonpestllc.com">Email</a>
-    </div>
-  </section>
+    <section class="bottom-cta">
+      <div class="cta-row">
+        <a href="tel:8709197114">Call</a>
+        <a href="sms:8709197114">Text</a>
+        <a href="mailto:gmail@allseasonpestllc.com">Email</a>
+      </div>
+    </section>
 
-  <footer class="footer">
-    <div class="footer-inner">
-      <span>© 2026 All Season Pest Control</span>
-      <span>Jonesboro, Arkansas</span>
-    </div>
-  </footer>
+    <footer class="footer">
+      <div class="footer-inner">
+        <span>© 2026 All Season Pest Control</span>
+        <span>Jonesboro, Arkansas</span>
+      </div>
+    </footer>
+  </div>
 
 </body>
 </html>
