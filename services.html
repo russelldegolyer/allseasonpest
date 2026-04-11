@@ -1,284 +1,765 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Services | All Season Pest Control</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Services | All Season Pest Control</title>
+  <style>
+    :root{
+      --bg:#050505;
+      --panel:rgba(17,17,17,.88);
+      --text:#ffffff;
+      --muted:rgba(255,255,255,.82);
+      --muted-soft:rgba(255,255,255,.68);
+      --border:rgba(255,255,255,.18);
+      --border-soft:rgba(255,255,255,.08);
+      --shadow:0 10px 40px rgba(0,0,0,.35);
+      --red:#ff2a2a;
+      --red-deep:#b30000;
+      --line:rgba(255, 42, 42, 0.55);
+      --glow:0 0 22px rgba(255, 42, 42, 0.22);
+      --glow-strong:0 0 30px rgba(255, 42, 42, 0.3);
+      --max:1200px;
+    }
 
-<style>
-:root{
-  --text:#ffffff;
-  --muted:rgba(255,255,255,.76);
-  --red:#ff2a2a;
-  --max:1200px;
-}
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
 
-*{
-  box-sizing:border-box;
-  margin:0;
-  padding:0;
-}
+    html {
+      scroll-behavior: smooth;
+    }
 
-body{
-  background:#000;
-  color:#fff;
-  font-family:Inter, Arial, sans-serif;
-  overflow-x:hidden;
-}
+    body {
+      background: #000000;
+      color: #ffffff;
+      font-family: Inter, Arial, Helvetica, sans-serif;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
 
-/* ================= NAV (MATCHES HOME/ABOUT) ================= */
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
 
-.topbar{
-  position:fixed;
-  top:0;
-  left:0;
-  width:100%;
-  z-index:1000;
-  backdrop-filter:blur(14px);
-  background:rgba(0,0,0,.72);
-  border-bottom:1px solid rgba(255,42,42,.22);
-}
+    .topbar{
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      z-index: 1000;
+      backdrop-filter: blur(14px);
+      background: rgba(0, 0, 0, 0.72);
+      border-bottom: 1px solid rgba(255, 42, 42, 0.22);
+    }
 
-.topbar-inner{
-  max-width:var(--max);
-  margin:0 auto;
-  padding:14px 20px;
-  display:flex;
-  justify-content:center;
-}
+    .topbar-inner{
+      max-width: var(--max);
+      margin: 0 auto;
+      padding: 14px 20px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
 
-.nav{
-  display:flex;
-  gap:10px;
-  flex-wrap:wrap;
-  justify-content:center;
-}
+    .nav{
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
 
-.nav a{
-  padding:11px 18px;
-  border:1px solid rgba(255,42,42,.34);
-  border-radius:999px;
-  background:rgba(255,255,255,.03);
-  font-weight:700;
-  font-size:.95rem;
-  letter-spacing:.02em;
-  transition:.2s ease;
-}
+    .nav a{
+      padding: 11px 18px;
+      border: 1px solid rgba(255, 42, 42, 0.34);
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.03);
+      color: #fff;
+      font-weight: 700;
+      font-size: 0.95rem;
+      letter-spacing: 0.02em;
+      transition: 0.2s ease;
+    }
 
-.nav a:hover,
-.nav a.active{
-  border-color:rgba(255,42,42,.75);
-  box-shadow:0 0 20px rgba(255,42,42,.15);
-  transform:translateY(-1px);
-}
+    .nav a:hover,
+    .nav a.active{
+      border-color: rgba(255, 42, 42, 0.75);
+      box-shadow: var(--glow);
+      transform: translateY(-1px);
+    }
 
-/* ================= MAIN ================= */
+    .page-wrap {
+      max-width: 980px;
+      margin: 0 auto;
+      padding: 110px 20px 70px;
+    }
 
-.page{
-  max-width:1000px;
-  margin:0 auto;
-  padding:110px 20px 40px;
-}
+    .service-card {
+      position: relative;
+      border-radius: 20px;
+      padding: 30px 26px;
+      margin-bottom: 20px;
+      overflow: hidden;
+      transition: border-color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+      scroll-margin-top: 110px;
+      border-width: 2px;
+      border-style: solid;
+    }
 
-.card{
-  border-radius:24px;
-  padding:26px;
-  margin-bottom:20px;
-  background:rgba(255,255,255,.03);
-  border:1px solid rgba(255,255,255,.08);
-}
+    .service-card:hover {
+      transform: translateY(-2px);
+    }
 
-.card h2{
-  font-size:1.8rem;
-  margin-bottom:10px;
-}
+    .service-kicker {
+      text-transform: uppercase;
+      letter-spacing: 1.8px;
+      font-size: 0.78rem;
+      font-weight: 700;
+      margin-bottom: 10px;
+      position: relative;
+      z-index: 1;
+    }
 
-.card p{
-  color:var(--muted);
-  line-height:1.6;
-  margin-bottom:12px;
-}
+    .service-card h2 {
+      font-size: clamp(1.55rem, 3.4vw, 2.2rem);
+      line-height: 1.1;
+      margin-bottom: 18px;
+      position: relative;
+      z-index: 1;
+      transition: color 0.2s ease;
+    }
 
-.info{
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:12px;
-  margin-top:10px;
-}
+    .service-card p {
+      font-size: 1rem;
+      line-height: 1.8;
+      position: relative;
+      z-index: 1;
+      margin-bottom: 14px;
+    }
 
-.info-box{
-  background:rgba(255,255,255,.03);
-  border:1px solid rgba(255,255,255,.08);
-  padding:14px;
-  border-radius:14px;
-}
+    .service-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 14px;
+      margin-top: 18px;
+      position: relative;
+      z-index: 1;
+    }
 
-.info-box strong{
-  display:block;
-  margin-bottom:6px;
-}
+    .mini-box {
+      border-radius: 14px;
+      padding: 16px 16px;
+      border-width: 1.5px;
+      border-style: solid;
+    }
 
-/* ================= CTA ================= */
+    .mini-label {
+      text-transform: uppercase;
+      letter-spacing: 1.3px;
+      font-size: 0.74rem;
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
 
-.cta{
-  display:flex;
-  gap:10px;
-  margin-top:14px;
-  flex-wrap:wrap;
-}
+    .mini-box p {
+      margin: 0;
+      font-size: 0.95rem;
+      line-height: 1.7;
+    }
 
-.cta a{
-  flex:1;
-  text-align:center;
-  padding:12px;
-  border-radius:10px;
-  border:1px solid rgba(255,255,255,.1);
-  text-transform:uppercase;
-  font-size:.75rem;
-  letter-spacing:1px;
-}
+    .theme-gold {
+      background:
+        radial-gradient(
+          380px circle at var(--mouse-x, 50%) var(--mouse-y, 50%),
+          rgba(255, 195, 60, 0.24),
+          rgba(255, 195, 60, 0.12) 18%,
+          rgba(255, 195, 60, 0.055) 34%,
+          rgba(255, 195, 60, 0.018) 48%,
+          rgba(255, 195, 60, 0) 64%
+        ),
+        #0a0a0a;
+      border-color: rgba(255, 200, 80, 0.44);
+      box-shadow:
+        0 0 0 1px rgba(255, 200, 80, 0.04) inset,
+        0 0 24px rgba(255, 200, 80, 0.08);
+    }
 
-.cta a:hover{
-  border-color:var(--red);
-}
+    .theme-gold:hover {
+      border-color: rgba(255, 210, 100, 0.70);
+      box-shadow:
+        0 0 0 1px rgba(255, 200, 80, 0.05) inset,
+        0 0 30px rgba(255, 200, 80, 0.14);
+    }
 
-/* ================= MOBILE ================= */
+    .theme-gold .service-kicker,
+    .theme-gold .mini-label {
+      color: #ffd05c;
+    }
 
-@media(max-width:768px){
+    .theme-gold h2 {
+      color: #ffe29b;
+    }
 
-  .page{
-    padding:100px 14px 20px;
-  }
+    .theme-gold p,
+    .theme-gold .mini-box p {
+      color: #f7f4ea;
+    }
 
-  .info{
-    grid-template-columns:1fr;
-  }
+    .theme-gold .mini-box {
+      border-color: rgba(255, 208, 92, 0.18);
+      background: rgba(255, 208, 92, 0.04);
+    }
 
-  .cta a{
-    flex:100%;
-  }
-}
+    .theme-silver {
+      background:
+        radial-gradient(
+          380px circle at var(--mouse-x, 50%) var(--mouse-y, 50%),
+          rgba(215, 215, 215, 0.20),
+          rgba(215, 215, 215, 0.10) 18%,
+          rgba(215, 215, 215, 0.045) 34%,
+          rgba(215, 215, 215, 0.014) 48%,
+          rgba(215, 215, 215, 0) 64%
+        ),
+        #0a0a0a;
+      border-color: rgba(205, 205, 205, 0.34);
+      box-shadow:
+        0 0 0 1px rgba(215, 215, 215, 0.035) inset,
+        0 0 24px rgba(215, 215, 215, 0.07);
+    }
 
-</style>
+    .theme-silver:hover {
+      border-color: rgba(230, 230, 230, 0.56);
+      box-shadow:
+        0 0 0 1px rgba(215, 215, 215, 0.05) inset,
+        0 0 30px rgba(215, 215, 215, 0.11);
+    }
+
+    .theme-silver .service-kicker,
+    .theme-silver .mini-label {
+      color: #dddddd;
+    }
+
+    .theme-silver h2 {
+      color: #f0f0f0;
+    }
+
+    .theme-silver p,
+    .theme-silver .mini-box p {
+      color: #f3f3f3;
+    }
+
+    .theme-silver .mini-box {
+      border-color: rgba(220, 220, 220, 0.16);
+      background: rgba(255,255,255,0.03);
+    }
+
+    .theme-green {
+      background:
+        radial-gradient(
+          380px circle at var(--mouse-x, 50%) var(--mouse-y, 50%),
+          rgba(55, 214, 120, 0.24),
+          rgba(55, 214, 120, 0.115) 18%,
+          rgba(55, 214, 120, 0.05) 34%,
+          rgba(55, 214, 120, 0.015) 48%,
+          rgba(55, 214, 120, 0) 64%
+        ),
+        #0a0a0a;
+      border-color: rgba(65, 219, 129, 0.40);
+      box-shadow:
+        0 0 0 1px rgba(65, 219, 129, 0.035) inset,
+        0 0 24px rgba(65, 219, 129, 0.08);
+    }
+
+    .theme-green:hover {
+      border-color: rgba(77, 230, 141, 0.64);
+      box-shadow:
+        0 0 0 1px rgba(65, 219, 129, 0.05) inset,
+        0 0 30px rgba(65, 219, 129, 0.13);
+    }
+
+    .theme-green .service-kicker,
+    .theme-green .mini-label {
+      color: #58e08f;
+    }
+
+    .theme-green h2 {
+      color: #91efb4;
+    }
+
+    .theme-green p,
+    .theme-green .mini-box p {
+      color: #f3f3f3;
+    }
+
+    .theme-green .mini-box {
+      border-color: rgba(88, 224, 143, 0.18);
+      background: rgba(88, 224, 143, 0.035);
+    }
+
+    .theme-red {
+      background:
+        radial-gradient(
+          380px circle at var(--mouse-x, 50%) var(--mouse-y, 50%),
+          rgba(255, 50, 50, 0.24),
+          rgba(255, 50, 50, 0.12) 18%,
+          rgba(255, 50, 50, 0.055) 34%,
+          rgba(255, 50, 50, 0.018) 48%,
+          rgba(255, 50, 50, 0) 64%
+        ),
+        #0a0a0a;
+      border-color: rgba(255, 60, 60, 0.44);
+      box-shadow:
+        0 0 0 1px rgba(255, 60, 60, 0.04) inset,
+        0 0 24px rgba(255, 60, 60, 0.08);
+    }
+
+    .theme-red:hover {
+      border-color: rgba(255, 75, 75, 0.70);
+      box-shadow:
+        0 0 0 1px rgba(255, 60, 60, 0.05) inset,
+        0 0 30px rgba(255, 60, 60, 0.14);
+    }
+
+    .theme-red .service-kicker,
+    .theme-red .mini-label {
+      color: #ff5c5c;
+    }
+
+    .theme-red h2 {
+      color: #ff9b9b;
+    }
+
+    .theme-red p,
+    .theme-red .mini-box p {
+      color: #f4f4f4;
+    }
+
+    .theme-red .mini-box {
+      border-color: rgba(255, 92, 92, 0.18);
+      background: rgba(255, 92, 92, 0.04);
+    }
+
+    .theme-brown {
+      background:
+        radial-gradient(
+          430px circle at var(--mouse-x, 50%) var(--mouse-y, 50%),
+          rgba(150, 95, 45, 0.28),
+          rgba(150, 95, 45, 0.14) 18%,
+          rgba(150, 95, 45, 0.065) 34%,
+          rgba(150, 95, 45, 0.02) 50%,
+          rgba(150, 95, 45, 0) 67%
+        ),
+        linear-gradient(180deg, rgba(150, 95, 45, 0.05), rgba(150, 95, 45, 0.018)),
+        #090909;
+      border-color: rgba(185, 125, 72, 0.42);
+      box-shadow:
+        0 0 0 1px rgba(185, 125, 72, 0.045) inset,
+        0 0 30px rgba(150, 95, 45, 0.10);
+    }
+
+    .theme-brown:hover {
+      border-color: rgba(205, 144, 88, 0.66);
+      box-shadow:
+        0 0 0 1px rgba(185, 125, 72, 0.06) inset,
+        0 0 36px rgba(150, 95, 45, 0.15);
+    }
+
+    .theme-brown .service-kicker,
+    .theme-brown .mini-label {
+      color: #d09a65;
+    }
+
+    .theme-brown h2 {
+      color: #e0b286;
+    }
+
+    .theme-brown p,
+    .theme-brown .mini-box p {
+      color: #f5efe8;
+    }
+
+    .theme-brown .mini-box {
+      border-color: rgba(208, 154, 101, 0.20);
+      background: rgba(150, 95, 45, 0.05);
+    }
+
+    .theme-turquoise {
+      background:
+        radial-gradient(
+          390px circle at var(--mouse-x, 50%) var(--mouse-y, 50%),
+          rgba(55, 210, 215, 0.24),
+          rgba(55, 210, 215, 0.115) 18%,
+          rgba(55, 210, 215, 0.05) 34%,
+          rgba(55, 210, 215, 0.015) 48%,
+          rgba(55, 210, 215, 0) 64%
+        ),
+        #0a0a0a;
+      border-color: rgba(70, 220, 225, 0.42);
+      box-shadow:
+        0 0 0 1px rgba(70, 220, 225, 0.035) inset,
+        0 0 24px rgba(70, 220, 225, 0.08);
+    }
+
+    .theme-turquoise:hover {
+      border-color: rgba(95, 232, 236, 0.66);
+      box-shadow:
+        0 0 0 1px rgba(70, 220, 225, 0.05) inset,
+        0 0 30px rgba(70, 220, 225, 0.13);
+    }
+
+    .theme-turquoise .service-kicker,
+    .theme-turquoise .mini-label {
+      color: #6ee7eb;
+    }
+
+    .theme-turquoise h2 {
+      color: #9ef4f6;
+    }
+
+    .theme-turquoise p,
+    .theme-turquoise .mini-box p {
+      color: #f2fbfb;
+    }
+
+    .theme-turquoise .mini-box {
+      border-color: rgba(110, 231, 235, 0.18);
+      background: rgba(110, 231, 235, 0.04);
+    }
+
+    .bottom-cta {
+      max-width: 760px;
+      margin: 18px auto 0;
+      text-align: center;
+    }
+
+    .cta-row {
+      display: flex;
+      justify-content: center;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .cta-row a {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 170px;
+      padding: 13px 16px;
+      border-radius: 12px;
+      border: 1px solid rgba(255,255,255,0.1);
+      background:
+        linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.015)),
+        #0a0a0a;
+      color: #ffffff;
+      text-decoration: none;
+      text-transform: uppercase;
+      font-size: 0.82rem;
+      font-weight: 700;
+      letter-spacing: 1.3px;
+      transition: border-color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .cta-row a:hover {
+      border-color: rgba(255, 190, 70, 0.7);
+      transform: translateY(-2px);
+      box-shadow: 0 0 20px rgba(255, 190, 70, 0.14);
+    }
+
+    @media (max-width: 768px) {
+      .page-wrap {
+        padding: 102px 16px 50px;
+      }
+
+      .service-card {
+        padding: 22px 18px;
+        border-radius: 16px;
+      }
+
+      .service-kicker {
+        font-size: 0.72rem;
+        letter-spacing: 1.4px;
+      }
+
+      .service-card h2 {
+        margin-bottom: 16px;
+      }
+
+      .service-card p {
+        font-size: 0.95rem;
+        line-height: 1.72;
+      }
+
+      .service-grid {
+        grid-template-columns: 1fr;
+        gap: 12px;
+      }
+
+      .mini-box {
+        padding: 14px 14px;
+      }
+
+      .mini-box p {
+        font-size: 0.92rem;
+      }
+
+      .cta-row a {
+        min-width: 100%;
+        font-size: 0.76rem;
+      }
+    }
+
+    @media (max-width: 700px){
+      .topbar-inner{
+        padding: 14px 14px;
+      }
+
+      .nav a{
+        padding: 10px 14px;
+        font-size: 0.9rem;
+      }
+    }
+
+    @media (max-width: 430px){
+      .topbar-inner{
+        padding: 12px 10px;
+      }
+
+      .nav{
+        gap: 8px;
+      }
+
+      .nav a{
+        padding: 9px 12px;
+        font-size: .84rem;
+      }
+
+      .page-wrap{
+        padding: 96px 14px 42px;
+      }
+    }
+  </style>
 </head>
-
 <body>
-
-<header class="topbar">
-  <div class="topbar-inner">
-    <nav class="nav">
-      <a href="home.html">Home</a>
-      <a href="services.html" class="active">Services</a>
-      <a href="about.html">About</a>
-    </nav>
-  </div>
-</header>
-
-<main class="page">
-
-  <div class="card">
-    <h2>General Pest Control</h2>
-    <p>Built for common pest pressure around the home and designed to keep activity down through consistent treatment.</p>
-
-    <div class="info">
-      <div class="info-box">
-        <strong>Typical Coverage</strong>
-        Exterior foundation and full perimeter treatment.
-      </div>
-      <div class="info-box">
-        <strong>Important Note</strong>
-        Interior is optional, not required.
-      </div>
+  <header class="topbar">
+    <div class="topbar-inner">
+      <nav class="nav">
+        <a href="home.html">Home</a>
+        <a href="services.html" class="active">Services</a>
+        <a href="about.html">About</a>
+      </nav>
     </div>
+  </header>
 
-    <div class="cta">
-      <a href="tel:8709197114">Call</a>
-      <a href="sms:8709197114">Text</a>
-      <a href="mailto:gmail@allseasonllc.com">Email</a>
-    </div>
-  </div>
+  <main class="page-wrap">
+    <section class="service-card theme-gold">
+      <div class="service-kicker">Core Service</div>
+      <h2>General Pest Control</h2>
+      <p>
+        Our general pest service is built for common pest pressure around the
+        home and is designed to help keep pest activity down through consistent,
+        dependable treatment.
+      </p>
+      <p>
+        This service typically targets pests such as ants, spiders,
+        crickets, earwigs, silverfish, centipedes, millipedes, and other common
+        invading insects. Does not cover bed bugs or termites.
+      </p>
 
-  <div class="card">
-    <h2>Rodent Control</h2>
-    <p>Focused on reducing rodent activity through monitoring and baiting strategies.</p>
-
-    <div class="info">
-      <div class="info-box">
-        <strong>Service Focus</strong>
-        Ongoing monitoring and baiting.
+      <div class="service-grid">
+        <div class="mini-box">
+          <div class="mini-label">Typical Coverage</div>
+          <p>
+            Exterior foundation and eave treatment with full front to back curb spot treatment as needed based
+            on pest activity.
+          </p>
+        </div>
+        <div class="mini-box">
+          <div class="mini-label">Important Note</div>
+          <p>
+            Interior and garage treatments are optional, not mandatory.
+          </p>
+        </div>
       </div>
-      <div class="info-box">
-        <strong>Important Note</strong>
-        Does not include wildlife like squirrels.
+    </section>
+
+    <section class="service-card theme-silver">
+      <div class="service-kicker">Monitoring + Control</div>
+      <h2>Rodent Control</h2>
+      <p>
+        Our rodent control service focuses on reducing and monitoring rodent
+        activity through strategic bait placement and ongoing follow-up where
+        needed.
+      </p>
+      <p>
+        Service includes inspection of active areas, exterior bait stations, sticky traps, 
+        and recommendations to help reduce conditions that contribute to rodent
+        pressure around the home.
+      </p>
+
+      <div class="service-grid">
+        <div class="mini-box">
+          <div class="mini-label">Service Focus</div>
+          <p>
+            Ongoing monitoring, activity reduction, baiting, and follow-up based
+            on the level of rodent pressure.
+          </p>
+        </div>
+        <div class="mini-box">
+          <div class="mini-label">Important Note</div>
+          <p>
+            Does not include moles, snakes, skunks, or squirrels.
+          </p>
+        </div>
       </div>
-    </div>
-  </div>
+    </section>
 
-  <div class="card">
-    <h2>Tick & Flea Treatment</h2>
-    <p>Designed for yards dealing with biting pests, especially around pets.</p>
+    <section class="service-card theme-green">
+      <div class="service-kicker">Targeted Outdoor Service</div>
+      <h2>Tick &amp; Flea Treatment</h2>
+      <p>
+        Tick and flea treatments are designed for properties dealing with biting
+        pests in the yard, around pet areas, or in outdoor spaces where activity
+        tends to build up.
+      </p>
+      <p>
+        These treatments focus on helping reduce active populations and improving
+        control in the areas where ticks and fleas are most likely to be found.
+      </p>
 
-    <div class="info">
-      <div class="info-box">
-        <strong>Best For</strong>
-        Pet areas and shaded yards.
+      <div class="service-grid">
+        <div class="mini-box">
+          <div class="mini-label">Best For</div>
+          <p>
+            Homes with pets, shaded yards, wildlife traffic, or recurring tick
+            and flea activity outside.
+          </p>
+        </div>
+        <div class="mini-box">
+          <div class="mini-label">Important Note</div>
+          <p>
+            This is an optional add-on service for general pest control.
+          </p>
+        </div>
       </div>
-      <div class="info-box">
-        <strong>Important Note</strong>
-        Add-on service.
+    </section>
+
+    <section class="service-card theme-red">
+      <div class="service-kicker">Seasonal Treatment</div>
+      <h2>Mosquito Treatment</h2>
+      <p>
+        Our mosquito treatments are designed to help reduce mosquito pressure in
+        the yard so you can enjoy outdoor areas more comfortably during the
+        warmer months.
+      </p>
+      <p>
+        Treatment is typically focused on shaded foliage, harborage areas, and
+        other outdoor zones where mosquitoes like to rest and build up.
+      </p>
+
+      <div class="service-grid">
+        <div class="mini-box">
+          <div class="mini-label">Best For</div>
+          <p>
+            Homes with patios, backyards, pets, outdoor gatherings, or heavy
+            mosquito pressure during the season.
+          </p>
+        </div>
+        <div class="mini-box">
+          <div class="mini-label">Service Approach</div>
+          <p>
+            Monthly recurring treatments from April-September aimed at reducing biting pressure and breeding populations.
+          </p>
+        </div>
       </div>
-    </div>
-  </div>
+    </section>
 
-  <div class="card">
-    <h2>Mosquito Treatment</h2>
-    <p>Helps reduce mosquito pressure so outdoor spaces are usable again.</p>
+    <section class="service-card theme-brown">
+      <div class="service-kicker">Specialized Treatment</div>
+      <h2>German Roach Treatment</h2>
+      <p>
+        German roach problems usually require a more aggressive and targeted
+        treatment plan than standard pest control. This service is built for
+        active infestations that need more focused attention.
+      </p>
+      <p>
+        Treatment may include detailed inspection, targeted crack-and-crevice
+        applications, baiting, and follow-up service depending on the level of
+        activity and conditions inside the home.
+      </p>
 
-    <div class="info">
-      <div class="info-box">
-        <strong>Best For</strong>
-        Backyards and patios.
+      <div class="service-grid">
+        <div class="mini-box">
+          <div class="mini-label">Best For</div>
+          <p>
+            Active german roach infestations that need more than routine
+            recurring service.
+          </p>
+        </div>
+        <div class="mini-box">
+          <div class="mini-label">Important Note</div>
+          <p>
+            Success depends heavily on severity, sanitation, clutter levels, and
+            cooperation with preparation recommendations.
+          </p>
+        </div>
       </div>
-      <div class="info-box">
-        <strong>Service Approach</strong>
-        Monthly seasonal treatments.
+    </section>
+
+    <section class="service-card theme-turquoise">
+      <div class="service-kicker">Specialized Treatment</div>
+      <h2>Weed Control</h2>
+      <p>
+        Our weed control service is designed to help reduce unwanted weed growth
+        and improve the overall appearance of your property.
+      </p>
+      <p>
+        Treatment plans may vary based on the season, weed pressure, and overall
+        condition of the turf, but the goal stays the same: cleaner, more
+        controlled outdoor spaces.
+      </p>
+
+      <div class="service-grid">
+        <div class="mini-box">
+          <div class="mini-label">Best For</div>
+          <p>
+            Properties dealing with visible weed pressure in the rocks, along
+            edges, or throughout the yard.
+          </p>
+        </div>
+        <div class="mini-box">
+          <div class="mini-label">Service Approach</div>
+          <p>
+            Price varies by total square feet of treatment. Treatments are done in spring (Mar/Apr) and late summer (Aug/Sep).
+          </p>
+        </div>
       </div>
-    </div>
-  </div>
+    </section>
 
-  <div class="card">
-    <h2>German Roach Treatment</h2>
-    <p>Built for active infestations requiring targeted treatment.</p>
-
-    <div class="info">
-      <div class="info-box">
-        <strong>Best For</strong>
-        Active infestations.
+    <section class="bottom-cta">
+      <div class="cta-row">
+        <a href="tel:8709197114">Call</a>
+        <a href="sms:8709197114">Text</a>
+        <a href="mailto:gmail@allseasonllc.com">Email</a>
       </div>
-      <div class="info-box">
-        <strong>Important Note</strong>
-        Prep and sanitation matter.
-      </div>
-    </div>
-  </div>
+    </section>
+  </main>
 
-  <div class="card">
-    <h2>Weed Control</h2>
-    <p>Helps reduce unwanted weed growth and improve property appearance.</p>
+  <script>
+    const cards = document.querySelectorAll('.service-card');
 
-    <div class="info">
-      <div class="info-box">
-        <strong>Best For</strong>
-        Yard and rock areas.
-      </div>
-      <div class="info-box">
-        <strong>Service Approach</strong>
-        Seasonal treatments.
-      </div>
-    </div>
-  </div>
+    cards.forEach((card) => {
+      card.addEventListener('mousemove', (e) => {
+        const rect = card.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
 
-</main>
-
+        card.style.setProperty('--mouse-x', `${x}px`);
+        card.style.setProperty('--mouse-y', `${y}px`);
+      });
+    });
+  </script>
 </body>
 </html>
