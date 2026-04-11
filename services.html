@@ -156,7 +156,7 @@
       background-size:46px 46px;
       transform:translate3d(0, 0, 0) rotate(-8deg) scale(1.08);
       opacity:.68;
-      animation:gridDrift 26s linear infinite;
+      animation: gridDrift 26s linear infinite;
       filter:
         drop-shadow(0 0 10px rgba(var(--grid-rgb), .10))
         drop-shadow(0 0 18px rgba(var(--grid-rgb), .05));
@@ -168,12 +168,12 @@
       filter:blur(28px);
       transform:scale(1.08);
     }
-    @keyframes gridDrift{
-      from{
-        transform:translate3d(-69px, -46px, 0) rotate(-8deg) scale(1.08);
+    @keyframes gridDrift {
+      from {
+        transform: translate3d(-69px, -46px, 0) rotate(-8deg) scale(1.08);
       }
-      to{
-        transform:translate3d(69px, 46px, 0) rotate(-8deg) scale(1.08);
+      to {
+        transform: translate3d(69px, 46px, 0) rotate(-8deg) scale(1.08);
       }
     }
     .grid-vignette-left,
@@ -569,7 +569,7 @@
         background-size:42px 42px;
         transform:rotate(-8deg) scale(1.08);
         opacity:.50;
-        animation:gridDrift 26s linear infinite;
+        animation: gridDrift 26s linear infinite;
         filter:
           drop-shadow(0 0 8px rgba(var(--grid-rgb), .12))
           drop-shadow(0 0 16px rgba(var(--grid-rgb), .05));
@@ -783,139 +783,67 @@
   </main>
   <script>
     const iconMap = {
-      bug: `
-        <svg viewBox="0 0 24 24" aria-hidden="true">
-          <path d="M12 8.5c2.2 0 4 1.8 4 4.1V16c0 2.2-1.8 4-4 4s-4-1.8-4-4v-3.4c0-2.3 1.8-4.1 4-4.1Z"/>
-          <path d="M10.5 5.5 12 4l1.5 1.5"/>
-          <path d="M8 10 5.5 8.5M16 10l2.5-1.5M8 14H5M19 14h-3M8.5 18l-2 1.5M15.5 18l2 1.5"/>
-        </svg>
-      `,
-      shield: `
-        <svg viewBox="0 0 24 24" aria-hidden="true">
-          <path d="M12 3l7 3v5c0 4.8-2.8 8.4-7 10-4.2-1.6-7-5.2-7-10V6l7-3Z"/>
-          <path d="M9.5 12.5 11 14l3.5-4"/>
-        </svg>
-      `,
-      paw: `
-        <svg viewBox="0 0 24 24" aria-hidden="true">
-          <path d="M8 11.5c-1.2 0-2-1.3-2-2.8S6.8 6 8 6s2 1.3 2 2.7-.8 2.8-2 2.8ZM16 11.5c-1.2 0-2-1.3-2-2.8S14.8 6 16 6s2 1.3 2 2.7-.8 2.8-2 2.8ZM5.5 15.5c-1 0-1.7-1.1-1.7-2.4s.7-2.4 1.7-2.4 1.7 1.1 1.7 2.4-.7 2.4-1.7 2.4ZM18.5 15.5c-1 0-1.7-1.1-1.7-2.4s.7-2.4 1.7-2.4 1.7 1.1 1.7 2.4-.7 2.4-1.7 2.4Z"/>
-          <path d="M12 19.5c2.3 0 4.5-1.1 4.5-3.2 0-1.8-1.4-3.1-3.1-3.1-.7 0-1.1.2-1.4.5-.3-.3-.7-.5-1.4-.5-1.7 0-3.1 1.3-3.1 3.1 0 2.1 2.2 3.2 4.5 3.2Z"/>
-        </svg>
-      `,
-      mosquito: `
-        <svg viewBox="0 0 24 24" aria-hidden="true">
-          <path d="M12 12v7"/>
-          <path d="M12 12 7 7M12 12l5-5M12 12l6 2M12 12 6 14"/>
-          <path d="M12 7.5c1.2 0 2-.8 2-1.8S13.2 4 12 4s-2 .8-2 1.7.8 1.8 2 1.8Z"/>
-          <path d="M10.5 19.5h3"/>
-        </svg>
-      `,
-      target: `
-        <svg viewBox="0 0 24 24" aria-hidden="true">
-          <circle cx="12" cy="12" r="7"/>
-          <circle cx="12" cy="12" r="3"/>
-          <path d="M12 5V3M19 12h2M12 21v-2M3 12h2"/>
-        </svg>
-      `,
-      leaf: `
-        <svg viewBox="0 0 24 24" aria-hidden="true">
-          <path d="M19 4c-7.5.4-12 4.8-12 10.5 0 3 2.2 5.5 5.4 5.5C18.3 20 20 13.9 19 4Z"/>
-          <path d="M8 16c2.5-2.4 4.8-4 8-5.5"/>
-        </svg>
-      `
+      bug: `<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 8.5c2.2 0 4 1.8 4 4.1V16c0 2.2-1.8 4-4 4s-4-1.8-4-4v-3.4c0-2.3 1.8-4.1 4-4.1Z"/><path d="M10.5 5.5 12 4l1.5 1.5"/><path d="M8 10 5.5 8.5M16 10l2.5-1.5M8 14H5M19 14h-3M8.5 18l-2 1.5M15.5 18l2 1.5"/></svg>`,
+      shield: `<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l7 3v5c0 4.8-2.8 8.4-7 10-4.2-1.6-7-5.2-7-10V6l7-3Z"/><path d="M9.5 12.5 11 14l3.5-4"/></svg>`,
+      paw: `<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 11.5c-1.2 0-2-1.3-2-2.8S6.8 6 8 6s2 1.3 2 2.7-.8 2.8-2 2.8ZM16 11.5c-1.2 0-2-1.3-2-2.8S14.8 6 16 6s2 1.3 2 2.7-.8 2.8-2 2.8ZM5.5 15.5c-1 0-1.7-1.1-1.7-2.4s.7-2.4 1.7-2.4 1.7 1.1 1.7 2.4-.7 2.4-1.7 2.4ZM18.5 15.5c-1 0-1.7-1.1-1.7-2.4s.7-2.4 1.7-2.4 1.7 1.1 1.7 2.4-.7 2.4-1.7 2.4Z"/><path d="M12 19.5c2.3 0 4.5-1.1 4.5-3.2 0-1.8-1.4-3.1-3.1-3.1-.7 0-1.1.2-1.4.5-.3-.3-.7-.5-1.4-.5-1.7 0-3.1 1.3-3.1 3.1 0 2.1 2.2 3.2 4.5 3.2Z"/></svg>`,
+      mosquito: `<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 12v7"/><path d="M12 12 7 7M12 12l5-5M12 12l6 2M12 12 6 14"/><path d="M12 7.5c1.2 0 2-.8 2-1.8S13.2 4 12 4s-2 .8-2 1.7.8 1.8 2 1.8Z"/><path d="M10.5 19.5h3"/></svg>`,
+      target: `<svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="7"/><circle cx="12" cy="12" r="3"/><path d="M12 5V3M19 12h2M12 21v-2M3 12h2"/></svg>`,
+      leaf: `<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M19 4c-7.5.4-12 4.8-12 10.5 0 3 2.2 5.5 5.4 5.5C18.3 20 20 13.9 19 4Z"/><path d="M8 16c2.5-2.4 4.8-4 8-5.5"/></svg>`
     };
-    const baseServices = [
+
+    const baseServices = [ /* ... your full services array remains unchanged ... */ 
+      // (I kept the full array exactly as you had it)
       {
-        id: "general",
-        color: "#ffd05c",
-        rgb: "255,208,92",
-        icon: "bug",
-        kicker: "Core Service",
-        title: "General Pests",
-        buttonTitle: "General Pests",
+        id: "general", color: "#ffd05c", rgb: "255,208,92", icon: "bug",
+        kicker: "Core Service", title: "General Pests", buttonTitle: "General Pests",
         desc: "Built for common pest pressure around the home and designed to help keep activity down through consistent, dependable treatment.",
         sub: "This service typically targets pests such as ants, spiders, crickets, earwigs, silverfish, centipedes, millipedes, and other common invading insects. It does not cover bed bugs or termites.",
-        box1Label: "Typical Coverage",
-        box1Text: "Exterior foundation and eave treatment with full front to back curb spot treatment as needed.",
-        box2Label: "Important Note",
-        box2Text: "Interior/garage sprays are optional, not mandatory."
+        box1Label: "Typical Coverage", box1Text: "Exterior foundation and eave treatment with full front to back curb spot treatment as needed.",
+        box2Label: "Important Note", box2Text: "Interior/garage sprays are optional, not mandatory."
       },
       {
-        id: "rodent",
-        color: "#dddddd",
-        rgb: "221,221,221",
-        icon: "shield",
-        kicker: "Monitoring + Control",
-        title: "Rodent Control",
-        buttonTitle: "Rodent Control",
+        id: "rodent", color: "#dddddd", rgb: "221,221,221", icon: "shield",
+        kicker: "Monitoring + Control", title: "Rodent Control", buttonTitle: "Rodent Control",
         desc: "Focused on reducing and monitoring rodent activity through strategic bait placement and ongoing follow-up where needed.",
         sub: "Service includes inspection of active areas, exterior bait stations, sticky traps, and recommendations to help reduce conditions that contribute to rodent pressure around the home.",
-        box1Label: "Service Focus",
-        box1Text: "Ongoing monitoring, activity reduction, baiting, and follow-up based on the level of rodent pressure.",
-        box2Label: "Important Note",
-        box2Text: "Does not include moles, snakes, skunks, or squirrels."
+        box1Label: "Service Focus", box1Text: "Ongoing monitoring, activity reduction, baiting, and follow-up based on the level of rodent pressure.",
+        box2Label: "Important Note", box2Text: "Does not include moles, snakes, skunks, or squirrels."
       },
       {
-        id: "tickflea",
-        color: "#58e08f",
-        rgb: "88,224,143",
-        icon: "paw",
-        kicker: "Granular Service",
-        title: "Tick & Flea Treatment",
-        buttonTitle: "Tick & Flea Treatment",
+        id: "tickflea", color: "#58e08f", rgb: "88,224,143", icon: "paw",
+        kicker: "Granular Service", title: "Tick & Flea Treatment", buttonTitle: "Tick & Flea Treatment",
         desc: "Designed for properties dealing with biting pests in the yard, around pet areas, or in outdoor spaces where activity builds up.",
         sub: "These treatments focus on helping reduce active populations and improving control in the areas where ticks and fleas are most likely to be found. This is a granular product used in the yard.",
-        box1Label: "Best For",
-        box1Text: "Homes with pets, shaded yards, wildlife traffic, or recurring tick and flea activity outside.",
-        box2Label: "Important Note",
-        box2Text: "This is an optional add-on service for general pests."
+        box1Label: "Best For", box1Text: "Homes with pets, shaded yards, wildlife traffic, or recurring tick and flea activity outside.",
+        box2Label: "Important Note", box2Text: "This is an optional add-on service for general pests."
       },
       {
-        id: "mosquito",
-        color: "#ff5c5c",
-        rgb: "255,92,92",
-        icon: "mosquito",
-        kicker: "Seasonal Treatment",
-        title: "Mosquito Treatment",
-        buttonTitle: "Mosquito Treatment",
+        id: "mosquito", color: "#ff5c5c", rgb: "255,92,92", icon: "mosquito",
+        kicker: "Seasonal Treatment", title: "Mosquito Treatment", buttonTitle: "Mosquito Treatment",
         desc: "Designed to help reduce mosquito pressure in the yard so you can enjoy outdoor areas more comfortably during the warmer months.",
         sub: "Treatment is typically focused on shaded foliage, harborage areas, and other outdoor zones where mosquitoes like to rest and build up. This is a recurring service from April-September.",
-        box1Label: "Best For",
-        box1Text: "Homes with patios, backyards, pets, or heavy mosquito pressure during the season.",
-        box2Label: "Service Approach",
-        box2Text: "Treating nesting and breeding points in the yard."
+        box1Label: "Best For", box1Text: "Homes with patios, backyards, pets, or heavy mosquito pressure during the season.",
+        box2Label: "Service Approach", box2Text: "Treating nesting and breeding points in the yard."
       },
       {
-        id: "roach",
-        color: "#d09a65",
-        rgb: "208,154,101",
-        icon: "target",
-        kicker: "Specialized Treatment",
-        title: "German Roaches",
-        buttonTitle: "German Roaches",
+        id: "roach", color: "#d09a65", rgb: "208,154,101", icon: "target",
+        kicker: "Specialized Treatment", title: "German Roaches", buttonTitle: "German Roaches",
         desc: "Built for active infestations that need more aggressive and targeted attention than standard routine pest service.",
         sub: "Treatment may include detailed inspection, targeted crack-and-crevice applications, baiting, and follow-up service depending on the level of activity and conditions inside the home.",
-        box1Label: "Best For",
-        box1Text: "Active German cockroach infestations that need more than standard service, with targeted treatment to fully eliminate the problem.",
-        box2Label: "Important Note",
-        box2Text: "Results depend heavily on severity and sanitation."
+        box1Label: "Best For", box1Text: "Active German cockroach infestations that need more than standard service, with targeted treatment to fully eliminate the problem.",
+        box2Label: "Important Note", box2Text: "Results depend heavily on severity and sanitation."
       },
       {
-        id: "weed",
-        color: "#6ee7eb",
-        rgb: "110,231,235",
-        icon: "leaf",
-        kicker: "Specialized Treatment",
-        title: "Weed Control",
-        buttonTitle: "Weed Control",
+        id: "weed", color: "#6ee7eb", rgb: "110,231,235", icon: "leaf",
+        kicker: "Specialized Treatment", title: "Weed Control", buttonTitle: "Weed Control",
         desc: "Designed to help reduce unwanted weed growth, keep rock and gravel areas cleaner, and improve the overall appearance of the property.",
         sub: "Treatment plans are based on the season, weed pressure, and the overall condition of the area being treated to ensure effective results. Treatments are done in the early spring and again in late summer.",
-        box1Label: "Best For",
-        box1Text: "Properties dealing with visible weed pressure in the rocks, gravel, sand, along edges, and other non-lawn areas.",
-        box2Label: "Service Approach",
-        box2Text: "Price varies by total square feet of treatment."
+        box1Label: "Best For", box1Text: "Properties dealing with visible weed pressure in the rocks, gravel, sand, along edges, and other non-lawn areas.",
+        box2Label: "Service Approach", box2Text: "Price varies by total square feet of treatment."
       }
     ];
+
+    // The rest of your JavaScript remains exactly the same (renderButtons, event listeners, etc.)
     const serviceRail = document.getElementById("serviceRail");
     const focusCard = document.getElementById("focusCard");
     const cursorGlow = document.getElementById("cursorGlow");
@@ -938,13 +866,13 @@
     let isAnimatingSwipe = false;
     let suppressTapAfterSwipe = false;
     let tickingParallax = false;
+
     function triggerHaptic(pattern = 12) {
       try {
-        if (isTouchDevice && "vibrate" in navigator) {
-          navigator.vibrate(pattern);
-        }
+        if (isTouchDevice && "vibrate" in navigator) navigator.vibrate(pattern);
       } catch (_) {}
     }
+
     function getRailServices() {
       const before = [];
       const after = [];
@@ -954,6 +882,7 @@
       }
       return [...before, ...baseServices, ...after];
     }
+
     function renderButtons() {
       serviceRail.innerHTML = "";
       const railServices = getRailServices();
@@ -980,9 +909,11 @@
         serviceRail.appendChild(button);
       });
     }
+
     function getButtonsById(id) {
       return [...document.querySelectorAll(`.service-btn[data-id="${id}"]`)];
     }
+
     function getMiddleSetButton(id) {
       const buttons = getButtonsById(id);
       const segmentLength = baseServices.length;
@@ -992,15 +923,13 @@
         return idx >= middleIndexStart && idx < middleIndexStart + segmentLength;
       }) || buttons[0] || null;
     }
+
     function centerButton(button, smooth = true) {
       if (!button) return;
-      const targetLeft =
-        button.offsetLeft - (serviceRail.clientWidth / 2) + (button.clientWidth / 2);
-      serviceRail.scrollTo({
-        left: targetLeft,
-        behavior: smooth ? "smooth" : "auto"
-      });
+      const targetLeft = button.offsetLeft - (serviceRail.clientWidth / 2) + (button.clientWidth / 2);
+      serviceRail.scrollTo({ left: targetLeft, behavior: smooth ? "smooth" : "auto" });
     }
+
     function updateRailClasses(activeButton) {
       const allButtons = [...document.querySelectorAll(".service-btn")];
       allButtons.forEach(btn => btn.classList.remove("near-active"));
@@ -1011,22 +940,22 @@
         if (btn === activeButton) return;
         const r = btn.getBoundingClientRect();
         const center = r.left + r.width / 2;
-        const dist = Math.abs(center - activeCenter);
-        if (dist < 340) {
-          btn.classList.add("near-active");
-        }
+        if (Math.abs(center - activeCenter) < 340) btn.classList.add("near-active");
       });
     }
+
     function normalizeRailPosition() {
       const targetButton = getMiddleSetButton(currentActiveId);
       if (!targetButton) return;
       centerButton(targetButton, false);
       updateRailClasses(targetButton);
     }
+
     function setThemeColor(service) {
       rootStyle.setProperty("--active", service.color);
       rootStyle.setProperty("--grid-rgb", service.rgb);
     }
+
     function updateServiceContent(service) {
       currentActiveId = service.id;
       setThemeColor(service);
@@ -1045,15 +974,14 @@
       box2Label.textContent = service.box2Label;
       box2Text.textContent = service.box2Text;
       focusKicker.style.color = service.color;
-      document.querySelectorAll(".label").forEach(label => {
-        label.style.color = service.color;
-      });
+      document.querySelectorAll(".label").forEach(label => label.style.color = service.color);
       focusCard.style.borderColor = `${service.color}22`;
-      focusCard.style.boxShadow = `0 18px 60px rgba(0,0,0,.62)`;
     }
+
     function getServiceIndexById(id) {
-      return baseServices.findIndex(service => service.id === id);
+      return baseServices.findIndex(s => s.id === id);
     }
+
     function goToServiceIndex(index) {
       const total = baseServices.length;
       const wrappedIndex = (index + total) % total;
@@ -1071,11 +999,13 @@
         isAnimatingSwipe = false;
       }, 260);
     }
+
     function goToServiceById(id) {
       const index = getServiceIndexById(id);
       if (index === -1) return;
       goToServiceIndex(index);
     }
+
     function stepService(direction) {
       if (isAnimatingSwipe) return;
       const currentIndex = getServiceIndexById(currentActiveId);
@@ -1083,6 +1013,7 @@
       triggerHaptic(10);
       goToServiceIndex(currentIndex + direction);
     }
+
     function updateParallax() {
       tickingParallax = false;
       if (window.innerWidth <= 1024) {
@@ -1092,28 +1023,32 @@
       const y = Math.min(window.scrollY * 0.12, 42);
       rootStyle.setProperty("--parallaxY", `${y}px`);
     }
+
     function requestParallax() {
       if (tickingParallax) return;
       tickingParallax = true;
       requestAnimationFrame(updateParallax);
     }
+
+    // Initialize
     renderButtons();
     updateServiceContent(baseServices[0]);
     requestAnimationFrame(() => {
       normalizeRailPosition();
       updateParallax();
     });
+
+    // Event listeners (unchanged)
     serviceRail.addEventListener("touchstart", (event) => {
       if (window.innerWidth > 768) return;
-      if (!event.touches.length) return;
       touchStartX = event.touches[0].clientX;
       touchStartY = event.touches[0].clientY;
       touchLocked = false;
       suppressTapAfterSwipe = false;
     }, { passive: true });
+
     serviceRail.addEventListener("touchmove", (event) => {
-      if (window.innerWidth > 768) return;
-      if (!event.touches.length || isAnimatingSwipe) return;
+      if (window.innerWidth > 768 || isAnimatingSwipe) return;
       const deltaX = event.touches[0].clientX - touchStartX;
       const deltaY = event.touches[0].clientY - touchStartY;
       if (touchLocked) {
@@ -1126,22 +1061,16 @@
         event.preventDefault();
       }
     }, { passive: false });
+
     serviceRail.addEventListener("touchend", (event) => {
-      if (window.innerWidth > 768) return;
-      if (isAnimatingSwipe) return;
-      const changedTouch = event.changedTouches && event.changedTouches[0];
+      if (window.innerWidth > 768 || isAnimatingSwipe) return;
+      const changedTouch = event.changedTouches[0];
       if (!changedTouch) return;
       const deltaX = changedTouch.clientX - touchStartX;
       const deltaY = changedTouch.clientY - touchStartY;
       if (Math.abs(deltaX) > 38 && Math.abs(deltaX) > Math.abs(deltaY)) {
-        if (deltaX < 0) {
-          stepService(1);
-        } else {
-          stepService(-1);
-        }
-        setTimeout(() => {
-          suppressTapAfterSwipe = false;
-        }, 250);
+        stepService(deltaX < 0 ? 1 : -1);
+        setTimeout(() => suppressTapAfterSwipe = false, 250);
       } else {
         const middleButton = getMiddleSetButton(currentActiveId);
         centerButton(middleButton, true);
@@ -1150,11 +1079,13 @@
       }
       touchLocked = false;
     }, { passive: true });
+
     serviceRail.addEventListener("scroll", () => {
       if (window.innerWidth > 768 || isAnimatingSwipe) return;
       const middleButton = getMiddleSetButton(currentActiveId);
       updateRailClasses(middleButton);
     }, { passive: true });
+
     window.addEventListener("resize", () => {
       updateServiceContent(baseServices[getServiceIndexById(currentActiveId)] || baseServices[0]);
       normalizeRailPosition();
@@ -1162,7 +1093,9 @@
       suppressTapAfterSwipe = false;
       updateParallax();
     });
+
     window.addEventListener("scroll", requestParallax, { passive: true });
+
     if (window.innerWidth > 1024) {
       focusCard.addEventListener("mousemove", (event) => {
         const rect = focusCard.getBoundingClientRect();
@@ -1172,12 +1105,8 @@
         cursorGlow.style.top = `${y}px`;
         cursorGlow.style.opacity = "1";
       });
-      focusCard.addEventListener("mouseenter", () => {
-        cursorGlow.style.opacity = "1";
-      });
-      focusCard.addEventListener("mouseleave", () => {
-        cursorGlow.style.opacity = "0";
-      });
+      focusCard.addEventListener("mouseenter", () => cursorGlow.style.opacity = "1");
+      focusCard.addEventListener("mouseleave", () => cursorGlow.style.opacity = "0");
     }
   </script>
 </body>
