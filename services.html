@@ -55,7 +55,6 @@
     a,
     .service-btn{
       -webkit-tap-highlight-color: transparent;
-      touch-action: manipulation;
       font: inherit;
     }
 
@@ -486,7 +485,6 @@
       z-index:3;
       padding:14px 18px 18px;
       border-top:1px solid rgba(255,255,255,.08);
-      border-bottom:none;
       background:linear-gradient(180deg, rgba(5,7,11,.10), rgba(5,7,11,.28));
       backdrop-filter:blur(6px);
     }
@@ -501,11 +499,12 @@
       scrollbar-width:none;
       -webkit-overflow-scrolling:touch;
       overscroll-behavior-x:contain;
-      scroll-behavior:smooth;
       justify-content:flex-start;
       align-items:center;
       scroll-snap-type:x mandatory;
       scroll-padding-inline:26px;
+      scroll-behavior:auto;
+      touch-action:pan-x;
     }
 
     .service-rail::-webkit-scrollbar{
@@ -755,17 +754,16 @@
       .service-rail{
         gap:8px;
         padding:10px 16px 10px;
-        scroll-snap-type:x mandatory;
         scroll-padding-inline:16px;
+        scroll-behavior:auto;
       }
 
       .service-btn{
-        flex:0 0 132px;
+        flex:0 0 148px;
         border-radius:14px;
         padding:10px;
         transform:scale(.86);
         opacity:.58;
-        scroll-snap-align:center;
       }
 
       .service-btn.near-active{
@@ -774,7 +772,7 @@
       }
 
       .service-btn.active{
-        flex-basis:186px;
+        flex-basis:210px;
         padding:13px 12px 12px;
         transform:scale(1);
         opacity:1;
@@ -1061,6 +1059,11 @@
 
     const cloneRepeat = 2;
     let currentActiveId = "general";
+    let lastSyncedId = currentActiveId;
+    let touchStartX = 0;
+    let touchStartY = 0;
+    let touchLocked = false;
+    let isAnimatingSwipe = false;
 
     function getVisibleTags(tags) {
       return window.innerWidth <= 768 ? tags.slice(0, 3) : tags;
@@ -1250,6 +1253,40 @@
       focusCard.style.boxShadow = `0 18px 60px rgba(0,0,0,.42), 0 0 34px ${service.color}14`;
     }
 
+    function getServiceIndexById(id) {
+      return baseServices.findIndex(service => service.id === id);
+    }
+
+    function goToServiceIndex(index) {
+      const total = baseServices.length;
+      const wrappedIndex = (index + total) % total;
+      const nextService = baseServices[wrappedIndex];
+      const targetButton = getMiddleSetButton(nextService.id);
+
+      if (!targetButton) return;
+
+      isAnimatingSwipe = true;
+      lastSyncedId = nextService.id;
+      setActiveService(nextService.id, false, targetButton);
+      centerButton(targetButton, true);
+
+      setTimeout(() => {
+        const middleButton = getMiddleSetButton(nextService.id);
+        centerButton(middleButton, false);
+        updateRailClasses(middleButton);
+        isAnimatingSwipe = false;
+      }, 260);
+    }
+
+    function stepService(direction) {
+      if (isAnimatingSwipe) return;
+
+      const currentIndex = getServiceIndexById(currentActiveId);
+      if (currentIndex === -1) return;
+
+      goToServiceIndex(currentIndex + direction);
+    }
+
     pageMenuToggle.addEventListener("click", (event) => {
       event.stopPropagation();
       const isOpen = pageMenu.classList.toggle("open");
@@ -1270,70 +1307,69 @@
       normalizeRailPosition();
     });
 
-    let railScrollRAF = null;
-    let scrollSettleTimer = null;
-    let lastSyncedId = currentActiveId;
+    serviceRail.addEventListener("touchstart", (event) => {
+      if (window.innerWidth > 768) return;
+      if (!event.touches.length) return;
 
-    function getClosestCenteredButton() {
-      const allButtons = [...document.querySelectorAll(".service-btn")];
-      if (!allButtons.length) return null;
+      touchStartX = event.touches[0].clientX;
+      touchStartY = event.touches[0].clientY;
+      touchLocked = false;
+    }, { passive: true });
 
-      const railRect = serviceRail.getBoundingClientRect();
-      const railCenter = railRect.left + railRect.width / 2;
+    serviceRail.addEventListener("touchmove", (event) => {
+      if (window.innerWidth > 768) return;
+      if (!event.touches.length || isAnimatingSwipe) return;
 
-      let closestButton = null;
-      let closestDistance = Infinity;
+      const deltaX = event.touches[0].clientX - touchStartX;
+      const deltaY = event.touches[0].clientY - touchStartY;
 
-      allButtons.forEach((button) => {
-        const rect = button.getBoundingClientRect();
-        const center = rect.left + rect.width / 2;
-        const distance = Math.abs(center - railCenter);
-
-        if (distance < closestDistance) {
-          closestDistance = distance;
-          closestButton = button;
-        }
-      });
-
-      return closestButton;
-    }
-
-    function syncRailVisualState() {
-      const closestButton = getClosestCenteredButton();
-      if (!closestButton) return;
-      updateRailClasses(closestButton);
-    }
-
-    function syncActiveFromSettledScroll() {
-      const closestButton = getClosestCenteredButton();
-      if (!closestButton) return;
-
-      const newId = closestButton.dataset.id;
-      if (newId !== lastSyncedId) {
-        lastSyncedId = newId;
-        setActiveService(newId, false, closestButton);
+      if (touchLocked) {
+        event.preventDefault();
+        return;
       }
-    }
+
+      if (Math.abs(deltaX) > 22 && Math.abs(deltaX) > Math.abs(deltaY)) {
+        touchLocked = true;
+        event.preventDefault();
+      }
+    }, { passive: false });
+
+    serviceRail.addEventListener("touchend", (event) => {
+      if (window.innerWidth > 768) return;
+      if (isAnimatingSwipe) return;
+
+      const changedTouch = event.changedTouches && event.changedTouches[0];
+      if (!changedTouch) return;
+
+      const deltaX = changedTouch.clientX - touchStartX;
+      const deltaY = changedTouch.clientY - touchStartY;
+
+      if (Math.abs(deltaX) > 38 && Math.abs(deltaX) > Math.abs(deltaY)) {
+        if (deltaX < 0) {
+          stepService(1);
+        } else {
+          stepService(-1);
+        }
+      } else {
+        const middleButton = getMiddleSetButton(currentActiveId);
+        centerButton(middleButton, true);
+        updateRailClasses(middleButton);
+      }
+
+      touchLocked = false;
+    }, { passive: true });
 
     serviceRail.addEventListener("scroll", () => {
-      if (railScrollRAF) cancelAnimationFrame(railScrollRAF);
-
-      railScrollRAF = requestAnimationFrame(() => {
-        syncRailVisualState();
-      });
-
-      clearTimeout(scrollSettleTimer);
-      scrollSettleTimer = setTimeout(() => {
-        if (window.innerWidth <= 768) {
-          syncActiveFromSettledScroll();
-        }
-      }, 90);
+      if (window.innerWidth > 768 || isAnimatingSwipe) return;
+      const middleButton = getMiddleSetButton(currentActiveId);
+      updateRailClasses(middleButton);
     }, { passive: true });
 
     window.addEventListener("resize", () => {
       setActiveService(currentActiveId, false);
       normalizeRailPosition();
       lastSyncedId = currentActiveId;
+      isAnimatingSwipe = false;
     });
 
     const codeLines = [
