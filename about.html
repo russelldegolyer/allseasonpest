@@ -118,8 +118,9 @@
       min-height:calc(100vh - 160px);
       border:1px solid rgba(255,255,255,.08);
       background:
-        radial-gradient(circle at 18% 22%, rgba(139,92,246,.12), transparent 24%),
-        radial-gradient(circle at 82% 78%, rgba(139,92,246,.07), transparent 28%),
+        radial-gradient(circle at 50% 50%, rgba(139,92,246,.10), transparent 18%),
+        radial-gradient(circle at 18% 22%, rgba(139,92,246,.06), transparent 28%),
+        radial-gradient(circle at 82% 78%, rgba(139,92,246,.05), transparent 30%),
         linear-gradient(180deg, rgba(255,255,255,.012), rgba(255,255,255,.003)),
         #000;
       box-shadow:var(--shadow);
@@ -133,51 +134,31 @@
       z-index:3;
       pointer-events:none;
       background:
-        linear-gradient(180deg, rgba(0,0,0,.16), rgba(0,0,0,.10)),
-        radial-gradient(circle at 50% 50%, transparent 0%, rgba(0,0,0,.08) 100%);
+        radial-gradient(circle at 50% 50%, transparent 0%, rgba(0,0,0,.10) 100%),
+        linear-gradient(180deg, rgba(0,0,0,.14), rgba(0,0,0,.10));
     }
 
-    .web-layer{
+    .web-canvas{
       position:absolute;
-      inset:-10%;
-      width:120%;
-      height:120%;
-      pointer-events:none;
-      z-index:1;
-      opacity:.95;
-      filter:
-        drop-shadow(0 0 10px rgba(139,92,246,.28))
-        drop-shadow(0 0 24px rgba(139,92,246,.12));
-      animation:webDrift 20s linear infinite;
-      transform-origin:center;
-    }
-
-    .web-layer.back{
-      opacity:.34;
-      transform:scale(1.18) rotate(-8deg);
-      animation-duration:28s;
-      filter:
-        drop-shadow(0 0 14px rgba(139,92,246,.18))
-        drop-shadow(0 0 30px rgba(139,92,246,.08));
-    }
-
-    .web-layer.front{
-      transform:scale(1.02) rotate(4deg);
-    }
-
-    @keyframes webDrift{
-      from{
-        translate:-42px 30px;
-      }
-      to{
-        translate:42px -30px;
-      }
-    }
-
-    .web-svg{
+      inset:0;
       width:100%;
       height:100%;
+      z-index:1;
       display:block;
+      pointer-events:none;
+      filter:
+        drop-shadow(0 0 6px rgba(139,92,246,.35))
+        drop-shadow(0 0 18px rgba(139,92,246,.18));
+    }
+
+    .center-glow{
+      position:absolute;
+      inset:0;
+      z-index:2;
+      pointer-events:none;
+      background:
+        radial-gradient(circle at 50% 50%, rgba(139,92,246,.16) 0%, rgba(139,92,246,.10) 6%, rgba(139,92,246,.04) 14%, transparent 24%);
+      mix-blend-mode:screen;
     }
 
     .content{
@@ -202,33 +183,6 @@
       font-size:.94rem;
     }
 
-    .strand{
-      fill:none;
-      stroke:rgba(167,123,255,.78);
-      stroke-linecap:round;
-      stroke-linejoin:round;
-    }
-
-    .strand.thin{
-      stroke-width:1.2;
-      opacity:.7;
-    }
-
-    .strand.mid{
-      stroke-width:1.8;
-      opacity:.82;
-    }
-
-    .strand.bold{
-      stroke-width:2.4;
-      opacity:.95;
-    }
-
-    .strand.faint{
-      stroke-width:1;
-      opacity:.34;
-    }
-
     @media (max-width: 900px){
       .page-wrap{
         padding:98px 16px 28px;
@@ -243,12 +197,6 @@
       .about-stage{
         border-radius:22px;
         min-height:calc(100vh - 132px);
-      }
-
-      .web-layer{
-        inset:-18%;
-        width:136%;
-        height:136%;
       }
 
       .content{
@@ -297,72 +245,9 @@
   </header>
 
   <main class="page-wrap">
-    <section class="about-stage">
-
-      <div class="web-layer back" aria-hidden="true">
-        <svg class="web-svg" viewBox="0 0 1600 1100" preserveAspectRatio="xMidYMid slice">
-          <g>
-            <path class="strand faint" d="M150 80 L760 510" />
-            <path class="strand faint" d="M300 30 L760 510" />
-            <path class="strand faint" d="M520 10 L760 510" />
-            <path class="strand faint" d="M760 0 L760 510" />
-            <path class="strand faint" d="M1010 10 L760 510" />
-            <path class="strand faint" d="M1280 40 L760 510" />
-            <path class="strand faint" d="M1470 120 L760 510" />
-
-            <path class="strand faint" d="M90 280 L760 510" />
-            <path class="strand faint" d="M40 520 L760 510" />
-            <path class="strand faint" d="M120 760 L760 510" />
-            <path class="strand faint" d="M330 970 L760 510" />
-            <path class="strand faint" d="M760 1080 L760 510" />
-            <path class="strand faint" d="M1170 980 L760 510" />
-            <path class="strand faint" d="M1440 800 L760 510" />
-            <path class="strand faint" d="M1560 560 L760 510" />
-
-            <path class="strand faint" d="M470 295 Q760 210 1055 295" />
-            <path class="strand faint" d="M330 405 Q760 295 1190 405" />
-            <path class="strand faint" d="M240 545 Q760 395 1295 545" />
-            <path class="strand faint" d="M290 710 Q760 525 1235 710" />
-            <path class="strand faint" d="M405 855 Q760 645 1110 855" />
-          </g>
-        </svg>
-      </div>
-
-      <div class="web-layer front" aria-hidden="true">
-        <svg class="web-svg" viewBox="0 0 1600 1100" preserveAspectRatio="xMidYMid slice">
-          <g>
-            <path class="strand mid" d="M180 70 L760 510" />
-            <path class="strand thin" d="M340 15 L760 510" />
-            <path class="strand mid" d="M560 0 L760 510" />
-            <path class="strand bold" d="M760 0 L760 510" />
-            <path class="strand mid" d="M980 0 L760 510" />
-            <path class="strand thin" d="M1215 35 L760 510" />
-            <path class="strand mid" d="M1445 125 L760 510" />
-
-            <path class="strand thin" d="M90 250 L760 510" />
-            <path class="strand bold" d="M0 510 L760 510" />
-            <path class="strand thin" d="M110 760 L760 510" />
-            <path class="strand mid" d="M330 1010 L760 510" />
-            <path class="strand bold" d="M760 1100 L760 510" />
-            <path class="strand mid" d="M1160 1000 L760 510" />
-            <path class="strand thin" d="M1450 785 L760 510" />
-            <path class="strand bold" d="M1600 525 L760 510" />
-
-            <path class="strand thin" d="M515 225 Q760 155 1005 225" />
-            <path class="strand mid" d="M420 305 Q760 210 1095 305" />
-            <path class="strand thin" d="M335 400 Q760 285 1180 400" />
-            <path class="strand bold" d="M255 515 Q760 360 1265 515" />
-            <path class="strand thin" d="M300 640 Q760 455 1215 640" />
-            <path class="strand mid" d="M375 770 Q760 560 1140 770" />
-            <path class="strand thin" d="M475 900 Q760 690 1045 900" />
-
-            <path class="strand faint" d="M210 115 Q480 250 610 475" />
-            <path class="strand faint" d="M1380 170 Q1125 290 905 480" />
-            <path class="strand faint" d="M230 865 Q465 730 650 555" />
-            <path class="strand faint" d="M1340 860 Q1110 720 870 550" />
-          </g>
-        </svg>
-      </div>
+    <section class="about-stage" id="aboutStage">
+      <canvas class="web-canvas" id="webCanvas"></canvas>
+      <div class="center-glow"></div>
 
       <div class="content">
         <footer class="footer">
@@ -372,5 +257,250 @@
       </div>
     </section>
   </main>
+
+  <script>
+    const stage = document.getElementById("aboutStage");
+    const canvas = document.getElementById("webCanvas");
+    const ctx = canvas.getContext("2d");
+
+    let w = 0;
+    let h = 0;
+    let dpr = Math.min(window.devicePixelRatio || 1, 2);
+
+    let spokes = [];
+    let arcs = [];
+    let pulse = 0;
+
+    function resizeCanvas() {
+      const rect = stage.getBoundingClientRect();
+      w = rect.width;
+      h = rect.height;
+      dpr = Math.min(window.devicePixelRatio || 1, 2);
+
+      canvas.width = Math.floor(w * dpr);
+      canvas.height = Math.floor(h * dpr);
+      canvas.style.width = `${w}px`;
+      canvas.style.height = `${h}px`;
+
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+
+      initWeb();
+    }
+
+    function rand(min, max) {
+      return Math.random() * (max - min) + min;
+    }
+
+    function pickCenter() {
+      return {
+        x: w * 0.5,
+        y: h * 0.48
+      };
+    }
+
+    function initWeb() {
+      spokes = [];
+      arcs = [];
+      pulse = 0;
+
+      const center = pickCenter();
+      const outerRadius = Math.max(w, h) * 0.66;
+      const spokeCount = window.innerWidth < 768 ? 15 : 21;
+
+      for (let i = 0; i < spokeCount; i++) {
+        const angle = (-Math.PI / 2) + (Math.PI * 2 * i / spokeCount) + rand(-0.08, 0.08);
+        const maxR = outerRadius * rand(0.82, 1.05);
+        const speed = rand(0.9, 1.7);
+
+        spokes.push({
+          angle,
+          maxR,
+          currentR: rand(6, 28),
+          speed,
+          alpha: rand(0.5, 0.95),
+          thickness: rand(0.7, 1.9),
+          wobble: rand(4, 16),
+          wobblePhase: rand(0, Math.PI * 2),
+          fadeDir: 1
+        });
+      }
+
+      const ringCount = window.innerWidth < 768 ? 7 : 10;
+      for (let r = 0; r < ringCount; r++) {
+        const radiusRatio = 0.12 + r * (0.075 + rand(-0.006, 0.006));
+        arcs.push({
+          ratio: radiusRatio,
+          alpha: rand(0.18, 0.5),
+          thickness: rand(0.5, 1.4),
+          reveal: rand(0.2, 0.95),
+          drift: rand(-0.0012, 0.0012)
+        });
+      }
+    }
+
+    function getCenter() {
+      return {
+        x: w * 0.5,
+        y: h * 0.48
+      };
+    }
+
+    function updateWeb() {
+      pulse += 0.01;
+
+      spokes.forEach((spoke) => {
+        spoke.currentR += spoke.speed * spoke.fadeDir;
+
+        if (spoke.currentR >= spoke.maxR) {
+          spoke.fadeDir = -1;
+        }
+
+        if (spoke.currentR <= rand(10, 36)) {
+          spoke.currentR = rand(8, 24);
+          spoke.maxR = Math.max(w, h) * rand(0.54, 0.74);
+          spoke.speed = rand(0.9, 1.7);
+          spoke.alpha = rand(0.45, 0.98);
+          spoke.thickness = rand(0.7, 2.0);
+          spoke.wobble = rand(4, 16);
+          spoke.wobblePhase = rand(0, Math.PI * 2);
+          spoke.fadeDir = 1;
+        }
+
+        spoke.wobblePhase += 0.012;
+      });
+
+      arcs.forEach((arc, i) => {
+        arc.reveal += rand(-0.01, 0.01);
+        arc.reveal = Math.max(0.1, Math.min(1, arc.reveal));
+        arc.ratio += arc.drift;
+
+        const minRatio = 0.10 + i * 0.07;
+        const maxRatio = minRatio + 0.03;
+
+        if (arc.ratio < minRatio || arc.ratio > maxRatio) {
+          arc.drift *= -1;
+        }
+      });
+    }
+
+    function drawGlow(center) {
+      const g = ctx.createRadialGradient(center.x, center.y, 0, center.x, center.y, Math.max(w, h) * 0.18);
+      g.addColorStop(0, "rgba(139,92,246,0.16)");
+      g.addColorStop(0.18, "rgba(139,92,246,0.08)");
+      g.addColorStop(0.38, "rgba(139,92,246,0.03)");
+      g.addColorStop(1, "rgba(139,92,246,0)");
+      ctx.fillStyle = g;
+      ctx.fillRect(0, 0, w, h);
+    }
+
+    function drawSpokes(center) {
+      spokes.forEach((spoke) => {
+        const steps = 20;
+        let prevX = center.x;
+        let prevY = center.y;
+
+        ctx.beginPath();
+        ctx.moveTo(prevX, prevY);
+
+        for (let i = 1; i <= steps; i++) {
+          const t = i / steps;
+          const r = spoke.currentR * t;
+          const wobble = Math.sin((t * 5.5) + spoke.wobblePhase) * spoke.wobble * (t * 0.35);
+          const x = center.x + Math.cos(spoke.angle) * r + Math.cos(spoke.angle + Math.PI / 2) * wobble;
+          const y = center.y + Math.sin(spoke.angle) * r + Math.sin(spoke.angle + Math.PI / 2) * wobble;
+          ctx.lineTo(x, y);
+          prevX = x;
+          prevY = y;
+        }
+
+        ctx.strokeStyle = `rgba(167,123,255,${spoke.alpha})`;
+        ctx.lineWidth = spoke.thickness;
+        ctx.lineCap = "round";
+        ctx.lineJoin = "round";
+        ctx.stroke();
+
+        ctx.beginPath();
+        ctx.arc(prevX, prevY, Math.max(0.7, spoke.thickness * 0.8), 0, Math.PI * 2);
+        ctx.fillStyle = `rgba(196,167,255,${Math.min(1, spoke.alpha * 0.9)})`;
+        ctx.fill();
+      });
+    }
+
+    function drawArcBands(center) {
+      const sorted = [...spokes].sort((a, b) => a.angle - b.angle);
+
+      arcs.forEach((ring, ringIndex) => {
+        const points = [];
+
+        sorted.forEach((spoke) => {
+          const usableR = spoke.currentR * ring.ratio;
+          const minRequired = 18 + ringIndex * 10;
+
+          if (usableR > minRequired) {
+            const wobble = Math.sin((ring.ratio * 10) + spoke.wobblePhase) * spoke.wobble * 0.16;
+            const x = center.x + Math.cos(spoke.angle) * usableR + Math.cos(spoke.angle + Math.PI / 2) * wobble;
+            const y = center.y + Math.sin(spoke.angle) * usableR + Math.sin(spoke.angle + Math.PI / 2) * wobble;
+            points.push({ x, y });
+          }
+        });
+
+        if (points.length < 3) return;
+
+        const visibleCount = Math.max(2, Math.floor(points.length * ring.reveal));
+
+        ctx.beginPath();
+        ctx.moveTo(points[0].x, points[0].y);
+
+        for (let i = 1; i < visibleCount - 1; i++) {
+          const midX = (points[i].x + points[i + 1].x) * 0.5;
+          const midY = (points[i].y + points[i + 1].y) * 0.5;
+          ctx.quadraticCurveTo(points[i].x, points[i].y, midX, midY);
+        }
+
+        const last = points[visibleCount - 1];
+        ctx.lineTo(last.x, last.y);
+
+        ctx.strokeStyle = `rgba(176,134,255,${ring.alpha})`;
+        ctx.lineWidth = ring.thickness;
+        ctx.lineCap = "round";
+        ctx.lineJoin = "round";
+        ctx.stroke();
+      });
+    }
+
+    function drawDust(center) {
+      for (let i = 0; i < 18; i++) {
+        const angle = (Math.PI * 2 * i / 18) + pulse * 0.4;
+        const radius = 18 + (i * 7) + Math.sin(pulse + i) * 3;
+        const x = center.x + Math.cos(angle) * radius;
+        const y = center.y + Math.sin(angle) * radius;
+        const size = 0.8 + ((i % 3) * 0.35);
+
+        ctx.beginPath();
+        ctx.arc(x, y, size, 0, Math.PI * 2);
+        ctx.fillStyle = "rgba(190,160,255,0.16)";
+        ctx.fill();
+      }
+    }
+
+    function render() {
+      ctx.clearRect(0, 0, w, h);
+
+      const center = getCenter();
+
+      drawGlow(center);
+      drawArcBands(center);
+      drawSpokes(center);
+      drawDust(center);
+
+      updateWeb();
+      requestAnimationFrame(render);
+    }
+
+    window.addEventListener("resize", resizeCanvas, { passive: true });
+
+    resizeCanvas();
+    render();
+  </script>
 </body>
 </html>
