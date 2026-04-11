@@ -59,56 +59,10 @@
       font: inherit;
     }
 
-    .topbar{
-      position:fixed;
-      top:0;
-      left:0;
-      width:100%;
-      z-index:1000;
-      backdrop-filter:blur(14px);
-      background:rgba(0,0,0,.68);
-      border-bottom:1px solid rgba(255,255,255,.06);
-    }
-
-    .topbar-inner{
-      max-width:var(--max);
-      margin:0 auto;
-      padding:14px 20px;
-      display:flex;
-      justify-content:center;
-      align-items:center;
-    }
-
-    .nav{
-      display:flex;
-      gap:10px;
-      flex-wrap:wrap;
-      justify-content:center;
-    }
-
-    .nav a{
-      padding:11px 18px;
-      border:1px solid rgba(255,42,42,.28);
-      border-radius:999px;
-      background:rgba(255,255,255,.03);
-      color:#fff;
-      font-weight:700;
-      font-size:.95rem;
-      letter-spacing:.02em;
-      transition:border-color .18s ease, box-shadow .18s ease, transform .18s ease;
-    }
-
-    .nav a:hover,
-    .nav a.active{
-      border-color:rgba(255,42,42,.65);
-      transform:translateY(-1px);
-      box-shadow:0 0 20px rgba(255,42,42,.14);
-    }
-
     .page-wrap{
       max-width:var(--max);
       margin:0 auto;
-      padding:100px 20px 64px;
+      padding:18px 20px 64px;
       overflow-x:hidden;
     }
 
@@ -150,12 +104,18 @@
 
     .code-grid{
       position:absolute;
-      inset:0;
+      inset:-80px 0 0 0;
       background-image:
         linear-gradient(rgba(255,255,255,.025) 1px, transparent 1px),
         linear-gradient(90deg, rgba(255,255,255,.018) 1px, transparent 1px);
       background-size: 100% 38px, 38px 100%;
       opacity:.16;
+      animation:gridDrift 14s linear infinite;
+    }
+
+    @keyframes gridDrift{
+      from{ transform:translateY(0); }
+      to{ transform:translateY(38px); }
     }
 
     .code-fade-left,
@@ -189,6 +149,14 @@
       color:rgba(232,238,255,.10);
       white-space:pre-wrap;
       word-break:break-word;
+      animation:codeDrift 18s linear infinite;
+      will-change:transform;
+    }
+
+    @keyframes codeDrift{
+      0%{ transform:translateY(0); }
+      50%{ transform:translateY(-18px); }
+      100%{ transform:translateY(-36px); }
     }
 
     .code-line{
@@ -277,7 +245,42 @@
     }
 
     .selector-wrap.open .selector-panel{
-      max-height:260px;
+      max-height:340px;
+    }
+
+    .menu-links{
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+      padding:0 4px 12px;
+    }
+
+    .menu-links a{
+      padding:10px 16px;
+      border:1px solid rgba(255,255,255,.10);
+      border-radius:999px;
+      background:rgba(255,255,255,.03);
+      color:#fff;
+      font-weight:700;
+      font-size:.9rem;
+      letter-spacing:.02em;
+      transition:border-color .18s ease, box-shadow .18s ease, transform .18s ease;
+    }
+
+    .menu-links a:hover,
+    .menu-links a.active{
+      border-color:rgba(255,42,42,.55);
+      transform:translateY(-1px);
+      box-shadow:0 0 16px rgba(255,42,42,.12);
+    }
+
+    .rail-label{
+      font-size:.70rem;
+      letter-spacing:.16em;
+      text-transform:uppercase;
+      color:rgba(255,255,255,.46);
+      font-weight:800;
+      padding:0 6px 8px;
     }
 
     .service-rail{
@@ -619,7 +622,7 @@
 
     @media (max-width: 768px){
       .page-wrap{
-        padding:84px 10px 34px;
+        padding:10px 10px 34px;
       }
 
       .showcase{
@@ -640,7 +643,22 @@
       }
 
       .selector-wrap.open .selector-panel{
-        max-height:220px;
+        max-height:300px;
+      }
+
+      .menu-links{
+        gap:8px;
+        padding:0 2px 10px;
+      }
+
+      .menu-links a{
+        padding:9px 13px;
+        font-size:.82rem;
+      }
+
+      .rail-label{
+        font-size:.62rem;
+        padding:0 4px 8px;
       }
 
       .service-rail{
@@ -824,40 +842,17 @@
     }
 
     @media (max-width: 430px){
-      .topbar-inner{
-        padding:10px 8px;
-      }
-
-      .nav{
-        gap:7px;
-      }
-
-      .nav a{
-        padding:8px 11px;
-        font-size:.8rem;
-      }
-
       .focus-title{
         font-size:1.46rem;
       }
 
       .code-bg{
-        opacity:.82;
+        opacity:.86;
       }
     }
   </style>
 </head>
 <body>
-  <header class="topbar">
-    <div class="topbar-inner">
-      <nav class="nav">
-        <a href="home.html">Home</a>
-        <a href="services.html" class="active">Services</a>
-        <a href="about.html">About</a>
-      </nav>
-    </div>
-  </header>
-
   <main class="page-wrap">
     <section class="showcase">
       <div class="code-bg" aria-hidden="true">
@@ -870,7 +865,7 @@
       <div class="selector-wrap open" id="selectorWrap">
         <div class="selector-head">
           <button class="selector-toggle" id="selectorToggle" type="button" aria-expanded="true">
-            Services
+            Menu
             <svg viewBox="0 0 24 24" aria-hidden="true">
               <path d="m6 9 6 6 6-6"></path>
             </svg>
@@ -878,6 +873,13 @@
         </div>
 
         <div class="selector-panel" id="selectorPanel">
+          <div class="menu-links">
+            <a href="home.html">Home</a>
+            <a href="services.html" class="active">Services</a>
+            <a href="about.html">About</a>
+          </div>
+
+          <div class="rail-label">Choose a service</div>
           <div class="service-rail" id="serviceRail"></div>
         </div>
       </div>
@@ -1319,7 +1321,7 @@
       `<span class="tok-blue">render</span>(<span class="tok-red">premiumServiceExperience</span>);`
     ];
 
-    const maxVisibleLines = 14;
+    const maxVisibleLines = 18;
     let typedLines = new Array(maxVisibleLines).fill("");
     let sourceIndex = 0;
     let charIndex = 0;
