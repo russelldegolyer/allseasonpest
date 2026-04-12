@@ -1,0 +1,549 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+  />
+  <title>All Season Pest Control</title>
+  <meta
+    name="description"
+    content="All Season Pest Control - Jonesboro, Arkansas"
+  />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;600;700&family=Sora:wght@400;500;600;700;800&display=swap"
+    rel="stylesheet"
+  />
+
+  <style>
+    :root{
+      --text:#ffffff;
+      --red:#ff2a2a;
+    }
+
+    *{
+      box-sizing:border-box;
+      margin:0;
+      padding:0;
+      min-width:0;
+    }
+
+    html,
+    body{
+      width:100%;
+      min-height:100%;
+      background:#000;
+    }
+
+    body{
+      background:#000;
+      color:var(--text);
+      font-family:"Sora", Arial, sans-serif;
+      overflow:hidden;
+    }
+
+    a{
+      color:inherit;
+      text-decoration:none;
+      -webkit-tap-highlight-color:transparent;
+    }
+
+    .stage{
+      position:relative;
+      width:100%;
+      min-height:100vh;
+      overflow:hidden;
+      background:#000;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      isolation:isolate;
+    }
+
+    .stage::after{
+      content:"";
+      position:absolute;
+      inset:0;
+      z-index:2;
+      pointer-events:none;
+      background:
+        radial-gradient(circle at 50% 50%, rgba(0,0,0,0) 0%, rgba(0,0,0,.03) 56%, rgba(0,0,0,.12) 100%),
+        linear-gradient(180deg, rgba(0,0,0,.01), rgba(0,0,0,.05));
+    }
+
+    .web-canvas{
+      position:absolute;
+      inset:0;
+      width:100%;
+      height:100%;
+      z-index:1;
+      display:block;
+      pointer-events:none;
+      opacity:1;
+      filter:
+        drop-shadow(0 0 3px rgba(255,70,70,.10))
+        drop-shadow(0 0 6px rgba(255,255,255,.03));
+    }
+
+    .content{
+      position:relative;
+      z-index:3;
+      width:100%;
+      max-width:1200px;
+      padding:24px 20px 18px;
+      display:flex;
+      justify-content:center;
+      align-items:center;
+    }
+
+    .hero{
+      display:flex;
+      flex-direction:column;
+      align-items:center;
+      justify-content:center;
+      text-align:center;
+      transform:translateY(-18px);
+    }
+
+    .logo-link{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      position:relative;
+      line-height:0;
+    }
+
+    .logo-wrap{
+      position:relative;
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      padding:12px;
+    }
+
+    .logo-wrap::before{
+      content:"";
+      position:absolute;
+      inset:-8px;
+      z-index:0;
+      border-radius:50%;
+      background:
+        radial-gradient(circle at center,
+          rgba(0,0,0,0) 0%,
+          rgba(0,0,0,.18) 34%,
+          rgba(0,0,0,.42) 58%,
+          rgba(0,0,0,.62) 76%,
+          rgba(0,0,0,0) 100%);
+      filter:blur(5px);
+      pointer-events:none;
+    }
+
+    .logo{
+      position:relative;
+      z-index:1;
+      display:block;
+      max-width:950px;
+      width:auto;
+      height:auto;
+      max-height:78vh;
+      transform-origin:center center;
+      animation:subtlePulse 2.6s ease-in-out infinite;
+      transition:
+        transform .30s ease-in-out,
+        opacity .30s ease-in-out,
+        filter .30s ease-in-out;
+      filter:
+        drop-shadow(0 0 6px rgba(0,0,0,.72))
+        drop-shadow(0 0 16px rgba(0,0,0,.58))
+        drop-shadow(0 0 26px rgba(0,0,0,.42));
+    }
+
+    .logo-link:hover .logo{
+      transform:scale(1.055);
+      opacity:.995;
+      filter:
+        drop-shadow(0 0 6px rgba(0,0,0,.72))
+        drop-shadow(0 0 16px rgba(0,0,0,.58))
+        drop-shadow(0 0 26px rgba(0,0,0,.42))
+        drop-shadow(0 0 4px rgba(255,0,0,.16))
+        drop-shadow(0 0 10px rgba(255,0,0,.08));
+      animation-play-state:paused;
+    }
+
+    .enter-link{
+      display:inline-block;
+      margin-top:2px;
+      text-decoration:none;
+      text-align:center;
+    }
+
+    .enter-text{
+      color:#ff2a2a;
+      font-family:"Oswald", Arial, sans-serif;
+      font-size:18px;
+      font-weight:600;
+      letter-spacing:4px;
+      text-transform:uppercase;
+      opacity:.97;
+      animation:softFade 2s ease-in-out infinite;
+      transition:transform .2s ease, opacity .2s ease;
+      text-align:center;
+      text-shadow:
+        0 0 8px rgba(255,42,42,.12),
+        0 0 18px rgba(255,42,42,.08);
+    }
+
+    .enter-link:hover .enter-text{
+      transform:scale(1.06);
+      opacity:1;
+    }
+
+    @keyframes subtlePulse{
+      0%,100%{ transform:scale(1); }
+      50%{ transform:scale(1.025); }
+    }
+
+    @keyframes softFade{
+      0%,100%{ opacity:.7; }
+      50%{ opacity:1; }
+    }
+
+    @media (max-width: 768px){
+      body{
+        overflow:auto;
+      }
+
+      .content{
+        padding:10px 8px 14px;
+      }
+
+      .hero{
+        transform:translateY(-10px);
+      }
+
+      .logo{
+        width:92vw;
+        max-width:none;
+        max-height:none;
+      }
+
+      .enter-link{
+        margin-top:4px;
+      }
+
+      .enter-text{
+        font-size:15px;
+        letter-spacing:2px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main class="stage" id="indexStage">
+    <canvas class="web-canvas" id="webCanvas"></canvas>
+
+    <div class="content">
+      <div class="hero">
+        <a href="home.html" class="logo-link" aria-label="Enter Website">
+          <span class="logo-wrap">
+            <img src="updated logo.PNG" alt="All Season Pest Control" class="logo">
+          </span>
+        </a>
+
+        <a href="home.html" class="enter-link" aria-label="Enter Site">
+          <div class="enter-text">Click here if you hate bugs</div>
+        </a>
+      </div>
+    </div>
+  </main>
+
+  <script>
+    const stage = document.getElementById("indexStage");
+    const canvas = document.getElementById("webCanvas");
+    const ctx = canvas.getContext("2d");
+
+    let w = 0;
+    let h = 0;
+    let dpr = Math.min(window.devicePixelRatio || 1, 2);
+    let tick = 0;
+
+    let webs = [];
+    let scrollTarget = 0;
+    let scrollEase = 0;
+
+    function rand(min, max) {
+      return Math.random() * (max - min) + min;
+    }
+
+    function clamp(v, min, max) {
+      return Math.max(min, Math.min(max, v));
+    }
+
+    function lerp(a, b, t) {
+      return a + (b - a) * t;
+    }
+
+    function dist(ax, ay, bx, by) {
+      const dx = bx - ax;
+      const dy = by - ay;
+      return Math.sqrt(dx * dx + dy * dy);
+    }
+
+    function resizeCanvas() {
+      const rect = stage.getBoundingClientRect();
+      w = rect.width;
+      h = rect.height;
+      dpr = Math.min(window.devicePixelRatio || 1, 2);
+
+      canvas.width = Math.floor(w * dpr);
+      canvas.height = Math.floor(h * dpr);
+      canvas.style.width = `${w}px`;
+      canvas.style.height = `${h}px`;
+
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+
+      buildScene();
+    }
+
+    function createWeb(cx, cy, radius, theme = "red", options = {}) {
+      const mobile = window.innerWidth < 768;
+      const spokeCount = options.spokeCount ?? (mobile ? 9 : 10);
+      const ringCount = options.ringCount ?? (mobile ? 8 : 9);
+
+      const spokes = [];
+      const rings = [];
+
+      const angleOffset = rand(-0.16, 0.16);
+      const angleStep = (Math.PI * 2) / spokeCount;
+
+      for (let i = 0; i < spokeCount; i++) {
+        const angle = angleOffset + (i * angleStep) + rand(-0.05, 0.05);
+        const reach = radius * rand(0.82, 1.02);
+
+        spokes.push({
+          angle,
+          reach,
+          thickness: theme === "red" ? rand(0.9, 1.45) : rand(0.6, 1.05),
+          alpha: theme === "red" ? rand(0.14, 0.24) : rand(0.07, 0.14),
+          drift: rand(0.3, 1.2),
+          phase: rand(0, Math.PI * 2)
+        });
+      }
+
+      let ratio = 0.12;
+      for (let i = 0; i < ringCount; i++) {
+        ratio += rand(0.075, 0.11);
+
+        rings.push({
+          ratio,
+          thickness: theme === "red" ? rand(0.7, 1.2) : rand(0.5, 0.9),
+          alpha: theme === "red" ? rand(0.09, 0.17) : rand(0.04, 0.1),
+          sag: rand(5, 16),
+          irregularity: rand(0.85, 1.15)
+        });
+      }
+
+      return {
+        cx,
+        cy,
+        radius,
+        theme,
+        glow: theme === "red" ? "255,72,72" : "255,255,255",
+        spokes,
+        rings,
+        motion: theme === "red" ? 0.00055 : 0.00045,
+        scrollFactor: theme === "red" ? 0.18 : 0.14
+      };
+    }
+
+    function buildScene() {
+      const mobile = window.innerWidth < 768;
+
+      webs = [
+        createWeb(
+          w * (mobile ? 0.16 : 0.16),
+          h * (mobile ? 0.48 : 0.46),
+          Math.max(w, h) * (mobile ? 0.54 : 0.58),
+          "red",
+          { spokeCount: mobile ? 9 : 10, ringCount: mobile ? 8 : 9 }
+        ),
+        createWeb(
+          w * (mobile ? 0.86 : 0.87),
+          h * (mobile ? 0.70 : 0.72),
+          Math.max(w, h) * (mobile ? 0.40 : 0.44),
+          "white",
+          { spokeCount: mobile ? 8 : 8, ringCount: mobile ? 7 : 8 }
+        ),
+        createWeb(
+          w * (mobile ? 0.58 : 0.56),
+          h * (mobile ? 0.10 : 0.09),
+          Math.max(w, h) * (mobile ? 0.20 : 0.23),
+          "white",
+          { spokeCount: 7, ringCount: 5 }
+        )
+      ];
+    }
+
+    function getMixedColor(x, y, alphaBase) {
+      const redSource = webs[0];
+      const whiteSource = webs[1];
+
+      const dRed = dist(x, y, redSource.cx, redSource.cy);
+      const dWhite = dist(x, y, whiteSource.cx, whiteSource.cy);
+
+      const redInf = clamp(1 - dRed / redSource.radius, 0, 1);
+      const whiteInf = clamp(1 - dWhite / whiteSource.radius, 0, 1);
+
+      const total = Math.max(0.0001, redInf + whiteInf);
+      const mix = whiteInf / total;
+
+      const r = 255;
+      const g = lerp(76, 255, mix);
+      const b = lerp(76, 255, mix);
+      const a = alphaBase * (0.9 + Math.max(redInf, whiteInf) * 0.25);
+
+      return `rgba(${r.toFixed(0)},${g.toFixed(0)},${b.toFixed(0)},${a})`;
+    }
+
+    function getSpokePoint(web, spoke, t) {
+      const motion = tick * web.motion + scrollEase * web.scrollFactor;
+      const radial = spoke.reach * t;
+
+      const tinyOffset = Math.sin(motion + spoke.phase + t * 1.5) * spoke.drift * (0.15 + t * 0.35);
+      const nx = Math.cos(spoke.angle + Math.PI / 2);
+      const ny = Math.sin(spoke.angle + Math.PI / 2);
+
+      return {
+        x: web.cx + Math.cos(spoke.angle) * radial + nx * tinyOffset,
+        y: web.cy + Math.sin(spoke.angle) * radial + ny * tinyOffset
+      };
+    }
+
+    function drawGlow(web) {
+      const g = ctx.createRadialGradient(web.cx, web.cy, 0, web.cx, web.cy, web.radius);
+      const baseA = web.theme === "red" ? 0.028 : 0.012;
+
+      g.addColorStop(0, `rgba(${web.glow},${baseA})`);
+      g.addColorStop(0.28, `rgba(${web.glow},${baseA * 0.28})`);
+      g.addColorStop(0.58, `rgba(${web.glow},${baseA * 0.08})`);
+      g.addColorStop(1, `rgba(${web.glow},0)`);
+
+      ctx.fillStyle = g;
+      ctx.fillRect(0, 0, w, h);
+    }
+
+    function drawSpokes(web) {
+      web.spokes.forEach((spoke) => {
+        const start = getSpokePoint(web, spoke, 0.03);
+        const end = getSpokePoint(web, spoke, 1);
+
+        ctx.beginPath();
+        ctx.moveTo(start.x, start.y);
+        ctx.lineTo(end.x, end.y);
+
+        const sample = getSpokePoint(web, spoke, 0.52);
+        ctx.strokeStyle = getMixedColor(sample.x, sample.y, spoke.alpha);
+        ctx.lineWidth = spoke.thickness;
+        ctx.lineCap = "round";
+        ctx.stroke();
+      });
+    }
+
+    function drawRings(web) {
+      const spokes = [...web.spokes].sort((a, b) => a.angle - b.angle);
+
+      web.rings.forEach((ring, ringIndex) => {
+        const points = [];
+
+        for (let i = 0; i < spokes.length; i++) {
+          const spoke = spokes[i];
+          const base = getSpokePoint(web, spoke, ring.ratio);
+
+          const inwardPull = (1 - ring.ratio) * (8 + ring.sag * 0.4);
+          const wave = Math.sin((tick * web.motion * 0.7) + ringIndex + i * 0.55) * 0.8;
+
+          points.push({
+            x: base.x,
+            y: base.y - inwardPull * 0.06 + wave
+          });
+        }
+
+        if (points.length < 3) return;
+
+        ctx.beginPath();
+
+        for (let i = 0; i < points.length; i++) {
+          const current = points[i];
+          const next = points[(i + 1) % points.length];
+
+          const midX = (current.x + next.x) * 0.5;
+          const midY = (current.y + next.y) * 0.5;
+
+          if (i === 0) {
+            ctx.moveTo(midX, midY);
+          }
+
+          ctx.quadraticCurveTo(current.x, current.y, midX, midY);
+        }
+
+        const cp = points[Math.floor(points.length / 2)];
+        ctx.strokeStyle = getMixedColor(cp.x, cp.y, ring.alpha);
+        ctx.lineWidth = ring.thickness;
+        ctx.lineCap = "round";
+        ctx.lineJoin = "round";
+        ctx.stroke();
+      });
+    }
+
+    function drawCenter(web) {
+      ctx.beginPath();
+      ctx.arc(web.cx, web.cy, web.theme === "red" ? 1.4 : 1.1, 0, Math.PI * 2);
+      ctx.fillStyle = getMixedColor(
+        web.cx,
+        web.cy,
+        web.theme === "red" ? 0.12 : 0.08
+      );
+      ctx.fill();
+    }
+
+    function updateScrollInfluence() {
+      scrollEase += (scrollTarget - scrollEase) * 0.055;
+      scrollTarget *= 0.92;
+    }
+
+    function render() {
+      ctx.clearRect(0, 0, w, h);
+
+      updateScrollInfluence();
+
+      webs.forEach(drawGlow);
+      webs.forEach(drawRings);
+      webs.forEach(drawSpokes);
+      webs.forEach(drawCenter);
+
+      tick += 1;
+      requestAnimationFrame(render);
+    }
+
+    let lastScrollY = window.scrollY;
+
+    function handleScroll() {
+      const currentY = window.scrollY;
+      const delta = currentY - lastScrollY;
+      lastScrollY = currentY;
+
+      scrollTarget += delta * 0.018;
+      scrollTarget = clamp(scrollTarget, -5, 5);
+    }
+
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    window.addEventListener("resize", resizeCanvas, { passive: true });
+
+    resizeCanvas();
+    render();
+  </script>
+</body>
+</html>
