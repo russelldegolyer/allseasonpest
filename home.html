@@ -1231,9 +1231,9 @@
       };
 
       const whiteBottom = {
-        x: w * (mobile ? 0.52 : 0.52),
-        y: h * (mobile ? 0.88 : 0.86),
-        r: Math.max(w, h) * (mobile ? 0.30 : 0.34)
+        x: w * (mobile ? 0.50 : 0.52),
+        y: h * (mobile ? 0.94 : 0.88),
+        r: Math.max(w, h) * (mobile ? 0.42 : 0.34)
       };
 
       webs.push(
@@ -1241,13 +1241,15 @@
         buildWeb(whiteMain.x, whiteMain.y, whiteMain.r * 1.02, "white", "back", { spokeCount: mobile ? 7 : 8 }),
         buildWeb(redMain.x, redMain.y, redMain.r, "red", "mid", { spokeCount: mobile ? 9 : 10 }),
         buildWeb(whiteMain.x, whiteMain.y, whiteMain.r, "white", "mid", { spokeCount: mobile ? 7 : 8 }),
-        buildWeb(whiteBottom.x, whiteBottom.y, whiteBottom.r, "white", "mid", { spokeCount: mobile ? 6 : 7 }),
+        buildWeb(whiteBottom.x, whiteBottom.y, whiteBottom.r, "white", "mid", { spokeCount: mobile ? 8 : 7 }),
         buildWeb(redMain.x, redMain.y, redMain.r * 0.98, "red", "front", { spokeCount: mobile ? 9 : 10 }),
-        buildWeb(whiteMain.x, whiteMain.y, whiteMain.r * 0.95, "white", "front", { spokeCount: mobile ? 7 : 8 })
+        buildWeb(whiteMain.x, whiteMain.y, whiteMain.r * 0.95, "white", "front", { spokeCount: mobile ? 7 : 8 }),
+        buildWeb(whiteBottom.x, whiteBottom.y, whiteBottom.r * 0.92, "white", "front", { spokeCount: mobile ? 8 : 7 })
       );
 
       const mainA = webs[2];
       const mainB = webs[3];
+      const bottomWeb = webs[7];
 
       for (let i = 0; i < 14; i++) {
         crossThreads.push({
@@ -1264,7 +1266,22 @@
         });
       }
 
-      const microCount = mobile ? 145 : 210;
+      for (let i = 0; i < 10; i++) {
+        crossThreads.push({
+          aWeb: mainB,
+          bWeb: bottomWeb,
+          aSpoke: i % mainB.spokes.length,
+          bSpoke: (i * 2 + 1) % bottomWeb.spokes.length,
+          ta: rand(0.26, 0.74),
+          tb: rand(0.18, 0.62),
+          bend: rand(-8, 8),
+          alpha: rand(0.016, 0.032),
+          width: rand(0.44, 0.78),
+          phase: rand(0, Math.PI * 2)
+        });
+      }
+
+      const microCount = mobile ? 165 : 210;
       for (let i = 0; i < microCount; i++) {
         const wa = webs[Math.floor(rand(0, webs.length))];
         const wb = webs[Math.floor(rand(0, webs.length))];
@@ -1282,13 +1299,13 @@
         });
       }
 
-      const overlapCount = mobile ? 72 : 104;
+      const overlapCount = mobile ? 110 : 104;
       for (let i = 0; i < overlapCount; i++) {
         overlapWeave.push({
-          x1: rand(w * 0.16, w * 0.82),
-          y1: rand(h * 0.02, h * 0.96),
-          x2: rand(w * 0.22, w * 0.92),
-          y2: rand(h * 0.08, h * 1.00),
+          x1: rand(w * 0.10, w * 0.88),
+          y1: rand(h * 0.02, h * 1.02),
+          x2: rand(w * 0.16, w * 0.96),
+          y2: rand(h * 0.08, h * 1.08),
           alpha: rand(0.012, 0.028),
           width: rand(0.28, 0.58),
           bend: rand(-8, 8),
@@ -1351,7 +1368,7 @@
       const baseA =
         web.theme === "red"
           ? (web.layer === "front" ? 0.050 : web.layer === "mid" ? 0.030 : 0.018)
-          : (web.layer === "front" ? 0.022 : web.layer === "mid" ? 0.014 : 0.008);
+          : (web.layer === "front" ? 0.026 : web.layer === "mid" ? 0.016 : 0.010);
 
       g.addColorStop(0, `rgba(${web.glow},${baseA})`);
       g.addColorStop(0.24, `rgba(${web.glow},${baseA * 0.40})`);
@@ -1514,7 +1531,7 @@
     }
 
     function drawCoreDim(web) {
-      const coreAlpha = web.theme === "red" ? 0.12 : 0.09;
+      const coreAlpha = web.theme === "red" ? 0.12 : 0.10;
       const coreRadius = web.layer === "front" ? 1.6 : 1.2;
 
       ctx.beginPath();
