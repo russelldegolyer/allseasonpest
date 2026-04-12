@@ -11,7 +11,7 @@
     name="description"
     content="All Season Pest Control - Jonesboro, Arkansas"
   />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link
     href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;600;700&family=Sora:wght@400;500;600;700;800&display=swap"
@@ -48,7 +48,7 @@
     a{
       color:inherit;
       text-decoration:none;
-      -webkit-tap-highlight-color:transparent;
+      -webkit-tap-highlight-color: transparent;
     }
 
     .stage{
@@ -70,8 +70,8 @@
       z-index:2;
       pointer-events:none;
       background:
-        radial-gradient(circle at 50% 50%, rgba(0,0,0,0) 0%, rgba(0,0,0,.03) 56%, rgba(0,0,0,.12) 100%),
-        linear-gradient(180deg, rgba(0,0,0,.01), rgba(0,0,0,.05));
+        radial-gradient(circle at 50% 50%, rgba(0,0,0,0) 0%, rgba(0,0,0,.04) 58%, rgba(0,0,0,.12) 100%),
+        linear-gradient(180deg, rgba(0,0,0,.02), rgba(0,0,0,.05));
     }
 
     .web-canvas{
@@ -84,8 +84,9 @@
       pointer-events:none;
       opacity:1;
       filter:
-        drop-shadow(0 0 3px rgba(255,70,70,.10))
-        drop-shadow(0 0 6px rgba(255,255,255,.03));
+        drop-shadow(0 0 4px rgba(255,80,80,.12))
+        drop-shadow(0 0 8px rgba(255,80,80,.09))
+        drop-shadow(0 0 10px rgba(255,255,255,.03));
     }
 
     .content{
@@ -168,8 +169,8 @@
         drop-shadow(0 0 6px rgba(0,0,0,.72))
         drop-shadow(0 0 16px rgba(0,0,0,.58))
         drop-shadow(0 0 26px rgba(0,0,0,.42))
-        drop-shadow(0 0 4px rgba(255,0,0,.16))
-        drop-shadow(0 0 10px rgba(255,0,0,.08));
+        drop-shadow(0 0 4px rgba(255,0,0,.18))
+        drop-shadow(0 0 10px rgba(255,0,0,.10));
       animation-play-state:paused;
     }
 
@@ -202,13 +203,21 @@
     }
 
     @keyframes subtlePulse{
-      0%,100%{ transform:scale(1); }
-      50%{ transform:scale(1.025); }
+      0%,100%{
+        transform:scale(1);
+      }
+      50%{
+        transform:scale(1.025);
+      }
     }
 
     @keyframes softFade{
-      0%,100%{ opacity:.7; }
-      50%{ opacity:1; }
+      0%,100%{
+        opacity:.7;
+      }
+      50%{
+        opacity:1;
+      }
     }
 
     @media (max-width: 768px){
@@ -271,6 +280,10 @@
     let tick = 0;
 
     let webs = [];
+    let crossThreads = [];
+    let microThreads = [];
+    let overlapWeave = [];
+
     let scrollTarget = 0;
     let scrollEase = 0;
 
@@ -308,41 +321,86 @@
       buildScene();
     }
 
-    function createWeb(cx, cy, radius, theme = "red", options = {}) {
+    function buildWeb(cx, cy, radius, theme = "red", layer = "mid", custom = {}) {
       const mobile = window.innerWidth < 768;
-      const spokeCount = options.spokeCount ?? (mobile ? 9 : 10);
-      const ringCount = options.ringCount ?? (mobile ? 8 : 9);
+
+      const spokeCount =
+        custom.spokeCount ??
+        (
+          layer === "back"
+            ? (mobile ? Math.floor(rand(8, 10)) : Math.floor(rand(8, 11)))
+            : layer === "front"
+            ? (mobile ? Math.floor(rand(9, 11)) : Math.floor(rand(9, 12)))
+            : (mobile ? Math.floor(rand(9, 11)) : Math.floor(rand(9, 12)))
+        );
+
+      const ringCount =
+        custom.ringCount ??
+        (
+          layer === "back"
+            ? (mobile ? Math.floor(rand(7, 9)) : Math.floor(rand(7, 10)))
+            : layer === "front"
+            ? (mobile ? Math.floor(rand(10, 12)) : Math.floor(rand(10, 13)))
+            : (mobile ? Math.floor(rand(9, 11)) : Math.floor(rand(9, 12)))
+        );
 
       const spokes = [];
-      const rings = [];
-
-      const angleOffset = rand(-0.16, 0.16);
-      const angleStep = (Math.PI * 2) / spokeCount;
+      let angle = rand(0, Math.PI * 2);
 
       for (let i = 0; i < spokeCount; i++) {
-        const angle = angleOffset + (i * angleStep) + rand(-0.05, 0.05);
-        const reach = radius * rand(0.82, 1.02);
+        angle += (Math.PI * 2 / spokeCount) + rand(-0.22, 0.22);
+
+        const shouldShorten = Math.random() < 0.58;
+        const shouldBreakHard = Math.random() < 0.22;
+
+        const baseThickness =
+          theme === "red"
+            ? layer === "front" ? rand(1.10, 1.95) : layer === "back" ? rand(0.65, 1.00) : rand(0.92, 1.38)
+            : layer === "front" ? rand(0.92, 1.52) : layer === "back" ? rand(0.55, 0.86) : rand(0.72, 1.08);
+
+        const baseAlpha =
+          theme === "red"
+            ? layer === "front" ? rand(0.22, 0.36) : layer === "back" ? rand(0.06, 0.11) : rand(0.12, 0.22)
+            : layer === "front" ? rand(0.10, 0.17) : layer === "back" ? rand(0.03, 0.06) : rand(0.06, 0.12);
 
         spokes.push({
           angle,
-          reach,
-          thickness: theme === "red" ? rand(0.9, 1.45) : rand(0.6, 1.05),
-          alpha: theme === "red" ? rand(0.14, 0.24) : rand(0.07, 0.14),
-          drift: rand(0.3, 1.2),
-          phase: rand(0, Math.PI * 2)
+          reach: radius * (shouldShorten ? rand(0.38, 0.62) : rand(0.62, 0.84)),
+          thickness: baseThickness,
+          alpha: baseAlpha,
+          curve: rand(-54, 54),
+          wobble: layer === "back" ? rand(0.8, 2.0) : layer === "front" ? rand(1.0, 3.6) : rand(1.0, 3.0),
+          phase: rand(0, Math.PI * 2),
+          breakStart: shouldBreakHard ? rand(0.26, 0.68) : (Math.random() < 0.10 ? rand(0.54, 0.80) : null),
+          breakLen: shouldBreakHard ? rand(0.12, 0.24) : rand(0.03, 0.08),
+          fadeEarly: Math.random() < 0.50 ? rand(0.36, 0.72) : null
         });
       }
 
-      let ratio = 0.12;
+      const rings = [];
+      let ratio = 0.16;
       for (let i = 0; i < ringCount; i++) {
-        ratio += rand(0.075, 0.11);
+        ratio += rand(0.055, 0.092);
+
+        const ringThickness =
+          layer === "front" ? rand(0.90, 1.48) :
+          layer === "back" ? rand(0.48, 0.78) :
+          rand(0.72, 1.08);
+
+        const ringAlpha =
+          theme === "red"
+            ? layer === "front" ? rand(0.12, 0.20) : layer === "back" ? rand(0.03, 0.05) : rand(0.07, 0.12)
+            : layer === "front" ? rand(0.06, 0.11) : layer === "back" ? rand(0.018, 0.035) : rand(0.04, 0.08);
 
         rings.push({
           ratio,
-          thickness: theme === "red" ? rand(0.7, 1.2) : rand(0.5, 0.9),
-          alpha: theme === "red" ? rand(0.09, 0.17) : rand(0.04, 0.1),
-          sag: rand(5, 16),
-          irregularity: rand(0.85, 1.15)
+          thickness: ringThickness,
+          alpha: ringAlpha,
+          sag: rand(-18, 20),
+          jitter: layer === "back" ? rand(0.5, 1.0) : layer === "front" ? rand(0.7, 1.8) : rand(0.7, 1.5),
+          partialStart: rand(0.04, 0.18),
+          partialEnd: rand(0.82, 0.99),
+          dropout: rand(0.08, 0.20)
         });
       }
 
@@ -351,45 +409,110 @@
         cy,
         radius,
         theme,
-        glow: theme === "red" ? "255,72,72" : "255,255,255",
+        layer,
         spokes,
         rings,
-        motion: theme === "red" ? 0.00055 : 0.00045,
-        scrollFactor: theme === "red" ? 0.18 : 0.14
+        glow: theme === "red" ? "255,72,72" : "255,255,255",
+        motion: layer === "back" ? rand(0.0008, 0.0014) : layer === "front" ? rand(0.0015, 0.0022) : rand(0.0011, 0.0018),
+        scrollFactor:
+          layer === "back" ? rand(0.10, 0.18) :
+          layer === "front" ? rand(0.22, 0.32) :
+          rand(0.16, 0.24)
       };
     }
 
     function buildScene() {
+      webs = [];
+      crossThreads = [];
+      microThreads = [];
+      overlapWeave = [];
+
       const mobile = window.innerWidth < 768;
 
-      webs = [
-        createWeb(
-          w * (mobile ? 0.16 : 0.16),
-          h * (mobile ? 0.48 : 0.46),
-          Math.max(w, h) * (mobile ? 0.54 : 0.58),
-          "red",
-          { spokeCount: mobile ? 9 : 10, ringCount: mobile ? 8 : 9 }
-        ),
-        createWeb(
-          w * (mobile ? 0.86 : 0.87),
-          h * (mobile ? 0.70 : 0.72),
-          Math.max(w, h) * (mobile ? 0.40 : 0.44),
-          "white",
-          { spokeCount: mobile ? 8 : 8, ringCount: mobile ? 7 : 8 }
-        ),
-        createWeb(
-          w * (mobile ? 0.58 : 0.56),
-          h * (mobile ? 0.10 : 0.09),
-          Math.max(w, h) * (mobile ? 0.20 : 0.23),
-          "white",
-          { spokeCount: 7, ringCount: 5 }
-        )
-      ];
+      const redMain = {
+        x: w * (mobile ? 0.12 : 0.14),
+        y: h * (mobile ? 0.46 : 0.44),
+        r: Math.max(w, h) * (mobile ? 0.64 : 0.66)
+      };
+
+      const whiteMain = {
+        x: w * (mobile ? 0.90 : 0.90),
+        y: h * (mobile ? 0.68 : 0.70),
+        r: Math.max(w, h) * (mobile ? 0.52 : 0.56)
+      };
+
+      const whiteTop = {
+        x: w * (mobile ? 0.58 : 0.56),
+        y: h * (mobile ? 0.08 : 0.08),
+        r: Math.max(w, h) * (mobile ? 0.30 : 0.32)
+      };
+
+      webs.push(
+        buildWeb(redMain.x, redMain.y, redMain.r * 1.04, "red", "back"),
+        buildWeb(whiteMain.x, whiteMain.y, whiteMain.r * 1.02, "white", "back", { spokeCount: mobile ? 7 : 8 }),
+
+        buildWeb(redMain.x, redMain.y, redMain.r, "red", "mid", { spokeCount: mobile ? 9 : 10 }),
+        buildWeb(whiteMain.x, whiteMain.y, whiteMain.r, "white", "mid", { spokeCount: mobile ? 7 : 8 }),
+        buildWeb(whiteTop.x, whiteTop.y, whiteTop.r, "white", "mid", { spokeCount: mobile ? 7 : 8 }),
+
+        buildWeb(redMain.x, redMain.y, redMain.r * 0.98, "red", "front", { spokeCount: mobile ? 9 : 10 }),
+        buildWeb(whiteMain.x, whiteMain.y, whiteMain.r * 0.95, "white", "front", { spokeCount: mobile ? 7 : 8 })
+      );
+
+      const mainA = webs[2];
+      const mainB = webs[3];
+
+      for (let i = 0; i < 14; i++) {
+        crossThreads.push({
+          aWeb: mainA,
+          bWeb: mainB,
+          aSpoke: i % mainA.spokes.length,
+          bSpoke: (i * 2 + 3) % mainB.spokes.length,
+          ta: rand(0.24, 0.72),
+          tb: rand(0.22, 0.68),
+          bend: rand(-12, 12),
+          alpha: rand(0.018, 0.036),
+          width: rand(0.48, 0.82),
+          phase: rand(0, Math.PI * 2)
+        });
+      }
+
+      const microCount = mobile ? 130 : 190;
+      for (let i = 0; i < microCount; i++) {
+        const wa = webs[Math.floor(rand(0, webs.length))];
+        const wb = webs[Math.floor(rand(0, webs.length))];
+        microThreads.push({
+          wa,
+          wb,
+          sa: Math.floor(rand(0, wa.spokes.length)),
+          sb: Math.floor(rand(0, wb.spokes.length)),
+          ta: rand(0.18, 0.90),
+          tb: rand(0.18, 0.90),
+          bend: rand(-7, 7),
+          alpha: rand(0.010, 0.026),
+          width: rand(0.26, 0.50),
+          phase: rand(0, Math.PI * 2)
+        });
+      }
+
+      const overlapCount = mobile ? 60 : 90;
+      for (let i = 0; i < overlapCount; i++) {
+        overlapWeave.push({
+          x1: rand(w * 0.24, w * 0.76),
+          y1: rand(h * 0.16, h * 0.86),
+          x2: rand(w * 0.28, w * 0.88),
+          y2: rand(h * 0.22, h * 0.92),
+          alpha: rand(0.012, 0.034),
+          width: rand(0.30, 0.58),
+          bend: rand(-10, 10),
+          phase: rand(0, Math.PI * 2)
+        });
+      }
     }
 
     function getMixedColor(x, y, alphaBase) {
-      const redSource = webs[0];
-      const whiteSource = webs[1];
+      const redSource = webs.find(wb => wb.theme === "red" && wb.layer === "mid");
+      const whiteSource = webs.find(wb => wb.theme === "white" && wb.layer === "mid");
 
       const dRed = dist(x, y, redSource.cx, redSource.cy);
       const dWhite = dist(x, y, whiteSource.cx, whiteSource.cy);
@@ -401,93 +524,133 @@
       const mix = whiteInf / total;
 
       const r = 255;
-      const g = lerp(76, 255, mix);
-      const b = lerp(76, 255, mix);
-      const a = alphaBase * (0.9 + Math.max(redInf, whiteInf) * 0.25);
+      const g = lerp(74, 255, mix);
+      const b = lerp(74, 255, mix);
+      const a = alphaBase * (0.92 + Math.max(redInf, whiteInf) * 0.38);
 
       return `rgba(${r.toFixed(0)},${g.toFixed(0)},${b.toFixed(0)},${a})`;
     }
 
-    function getSpokePoint(web, spoke, t) {
-      const motion = tick * web.motion + scrollEase * web.scrollFactor;
-      const radial = spoke.reach * t;
+    function pointOnSpoke(web, spoke, p, extraSag = 0) {
+      const baseR = spoke.reach * p;
+      const normalX = Math.cos(spoke.angle + Math.PI / 2);
+      const normalY = Math.sin(spoke.angle + Math.PI / 2);
 
-      const tinyOffset = Math.sin(motion + spoke.phase + t * 1.5) * spoke.drift * (0.15 + t * 0.35);
-      const nx = Math.cos(spoke.angle + Math.PI / 2);
-      const ny = Math.sin(spoke.angle + Math.PI / 2);
+      const motionBlend = tick * web.motion + scrollEase * web.scrollFactor;
+
+      const wiggle =
+        Math.sin(motionBlend + spoke.phase + p * 2.1) *
+        spoke.wobble *
+        (0.16 + p * 0.16);
+
+      const curve =
+        Math.sin((p * Math.PI * 0.82) + spoke.phase * 0.28 + motionBlend * 0.55) *
+        spoke.curve *
+        (0.34 + p * 0.46);
 
       return {
-        x: web.cx + Math.cos(spoke.angle) * radial + nx * tinyOffset,
-        y: web.cy + Math.sin(spoke.angle) * radial + ny * tinyOffset
+        x: web.cx + Math.cos(spoke.angle) * baseR + normalX * (wiggle + curve * 0.36),
+        y: web.cy + Math.sin(spoke.angle) * baseR + normalY * (wiggle + extraSag + curve * 0.36)
       };
     }
 
+    function isBroken(spoke, p) {
+      if (spoke.breakStart === null) return false;
+      return p >= spoke.breakStart && p <= (spoke.breakStart + spoke.breakLen);
+    }
+
     function drawGlow(web) {
-      const g = ctx.createRadialGradient(web.cx, web.cy, 0, web.cx, web.cy, web.radius);
-      const baseA = web.theme === "red" ? 0.028 : 0.012;
+      const g = ctx.createRadialGradient(web.cx, web.cy, 0, web.cx, web.cy, web.radius * 1.02);
+      const baseA =
+        web.theme === "red"
+          ? (web.layer === "front" ? 0.045 : web.layer === "mid" ? 0.026 : 0.014)
+          : (web.layer === "front" ? 0.020 : web.layer === "mid" ? 0.012 : 0.007);
 
       g.addColorStop(0, `rgba(${web.glow},${baseA})`);
-      g.addColorStop(0.28, `rgba(${web.glow},${baseA * 0.28})`);
-      g.addColorStop(0.58, `rgba(${web.glow},${baseA * 0.08})`);
+      g.addColorStop(0.24, `rgba(${web.glow},${baseA * 0.34})`);
+      g.addColorStop(0.50, `rgba(${web.glow},${baseA * 0.08})`);
       g.addColorStop(1, `rgba(${web.glow},0)`);
-
       ctx.fillStyle = g;
       ctx.fillRect(0, 0, w, h);
     }
 
     function drawSpokes(web) {
       web.spokes.forEach((spoke) => {
-        const start = getSpokePoint(web, spoke, 0.03);
-        const end = getSpokePoint(web, spoke, 1);
+        const steps = 30;
+        let started = false;
+        let prev = null;
 
         ctx.beginPath();
-        ctx.moveTo(start.x, start.y);
-        ctx.lineTo(end.x, end.y);
 
-        const sample = getSpokePoint(web, spoke, 0.52);
+        for (let i = 0; i <= steps; i++) {
+          const p = i / steps;
+
+          if (spoke.fadeEarly !== null && p > spoke.fadeEarly) break;
+
+          if (isBroken(spoke, p)) {
+            started = false;
+            prev = null;
+            continue;
+          }
+
+          const pt = pointOnSpoke(web, spoke, p);
+
+          if (!started) {
+            ctx.moveTo(pt.x, pt.y);
+            started = true;
+          } else if (prev) {
+            const mx = (prev.x + pt.x) * 0.5;
+            const my = (prev.y + pt.y) * 0.5;
+            ctx.quadraticCurveTo(prev.x, prev.y, mx, my);
+          }
+
+          prev = pt;
+        }
+
+        const sample = pointOnSpoke(web, spoke, 0.48);
         ctx.strokeStyle = getMixedColor(sample.x, sample.y, spoke.alpha);
         ctx.lineWidth = spoke.thickness;
         ctx.lineCap = "round";
+        ctx.lineJoin = "round";
         ctx.stroke();
       });
     }
 
     function drawRings(web) {
-      const spokes = [...web.spokes].sort((a, b) => a.angle - b.angle);
+      const sorted = [...web.spokes].sort((a, b) => a.angle - b.angle);
 
       web.rings.forEach((ring, ringIndex) => {
         const points = [];
 
-        for (let i = 0; i < spokes.length; i++) {
-          const spoke = spokes[i];
-          const base = getSpokePoint(web, spoke, ring.ratio);
+        sorted.forEach((spoke, i) => {
+          const p = ring.ratio;
+          if (p < ring.partialStart || p > ring.partialEnd) return;
+          if (Math.random() < ring.dropout * 0.06) return;
+          if (isBroken(spoke, p)) return;
 
-          const inwardPull = (1 - ring.ratio) * (8 + ring.sag * 0.4);
-          const wave = Math.sin((tick * web.motion * 0.7) + ringIndex + i * 0.55) * 0.8;
+          const pt = pointOnSpoke(
+            web,
+            spoke,
+            p,
+            Math.sin((tick * web.motion * 0.7) + scrollEase * 0.10 + i + ringIndex) * ring.jitter +
+            ring.sag * 0.09
+          );
 
-          points.push({
-            x: base.x,
-            y: base.y - inwardPull * 0.06 + wave
-          });
-        }
+          points.push(pt);
+        });
 
-        if (points.length < 3) return;
+        if (points.length < 4) return;
 
         ctx.beginPath();
+        ctx.moveTo(points[0].x, points[0].y);
 
-        for (let i = 0; i < points.length; i++) {
-          const current = points[i];
-          const next = points[(i + 1) % points.length];
-
-          const midX = (current.x + next.x) * 0.5;
-          const midY = (current.y + next.y) * 0.5;
-
-          if (i === 0) {
-            ctx.moveTo(midX, midY);
-          }
-
-          ctx.quadraticCurveTo(current.x, current.y, midX, midY);
+        for (let i = 1; i < points.length - 1; i++) {
+          const mx = (points[i].x + points[i + 1].x) * 0.5;
+          const my = (points[i].y + points[i + 1].y) * 0.5;
+          ctx.quadraticCurveTo(points[i].x, points[i].y, mx, my);
         }
+
+        ctx.lineTo(points[points.length - 1].x, points[points.length - 1].y);
 
         const cp = points[Math.floor(points.length / 2)];
         ctx.strokeStyle = getMixedColor(cp.x, cp.y, ring.alpha);
@@ -498,20 +661,84 @@
       });
     }
 
-    function drawCenter(web) {
+    function drawCrossThreads() {
+      crossThreads.forEach((thread) => {
+        const spokeA = thread.aWeb.spokes[thread.aSpoke];
+        const spokeB = thread.bWeb.spokes[thread.bSpoke];
+
+        if (isBroken(spokeA, thread.ta) || isBroken(spokeB, thread.tb)) return;
+
+        const p1 = pointOnSpoke(thread.aWeb, spokeA, thread.ta);
+        const p2 = pointOnSpoke(thread.bWeb, spokeB, thread.tb);
+
+        const mx = (p1.x + p2.x) * 0.5 + Math.sin(tick * 0.0018 + scrollEase * 0.08 + thread.phase) * thread.bend;
+        const my = (p1.y + p2.y) * 0.5 + Math.cos(tick * 0.0018 + scrollEase * 0.08 + thread.phase) * (thread.bend * 0.65);
+
+        ctx.beginPath();
+        ctx.moveTo(p1.x, p1.y);
+        ctx.quadraticCurveTo(mx, my, p2.x, p2.y);
+        ctx.strokeStyle = getMixedColor(mx, my, thread.alpha);
+        ctx.lineWidth = thread.width;
+        ctx.stroke();
+      });
+    }
+
+    function drawMicroThreads() {
+      microThreads.forEach((thread) => {
+        const spokeA = thread.wa.spokes[thread.sa];
+        const spokeB = thread.wb.spokes[thread.sb];
+        if (!spokeA || !spokeB) return;
+        if (isBroken(spokeA, thread.ta) || isBroken(spokeB, thread.tb)) return;
+
+        const p1 = pointOnSpoke(thread.wa, spokeA, thread.ta);
+        const p2 = pointOnSpoke(thread.wb, spokeB, thread.tb);
+
+        if (dist(p1.x, p1.y, p2.x, p2.y) > Math.min(w, h) * 0.24) return;
+
+        const mx = (p1.x + p2.x) * 0.5 + Math.sin(tick * 0.0014 + scrollEase * 0.06 + thread.phase) * thread.bend;
+        const my = (p1.y + p2.y) * 0.5 + Math.cos(tick * 0.0014 + scrollEase * 0.06 + thread.phase) * (thread.bend * 0.65);
+
+        ctx.beginPath();
+        ctx.moveTo(p1.x, p1.y);
+        ctx.quadraticCurveTo(mx, my, p2.x, p2.y);
+        ctx.strokeStyle = getMixedColor(mx, my, thread.alpha);
+        ctx.lineWidth = thread.width;
+        ctx.stroke();
+      });
+    }
+
+    function drawOverlapWeave() {
+      overlapWeave.forEach((thread) => {
+        const x1 = thread.x1 + Math.sin(tick * 0.0012 + scrollEase * 0.05 + thread.phase) * 3;
+        const y1 = thread.y1 + Math.cos(tick * 0.0011 + scrollEase * 0.05 + thread.phase) * 3;
+        const x2 = thread.x2 + Math.cos(tick * 0.0011 + scrollEase * 0.05 + thread.phase) * 3;
+        const y2 = thread.y2 + Math.sin(tick * 0.0013 + scrollEase * 0.05 + thread.phase) * 3;
+
+        const mx = (x1 + x2) * 0.5 + Math.sin(tick * 0.0012 + scrollEase * 0.05 + thread.phase) * thread.bend;
+        const my = (y1 + y2) * 0.5 + Math.cos(tick * 0.0011 + scrollEase * 0.05 + thread.phase) * (thread.bend * 0.7);
+
+        ctx.beginPath();
+        ctx.moveTo(x1, y1);
+        ctx.quadraticCurveTo(mx, my, x2, y2);
+        ctx.strokeStyle = getMixedColor(mx, my, thread.alpha);
+        ctx.lineWidth = thread.width;
+        ctx.stroke();
+      });
+    }
+
+    function drawCoreDim(web) {
+      const coreAlpha = web.theme === "red" ? 0.11 : 0.08;
+      const coreRadius = web.layer === "front" ? 1.5 : 1.15;
+
       ctx.beginPath();
-      ctx.arc(web.cx, web.cy, web.theme === "red" ? 1.4 : 1.1, 0, Math.PI * 2);
-      ctx.fillStyle = getMixedColor(
-        web.cx,
-        web.cy,
-        web.theme === "red" ? 0.12 : 0.08
-      );
+      ctx.arc(web.cx, web.cy, coreRadius, 0, Math.PI * 2);
+      ctx.fillStyle = getMixedColor(web.cx, web.cy, coreAlpha);
       ctx.fill();
     }
 
     function updateScrollInfluence() {
-      scrollEase += (scrollTarget - scrollEase) * 0.055;
-      scrollTarget *= 0.92;
+      scrollEase += (scrollTarget - scrollEase) * 0.06;
+      scrollTarget *= 0.94;
     }
 
     function render() {
@@ -520,9 +747,22 @@
       updateScrollInfluence();
 
       webs.forEach(drawGlow);
-      webs.forEach(drawRings);
-      webs.forEach(drawSpokes);
-      webs.forEach(drawCenter);
+
+      webs.filter(wb => wb.layer === "back").forEach(drawRings);
+      webs.filter(wb => wb.layer === "back").forEach(drawSpokes);
+
+      drawMicroThreads();
+
+      webs.filter(wb => wb.layer === "mid").forEach(drawRings);
+      webs.filter(wb => wb.layer === "mid").forEach(drawSpokes);
+
+      drawCrossThreads();
+      drawOverlapWeave();
+
+      webs.filter(wb => wb.layer === "front").forEach(drawRings);
+      webs.filter(wb => wb.layer === "front").forEach(drawSpokes);
+
+      webs.filter(wb => wb.layer !== "back").forEach(drawCoreDim);
 
       tick += 1;
       requestAnimationFrame(render);
@@ -535,8 +775,8 @@
       const delta = currentY - lastScrollY;
       lastScrollY = currentY;
 
-      scrollTarget += delta * 0.018;
-      scrollTarget = clamp(scrollTarget, -5, 5);
+      scrollTarget += delta * 0.025;
+      scrollTarget = clamp(scrollTarget, -8, 8);
     }
 
     window.addEventListener("scroll", handleScroll, { passive: true });
