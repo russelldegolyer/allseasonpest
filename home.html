@@ -164,25 +164,6 @@
       max-width:760px;
     }
 
-    .hero-pill{
-      display:inline-flex;
-      align-items:center;
-      gap:10px;
-      padding:12px 20px;
-      border:1px solid rgba(255,255,255,.16);
-      border-radius:999px;
-      background:rgba(8,8,8,.34);
-      backdrop-filter:blur(10px);
-      color:#fff;
-      font-family:"Oswald", Arial, sans-serif;
-      font-size:.92rem;
-      font-weight:600;
-      letter-spacing:.12em;
-      text-transform:uppercase;
-      margin-bottom:18px;
-      box-shadow:var(--shadow);
-    }
-
     .hero h1{
       font-family:"Oswald", Arial, sans-serif;
       font-size:clamp(3.35rem, 6vw, 6.15rem);
@@ -200,7 +181,25 @@
       color:rgba(255,255,255,.88);
       font-size:1.08rem;
       line-height:1.68;
-      margin-bottom:0;
+      margin-bottom:18px;
+    }
+
+    .hero-pill{
+      display:inline-flex;
+      align-items:center;
+      gap:10px;
+      padding:12px 20px;
+      border:1px solid rgba(255,255,255,.16);
+      border-radius:999px;
+      background:rgba(8,8,8,.34);
+      backdrop-filter:blur(10px);
+      color:#fff;
+      font-family:"Oswald", Arial, sans-serif;
+      font-size:.92rem;
+      font-weight:600;
+      letter-spacing:.12em;
+      text-transform:uppercase;
+      box-shadow:var(--shadow);
     }
 
     .hero-side{
@@ -761,14 +760,8 @@
         padding:90px 14px 54px;
       }
 
-      .hero-pill{
-        font-size:.78rem;
-        padding:10px 14px;
-        margin-bottom:14px;
-      }
-
       .hero h1{
-        font-size:2.9rem;
+        font-size:2.72rem;
         line-height:.9;
         letter-spacing:.015em;
         margin-bottom:12px;
@@ -776,8 +769,15 @@
 
       .hero-lead{
         font-size:.98rem;
-        line-height:1.7;
-        margin-bottom:0;
+        line-height:1.64;
+        margin-bottom:16px;
+        max-width:100%;
+      }
+
+      .hero-pill{
+        font-size:.76rem;
+        padding:10px 14px;
+        letter-spacing:.10em;
       }
 
       .hero-stat{
@@ -814,7 +814,19 @@
       }
 
       .hero h1{
-        font-size:2.6rem;
+        font-size:2.5rem;
+      }
+
+      .hero-lead{
+        font-size:.94rem;
+        line-height:1.58;
+        margin-bottom:14px;
+      }
+
+      .hero-pill{
+        font-size:.70rem;
+        padding:9px 12px;
+        letter-spacing:.08em;
       }
 
       .section{
@@ -865,11 +877,11 @@
   <section class="hero">
     <div class="hero-inner">
       <div class="hero-copy">
-        <div class="hero-pill">Jonesboro • Northeast Arkansas</div>
         <h1>Pro pest control for homes that want it done right every time.</h1>
         <p class="hero-lead">
           We focus on safe treatments, dependable service, and effective pest control built for the season and the conditions around your home.
         </p>
+        <div class="hero-pill">Jonesboro, Arkansas</div>
       </div>
 
       <div class="hero-side">
@@ -1165,7 +1177,6 @@
       overlapWeave = [];
 
       const mobile = window.innerWidth < 768;
-      const desktop = !mobile;
 
       const redMain = {
         x: w * (mobile ? 0.12 : 0.14),
