@@ -23,12 +23,10 @@
     :root{
       --bg:#000000;
       --panel:rgba(8,8,8,.56);
-      --panel-strong:rgba(6,6,6,.66);
       --text:#ffffff;
       --muted:rgba(255,255,255,.78);
       --muted-soft:rgba(255,255,255,.66);
       --line:rgba(255,255,255,.10);
-      --line-strong:rgba(255,255,255,.18);
       --red:#ff2a2a;
       --shadow:0 16px 50px rgba(0,0,0,.28);
       --glow:0 0 20px rgba(255,255,255,.10);
@@ -230,7 +228,6 @@
       letter-spacing:.12em;
       text-transform:uppercase;
       transition:.2s ease;
-      box-shadow:0 0 0 rgba(0,0,0,0);
     }
 
     .hero-actions a:hover{
@@ -564,23 +561,7 @@
       max-width:760px;
       margin:0 auto;
       text-align:center;
-      padding:20px 32px 58px;
-    }
-
-    .bottom-cta h3{
-      font-family:"Oswald", Arial, sans-serif;
-      font-size:clamp(2rem, 4vw, 3rem);
-      line-height:.96;
-      text-transform:uppercase;
-      letter-spacing:.02em;
-      margin-bottom:14px;
-    }
-
-    .bottom-cta p{
-      color:var(--muted);
-      line-height:1.68;
-      margin-bottom:22px;
-      font-size:1rem;
+      padding:6px 32px 58px;
     }
 
     .cta-row{
@@ -655,10 +636,6 @@
     }
 
     @media (max-width: 900px){
-      .hero{
-        align-items:flex-end;
-      }
-
       .hero-inner{
         padding:122px 24px 62px;
       }
@@ -676,7 +653,7 @@
       }
 
       .bottom-cta{
-        padding:16px 24px 48px;
+        padding:6px 24px 48px;
       }
 
       .footer{
@@ -692,10 +669,6 @@
           drop-shadow(0 0 16px rgba(255,255,255,.05));
       }
 
-      .hero-actions a{
-        min-width:148px;
-      }
-
       .panel,
       .value-box,
       .difference-list,
@@ -703,11 +676,6 @@
         background:
           linear-gradient(180deg, rgba(10,10,10,.34), rgba(5,5,5,.42));
         backdrop-filter:blur(1px);
-      }
-
-      .bottom-cta p{
-        font-size:.95rem;
-        line-height:1.74;
       }
 
       .footer{
@@ -860,7 +828,7 @@
       }
 
       .bottom-cta{
-        padding:8px 18px 38px;
+        padding:0 18px 38px;
       }
 
       .footer{
@@ -911,7 +879,21 @@
       }
 
       .bottom-cta{
-        padding:8px 14px 30px;
+        padding:0 14px 30px;
+      }
+
+      .cta-row{
+        flex-direction:column;
+        align-items:stretch;
+        gap:14px;
+      }
+
+      .cta-row a{
+        width:100%;
+        min-width:0;
+        padding:22px 16px;
+        font-size:.82rem;
+        border-radius:16px;
       }
 
       .footer{
@@ -922,8 +904,7 @@
       .value-item p,
       .service-block p,
       .difference-list span,
-      .difference-card p,
-      .bottom-cta p{
+      .difference-card p{
         font-size:.94rem;
       }
 
@@ -1115,11 +1096,6 @@
     </section>
 
     <section class="bottom-cta">
-      <h3>Need pest control done right?</h3>
-      <p>
-        Reach out by call, text, or email and we will get you pointed in the right direction.
-      </p>
-
       <div class="cta-row">
         <a href="tel:8709197114">Call</a>
         <a href="sms:8709197114">Text</a>
@@ -1346,7 +1322,7 @@
       const microCount = mobile ? 145 : 210;
       for (let i = 0; i < microCount; i++) {
         const wa = webs[Math.floor(rand(0, webs.length))];
-        const wb = webs[Math.floor(rand(0, webs.length))];
+        const wb = webs[Math.floor(rand(0, wb ? webs.length : webs.length))];
         microThreads.push({
           wa,
           wb,
