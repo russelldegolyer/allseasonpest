@@ -7,578 +7,722 @@
     content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
   />
   <title>All Season Pest Control</title>
-  <meta name="description" content="All Season Pest Control - Jonesboro, Arkansas" />
+  <meta
+    name="description"
+    content="All Season Pest Control - Jonesboro, Arkansas"
+  />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;600;700&family=Sora:wght@400;500;600;700;800&display=swap"
+    rel="stylesheet"
+  />
 
   <style>
-    :root {
-      --bg: #000000;
-      --red: #ff2a2a;
-      --red-soft: rgba(255, 42, 42, 0.16);
-      --red-mid: rgba(255, 42, 42, 0.3);
-      --red-grid: rgba(255, 42, 42, 0.24);
-      --red-grid-strong: rgba(255, 42, 42, 0.42);
-      --white: #ffffff;
-      --black-deep: rgba(0, 0, 0, 0.98);
+    :root{
+      --bg:#000000;
+      --text:#ffffff;
+      --red:#ff2a2a;
+      --red-soft:rgba(255,42,42,.18);
+      --red-faint:rgba(255,42,42,.08);
+      --white-faint:rgba(255,255,255,.08);
+      --halo:rgba(0,0,0,.92);
     }
 
-    * {
-      box-sizing: border-box;
-      -webkit-tap-highlight-color: transparent;
+    *{
+      box-sizing:border-box;
+      margin:0;
+      padding:0;
+      min-width:0;
     }
 
     html,
-    body {
-      margin: 0;
-      width: 100%;
-      min-height: 100%;
-      background: var(--bg);
-      overflow: hidden;
-      font-family: Arial, sans-serif;
+    body{
+      width:100%;
+      min-height:100%;
+      background:#000;
     }
 
-    body {
-      position: relative;
-      min-height: 100vh;
-      min-height: 100dvh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      background: #000;
-      color: var(--white);
+    body{
+      font-family:"Sora", Arial, sans-serif;
+      color:var(--text);
+      overflow:hidden;
     }
 
-    .scene {
-      position: fixed;
-      inset: 0;
-      overflow: hidden;
-      pointer-events: none;
-      z-index: 0;
+    a{
+      color:inherit;
+      text-decoration:none;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    .stage{
+      position:relative;
+      width:100%;
+      min-height:100vh;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      overflow:hidden;
       background:
-        linear-gradient(to bottom, #000 0%, #000 34%, #070000 52%, #000 100%);
+        radial-gradient(circle at 50% 48%, rgba(255,255,255,.025), transparent 16%),
+        radial-gradient(circle at 50% 50%, rgba(255,0,0,.035), transparent 28%),
+        radial-gradient(circle at 50% 55%, rgba(0,0,0,.45), transparent 46%),
+        #000;
+      isolation:isolate;
     }
 
-    .top-fade {
-      position: absolute;
-      inset: 0;
+    .stage::before{
+      content:"";
+      position:absolute;
+      inset:0;
       background:
-        radial-gradient(circle at 50% 34%, rgba(255, 0, 0, 0.04), transparent 18%),
-        linear-gradient(to bottom, rgba(0,0,0,0.04) 0%, rgba(0,0,0,0.28) 52%, rgba(0,0,0,0.1) 100%);
-      z-index: 1;
+        radial-gradient(circle at 50% 50%, rgba(0,0,0,0) 0%, rgba(0,0,0,.16) 62%, rgba(0,0,0,.38) 100%);
+      z-index:2;
+      pointer-events:none;
     }
 
-    .horizon-glow {
-      position: absolute;
-      left: 50%;
-      top: 49%;
-      width: min(1120px, 118vw);
-      height: min(450px, 42vh);
-      transform: translate(-50%, -50%);
-      border-radius: 50%;
-      background:
-        radial-gradient(
-          ellipse at center,
-          rgba(255, 0, 0, 0.34) 0%,
-          rgba(190, 0, 0, 0.23) 26%,
-          rgba(110, 0, 0, 0.14) 50%,
-          rgba(0, 0, 0, 0) 76%
-        );
-      filter: blur(14px);
-      opacity: 0.95;
-      z-index: 2;
-      animation: glowPulse 4.2s ease-in-out infinite;
-    }
-
-    .horizon-band {
-      position: absolute;
-      left: 50%;
-      top: 51.5%;
-      width: min(1320px, 160vw);
-      height: 2px;
-      transform: translateX(-50%);
-      background: linear-gradient(
-        90deg,
-        transparent 0%,
-        rgba(255, 42, 42, 0.1) 10%,
-        rgba(255, 42, 42, 0.75) 50%,
-        rgba(255, 42, 42, 0.1) 90%,
-        transparent 100%
-      );
-      box-shadow:
-        0 0 8px rgba(255, 0, 0, 0.28),
-        0 0 18px rgba(255, 0, 0, 0.18);
-      z-index: 3;
-      opacity: 0.95;
-    }
-
-    .floor-grid {
-      position: absolute;
-      left: 50%;
-      top: 67%;
-      width: 235vw;
-      height: 185vh;
-      transform:
-        translate(-50%, -50%)
-        perspective(1200px)
-        rotateX(78deg)
-        scale(1.08);
-      transform-origin: center center;
-      z-index: 2;
-      opacity: 0.98;
-      background:
-        linear-gradient(var(--red-grid) 2px, transparent 2px),
-        linear-gradient(90deg, var(--red-grid) 2px, transparent 2px);
-      background-size: 86px 86px;
-      animation: gridRise 7.4s linear infinite;
-      mask-image: linear-gradient(
-        to bottom,
-        rgba(0,0,0,0) 0%,
-        rgba(0,0,0,0.95) 16%,
-        rgba(0,0,0,1) 36%,
-        rgba(0,0,0,1) 100%
-      );
-      -webkit-mask-image: linear-gradient(
-        to bottom,
-        rgba(0,0,0,0) 0%,
-        rgba(0,0,0,0.95) 16%,
-        rgba(0,0,0,1) 36%,
-        rgba(0,0,0,1) 100%
-      );
+    .grid-canvas{
+      position:absolute;
+      inset:0;
+      width:100%;
+      height:100%;
+      display:block;
+      z-index:1;
+      pointer-events:none;
+      opacity:.98;
       filter:
-        drop-shadow(0 0 5px rgba(255, 0, 0, 0.1))
-        drop-shadow(0 0 12px rgba(255, 0, 0, 0.08));
+        drop-shadow(0 0 6px rgba(255,42,42,.10))
+        drop-shadow(0 0 12px rgba(255,42,42,.05));
     }
 
-    .floor-grid::before {
-      content: "";
-      position: absolute;
-      inset: 0;
+    .wrap{
+      position:relative;
+      z-index:3;
+      width:100%;
+      max-width:1200px;
+      padding:20px 20px 26px;
+      display:flex;
+      justify-content:center;
+      align-items:center;
+    }
+
+    .hero{
+      position:relative;
+      display:flex;
+      flex-direction:column;
+      align-items:center;
+      justify-content:center;
+      width:100%;
+      text-align:center;
+      transform:translateY(-12px);
+    }
+
+    .logo-link{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      position:relative;
+    }
+
+    .logo-shell{
+      position:relative;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      padding:18px;
+    }
+
+    .logo-shell::before{
+      content:"";
+      position:absolute;
+      inset:-12px;
+      border-radius:50%;
       background:
-        linear-gradient(rgba(255, 42, 42, 0.1) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(255, 42, 42, 0.1) 1px, transparent 1px);
-      background-size: 43px 43px;
-      mix-blend-mode: screen;
-      opacity: 0.55;
-      animation: gridRiseFine 5.8s linear infinite reverse;
+        radial-gradient(circle at center,
+          rgba(0,0,0,0) 0%,
+          rgba(0,0,0,.25) 25%,
+          rgba(0,0,0,.78) 54%,
+          rgba(0,0,0,.96) 78%,
+          rgba(0,0,0,0) 100%);
+      filter:blur(12px);
+      z-index:0;
+      pointer-events:none;
     }
 
-    .floor-grid::after {
-      content: "";
-      position: absolute;
-      inset: 0;
+    .logo-shell::after{
+      content:"";
+      position:absolute;
+      width:86%;
+      height:86%;
+      border-radius:50%;
       background:
-        radial-gradient(circle at 50% 8%, rgba(255, 0, 0, 0.1), transparent 18%),
-        linear-gradient(to bottom, rgba(0,0,0,0) 0%, rgba(0,0,0,0.18) 28%, rgba(0,0,0,0.42) 100%);
+        radial-gradient(circle at center,
+          rgba(255,40,40,.10) 0%,
+          rgba(255,40,40,.03) 40%,
+          rgba(0,0,0,0) 72%);
+      filter:blur(10px);
+      z-index:0;
+      pointer-events:none;
     }
 
-    .floor-vignette {
-      position: absolute;
-      inset: 0;
-      z-index: 4;
-      background:
-        radial-gradient(circle at center, transparent 0 24%, rgba(0,0,0,0.1) 46%, rgba(0,0,0,0.72) 100%),
-        linear-gradient(to bottom, rgba(0,0,0,0.02) 0%, rgba(0,0,0,0.08) 35%, rgba(0,0,0,0.36) 100%);
-    }
-
-    .wrap {
-      position: relative;
-      z-index: 10;
-      width: 100%;
-      max-width: 1200px;
-      padding: 0 20px;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-    }
-
-    .hero {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      transform: translateY(12px);
-    }
-
-    .logo-link,
-    .enter-link {
-      text-decoration: none;
-      cursor: pointer;
-    }
-
-    .logo-shell {
-      position: relative;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      padding: 18px 20px 14px;
-      isolation: isolate;
-    }
-
-    .logo-shell::before {
-      content: "";
-      position: absolute;
-      left: 50%;
-      top: 50%;
-      width: min(760px, 86vw);
-      height: min(500px, 42vh);
-      transform: translate(-50%, -50%);
-      border-radius: 50%;
-      background:
-        radial-gradient(
-          ellipse at center,
-          rgba(0, 0, 0, 0.98) 0%,
-          rgba(0, 0, 0, 0.96) 38%,
-          rgba(0, 0, 0, 0.8) 56%,
-          rgba(0, 0, 0, 0.26) 72%,
-          rgba(0, 0, 0, 0) 100%
-        );
-      filter: blur(10px);
-      z-index: 0;
-    }
-
-    .logo-shell::after {
-      content: "";
-      position: absolute;
-      left: 50%;
-      top: 53%;
-      width: min(560px, 70vw);
-      height: min(190px, 16vh);
-      transform:
-        translate(-50%, -50%)
-        perspective(900px)
-        rotateX(72deg)
-        scale(1.02);
-      border-radius: 50%;
-      background:
-        linear-gradient(var(--red-grid-strong) 2px, transparent 2px),
-        linear-gradient(90deg, var(--red-grid-strong) 2px, transparent 2px);
-      background-size: 54px 54px;
-      opacity: 0.34;
-      filter:
-        blur(0.15px)
-        drop-shadow(0 0 8px rgba(255, 0, 0, 0.24))
-        drop-shadow(0 0 18px rgba(255, 0, 0, 0.14));
-      animation: badgeGridMove 5.8s linear infinite;
-      z-index: 1;
-      pointer-events: none;
-    }
-
-    .logo {
-      position: relative;
-      z-index: 2;
-      display: block;
-      width: min(54vw, 580px);
-      max-width: 580px;
-      min-width: 330px;
-      height: auto;
-      transform-origin: center center;
-      animation: logoFloat 3.1s ease-in-out infinite;
+    .logo{
+      position:relative;
+      z-index:1;
+      display:block;
+      width:auto;
+      height:auto;
+      max-width:980px;
+      max-height:78vh;
+      transform-origin:center center;
+      animation:logoFloat 3.8s ease-in-out infinite;
       transition:
-        transform 0.28s ease,
-        filter 0.28s ease,
-        opacity 0.28s ease;
+        transform .28s ease,
+        filter .28s ease,
+        opacity .28s ease;
       filter:
-        drop-shadow(0 0 14px rgba(0, 0, 0, 1))
-        drop-shadow(0 0 26px rgba(0, 0, 0, 0.98))
-        drop-shadow(0 0 42px rgba(0, 0, 0, 0.9))
-        drop-shadow(0 0 8px rgba(255, 0, 0, 0.18))
-        drop-shadow(0 0 20px rgba(255, 0, 0, 0.12));
+        drop-shadow(0 0 10px rgba(0,0,0,.95))
+        drop-shadow(0 0 28px rgba(0,0,0,.95))
+        drop-shadow(0 0 46px rgba(0,0,0,.90));
     }
 
-    .logo-link:hover .logo {
-      transform: scale(1.045);
+    .logo-link:hover .logo{
+      transform:scale(1.045);
       filter:
-        drop-shadow(0 0 16px rgba(0, 0, 0, 1))
-        drop-shadow(0 0 30px rgba(0, 0, 0, 1))
-        drop-shadow(0 0 48px rgba(0, 0, 0, 0.92))
-        drop-shadow(0 0 10px rgba(255, 0, 0, 0.24))
-        drop-shadow(0 0 24px rgba(255, 0, 0, 0.14));
+        drop-shadow(0 0 10px rgba(0,0,0,.95))
+        drop-shadow(0 0 28px rgba(0,0,0,.95))
+        drop-shadow(0 0 44px rgba(0,0,0,.90))
+        drop-shadow(0 0 8px rgba(255,42,42,.20))
+        drop-shadow(0 0 18px rgba(255,42,42,.12));
     }
 
-    .enter-link {
-      display: inline-block;
-      margin-top: 6px;
+    .enter-link{
+      display:inline-block;
+      margin-top:2px;
+      padding:10px 14px 0;
     }
 
-    .enter-text {
-      color: var(--red);
-      font-size: 19px;
-      font-weight: 800;
-      letter-spacing: 5px;
-      text-transform: uppercase;
-      text-align: center;
-      opacity: 0.97;
+    .enter-text{
+      font-family:"Oswald", Arial, sans-serif;
+      font-size:1.06rem;
+      font-weight:600;
+      letter-spacing:.22em;
+      text-transform:uppercase;
+      color:#ff2a2a;
+      opacity:.92;
+      transition:transform .22s ease, opacity .22s ease, text-shadow .22s ease;
+      animation:softBlink 2.6s ease-in-out infinite;
       text-shadow:
-        0 0 8px rgba(255, 0, 0, 0.14),
-        0 0 18px rgba(255, 0, 0, 0.1);
-      animation: softFade 2.2s ease-in-out infinite;
-      transition: transform 0.2s ease, opacity 0.2s ease, text-shadow 0.2s ease;
+        0 0 8px rgba(255,42,42,.10),
+        0 0 18px rgba(255,42,42,.05);
     }
 
-    .enter-link:hover .enter-text {
-      transform: scale(1.04);
-      opacity: 1;
+    .enter-link:hover .enter-text{
+      transform:scale(1.04);
+      opacity:1;
       text-shadow:
-        0 0 10px rgba(255, 0, 0, 0.22),
-        0 0 24px rgba(255, 0, 0, 0.14);
+        0 0 10px rgba(255,42,42,.18),
+        0 0 24px rgba(255,42,42,.08);
     }
 
-    @keyframes gridRise {
-      0% {
-        background-position: 0 0, 0 0;
-        transform:
-          translate(-50%, -50%)
-          perspective(1200px)
-          rotateX(78deg)
-          scale(1.03);
-      }
-      100% {
-        background-position: 0 -86px, 0 -86px;
-        transform:
-          translate(-50%, -52.4%)
-          perspective(1200px)
-          rotateX(78deg)
-          scale(1.15);
-      }
+    @keyframes logoFloat{
+      0%, 100%{ transform:translateY(0) scale(1); }
+      50%{ transform:translateY(-4px) scale(1.012); }
     }
 
-    @keyframes gridRiseFine {
-      0% {
-        background-position: 0 0, 0 0;
-      }
-      100% {
-        background-position: 0 43px, 0 43px;
-      }
+    @keyframes softBlink{
+      0%, 100%{ opacity:.62; }
+      50%{ opacity:1; }
     }
 
-    @keyframes badgeGridMove {
-      0% {
-        background-position: 0 0, 0 0;
+    @media (max-width: 900px){
+      .wrap{
+        padding:12px 12px 20px;
       }
-      100% {
-        background-position: 0 -54px, 0 -54px;
-      }
-    }
 
-    @keyframes logoFloat {
-      0%, 100% {
-        transform: scale(1);
+      .hero{
+        transform:translateY(-4px);
       }
-      50% {
-        transform: scale(1.018);
+
+      .logo{
+        width:92vw;
+        max-width:none;
+        max-height:none;
+      }
+
+      .logo-shell{
+        padding:10px;
+      }
+
+      .enter-link{
+        margin-top:8px;
+      }
+
+      .enter-text{
+        font-size:.95rem;
+        letter-spacing:.16em;
       }
     }
 
-    @keyframes glowPulse {
-      0%, 100% {
-        opacity: 0.86;
-        transform: translate(-50%, -50%) scale(1);
-      }
-      50% {
-        opacity: 1;
-        transform: translate(-50%, -50%) scale(1.03);
-      }
-    }
-
-    @keyframes softFade {
-      0%, 100% {
-        opacity: 0.72;
-      }
-      50% {
-        opacity: 1;
-      }
-    }
-
-    @media (max-width: 900px) {
-      .horizon-glow {
-        top: 49.5%;
-        width: 125vw;
-        height: 34vh;
+    @media (max-width: 560px){
+      .logo{
+        width:94vw;
       }
 
-      .horizon-band {
-        top: 52%;
-      }
-
-      .floor-grid {
-        top: 69%;
-        width: 280vw;
-        height: 210vh;
-        background-size: 70px 70px;
-        animation-duration: 6.8s;
-      }
-
-      .floor-grid::before {
-        background-size: 35px 35px;
-      }
-
-      .hero {
-        transform: translateY(20px);
-      }
-
-      .logo {
-        width: min(72vw, 500px);
-        min-width: 0;
-      }
-
-      .logo-shell::before {
-        width: min(640px, 92vw);
-        height: min(420px, 34vh);
-      }
-
-      .logo-shell::after {
-        width: min(500px, 82vw);
-      }
-
-      .enter-link {
-        margin-top: 0;
-      }
-
-      .enter-text {
-        font-size: 17px;
-        letter-spacing: 4px;
-      }
-    }
-
-    @media (max-width: 768px) {
-      html,
-      body {
-        overflow: auto;
-      }
-
-      body {
-        min-height: 100dvh;
-      }
-
-      .wrap {
-        padding: 0 8px;
-      }
-
-      .hero {
-        transform: translateY(26px);
-      }
-
-      .horizon-glow {
-        top: 48.8%;
-        width: 148vw;
-        height: 28vh;
-        filter: blur(12px);
-      }
-
-      .horizon-band {
-        top: 51.5%;
-        width: 170vw;
-      }
-
-      .floor-grid {
-        top: 70.5%;
-        width: 335vw;
-        height: 235vh;
-        background-size: 56px 56px;
-        transform:
-          translate(-50%, -50%)
-          perspective(920px)
-          rotateX(79deg)
-          scale(1.14);
-        animation-duration: 6.2s;
-      }
-
-      .floor-grid::before {
-        background-size: 28px 28px;
-        opacity: 0.62;
-      }
-
-      .logo-shell {
-        padding: 8px 8px 6px;
-      }
-
-      .logo-shell::before {
-        width: 92vw;
-        height: 26vh;
-        filter: blur(8px);
-      }
-
-      .logo-shell::after {
-        width: 78vw;
-        height: 12vh;
-        top: 55%;
-        background-size: 42px 42px;
-        opacity: 0.28;
-      }
-
-      .logo {
-        width: 72vw;
-        max-width: none;
-      }
-
-      .enter-link {
-        margin-top: 8px;
-      }
-
-      .enter-text {
-        font-size: 14px;
-        letter-spacing: 3.2px;
-      }
-    }
-
-    @media (max-width: 480px) {
-      .hero {
-        transform: translateY(34px);
-      }
-
-      .horizon-glow {
-        top: 48.6%;
-        width: 160vw;
-        height: 26vh;
-      }
-
-      .horizon-band {
-        top: 51.2%;
-      }
-
-      .floor-grid {
-        top: 72%;
-        width: 360vw;
-        height: 250vh;
-        background-size: 50px 50px;
-      }
-
-      .floor-grid::before {
-        background-size: 25px 25px;
-      }
-
-      .logo {
-        width: 74vw;
-      }
-
-      .enter-text {
-        font-size: 12px;
-        letter-spacing: 2.8px;
+      .enter-text{
+        font-size:.88rem;
+        letter-spacing:.12em;
       }
     }
   </style>
 </head>
 <body>
-  <div class="scene" aria-hidden="true">
-    <div class="top-fade"></div>
-    <div class="horizon-glow"></div>
-    <div class="horizon-band"></div>
-    <div class="floor-grid"></div>
-    <div class="floor-vignette"></div>
-  </div>
+  <main class="stage" id="stage">
+    <canvas class="grid-canvas" id="gridCanvas"></canvas>
 
-  <div class="wrap">
-    <div class="hero">
-      <a href="home.html" class="logo-link" aria-label="Enter Website">
-        <div class="logo-shell">
-          <img src="updated logo.PNG" alt="All Season Pest Control" class="logo" />
-        </div>
-      </a>
+    <div class="wrap">
+      <div class="hero">
+        <a href="home.html" class="logo-link" aria-label="Enter Website">
+          <span class="logo-shell">
+            <img src="updated logo.PNG" alt="All Season Pest Control" class="logo" />
+          </span>
+        </a>
 
-      <a href="home.html" class="enter-link" aria-label="Enter Site">
-        <div class="enter-text">Click here if you hate bugs</div>
-      </a>
+        <a href="home.html" class="enter-link" aria-label="Enter Site">
+          <div class="enter-text">Click here if you hate bugs</div>
+        </a>
+      </div>
     </div>
-  </div>
+  </main>
+
+  <script>
+    const stage = document.getElementById("stage");
+    const canvas = document.getElementById("gridCanvas");
+    const ctx = canvas.getContext("2d");
+
+    let w = 0;
+    let h = 0;
+    let dpr = Math.min(window.devicePixelRatio || 1, 2);
+    let time = 0;
+    let verticalPush = 0;
+    let lastScrollY = window.scrollY;
+
+    let webs = [];
+    let bridges = [];
+    let filaments = [];
+    let strands = [];
+
+    function rand(min, max) {
+      return Math.random() * (max - min) + min;
+    }
+
+    function clamp(v, min, max) {
+      return Math.max(min, Math.min(max, v));
+    }
+
+    function lerp(a, b, t) {
+      return a + (b - a) * t;
+    }
+
+    function dist(ax, ay, bx, by) {
+      const dx = bx - ax;
+      const dy = by - ay;
+      return Math.sqrt(dx * dx + dy * dy);
+    }
+
+    function resizeCanvas() {
+      const rect = stage.getBoundingClientRect();
+      w = rect.width;
+      h = rect.height;
+      dpr = Math.min(window.devicePixelRatio || 1, 2);
+
+      canvas.width = Math.floor(w * dpr);
+      canvas.height = Math.floor(h * dpr);
+      canvas.style.width = `${w}px`;
+      canvas.style.height = `${h}px`;
+
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      buildScene();
+    }
+
+    function buildWeb(cx, cy, radius, options = {}) {
+      const mobile = window.innerWidth < 768;
+      const spokeCount = options.spokeCount ?? (mobile ? 10 : 12);
+      const ringCount = options.ringCount ?? (mobile ? 11 : 13);
+      const tilt = options.tilt ?? rand(-0.14, 0.14);
+
+      const spokes = [];
+      let angle = -Math.PI * 0.55 + tilt;
+
+      for (let i = 0; i < spokeCount; i++) {
+        angle += (Math.PI * 1.12 / spokeCount) + rand(-0.05, 0.05);
+
+        spokes.push({
+          angle,
+          reach: radius * rand(0.70, 1.02),
+          curve: rand(-26, 26),
+          wobble: rand(1.0, 2.6),
+          phase: rand(0, Math.PI * 2),
+          thickness: rand(0.7, 1.35),
+          alpha: rand(0.06, 0.16),
+          gapStart: Math.random() < 0.24 ? rand(0.34, 0.70) : null,
+          gapLength: rand(0.04, 0.12)
+        });
+      }
+
+      const rings = [];
+      let ratio = 0.12;
+      for (let i = 0; i < ringCount; i++) {
+        ratio += rand(0.055, 0.090);
+        rings.push({
+          ratio,
+          thickness: rand(0.48, 1.0),
+          alpha: rand(0.032, 0.090),
+          sway: rand(0.6, 1.8),
+          phase: rand(0, Math.PI * 2),
+          startCut: rand(0.04, 0.12),
+          endCut: rand(0.88, 0.98)
+        });
+      }
+
+      return {
+        cx,
+        cy,
+        radius,
+        spokes,
+        rings,
+        driftX: rand(-10, 10),
+        driftY: rand(-18, -8),
+        motion: rand(0.00055, 0.0011),
+        glow: rand(0.018, 0.040)
+      };
+    }
+
+    function buildScene() {
+      webs = [];
+      bridges = [];
+      filaments = [];
+      strands = [];
+
+      const mobile = window.innerWidth < 768;
+      const maxDim = Math.max(w, h);
+
+      const leftWeb = buildWeb(
+        w * (mobile ? 0.20 : 0.18),
+        h * (mobile ? 0.86 : 0.84),
+        maxDim * (mobile ? 0.52 : 0.56),
+        { spokeCount: mobile ? 9 : 11, ringCount: mobile ? 10 : 12, tilt: -0.05 }
+      );
+
+      const rightWeb = buildWeb(
+        w * (mobile ? 0.82 : 0.84),
+        h * (mobile ? 0.80 : 0.78),
+        maxDim * (mobile ? 0.46 : 0.50),
+        { spokeCount: mobile ? 8 : 10, ringCount: mobile ? 9 : 11, tilt: 0.08 }
+      );
+
+      const topWeb = buildWeb(
+        w * 0.50,
+        h * (mobile ? 0.22 : 0.16),
+        maxDim * (mobile ? 0.20 : 0.24),
+        { spokeCount: mobile ? 6 : 7, ringCount: mobile ? 7 : 8, tilt: 0.00 }
+      );
+
+      webs.push(leftWeb, rightWeb, topWeb);
+
+      for (let i = 0; i < 18; i++) {
+        bridges.push({
+          wa: leftWeb,
+          wb: rightWeb,
+          sa: i % leftWeb.spokes.length,
+          sb: (i * 2 + 1) % rightWeb.spokes.length,
+          ta: rand(0.22, 0.78),
+          tb: rand(0.18, 0.74),
+          bend: rand(-18, 18),
+          alpha: rand(0.014, 0.040),
+          width: rand(0.35, 0.85),
+          phase: rand(0, Math.PI * 2)
+        });
+      }
+
+      for (let i = 0; i < (mobile ? 85 : 130); i++) {
+        const wa = webs[Math.floor(rand(0, webs.length))];
+        const wb = webs[Math.floor(rand(0, webs.length))];
+        filaments.push({
+          wa,
+          wb,
+          sa: Math.floor(rand(0, wa.spokes.length)),
+          sb: Math.floor(rand(0, wb.spokes.length)),
+          ta: rand(0.16, 0.90),
+          tb: rand(0.16, 0.90),
+          bend: rand(-7, 7),
+          alpha: rand(0.008, 0.026),
+          width: rand(0.18, 0.42),
+          phase: rand(0, Math.PI * 2)
+        });
+      }
+
+      for (let i = 0; i < (mobile ? 60 : 90); i++) {
+        strands.push({
+          x1: rand(w * 0.08, w * 0.92),
+          y1: rand(h * 0.05, h * 0.95),
+          x2: rand(w * 0.08, w * 0.92),
+          y2: rand(h * 0.05, h * 0.95),
+          alpha: rand(0.005, 0.018),
+          width: rand(0.18, 0.36),
+          bend: rand(-10, 10),
+          phase: rand(0, Math.PI * 2)
+        });
+      }
+    }
+
+    function pointOnSpoke(web, spoke, p, ringShift = 0) {
+      const motion = time * web.motion;
+      const r = spoke.reach * p;
+
+      const nx = Math.cos(spoke.angle + Math.PI / 2);
+      const ny = Math.sin(spoke.angle + Math.PI / 2);
+
+      const curve =
+        Math.sin(motion + spoke.phase + p * 2.6) *
+        spoke.curve *
+        (0.20 + p * 0.34);
+
+      const wobble =
+        Math.sin(motion * 1.3 + spoke.phase * 1.2 + p * 4.0) *
+        spoke.wobble *
+        (0.10 + p * 0.16);
+
+      const lift =
+        Math.sin(motion * 0.8 + spoke.phase) * web.driftY +
+        verticalPush * (0.24 + p * 0.12);
+
+      const drift =
+        Math.cos(motion * 0.7 + spoke.phase) * web.driftX;
+
+      return {
+        x: web.cx + Math.cos(spoke.angle) * r + nx * (curve * 0.22 + wobble + ringShift) + drift * 0.12,
+        y: web.cy + Math.sin(spoke.angle) * r + ny * (curve * 0.22 + wobble) + lift * 0.10
+      };
+    }
+
+    function broken(spoke, p) {
+      if (spoke.gapStart === null) return false;
+      return p >= spoke.gapStart && p <= spoke.gapStart + spoke.gapLength;
+    }
+
+    function colorAt(x, y, alpha) {
+      const left = webs[0];
+      const right = webs[1];
+      const top = webs[2];
+
+      const dl = clamp(1 - dist(x, y, left.cx, left.cy) / left.radius, 0, 1);
+      const dr = clamp(1 - dist(x, y, right.cx, right.cy) / right.radius, 0, 1);
+      const dt = clamp(1 - dist(x, y, top.cx, top.cy) / top.radius, 0, 1);
+
+      const redStrength = clamp(dl * 0.82 + dr * 0.52 + dt * 0.30, 0, 1);
+      const whiteStrength = clamp(dr * 0.34 + dt * 0.26, 0, 0.38);
+
+      const r = 255;
+      const g = lerp(34, 86, whiteStrength);
+      const b = lerp(34, 86, whiteStrength);
+      const finalAlpha = alpha * (0.72 + redStrength * 0.42);
+
+      return `rgba(${r},${g.toFixed(0)},${b.toFixed(0)},${finalAlpha})`;
+    }
+
+    function drawWebGlow(web) {
+      const g = ctx.createRadialGradient(web.cx, web.cy, 0, web.cx, web.cy, web.radius);
+      g.addColorStop(0, `rgba(255,42,42,${web.glow})`);
+      g.addColorStop(0.25, `rgba(255,42,42,${web.glow * 0.28})`);
+      g.addColorStop(0.55, `rgba(255,42,42,${web.glow * 0.08})`);
+      g.addColorStop(1, `rgba(255,42,42,0)`);
+      ctx.fillStyle = g;
+      ctx.fillRect(0, 0, w, h);
+    }
+
+    function drawSpokes(web) {
+      web.spokes.forEach((spoke) => {
+        const steps = 34;
+        let drawing = false;
+        let prev = null;
+
+        ctx.beginPath();
+
+        for (let i = 0; i <= steps; i++) {
+          const p = i / steps;
+          if (broken(spoke, p)) {
+            drawing = false;
+            prev = null;
+            continue;
+          }
+
+          const pt = pointOnSpoke(web, spoke, p);
+
+          if (!drawing) {
+            ctx.moveTo(pt.x, pt.y);
+            drawing = true;
+          } else if (prev) {
+            const mx = (prev.x + pt.x) * 0.5;
+            const my = (prev.y + pt.y) * 0.5;
+            ctx.quadraticCurveTo(prev.x, prev.y, mx, my);
+          }
+
+          prev = pt;
+        }
+
+        const sample = pointOnSpoke(web, spoke, 0.58);
+        ctx.strokeStyle = colorAt(sample.x, sample.y, spoke.alpha);
+        ctx.lineWidth = spoke.thickness;
+        ctx.lineCap = "round";
+        ctx.lineJoin = "round";
+        ctx.stroke();
+      });
+    }
+
+    function drawRings(web) {
+      const sorted = [...web.spokes].sort((a, b) => a.angle - b.angle);
+
+      web.rings.forEach((ring) => {
+        const pts = [];
+
+        sorted.forEach((spoke, i) => {
+          const p = ring.ratio;
+          if (p < ring.startCut || p > ring.endCut) return;
+          if (broken(spoke, p)) return;
+
+          const shift =
+            Math.sin(time * web.motion * 1.2 + ring.phase + i * 0.45) *
+            ring.sway;
+
+          pts.push(pointOnSpoke(web, spoke, p, shift));
+        });
+
+        if (pts.length < 4) return;
+
+        ctx.beginPath();
+        ctx.moveTo(pts[0].x, pts[0].y);
+
+        for (let i = 1; i < pts.length - 1; i++) {
+          const mx = (pts[i].x + pts[i + 1].x) * 0.5;
+          const my = (pts[i].y + pts[i + 1].y) * 0.5;
+          ctx.quadraticCurveTo(pts[i].x, pts[i].y, mx, my);
+        }
+
+        ctx.lineTo(pts[pts.length - 1].x, pts[pts.length - 1].y);
+
+        const cp = pts[Math.floor(pts.length / 2)];
+        ctx.strokeStyle = colorAt(cp.x, cp.y, ring.alpha);
+        ctx.lineWidth = ring.thickness;
+        ctx.lineCap = "round";
+        ctx.lineJoin = "round";
+        ctx.stroke();
+      });
+    }
+
+    function drawBridges() {
+      bridges.forEach((b) => {
+        const sa = b.wa.spokes[b.sa];
+        const sb = b.wb.spokes[b.sb];
+        if (!sa || !sb) return;
+        if (broken(sa, b.ta) || broken(sb, b.tb)) return;
+
+        const p1 = pointOnSpoke(b.wa, sa, b.ta);
+        const p2 = pointOnSpoke(b.wb, sb, b.tb);
+
+        const mx = (p1.x + p2.x) * 0.5 + Math.sin(time * 0.0012 + b.phase) * b.bend;
+        const my = (p1.y + p2.y) * 0.5 + Math.cos(time * 0.0011 + b.phase) * (b.bend * 0.55);
+
+        ctx.beginPath();
+        ctx.moveTo(p1.x, p1.y);
+        ctx.quadraticCurveTo(mx, my, p2.x, p2.y);
+        ctx.strokeStyle = colorAt(mx, my, b.alpha);
+        ctx.lineWidth = b.width;
+        ctx.stroke();
+      });
+    }
+
+    function drawFilaments() {
+      filaments.forEach((f) => {
+        const sa = f.wa.spokes[f.sa];
+        const sb = f.wb.spokes[f.sb];
+        if (!sa || !sb) return;
+        if (broken(sa, f.ta) || broken(sb, f.tb)) return;
+
+        const p1 = pointOnSpoke(f.wa, sa, f.ta);
+        const p2 = pointOnSpoke(f.wb, sb, f.tb);
+
+        if (dist(p1.x, p1.y, p2.x, p2.y) > Math.min(w, h) * 0.26) return;
+
+        const mx = (p1.x + p2.x) * 0.5 + Math.sin(time * 0.0013 + f.phase) * f.bend;
+        const my = (p1.y + p2.y) * 0.5 + Math.cos(time * 0.0011 + f.phase) * (f.bend * 0.6);
+
+        ctx.beginPath();
+        ctx.moveTo(p1.x, p1.y);
+        ctx.quadraticCurveTo(mx, my, p2.x, p2.y);
+        ctx.strokeStyle = colorAt(mx, my, f.alpha);
+        ctx.lineWidth = f.width;
+        ctx.stroke();
+      });
+    }
+
+    function drawLooseStrands() {
+      strands.forEach((s) => {
+        const x1 = s.x1 + Math.sin(time * 0.0008 + s.phase) * 4;
+        const y1 = s.y1 + Math.cos(time * 0.0007 + s.phase) * 6 + verticalPush * 0.14;
+        const x2 = s.x2 + Math.cos(time * 0.0008 + s.phase) * 4;
+        const y2 = s.y2 + Math.sin(time * 0.0007 + s.phase) * 6 + verticalPush * 0.12;
+
+        const mx = (x1 + x2) * 0.5 + Math.sin(time * 0.0010 + s.phase) * s.bend;
+        const my = (y1 + y2) * 0.5 + Math.cos(time * 0.0010 + s.phase) * (s.bend * 0.7);
+
+        ctx.beginPath();
+        ctx.moveTo(x1, y1);
+        ctx.quadraticCurveTo(mx, my, x2, y2);
+        ctx.strokeStyle = `rgba(255,42,42,${s.alpha})`;
+        ctx.lineWidth = s.width;
+        ctx.stroke();
+      });
+    }
+
+    function drawCenterFalloff() {
+      const g = ctx.createRadialGradient(w * 0.5, h * 0.5, 0, w * 0.5, h * 0.5, Math.min(w, h) * 0.42);
+      g.addColorStop(0, "rgba(0,0,0,0.00)");
+      g.addColorStop(0.38, "rgba(0,0,0,0.08)");
+      g.addColorStop(0.72, "rgba(0,0,0,0.34)");
+      g.addColorStop(1, "rgba(0,0,0,0.00)");
+      ctx.fillStyle = g;
+      ctx.fillRect(0, 0, w, h);
+    }
+
+    function render() {
+      ctx.clearRect(0, 0, w, h);
+
+      verticalPush *= 0.95;
+
+      webs.forEach(drawWebGlow);
+      drawLooseStrands();
+      webs.forEach(drawRings);
+      webs.forEach(drawSpokes);
+      drawFilaments();
+      drawBridges();
+      drawCenterFalloff();
+
+      time += 1;
+      requestAnimationFrame(render);
+    }
+
+    function handleScroll() {
+      const currentY = window.scrollY;
+      const delta = currentY - lastScrollY;
+      lastScrollY = currentY;
+      verticalPush += clamp(delta * 0.05, -2.8, 2.8);
+    }
+
+    window.addEventListener("resize", resizeCanvas, { passive: true });
+    window.addEventListener("scroll", handleScroll, { passive: true });
+
+    resizeCanvas();
+    render();
+  </script>
 </body>
 </html>
