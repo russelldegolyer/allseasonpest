@@ -106,7 +106,7 @@
       align-items:center;
       justify-content:center;
       text-align:center;
-      transform:translateY(-10px);
+      transform:translateY(-18px);
     }
 
     .logo-link{
@@ -176,7 +176,7 @@
 
     .enter-link{
       display:inline-block;
-      margin-top:8px;
+      margin-top:2px;
       text-decoration:none;
       text-align:center;
     }
@@ -230,7 +230,7 @@
       }
 
       .hero{
-        transform:translateY(-4px);
+        transform:translateY(-10px);
       }
 
       .logo{
@@ -240,7 +240,7 @@
       }
 
       .enter-link{
-        margin-top:10px;
+        margin-top:4px;
       }
 
       .enter-text{
@@ -524,9 +524,9 @@
       const mix = whiteInf / total;
 
       const r = 255;
-      const g = lerp(82, 255, mix);
-      const b = lerp(82, 255, mix);
-      const a = alphaBase * (0.84 + Math.max(redInf, whiteInf) * 0.34);
+      const g = lerp(74, 255, mix);
+      const b = lerp(74, 255, mix);
+      const a = alphaBase * (0.92 + Math.max(redInf, whiteInf) * 0.38);
 
       return `rgba(${r.toFixed(0)},${g.toFixed(0)},${b.toFixed(0)},${a})`;
     }
