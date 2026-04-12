@@ -275,9 +275,9 @@
       pointer-events:none;
       opacity:1;
       filter:
-        drop-shadow(0 0 8px rgba(255,80,80,.24))
-        drop-shadow(0 0 16px rgba(255,80,80,.16))
-        drop-shadow(0 0 18px rgba(255,255,255,.06));
+        drop-shadow(0 0 6px rgba(255,80,80,.18))
+        drop-shadow(0 0 12px rgba(255,80,80,.12))
+        drop-shadow(0 0 14px rgba(255,255,255,.045));
     }
 
     .section{
@@ -1185,20 +1185,20 @@
         custom.spokeCount ??
         (
           layer === "back"
-            ? (mobile ? Math.floor(rand(8, 10)) : Math.floor(rand(8, 11)))
+            ? (mobile ? Math.floor(rand(8, 10)) : Math.floor(rand(6, 8)))
             : layer === "front"
-            ? (mobile ? Math.floor(rand(9, 11)) : Math.floor(rand(9, 12)))
-            : (mobile ? Math.floor(rand(9, 11)) : Math.floor(rand(9, 12)))
+            ? (mobile ? Math.floor(rand(9, 11)) : Math.floor(rand(7, 9)))
+            : (mobile ? Math.floor(rand(9, 11)) : Math.floor(rand(7, 9)))
         );
 
       const ringCount =
         custom.ringCount ??
         (
           layer === "back"
-            ? (mobile ? Math.floor(rand(7, 9)) : Math.floor(rand(7, 10)))
+            ? (mobile ? Math.floor(rand(7, 9)) : Math.floor(rand(5, 7)))
             : layer === "front"
-            ? (mobile ? Math.floor(rand(10, 12)) : Math.floor(rand(10, 13)))
-            : (mobile ? Math.floor(rand(9, 11)) : Math.floor(rand(9, 12)))
+            ? (mobile ? Math.floor(rand(10, 12)) : Math.floor(rand(7, 9)))
+            : (mobile ? Math.floor(rand(9, 11)) : Math.floor(rand(6, 8)))
         );
 
       const spokes = [];
@@ -1212,13 +1212,13 @@
 
         const baseThickness =
           theme === "red"
-            ? layer === "front" ? rand(1.30, 2.24) : layer === "back" ? rand(0.82, 1.22) : rand(1.06, 1.58)
-            : layer === "front" ? rand(1.04, 1.62) : layer === "back" ? rand(0.62, 0.96) : rand(0.86, 1.18);
+            ? layer === "front" ? rand(1.18, 1.90) : layer === "back" ? rand(0.72, 1.02) : rand(0.96, 1.34)
+            : layer === "front" ? rand(0.94, 1.40) : layer === "back" ? rand(0.56, 0.82) : rand(0.76, 1.00);
 
         const baseAlpha =
           theme === "red"
-            ? layer === "front" ? rand(0.30, 0.48) : layer === "back" ? rand(0.10, 0.16) : rand(0.19, 0.30)
-            : layer === "front" ? rand(0.14, 0.21) : layer === "back" ? rand(0.05, 0.08) : rand(0.09, 0.15);
+            ? layer === "front" ? rand(0.24, 0.40) : layer === "back" ? rand(0.08, 0.13) : rand(0.16, 0.24)
+            : layer === "front" ? rand(0.11, 0.18) : layer === "back" ? rand(0.04, 0.07) : rand(0.08, 0.12);
 
         spokes.push({
           angle,
@@ -1240,14 +1240,14 @@
         ratio += rand(0.055, 0.092);
 
         const ringThickness =
-          layer === "front" ? rand(1.06, 1.72) :
-          layer === "back" ? rand(0.60, 0.94) :
-          rand(0.86, 1.24);
+          layer === "front" ? rand(0.96, 1.42) :
+          layer === "back" ? rand(0.54, 0.80) :
+          rand(0.74, 1.02);
 
         const ringAlpha =
           theme === "red"
-            ? layer === "front" ? rand(0.16, 0.24) : layer === "back" ? rand(0.05, 0.08) : rand(0.10, 0.15)
-            : layer === "front" ? rand(0.07, 0.12) : layer === "back" ? rand(0.025, 0.042) : rand(0.045, 0.08);
+            ? layer === "front" ? rand(0.12, 0.19) : layer === "back" ? rand(0.04, 0.065) : rand(0.08, 0.12)
+            : layer === "front" ? rand(0.055, 0.095) : layer === "back" ? rand(0.022, 0.038) : rand(0.04, 0.065);
 
         rings.push({
           ratio,
@@ -1289,37 +1289,37 @@
       const redMain = {
         x: w * (mobile ? 0.14 : 0.16),
         y: h * (mobile ? 0.22 : 0.26),
-        r: Math.max(w, h) * (mobile ? 0.60 : 0.64)
+        r: Math.max(w, h) * (mobile ? 0.60 : 0.60)
       };
 
       const whiteMain = {
         x: w * (mobile ? 0.88 : 0.88),
         y: h * (mobile ? 0.56 : 0.58),
-        r: Math.max(w, h) * (mobile ? 0.48 : 0.54)
+        r: Math.max(w, h) * (mobile ? 0.48 : 0.48)
       };
 
       const whiteBottom = {
-        x: w * (mobile ? 0.50 : 0.52),
+        x: w * (mobile ? 0.50 : 0.54),
         y: h * (mobile ? 0.94 : 0.88),
-        r: Math.max(w, h) * (mobile ? 0.44 : 0.36)
+        r: Math.max(w, h) * (mobile ? 0.44 : 0.31)
       };
 
       webs.push(
         buildWeb(redMain.x, redMain.y, redMain.r * 1.04, "red", "back"),
-        buildWeb(whiteMain.x, whiteMain.y, whiteMain.r * 1.02, "white", "back", { spokeCount: mobile ? 7 : 8 }),
-        buildWeb(redMain.x, redMain.y, redMain.r, "red", "mid", { spokeCount: mobile ? 9 : 10 }),
-        buildWeb(whiteMain.x, whiteMain.y, whiteMain.r, "white", "mid", { spokeCount: mobile ? 7 : 8 }),
-        buildWeb(whiteBottom.x, whiteBottom.y, whiteBottom.r, "white", "mid", { spokeCount: mobile ? 8 : 7 }),
-        buildWeb(redMain.x, redMain.y, redMain.r * 0.98, "red", "front", { spokeCount: mobile ? 9 : 10 }),
-        buildWeb(whiteMain.x, whiteMain.y, whiteMain.r * 0.95, "white", "front", { spokeCount: mobile ? 7 : 8 }),
-        buildWeb(whiteBottom.x, whiteBottom.y, whiteBottom.r * 0.92, "white", "front", { spokeCount: mobile ? 8 : 7 })
+        buildWeb(whiteMain.x, whiteMain.y, whiteMain.r * 1.02, "white", "back", { spokeCount: mobile ? 7 : 6 }),
+        buildWeb(redMain.x, redMain.y, redMain.r, "red", "mid", { spokeCount: mobile ? 9 : 8 }),
+        buildWeb(whiteMain.x, whiteMain.y, whiteMain.r, "white", "mid", { spokeCount: mobile ? 7 : 6 }),
+        buildWeb(whiteBottom.x, whiteBottom.y, whiteBottom.r, "white", "mid", { spokeCount: mobile ? 8 : 5 }),
+        buildWeb(redMain.x, redMain.y, redMain.r * 0.98, "red", "front", { spokeCount: mobile ? 9 : 8 }),
+        buildWeb(whiteMain.x, whiteMain.y, whiteMain.r * 0.95, "white", "front", { spokeCount: mobile ? 7 : 6 }),
+        buildWeb(whiteBottom.x, whiteBottom.y, whiteBottom.r * 0.92, "white", "front", { spokeCount: mobile ? 8 : 5 })
       );
 
       const mainA = webs[2];
       const mainB = webs[3];
       const bottomWeb = webs[7];
 
-      for (let i = 0; i < 14; i++) {
+      for (let i = 0; i < (mobile ? 14 : 9); i++) {
         crossThreads.push({
           aWeb: mainA,
           bWeb: mainB,
@@ -1334,7 +1334,7 @@
         });
       }
 
-      for (let i = 0; i < 10; i++) {
+      for (let i = 0; i < (mobile ? 10 : 6); i++) {
         crossThreads.push({
           aWeb: mainB,
           bWeb: bottomWeb,
@@ -1349,7 +1349,7 @@
         });
       }
 
-      const microCount = mobile ? 170 : 220;
+      const microCount = mobile ? 170 : 110;
       for (let i = 0; i < microCount; i++) {
         const wa = webs[Math.floor(rand(0, webs.length))];
         const wb = webs[Math.floor(rand(0, webs.length))];
@@ -1361,21 +1361,21 @@
           ta: rand(0.16, 0.90),
           tb: rand(0.16, 0.90),
           bend: rand(-4.5, 4.5),
-          alpha: rand(0.013, 0.028),
-          width: rand(0.30, 0.60),
+          alpha: rand(0.010, 0.020),
+          width: rand(0.24, 0.48),
           phase: rand(0, Math.PI * 2)
         });
       }
 
-      const overlapCount = mobile ? 118 : 110;
+      const overlapCount = mobile ? 118 : 56;
       for (let i = 0; i < overlapCount; i++) {
         overlapWeave.push({
           x1: rand(w * 0.10, w * 0.88),
           y1: rand(h * 0.02, h * 1.02),
           x2: rand(w * 0.16, w * 0.96),
           y2: rand(h * 0.08, h * 1.08),
-          alpha: rand(0.014, 0.030),
-          width: rand(0.30, 0.60),
+          alpha: rand(0.010, 0.020),
+          width: rand(0.24, 0.46),
           bend: rand(-6, 6),
           phase: rand(0, Math.PI * 2)
         });
@@ -1435,8 +1435,8 @@
       const g = ctx.createRadialGradient(web.cx, web.cy, 0, web.cx, web.cy, web.radius * 1.04);
       const baseA =
         web.theme === "red"
-          ? (web.layer === "front" ? 0.060 : web.layer === "mid" ? 0.036 : 0.020)
-          : (web.layer === "front" ? 0.030 : web.layer === "mid" ? 0.018 : 0.011);
+          ? (web.layer === "front" ? 0.042 : web.layer === "mid" ? 0.026 : 0.015)
+          : (web.layer === "front" ? 0.022 : web.layer === "mid" ? 0.014 : 0.009);
 
       g.addColorStop(0, `rgba(${web.glow},${baseA})`);
       g.addColorStop(0.24, `rgba(${web.glow},${baseA * 0.40})`);
