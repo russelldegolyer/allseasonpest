@@ -26,7 +26,6 @@
       --text:#ffffff;
       --muted:rgba(255,255,255,.78);
       --muted-soft:rgba(255,255,255,.66);
-      --line:rgba(255,255,255,.10);
       --red:#ff2a2a;
       --shadow:0 16px 50px rgba(0,0,0,.28);
       --glow:0 0 20px rgba(255,255,255,.10);
@@ -201,39 +200,7 @@
       color:rgba(255,255,255,.88);
       font-size:1.08rem;
       line-height:1.68;
-      margin-bottom:28px;
-    }
-
-    .hero-actions{
-      display:flex;
-      gap:12px;
-      flex-wrap:wrap;
-    }
-
-    .hero-actions a{
-      display:inline-flex;
-      align-items:center;
-      justify-content:center;
-      min-width:162px;
-      padding:14px 18px;
-      border-radius:14px;
-      border:1px solid rgba(255,255,255,.10);
-      background:
-        linear-gradient(180deg, rgba(255,255,255,.035), rgba(255,255,255,.012)),
-        rgba(8,8,8,.78);
-      color:#fff;
-      font-family:"Oswald", Arial, sans-serif;
-      font-size:.86rem;
-      font-weight:600;
-      letter-spacing:.12em;
-      text-transform:uppercase;
-      transition:.2s ease;
-    }
-
-    .hero-actions a:hover{
-      transform:translateY(-2px);
-      border-color:rgba(255,255,255,.18);
-      box-shadow:0 0 20px rgba(255,255,255,.06);
+      margin-bottom:0;
     }
 
     .hero-side{
@@ -728,17 +695,7 @@
       .hero-lead{
         font-size:.98rem;
         line-height:1.7;
-        margin-bottom:20px;
-      }
-
-      .hero-actions{
-        gap:10px;
-      }
-
-      .hero-actions a{
-        min-width:calc(50% - 5px);
-        font-size:.76rem;
-        padding:13px 12px;
+        margin-bottom:0;
       }
 
       .hero-stat{
@@ -862,10 +819,6 @@
         font-size:2.6rem;
       }
 
-      .hero-actions a{
-        min-width:100%;
-      }
-
       .section{
         padding:30px 14px 48px;
       }
@@ -943,12 +896,6 @@
         <p class="hero-lead">
           Built around safe treatments, dependable service, and real protection that holds up through the seasons. No bloated packages. No pressure-heavy sales routine. Just solid pest control done the right way.
         </p>
-
-        <div class="hero-actions">
-          <a href="tel:8709197114">Call</a>
-          <a href="sms:8709197114">Text</a>
-          <a href="mailto:gmail@allseasonpestllc.com">Email</a>
-        </div>
       </div>
 
       <div class="hero-side">
@@ -1292,11 +1239,9 @@
       webs.push(
         buildWeb(redMain.x, redMain.y, redMain.r * 1.04, "red", "back"),
         buildWeb(whiteMain.x, whiteMain.y, whiteMain.r * 1.02, "white", "back", { spokeCount: mobile ? 7 : 8 }),
-
         buildWeb(redMain.x, redMain.y, redMain.r, "red", "mid", { spokeCount: mobile ? 9 : 10 }),
         buildWeb(whiteMain.x, whiteMain.y, whiteMain.r, "white", "mid", { spokeCount: mobile ? 7 : 8 }),
         buildWeb(whiteBottom.x, whiteBottom.y, whiteBottom.r, "white", "mid", { spokeCount: mobile ? 6 : 7 }),
-
         buildWeb(redMain.x, redMain.y, redMain.r * 0.98, "red", "front", { spokeCount: mobile ? 9 : 10 }),
         buildWeb(whiteMain.x, whiteMain.y, whiteMain.r * 0.95, "white", "front", { spokeCount: mobile ? 7 : 8 })
       );
@@ -1322,7 +1267,7 @@
       const microCount = mobile ? 145 : 210;
       for (let i = 0; i < microCount; i++) {
         const wa = webs[Math.floor(rand(0, webs.length))];
-        const wb = webs[Math.floor(rand(0, wb ? webs.length : webs.length))];
+        const wb = webs[Math.floor(rand(0, webs.length))];
         microThreads.push({
           wa,
           wb,
