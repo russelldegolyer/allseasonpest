@@ -259,9 +259,9 @@
       inset:0;
       pointer-events:none;
       background:
-        radial-gradient(circle at 20% 12%, rgba(255,42,42,.07), transparent 24%),
-        radial-gradient(circle at 82% 34%, rgba(255,42,42,.06), transparent 24%),
-        radial-gradient(circle at 52% 78%, rgba(255,42,42,.04), transparent 28%);
+        radial-gradient(circle at 20% 12%, rgba(255,42,42,.08), transparent 24%),
+        radial-gradient(circle at 82% 34%, rgba(255,42,42,.07), transparent 24%),
+        radial-gradient(circle at 52% 78%, rgba(255,42,42,.05), transparent 28%);
       z-index:0;
     }
 
@@ -275,9 +275,9 @@
       pointer-events:none;
       opacity:1;
       filter:
-        drop-shadow(0 0 6px rgba(255,80,80,.18))
-        drop-shadow(0 0 12px rgba(255,80,80,.12))
-        drop-shadow(0 0 14px rgba(255,255,255,.04));
+        drop-shadow(0 0 8px rgba(255,80,80,.24))
+        drop-shadow(0 0 16px rgba(255,80,80,.16))
+        drop-shadow(0 0 18px rgba(255,255,255,.06));
     }
 
     .section{
@@ -337,10 +337,10 @@
       border:1px solid rgba(255,255,255,.10);
       border-radius:30px;
       background:
-        linear-gradient(180deg, rgba(10,10,10,.42), rgba(6,6,6,.50));
+        linear-gradient(180deg, rgba(10,10,10,.34), rgba(6,6,6,.42));
       box-shadow:var(--shadow);
       overflow:hidden;
-      backdrop-filter:blur(2px);
+      backdrop-filter:blur(1.5px);
     }
 
     .panel > *{
@@ -354,7 +354,8 @@
 
     .mission-box h3,
     .value-box h3,
-    .service-block h3{
+    .service-block h3,
+    .difference-card h3{
       font-family:"Oswald", Arial, sans-serif;
       font-size:1.95rem;
       line-height:1;
@@ -373,12 +374,12 @@
 
     .value-box{
       background:
-        linear-gradient(180deg, rgba(10,10,10,.48), rgba(5,5,5,.56));
+        linear-gradient(180deg, rgba(10,10,10,.36), rgba(5,5,5,.44));
       padding:34px 34px 32px;
       border:1px solid rgba(255,255,255,.10);
       border-radius:30px;
       box-shadow:var(--shadow);
-      backdrop-filter:blur(2px);
+      backdrop-filter:blur(1.5px);
     }
 
     .value-stack{
@@ -390,7 +391,7 @@
     .value-item{
       border:1px solid rgba(255,255,255,.09);
       border-radius:18px;
-      background:rgba(255,255,255,.02);
+      background:rgba(255,255,255,.018);
       padding:16px 16px 15px;
     }
 
@@ -449,12 +450,12 @@
 
     .difference-list{
       background:
-        linear-gradient(180deg, rgba(10,10,10,.48), rgba(5,5,5,.58));
+        linear-gradient(180deg, rgba(10,10,10,.36), rgba(5,5,5,.44));
       border:1px solid rgba(255,255,255,.10);
       border-radius:30px;
       box-shadow:var(--shadow);
       padding:32px;
-      backdrop-filter:blur(2px);
+      backdrop-filter:blur(1.5px);
     }
 
     .difference-list h3{
@@ -523,7 +524,6 @@
       text-transform:uppercase;
     }
 
-    /* bottom section copied to match about.html structure */
     .bottom-cta-wrap{
       position:relative;
       z-index:1;
@@ -537,13 +537,12 @@
       position:relative;
       width:100%;
       border-radius:28px;
-      border:1px solid rgba(255,255,255,.08);
-      background:
-        linear-gradient(180deg, rgba(255,255,255,.004), rgba(255,255,255,.001)),
-        rgba(0,0,0,.995);
-      box-shadow:0 18px 60px rgba(0,0,0,.58);
+      border:1px solid rgba(255,255,255,.045);
+      background:rgba(0,0,0,.22);
+      box-shadow:0 12px 40px rgba(0,0,0,.22);
       overflow:hidden;
       isolation:isolate;
+      backdrop-filter:blur(1.5px);
     }
 
     .bottom-cta-shell::before{
@@ -551,9 +550,9 @@
       position:absolute;
       inset:0;
       background:
-        radial-gradient(circle at 18% 14%, rgba(255,42,42,.035), transparent 22%),
-        radial-gradient(circle at 82% 20%, rgba(255,42,42,.02), transparent 24%),
-        radial-gradient(circle at 50% 100%, rgba(255,255,255,.035), transparent 34%);
+        radial-gradient(circle at 18% 14%, rgba(255,42,42,.05), transparent 22%),
+        radial-gradient(circle at 82% 20%, rgba(255,42,42,.03), transparent 24%),
+        radial-gradient(circle at 50% 100%, rgba(255,255,255,.03), transparent 34%);
       pointer-events:none;
       z-index:1;
     }
@@ -561,10 +560,10 @@
     .bottom-cta-inner{
       position:relative;
       z-index:3;
-      padding:22px 22px 18px;
+      padding:18px 18px 12px;
       display:flex;
       flex-direction:column;
-      gap:20px;
+      gap:16px;
     }
 
     .cta-panel{
@@ -572,18 +571,17 @@
       overflow:hidden;
       isolation:isolate;
       border-radius:22px;
-      border:1px solid rgba(255,255,255,.085);
-      background:
-        linear-gradient(180deg, rgba(255,255,255,.006), rgba(255,255,255,.001)),
-        rgba(0,0,0,.975);
-      padding:20px;
+      border:1px solid rgba(255,255,255,.065);
+      background:rgba(0,0,0,.10);
+      padding:16px;
+      backdrop-filter:blur(.6px);
     }
 
     .cta-panel::after{
       content:"";
       position:absolute;
       inset:0;
-      background:linear-gradient(180deg, rgba(0,0,0,.18), rgba(0,0,0,.12));
+      background:linear-gradient(180deg, rgba(0,0,0,.04), rgba(0,0,0,.08));
       z-index:1;
       pointer-events:none;
     }
@@ -602,39 +600,39 @@
       justify-content:center;
       min-height:58px;
       border-radius:16px;
-      border:1px solid rgba(255,255,255,.065);
-      background:
-        linear-gradient(180deg, rgba(255,255,255,.003), rgba(255,255,255,.001)),
-        rgba(0,0,0,.96);
+      border:1px solid rgba(255,255,255,.08);
+      background:rgba(0,0,0,.08);
       color:#fff;
       font-family:"Oswald", Arial, sans-serif;
       font-size:.96rem;
       font-weight:600;
       letter-spacing:.08em;
       text-transform:uppercase;
-      transition:border-color .18s ease, box-shadow .18s ease, transform .18s ease;
+      transition:border-color .18s ease, box-shadow .18s ease, transform .18s ease, background .18s ease;
+      backdrop-filter:blur(.4px);
     }
 
     .cta-row a:hover{
       border-color:rgba(255,255,255,.22);
-      box-shadow:var(--glow);
+      background:rgba(255,255,255,.03);
+      box-shadow:0 0 18px rgba(255,255,255,.06);
       transform:translateY(-2px);
     }
 
     .footer{
       position:relative;
       z-index:3;
-      padding:0 22px 22px;
+      padding:0 18px 18px;
     }
 
     .footer-inner{
       border-top:1px solid rgba(255,255,255,.08);
-      padding-top:18px;
+      padding-top:16px;
       display:flex;
       justify-content:space-between;
       gap:12px;
       flex-wrap:wrap;
-      color:rgba(255,255,255,.54);
+      color:rgba(255,255,255,.58);
       font-size:.94rem;
     }
 
@@ -687,9 +685,9 @@
 
       .web-canvas{
         filter:
-          drop-shadow(0 0 8px rgba(255,80,80,.22))
-          drop-shadow(0 0 14px rgba(255,80,80,.15))
-          drop-shadow(0 0 16px rgba(255,255,255,.05));
+          drop-shadow(0 0 10px rgba(255,80,80,.28))
+          drop-shadow(0 0 18px rgba(255,80,80,.18))
+          drop-shadow(0 0 20px rgba(255,255,255,.08));
       }
 
       .panel,
@@ -697,7 +695,7 @@
       .difference-list,
       .hero-stat{
         background:
-          linear-gradient(180deg, rgba(10,10,10,.34), rgba(5,5,5,.42));
+          linear-gradient(180deg, rgba(10,10,10,.26), rgba(5,5,5,.34));
         backdrop-filter:blur(1px);
       }
 
@@ -792,6 +790,7 @@
 
       .bottom-cta-shell{
         border-radius:22px;
+        background:rgba(0,0,0,.16);
       }
 
       .bottom-cta-inner{
@@ -802,6 +801,7 @@
       .cta-panel{
         border-radius:18px;
         padding:12px;
+        background:rgba(0,0,0,.08);
       }
 
       .cta-row{
@@ -812,6 +812,7 @@
         min-height:52px;
         border-radius:14px;
         font-size:.9rem;
+        background:rgba(0,0,0,.06);
       }
 
       .footer{
@@ -1136,9 +1137,12 @@
     let microThreads = [];
     let overlapWeave = [];
 
-    let scrollTarget = 0;
-    let scrollEase = 0;
+    let scrollProgressTarget = 0;
+    let scrollProgress = 0;
+    let scrollVelocityTarget = 0;
+    let scrollVelocity = 0;
     let lastScrollY = window.scrollY;
+    let scrollRafPending = false;
 
     function rand(min, max) {
       return Math.random() * (max - min) + min;
@@ -1171,6 +1175,7 @@
 
       ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
       buildScene();
+      updateScrollTargets();
     }
 
     function buildWeb(cx, cy, radius, theme = "red", layer = "mid", custom = {}) {
@@ -1207,13 +1212,13 @@
 
         const baseThickness =
           theme === "red"
-            ? layer === "front" ? rand(1.22, 2.10) : layer === "back" ? rand(0.78, 1.16) : rand(1.00, 1.48)
-            : layer === "front" ? rand(1.00, 1.56) : layer === "back" ? rand(0.58, 0.92) : rand(0.82, 1.14);
+            ? layer === "front" ? rand(1.30, 2.24) : layer === "back" ? rand(0.82, 1.22) : rand(1.06, 1.58)
+            : layer === "front" ? rand(1.04, 1.62) : layer === "back" ? rand(0.62, 0.96) : rand(0.86, 1.18);
 
         const baseAlpha =
           theme === "red"
-            ? layer === "front" ? rand(0.26, 0.42) : layer === "back" ? rand(0.08, 0.14) : rand(0.16, 0.26)
-            : layer === "front" ? rand(0.12, 0.19) : layer === "back" ? rand(0.04, 0.07) : rand(0.08, 0.13);
+            ? layer === "front" ? rand(0.30, 0.48) : layer === "back" ? rand(0.10, 0.16) : rand(0.19, 0.30)
+            : layer === "front" ? rand(0.14, 0.21) : layer === "back" ? rand(0.05, 0.08) : rand(0.09, 0.15);
 
         spokes.push({
           angle,
@@ -1221,7 +1226,7 @@
           thickness: baseThickness,
           alpha: baseAlpha,
           curve: rand(-54, 54),
-          wobble: layer === "back" ? rand(0.8, 2.0) : layer === "front" ? rand(1.0, 3.3) : rand(1.0, 2.8),
+          wobble: layer === "back" ? rand(0.8, 2.0) : layer === "front" ? rand(1.0, 3.0) : rand(1.0, 2.5),
           phase: rand(0, Math.PI * 2),
           breakStart: shouldBreakHard ? rand(0.26, 0.68) : (Math.random() < 0.10 ? rand(0.54, 0.80) : null),
           breakLen: shouldBreakHard ? rand(0.12, 0.24) : rand(0.03, 0.08),
@@ -1235,21 +1240,21 @@
         ratio += rand(0.055, 0.092);
 
         const ringThickness =
-          layer === "front" ? rand(1.00, 1.62) :
-          layer === "back" ? rand(0.58, 0.90) :
-          rand(0.82, 1.18);
+          layer === "front" ? rand(1.06, 1.72) :
+          layer === "back" ? rand(0.60, 0.94) :
+          rand(0.86, 1.24);
 
         const ringAlpha =
           theme === "red"
-            ? layer === "front" ? rand(0.14, 0.22) : layer === "back" ? rand(0.04, 0.07) : rand(0.09, 0.14)
-            : layer === "front" ? rand(0.06, 0.11) : layer === "back" ? rand(0.022, 0.04) : rand(0.04, 0.075);
+            ? layer === "front" ? rand(0.16, 0.24) : layer === "back" ? rand(0.05, 0.08) : rand(0.10, 0.15)
+            : layer === "front" ? rand(0.07, 0.12) : layer === "back" ? rand(0.025, 0.042) : rand(0.045, 0.08);
 
         rings.push({
           ratio,
           thickness: ringThickness,
           alpha: ringAlpha,
           sag: rand(-18, 20),
-          jitter: layer === "back" ? rand(0.5, 1.0) : layer === "front" ? rand(0.7, 1.7) : rand(0.7, 1.4),
+          jitter: layer === "back" ? rand(0.45, 0.9) : layer === "front" ? rand(0.55, 1.15) : rand(0.55, 1.0),
           partialStart: rand(0.05, 0.18),
           partialEnd: rand(0.80, 0.99),
           dropout: rand(0.08, 0.20)
@@ -1265,11 +1270,11 @@
         spokes,
         rings,
         glow: theme === "red" ? "255,72,72" : "255,255,255",
-        motion: layer === "back" ? rand(0.0008, 0.0014) : layer === "front" ? rand(0.0014, 0.0021) : rand(0.0010, 0.0017),
+        motion: layer === "back" ? rand(0.00055, 0.00095) : layer === "front" ? rand(0.00085, 0.00120) : rand(0.00068, 0.00105),
         scrollFactor:
-          layer === "back" ? rand(0.10, 0.18) :
-          layer === "front" ? rand(0.20, 0.30) :
-          rand(0.15, 0.22)
+          layer === "back" ? rand(0.12, 0.18) :
+          layer === "front" ? rand(0.18, 0.26) :
+          rand(0.14, 0.22)
       };
     }
 
@@ -1296,7 +1301,7 @@
       const whiteBottom = {
         x: w * (mobile ? 0.50 : 0.52),
         y: h * (mobile ? 0.94 : 0.88),
-        r: Math.max(w, h) * (mobile ? 0.42 : 0.34)
+        r: Math.max(w, h) * (mobile ? 0.44 : 0.36)
       };
 
       webs.push(
@@ -1322,9 +1327,9 @@
           bSpoke: (i * 2 + 3) % mainB.spokes.length,
           ta: rand(0.22, 0.76),
           tb: rand(0.22, 0.72),
-          bend: rand(-10, 10),
-          alpha: rand(0.018, 0.036),
-          width: rand(0.52, 0.92),
+          bend: rand(-8, 8),
+          alpha: rand(0.020, 0.040),
+          width: rand(0.54, 0.96),
           phase: rand(0, Math.PI * 2)
         });
       }
@@ -1337,14 +1342,14 @@
           bSpoke: (i * 2 + 1) % bottomWeb.spokes.length,
           ta: rand(0.26, 0.74),
           tb: rand(0.18, 0.62),
-          bend: rand(-8, 8),
-          alpha: rand(0.016, 0.032),
-          width: rand(0.44, 0.78),
+          bend: rand(-6, 6),
+          alpha: rand(0.018, 0.034),
+          width: rand(0.46, 0.82),
           phase: rand(0, Math.PI * 2)
         });
       }
 
-      const microCount = mobile ? 165 : 210;
+      const microCount = mobile ? 170 : 220;
       for (let i = 0; i < microCount; i++) {
         const wa = webs[Math.floor(rand(0, webs.length))];
         const wb = webs[Math.floor(rand(0, webs.length))];
@@ -1355,23 +1360,23 @@
           sb: Math.floor(rand(0, wb.spokes.length)),
           ta: rand(0.16, 0.90),
           tb: rand(0.16, 0.90),
-          bend: rand(-6, 6),
-          alpha: rand(0.012, 0.026),
-          width: rand(0.28, 0.56),
+          bend: rand(-4.5, 4.5),
+          alpha: rand(0.013, 0.028),
+          width: rand(0.30, 0.60),
           phase: rand(0, Math.PI * 2)
         });
       }
 
-      const overlapCount = mobile ? 110 : 104;
+      const overlapCount = mobile ? 118 : 110;
       for (let i = 0; i < overlapCount; i++) {
         overlapWeave.push({
           x1: rand(w * 0.10, w * 0.88),
           y1: rand(h * 0.02, h * 1.02),
           x2: rand(w * 0.16, w * 0.96),
           y2: rand(h * 0.08, h * 1.08),
-          alpha: rand(0.012, 0.028),
-          width: rand(0.28, 0.58),
-          bend: rand(-8, 8),
+          alpha: rand(0.014, 0.030),
+          width: rand(0.30, 0.60),
+          bend: rand(-6, 6),
           phase: rand(0, Math.PI * 2)
         });
       }
@@ -1393,7 +1398,7 @@
       const r = 255;
       const g = lerp(70, 255, mix);
       const b = lerp(70, 255, mix);
-      const a = alphaBase * (1.02 + Math.max(redInf, whiteInf) * 0.42);
+      const a = alphaBase * (1.04 + Math.max(redInf, whiteInf) * 0.46);
 
       return `rgba(${r.toFixed(0)},${g.toFixed(0)},${b.toFixed(0)},${a})`;
     }
@@ -1403,21 +1408,21 @@
       const normalX = Math.cos(spoke.angle + Math.PI / 2);
       const normalY = Math.sin(spoke.angle + Math.PI / 2);
 
-      const motionBlend = tick * web.motion + scrollEase * web.scrollFactor;
+      const motionBlend = tick * web.motion + scrollProgress * web.scrollFactor + scrollVelocity * 0.18;
 
       const wiggle =
         Math.sin(motionBlend + spoke.phase + p * 2.1) *
         spoke.wobble *
-        (0.16 + p * 0.16);
+        (0.10 + p * 0.10);
 
       const curve =
-        Math.sin((p * Math.PI * 0.82) + spoke.phase * 0.28 + motionBlend * 0.55) *
+        Math.sin((p * Math.PI * 0.82) + spoke.phase * 0.28 + motionBlend * 0.45) *
         spoke.curve *
-        (0.34 + p * 0.46);
+        (0.30 + p * 0.40);
 
       return {
-        x: web.cx + Math.cos(spoke.angle) * baseR + normalX * (wiggle + curve * 0.36),
-        y: web.cy + Math.sin(spoke.angle) * baseR + normalY * (wiggle + extraSag + curve * 0.36)
+        x: web.cx + Math.cos(spoke.angle) * baseR + normalX * (wiggle + curve * 0.34),
+        y: web.cy + Math.sin(spoke.angle) * baseR + normalY * (wiggle + extraSag + curve * 0.34)
       };
     }
 
@@ -1430,8 +1435,8 @@
       const g = ctx.createRadialGradient(web.cx, web.cy, 0, web.cx, web.cy, web.radius * 1.04);
       const baseA =
         web.theme === "red"
-          ? (web.layer === "front" ? 0.050 : web.layer === "mid" ? 0.030 : 0.018)
-          : (web.layer === "front" ? 0.026 : web.layer === "mid" ? 0.016 : 0.010);
+          ? (web.layer === "front" ? 0.060 : web.layer === "mid" ? 0.036 : 0.020)
+          : (web.layer === "front" ? 0.030 : web.layer === "mid" ? 0.018 : 0.011);
 
       g.addColorStop(0, `rgba(${web.glow},${baseA})`);
       g.addColorStop(0.24, `rgba(${web.glow},${baseA * 0.40})`);
@@ -1492,15 +1497,15 @@
         sorted.forEach((spoke, i) => {
           const p = ring.ratio;
           if (p < ring.partialStart || p > ring.partialEnd) return;
-          if (Math.random() < ring.dropout * 0.06) return;
+          if (Math.random() < ring.dropout * 0.05) return;
           if (isBroken(spoke, p)) return;
 
           const pt = pointOnSpoke(
             web,
             spoke,
             p,
-            Math.sin((tick * web.motion * 0.7) + scrollEase * 0.10 + i + ringIndex) * ring.jitter +
-            ring.sag * 0.09
+            Math.sin((tick * web.motion * 0.5) + scrollProgress * 0.06 + i + ringIndex) * ring.jitter +
+            ring.sag * 0.08
           );
 
           points.push(pt);
@@ -1538,8 +1543,8 @@
         const p1 = pointOnSpoke(thread.aWeb, spokeA, thread.ta);
         const p2 = pointOnSpoke(thread.bWeb, spokeB, thread.tb);
 
-        const mx = (p1.x + p2.x) * 0.5 + Math.sin(tick * 0.0018 + scrollEase * 0.08 + thread.phase) * thread.bend;
-        const my = (p1.y + p2.y) * 0.5 + Math.cos(tick * 0.0018 + scrollEase * 0.08 + thread.phase) * (thread.bend * 0.65);
+        const mx = (p1.x + p2.x) * 0.5 + Math.sin(tick * 0.0010 + scrollProgress * 0.05 + thread.phase) * thread.bend;
+        const my = (p1.y + p2.y) * 0.5 + Math.cos(tick * 0.0010 + scrollProgress * 0.05 + thread.phase) * (thread.bend * 0.65);
 
         ctx.beginPath();
         ctx.moveTo(p1.x, p1.y);
@@ -1562,8 +1567,8 @@
 
         if (dist(p1.x, p1.y, p2.x, p2.y) > Math.min(w, h) * 0.24) return;
 
-        const mx = (p1.x + p2.x) * 0.5 + Math.sin(tick * 0.0014 + scrollEase * 0.06 + thread.phase) * thread.bend;
-        const my = (p1.y + p2.y) * 0.5 + Math.cos(tick * 0.0014 + scrollEase * 0.06 + thread.phase) * (thread.bend * 0.65);
+        const mx = (p1.x + p2.x) * 0.5 + Math.sin(tick * 0.0009 + scrollProgress * 0.04 + thread.phase) * thread.bend;
+        const my = (p1.y + p2.y) * 0.5 + Math.cos(tick * 0.0009 + scrollProgress * 0.04 + thread.phase) * (thread.bend * 0.65);
 
         ctx.beginPath();
         ctx.moveTo(p1.x, p1.y);
@@ -1576,13 +1581,13 @@
 
     function drawOverlapWeave() {
       overlapWeave.forEach((thread) => {
-        const x1 = thread.x1 + Math.sin(tick * 0.0012 + scrollEase * 0.05 + thread.phase) * 3;
-        const y1 = thread.y1 + Math.cos(tick * 0.0011 + scrollEase * 0.05 + thread.phase) * 3;
-        const x2 = thread.x2 + Math.cos(tick * 0.0011 + scrollEase * 0.05 + thread.phase) * 3;
-        const y2 = thread.y2 + Math.sin(tick * 0.0013 + scrollEase * 0.05 + thread.phase) * 3;
+        const x1 = thread.x1 + Math.sin(tick * 0.0008 + scrollProgress * 0.035 + thread.phase) * 2.2;
+        const y1 = thread.y1 + Math.cos(tick * 0.0008 + scrollProgress * 0.035 + thread.phase) * 2.2;
+        const x2 = thread.x2 + Math.cos(tick * 0.0008 + scrollProgress * 0.035 + thread.phase) * 2.2;
+        const y2 = thread.y2 + Math.sin(tick * 0.0009 + scrollProgress * 0.035 + thread.phase) * 2.2;
 
-        const mx = (x1 + x2) * 0.5 + Math.sin(tick * 0.0012 + scrollEase * 0.05 + thread.phase) * thread.bend;
-        const my = (y1 + y2) * 0.5 + Math.cos(tick * 0.0011 + scrollEase * 0.05 + thread.phase) * (thread.bend * 0.7);
+        const mx = (x1 + x2) * 0.5 + Math.sin(tick * 0.0008 + scrollProgress * 0.035 + thread.phase) * thread.bend;
+        const my = (y1 + y2) * 0.5 + Math.cos(tick * 0.0008 + scrollProgress * 0.035 + thread.phase) * (thread.bend * 0.7);
 
         ctx.beginPath();
         ctx.moveTo(x1, y1);
@@ -1603,9 +1608,36 @@
       ctx.fill();
     }
 
+    function updateScrollTargets() {
+      const maxScroll = Math.max(1, document.documentElement.scrollHeight - window.innerHeight);
+      const currentY = window.scrollY || window.pageYOffset || 0;
+
+      scrollProgressTarget = (currentY / maxScroll) * 18;
+
+      const delta = currentY - lastScrollY;
+      lastScrollY = currentY;
+
+      scrollVelocityTarget += delta * 0.015;
+      scrollVelocityTarget = clamp(scrollVelocityTarget, -2.4, 2.4);
+    }
+
+    function handleScroll() {
+      updateScrollTargets();
+
+      if (!scrollRafPending) {
+        scrollRafPending = true;
+        requestAnimationFrame(() => {
+          scrollRafPending = false;
+          updateScrollTargets();
+        });
+      }
+    }
+
     function updateScrollInfluence() {
-      scrollEase += (scrollTarget - scrollEase) * 0.06;
-      scrollTarget *= 0.94;
+      scrollProgress += (scrollProgressTarget - scrollProgress) * 0.045;
+      scrollVelocity += (scrollVelocityTarget - scrollVelocity) * 0.08;
+      scrollVelocityTarget *= 0.90;
+      scrollVelocity *= 0.985;
     }
 
     function render() {
@@ -1633,15 +1665,6 @@
 
       tick += 1;
       requestAnimationFrame(render);
-    }
-
-    function handleScroll() {
-      const currentY = window.scrollY;
-      const delta = currentY - lastScrollY;
-      lastScrollY = currentY;
-
-      scrollTarget += delta * 0.02;
-      scrollTarget = clamp(scrollTarget, -8, 8);
     }
 
     window.addEventListener("scroll", handleScroll, { passive: true });
