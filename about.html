@@ -173,9 +173,9 @@
       pointer-events:none;
       opacity:1;
       filter:
-        drop-shadow(0 0 5px rgba(255,70,70,.12))
-        drop-shadow(0 0 10px rgba(255,70,70,.10))
-        drop-shadow(0 0 8px rgba(255,255,255,.06));
+        drop-shadow(0 0 5px rgba(255,70,70,.115))
+        drop-shadow(0 0 10px rgba(255,70,70,.095))
+        drop-shadow(0 0 8px rgba(255,255,255,.057));
     }
 
     .founder-card::after,
@@ -592,8 +592,8 @@
 
           const baseAlpha =
             theme === "red"
-              ? layer === "front" ? rand(0.30, 0.48) : layer === "back" ? rand(0.10, 0.18) : rand(0.18, 0.30)
-              : layer === "front" ? rand(0.16, 0.26) : layer === "back" ? rand(0.06, 0.11) : rand(0.10, 0.18);
+              ? layer === "front" ? rand(0.285, 0.456) : layer === "back" ? rand(0.095, 0.171) : rand(0.171, 0.285)
+              : layer === "front" ? rand(0.152, 0.247) : layer === "back" ? rand(0.057, 0.105) : rand(0.095, 0.171);
 
           spokes.push({
             angle,
@@ -621,8 +621,8 @@
 
           const ringAlpha =
             theme === "red"
-              ? layer === "front" ? rand(0.16, 0.28) : layer === "back" ? rand(0.06, 0.12) : rand(0.10, 0.18)
-              : layer === "front" ? rand(0.09, 0.16) : layer === "back" ? rand(0.04, 0.08) : rand(0.06, 0.12);
+              ? layer === "front" ? rand(0.152, 0.266) : layer === "back" ? rand(0.057, 0.114) : rand(0.095, 0.171)
+              : layer === "front" ? rand(0.086, 0.152) : layer === "back" ? rand(0.038, 0.076) : rand(0.057, 0.114);
 
           rings.push({
             ratio,
@@ -661,24 +661,68 @@
 
         const mobile = window.innerWidth < 768;
         const isCTA = box.classList.contains("cta-panel");
+        const card = box.closest(".founder-card");
+        const nameEl = card ? card.querySelector(".founder-name") : null;
+        const cardName = nameEl ? nameEl.textContent.trim().toLowerCase() : "";
+        const isZamirCard = !isCTA && cardName === "zamir";
 
-        const redMain = {
-          x: w * (isCTA ? 0.18 : 0.16),
-          y: h * (isCTA ? 0.54 : 0.36),
-          r: Math.max(w, h) * (mobile ? (isCTA ? 0.54 : 0.52) : (isCTA ? 0.50 : 0.48))
-        };
+        let redMain, whiteMain, whiteTop;
 
-        const whiteMain = {
-          x: w * (isCTA ? 0.82 : 0.84),
-          y: h * (isCTA ? 0.52 : 0.74),
-          r: Math.max(w, h) * (mobile ? (isCTA ? 0.48 : 0.44) : (isCTA ? 0.44 : 0.40))
-        };
+        if (isCTA) {
+          redMain = {
+            x: w * 0.18,
+            y: h * 0.54,
+            r: Math.max(w, h) * (mobile ? 0.54 : 0.50)
+          };
 
-        const whiteTop = {
-          x: w * 0.66,
-          y: h * 0.10,
-          r: Math.max(w, h) * (mobile ? 0.18 : 0.16)
-        };
+          whiteMain = {
+            x: w * 0.82,
+            y: h * 0.52,
+            r: Math.max(w, h) * (mobile ? 0.48 : 0.44)
+          };
+
+          whiteTop = {
+            x: w * 0.66,
+            y: h * 0.10,
+            r: Math.max(w, h) * (mobile ? 0.18 : 0.16)
+          };
+        } else if (isZamirCard) {
+          redMain = {
+            x: w * 0.82,
+            y: h * 0.34,
+            r: Math.max(w, h) * (mobile ? 0.48 : 0.44)
+          };
+
+          whiteMain = {
+            x: w * 0.18,
+            y: h * 0.78,
+            r: Math.max(w, h) * (mobile ? 0.50 : 0.46)
+          };
+
+          whiteTop = {
+            x: w * 0.32,
+            y: h * 0.14,
+            r: Math.max(w, h) * (mobile ? 0.20 : 0.18)
+          };
+        } else {
+          redMain = {
+            x: w * 0.16,
+            y: h * 0.36,
+            r: Math.max(w, h) * (mobile ? 0.52 : 0.48)
+          };
+
+          whiteMain = {
+            x: w * 0.84,
+            y: h * 0.74,
+            r: Math.max(w, h) * (mobile ? 0.44 : 0.40)
+          };
+
+          whiteTop = {
+            x: w * 0.66,
+            y: h * 0.10,
+            r: Math.max(w, h) * (mobile ? 0.18 : 0.16)
+          };
+        }
 
         webs.push(
           buildWeb(redMain.x, redMain.y, redMain.r * 1.02, "red", "back"),
@@ -704,7 +748,7 @@
             ta: rand(0.22, 0.74),
             tb: rand(0.20, 0.72),
             bend: rand(-10, 10),
-            alpha: rand(0.025, 0.050),
+            alpha: rand(0.024, 0.048),
             width: rand(0.42, 0.78),
             phase: rand(0, Math.PI * 2)
           });
@@ -722,7 +766,7 @@
             ta: rand(0.18, 0.92),
             tb: rand(0.18, 0.92),
             bend: rand(-6, 6),
-            alpha: rand(0.012, 0.028),
+            alpha: rand(0.011, 0.027),
             width: rand(0.24, 0.46),
             phase: rand(0, Math.PI * 2)
           });
@@ -735,7 +779,7 @@
             y1: rand(h * 0.08, h * 0.90),
             x2: rand(w * 0.24, w * 0.92),
             y2: rand(h * 0.14, h * 0.96),
-            alpha: rand(0.014, 0.030),
+            alpha: rand(0.013, 0.029),
             width: rand(0.24, 0.50),
             bend: rand(-8, 8),
             phase: rand(0, Math.PI * 2)
@@ -759,7 +803,7 @@
         const r = 255;
         const g = lerp(70, 255, mix);
         const b = lerp(70, 255, mix);
-        const a = alphaBase * (1.0 + Math.max(redInf, whiteInf) * 0.40);
+        const a = alphaBase * (1.0 + Math.max(redInf, whiteInf) * 0.38);
 
         return `rgba(${r.toFixed(0)},${g.toFixed(0)},${b.toFixed(0)},${a})`;
       }
@@ -796,8 +840,8 @@
         const g = ctx.createRadialGradient(web.cx, web.cy, 0, web.cx, web.cy, web.radius * 1.05);
         const baseA =
           web.theme === "red"
-            ? (web.layer === "front" ? 0.080 : web.layer === "mid" ? 0.045 : 0.022)
-            : (web.layer === "front" ? 0.050 : web.layer === "mid" ? 0.026 : 0.012);
+            ? (web.layer === "front" ? 0.076 : web.layer === "mid" ? 0.043 : 0.021)
+            : (web.layer === "front" ? 0.048 : web.layer === "mid" ? 0.025 : 0.011);
 
         g.addColorStop(0, `rgba(${web.glow},${baseA})`);
         g.addColorStop(0.26, `rgba(${web.glow},${baseA * 0.40})`);
@@ -960,7 +1004,7 @@
       }
 
       function drawCoreDim(web) {
-        const coreAlpha = web.theme === "red" ? 0.10 : 0.08;
+        const coreAlpha = web.theme === "red" ? 0.095 : 0.076;
         const coreRadius = web.layer === "front" ? 1.4 : 1.1;
 
         ctx.beginPath();
