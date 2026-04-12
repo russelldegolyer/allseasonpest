@@ -22,15 +22,15 @@
   <style>
     :root{
       --bg:#000000;
-      --panel:rgba(8,8,8,.82);
-      --panel-strong:rgba(6,6,6,.90);
+      --panel:rgba(8,8,8,.56);
+      --panel-strong:rgba(6,6,6,.66);
       --text:#ffffff;
-      --muted:rgba(255,255,255,.74);
-      --muted-soft:rgba(255,255,255,.60);
-      --line:rgba(255,255,255,.08);
-      --line-strong:rgba(255,255,255,.16);
+      --muted:rgba(255,255,255,.78);
+      --muted-soft:rgba(255,255,255,.66);
+      --line:rgba(255,255,255,.10);
+      --line-strong:rgba(255,255,255,.18);
       --red:#ff2a2a;
-      --shadow:0 16px 50px rgba(0,0,0,.40);
+      --shadow:0 16px 50px rgba(0,0,0,.28);
       --glow:0 0 20px rgba(255,255,255,.10);
       --max:1200px;
     }
@@ -250,8 +250,8 @@
       border:1px solid rgba(255,255,255,.10);
       border-radius:26px;
       background:
-        linear-gradient(180deg, rgba(14,14,14,.70), rgba(6,6,6,.82));
-      backdrop-filter:blur(8px);
+        linear-gradient(180deg, rgba(14,14,14,.54), rgba(6,6,6,.62));
+      backdrop-filter:blur(6px);
       box-shadow:var(--shadow);
       padding:24px 24px 22px;
     }
@@ -294,9 +294,9 @@
       inset:0;
       pointer-events:none;
       background:
-        radial-gradient(circle at 20% 12%, rgba(255,42,42,.06), transparent 24%),
-        radial-gradient(circle at 82% 34%, rgba(255,42,42,.05), transparent 24%),
-        radial-gradient(circle at 52% 78%, rgba(255,42,42,.03), transparent 28%);
+        radial-gradient(circle at 20% 12%, rgba(255,42,42,.07), transparent 24%),
+        radial-gradient(circle at 82% 34%, rgba(255,42,42,.06), transparent 24%),
+        radial-gradient(circle at 52% 78%, rgba(255,42,42,.04), transparent 28%);
       z-index:0;
     }
 
@@ -310,9 +310,9 @@
       pointer-events:none;
       opacity:1;
       filter:
-        drop-shadow(0 0 4px rgba(255,80,80,.12))
-        drop-shadow(0 0 8px rgba(255,80,80,.08))
-        drop-shadow(0 0 10px rgba(255,255,255,.025));
+        drop-shadow(0 0 6px rgba(255,80,80,.18))
+        drop-shadow(0 0 12px rgba(255,80,80,.12))
+        drop-shadow(0 0 14px rgba(255,255,255,.04));
     }
 
     .section{
@@ -369,13 +369,13 @@
 
     .panel{
       position:relative;
-      border:1px solid rgba(255,255,255,.08);
+      border:1px solid rgba(255,255,255,.10);
       border-radius:30px;
       background:
-        linear-gradient(180deg, rgba(10,10,10,.68), rgba(6,6,6,.78));
+        linear-gradient(180deg, rgba(10,10,10,.42), rgba(6,6,6,.50));
       box-shadow:var(--shadow);
       overflow:hidden;
-      backdrop-filter:blur(4px);
+      backdrop-filter:blur(2px);
     }
 
     .panel > *{
@@ -408,12 +408,12 @@
 
     .value-box{
       background:
-        linear-gradient(180deg, rgba(10,10,10,.76), rgba(5,5,5,.86));
+        linear-gradient(180deg, rgba(10,10,10,.48), rgba(5,5,5,.56));
       padding:34px 34px 32px;
-      border:1px solid rgba(255,255,255,.08);
+      border:1px solid rgba(255,255,255,.10);
       border-radius:30px;
       box-shadow:var(--shadow);
-      backdrop-filter:blur(4px);
+      backdrop-filter:blur(2px);
     }
 
     .value-stack{
@@ -423,7 +423,7 @@
     }
 
     .value-item{
-      border:1px solid rgba(255,255,255,.08);
+      border:1px solid rgba(255,255,255,.09);
       border-radius:18px;
       background:rgba(255,255,255,.02);
       padding:16px 16px 15px;
@@ -484,12 +484,12 @@
 
     .difference-list{
       background:
-        linear-gradient(180deg, rgba(10,10,10,.78), rgba(5,5,5,.88));
-      border:1px solid rgba(255,255,255,.08);
+        linear-gradient(180deg, rgba(10,10,10,.48), rgba(5,5,5,.58));
+      border:1px solid rgba(255,255,255,.10);
       border-radius:30px;
       box-shadow:var(--shadow);
       padding:32px;
-      backdrop-filter:blur(4px);
+      backdrop-filter:blur(2px);
     }
 
     .difference-list h3{
@@ -547,7 +547,7 @@
     .difference-quote{
       margin-top:18px;
       padding:18px 18px 16px;
-      border:1px solid rgba(255,255,255,.08);
+      border:1px solid rgba(255,255,255,.09);
       border-radius:18px;
       background:rgba(255,255,255,.02);
       color:#fff;
@@ -687,13 +687,22 @@
     @media (max-width: 768px){
       .web-canvas{
         filter:
-          drop-shadow(0 0 6px rgba(255,80,80,.14))
-          drop-shadow(0 0 10px rgba(255,80,80,.09))
-          drop-shadow(0 0 10px rgba(255,255,255,.03));
+          drop-shadow(0 0 8px rgba(255,80,80,.22))
+          drop-shadow(0 0 14px rgba(255,80,80,.15))
+          drop-shadow(0 0 16px rgba(255,255,255,.05));
       }
 
       .hero-actions a{
         min-width:148px;
+      }
+
+      .panel,
+      .value-box,
+      .difference-list,
+      .hero-stat{
+        background:
+          linear-gradient(180deg, rgba(10,10,10,.34), rgba(5,5,5,.42));
+        backdrop-filter:blur(1px);
       }
 
       .bottom-cta p{
@@ -909,7 +918,6 @@
         padding:0 14px 20px;
       }
 
-      /* mobile simplification */
       .hero-stat p,
       .value-item p,
       .service-block p,
@@ -1213,13 +1221,13 @@
 
         const baseThickness =
           theme === "red"
-            ? layer === "front" ? rand(1.00, 1.80) : layer === "back" ? rand(0.58, 0.96) : rand(0.82, 1.28)
-            : layer === "front" ? rand(0.84, 1.36) : layer === "back" ? rand(0.48, 0.78) : rand(0.64, 1.00);
+            ? layer === "front" ? rand(1.22, 2.10) : layer === "back" ? rand(0.78, 1.16) : rand(1.00, 1.48)
+            : layer === "front" ? rand(1.00, 1.56) : layer === "back" ? rand(0.58, 0.92) : rand(0.82, 1.14);
 
         const baseAlpha =
           theme === "red"
-            ? layer === "front" ? rand(0.18, 0.30) : layer === "back" ? rand(0.05, 0.09) : rand(0.10, 0.18)
-            : layer === "front" ? rand(0.08, 0.14) : layer === "back" ? rand(0.025, 0.05) : rand(0.05, 0.10);
+            ? layer === "front" ? rand(0.26, 0.42) : layer === "back" ? rand(0.08, 0.14) : rand(0.16, 0.26)
+            : layer === "front" ? rand(0.12, 0.19) : layer === "back" ? rand(0.04, 0.07) : rand(0.08, 0.13);
 
         spokes.push({
           angle,
@@ -1241,14 +1249,14 @@
         ratio += rand(0.055, 0.092);
 
         const ringThickness =
-          layer === "front" ? rand(0.82, 1.34) :
-          layer === "back" ? rand(0.42, 0.70) :
-          rand(0.64, 1.00);
+          layer === "front" ? rand(1.00, 1.62) :
+          layer === "back" ? rand(0.58, 0.90) :
+          rand(0.82, 1.18);
 
         const ringAlpha =
           theme === "red"
-            ? layer === "front" ? rand(0.10, 0.16) : layer === "back" ? rand(0.025, 0.045) : rand(0.06, 0.10)
-            : layer === "front" ? rand(0.045, 0.09) : layer === "back" ? rand(0.014, 0.03) : rand(0.03, 0.065);
+            ? layer === "front" ? rand(0.14, 0.22) : layer === "back" ? rand(0.04, 0.07) : rand(0.09, 0.14)
+            : layer === "front" ? rand(0.06, 0.11) : layer === "back" ? rand(0.022, 0.04) : rand(0.04, 0.075);
 
         rings.push({
           ratio,
@@ -1290,52 +1298,52 @@
       const redMain = {
         x: w * (mobile ? 0.14 : 0.16),
         y: h * (mobile ? 0.22 : 0.26),
-        r: Math.max(w, h) * (mobile ? 0.54 : 0.58)
+        r: Math.max(w, h) * (mobile ? 0.60 : 0.64)
       };
 
       const whiteMain = {
         x: w * (mobile ? 0.88 : 0.88),
         y: h * (mobile ? 0.56 : 0.58),
-        r: Math.max(w, h) * (mobile ? 0.42 : 0.48)
+        r: Math.max(w, h) * (mobile ? 0.48 : 0.54)
       };
 
       const whiteBottom = {
         x: w * (mobile ? 0.52 : 0.52),
         y: h * (mobile ? 0.88 : 0.86),
-        r: Math.max(w, h) * (mobile ? 0.26 : 0.30)
+        r: Math.max(w, h) * (mobile ? 0.30 : 0.34)
       };
 
       webs.push(
-        buildWeb(redMain.x, redMain.y, redMain.r * 1.02, "red", "back"),
-        buildWeb(whiteMain.x, whiteMain.y, whiteMain.r, "white", "back", { spokeCount: mobile ? 7 : 8 }),
+        buildWeb(redMain.x, redMain.y, redMain.r * 1.04, "red", "back"),
+        buildWeb(whiteMain.x, whiteMain.y, whiteMain.r * 1.02, "white", "back", { spokeCount: mobile ? 7 : 8 }),
 
         buildWeb(redMain.x, redMain.y, redMain.r, "red", "mid", { spokeCount: mobile ? 9 : 10 }),
         buildWeb(whiteMain.x, whiteMain.y, whiteMain.r, "white", "mid", { spokeCount: mobile ? 7 : 8 }),
         buildWeb(whiteBottom.x, whiteBottom.y, whiteBottom.r, "white", "mid", { spokeCount: mobile ? 6 : 7 }),
 
-        buildWeb(redMain.x, redMain.y, redMain.r * 0.96, "red", "front", { spokeCount: mobile ? 9 : 10 }),
-        buildWeb(whiteMain.x, whiteMain.y, whiteMain.r * 0.92, "white", "front", { spokeCount: mobile ? 7 : 8 })
+        buildWeb(redMain.x, redMain.y, redMain.r * 0.98, "red", "front", { spokeCount: mobile ? 9 : 10 }),
+        buildWeb(whiteMain.x, whiteMain.y, whiteMain.r * 0.95, "white", "front", { spokeCount: mobile ? 7 : 8 })
       );
 
       const mainA = webs[2];
       const mainB = webs[3];
 
-      for (let i = 0; i < 12; i++) {
+      for (let i = 0; i < 14; i++) {
         crossThreads.push({
           aWeb: mainA,
           bWeb: mainB,
           aSpoke: i % mainA.spokes.length,
           bSpoke: (i * 2 + 3) % mainB.spokes.length,
-          ta: rand(0.24, 0.70),
-          tb: rand(0.24, 0.66),
+          ta: rand(0.22, 0.76),
+          tb: rand(0.22, 0.72),
           bend: rand(-10, 10),
-          alpha: rand(0.014, 0.030),
-          width: rand(0.40, 0.72),
+          alpha: rand(0.018, 0.036),
+          width: rand(0.52, 0.92),
           phase: rand(0, Math.PI * 2)
         });
       }
 
-      const microCount = mobile ? 115 : 165;
+      const microCount = mobile ? 145 : 210;
       for (let i = 0; i < microCount; i++) {
         const wa = webs[Math.floor(rand(0, webs.length))];
         const wb = webs[Math.floor(rand(0, webs.length))];
@@ -1344,24 +1352,24 @@
           wb,
           sa: Math.floor(rand(0, wa.spokes.length)),
           sb: Math.floor(rand(0, wb.spokes.length)),
-          ta: rand(0.18, 0.88),
-          tb: rand(0.18, 0.88),
+          ta: rand(0.16, 0.90),
+          tb: rand(0.16, 0.90),
           bend: rand(-6, 6),
-          alpha: rand(0.008, 0.020),
-          width: rand(0.22, 0.44),
+          alpha: rand(0.012, 0.026),
+          width: rand(0.28, 0.56),
           phase: rand(0, Math.PI * 2)
         });
       }
 
-      const overlapCount = mobile ? 50 : 76;
+      const overlapCount = mobile ? 72 : 104;
       for (let i = 0; i < overlapCount; i++) {
         overlapWeave.push({
-          x1: rand(w * 0.20, w * 0.78),
-          y1: rand(h * 0.04, h * 0.94),
-          x2: rand(w * 0.28, w * 0.90),
-          y2: rand(h * 0.10, h * 0.98),
-          alpha: rand(0.010, 0.024),
-          width: rand(0.24, 0.50),
+          x1: rand(w * 0.16, w * 0.82),
+          y1: rand(h * 0.02, h * 0.96),
+          x2: rand(w * 0.22, w * 0.92),
+          y2: rand(h * 0.08, h * 1.00),
+          alpha: rand(0.012, 0.028),
+          width: rand(0.28, 0.58),
           bend: rand(-8, 8),
           phase: rand(0, Math.PI * 2)
         });
@@ -1382,9 +1390,9 @@
       const mix = whiteInf / total;
 
       const r = 255;
-      const g = lerp(82, 255, mix);
-      const b = lerp(82, 255, mix);
-      const a = alphaBase * (0.82 + Math.max(redInf, whiteInf) * 0.30);
+      const g = lerp(70, 255, mix);
+      const b = lerp(70, 255, mix);
+      const a = alphaBase * (1.02 + Math.max(redInf, whiteInf) * 0.42);
 
       return `rgba(${r.toFixed(0)},${g.toFixed(0)},${b.toFixed(0)},${a})`;
     }
@@ -1418,15 +1426,15 @@
     }
 
     function drawGlow(web) {
-      const g = ctx.createRadialGradient(web.cx, web.cy, 0, web.cx, web.cy, web.radius * 1.02);
+      const g = ctx.createRadialGradient(web.cx, web.cy, 0, web.cx, web.cy, web.radius * 1.04);
       const baseA =
         web.theme === "red"
-          ? (web.layer === "front" ? 0.032 : web.layer === "mid" ? 0.018 : 0.010)
-          : (web.layer === "front" ? 0.014 : web.layer === "mid" ? 0.008 : 0.005);
+          ? (web.layer === "front" ? 0.050 : web.layer === "mid" ? 0.030 : 0.018)
+          : (web.layer === "front" ? 0.022 : web.layer === "mid" ? 0.014 : 0.008);
 
       g.addColorStop(0, `rgba(${web.glow},${baseA})`);
-      g.addColorStop(0.24, `rgba(${web.glow},${baseA * 0.34})`);
-      g.addColorStop(0.50, `rgba(${web.glow},${baseA * 0.08})`);
+      g.addColorStop(0.24, `rgba(${web.glow},${baseA * 0.40})`);
+      g.addColorStop(0.50, `rgba(${web.glow},${baseA * 0.12})`);
       g.addColorStop(1, `rgba(${web.glow},0)`);
       ctx.fillStyle = g;
       ctx.fillRect(0, 0, w, h);
@@ -1585,8 +1593,8 @@
     }
 
     function drawCoreDim(web) {
-      const coreAlpha = web.theme === "red" ? 0.10 : 0.07;
-      const coreRadius = web.layer === "front" ? 1.4 : 1.1;
+      const coreAlpha = web.theme === "red" ? 0.12 : 0.09;
+      const coreRadius = web.layer === "front" ? 1.6 : 1.2;
 
       ctx.beginPath();
       ctx.arc(web.cx, web.cy, coreRadius, 0, Math.PI * 2);
