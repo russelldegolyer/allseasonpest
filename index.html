@@ -20,13 +20,8 @@
 
   <style>
     :root{
-      --bg:#000000;
       --text:#ffffff;
       --red:#ff2a2a;
-      --red-soft:rgba(255,42,42,.18);
-      --red-faint:rgba(255,42,42,.08);
-      --white-faint:rgba(255,255,255,.08);
-      --halo:rgba(0,0,0,.92);
     }
 
     *{
@@ -44,8 +39,9 @@
     }
 
     body{
-      font-family:"Sora", Arial, sans-serif;
+      background:#000;
       color:var(--text);
+      font-family:"Sora", Arial, sans-serif;
       overflow:hidden;
     }
 
@@ -59,62 +55,57 @@
       position:relative;
       width:100%;
       min-height:100vh;
+      overflow:hidden;
+      background:#000;
       display:flex;
       align-items:center;
       justify-content:center;
-      overflow:hidden;
-      background:
-        radial-gradient(circle at 50% 48%, rgba(255,255,255,.025), transparent 16%),
-        radial-gradient(circle at 50% 50%, rgba(255,0,0,.035), transparent 28%),
-        radial-gradient(circle at 50% 55%, rgba(0,0,0,.45), transparent 46%),
-        #000;
       isolation:isolate;
     }
 
-    .stage::before{
+    .stage::after{
       content:"";
       position:absolute;
       inset:0;
-      background:
-        radial-gradient(circle at 50% 50%, rgba(0,0,0,0) 0%, rgba(0,0,0,.16) 62%, rgba(0,0,0,.38) 100%);
       z-index:2;
       pointer-events:none;
+      background:
+        radial-gradient(circle at 50% 50%, rgba(0,0,0,0) 0%, rgba(0,0,0,.10) 58%, rgba(0,0,0,.24) 100%),
+        linear-gradient(180deg, rgba(0,0,0,.04), rgba(0,0,0,.10));
     }
 
-    .grid-canvas{
+    .web-canvas{
       position:absolute;
       inset:0;
       width:100%;
       height:100%;
-      display:block;
       z-index:1;
+      display:block;
       pointer-events:none;
-      opacity:.98;
       filter:
-        drop-shadow(0 0 6px rgba(255,42,42,.10))
-        drop-shadow(0 0 12px rgba(255,42,42,.05));
+        drop-shadow(0 0 3px rgba(255,80,80,.07))
+        drop-shadow(0 0 4px rgba(255,255,255,.04))
+        drop-shadow(0 0 8px rgba(255,180,190,.012));
     }
 
-    .wrap{
+    .content{
       position:relative;
       z-index:3;
       width:100%;
       max-width:1200px;
-      padding:20px 20px 26px;
+      padding:24px 20px 18px;
       display:flex;
       justify-content:center;
       align-items:center;
     }
 
     .hero{
-      position:relative;
       display:flex;
       flex-direction:column;
       align-items:center;
       justify-content:center;
-      width:100%;
       text-align:center;
-      transform:translateY(-12px);
+      transform:translateY(-10px);
     }
 
     .logo-link{
@@ -122,46 +113,31 @@
       align-items:center;
       justify-content:center;
       position:relative;
+      line-height:0;
     }
 
-    .logo-shell{
+    .logo-wrap{
       position:relative;
-      display:flex;
+      display:inline-flex;
       align-items:center;
       justify-content:center;
-      padding:18px;
+      padding:12px;
     }
 
-    .logo-shell::before{
+    .logo-wrap::before{
       content:"";
       position:absolute;
-      inset:-12px;
+      inset:-20px;
+      z-index:0;
       border-radius:50%;
       background:
         radial-gradient(circle at center,
           rgba(0,0,0,0) 0%,
-          rgba(0,0,0,.25) 25%,
-          rgba(0,0,0,.78) 54%,
-          rgba(0,0,0,.96) 78%,
+          rgba(0,0,0,.40) 26%,
+          rgba(0,0,0,.78) 56%,
+          rgba(0,0,0,.94) 76%,
           rgba(0,0,0,0) 100%);
-      filter:blur(12px);
-      z-index:0;
-      pointer-events:none;
-    }
-
-    .logo-shell::after{
-      content:"";
-      position:absolute;
-      width:86%;
-      height:86%;
-      border-radius:50%;
-      background:
-        radial-gradient(circle at center,
-          rgba(255,40,40,.10) 0%,
-          rgba(255,40,40,.03) 40%,
-          rgba(0,0,0,0) 72%);
       filter:blur(10px);
-      z-index:0;
       pointer-events:none;
     }
 
@@ -169,74 +145,87 @@
       position:relative;
       z-index:1;
       display:block;
+      max-width:950px;
       width:auto;
       height:auto;
-      max-width:980px;
       max-height:78vh;
       transform-origin:center center;
-      animation:logoFloat 3.8s ease-in-out infinite;
+      animation:subtlePulse 2.6s ease-in-out infinite;
       transition:
-        transform .28s ease,
-        filter .28s ease,
-        opacity .28s ease;
+        transform .30s ease-in-out,
+        opacity .30s ease-in-out,
+        filter .30s ease-in-out;
       filter:
-        drop-shadow(0 0 10px rgba(0,0,0,.95))
-        drop-shadow(0 0 28px rgba(0,0,0,.95))
-        drop-shadow(0 0 46px rgba(0,0,0,.90));
+        drop-shadow(0 0 12px rgba(0,0,0,.95))
+        drop-shadow(0 0 34px rgba(0,0,0,.92))
+        drop-shadow(0 0 55px rgba(0,0,0,.85));
     }
 
     .logo-link:hover .logo{
-      transform:scale(1.045);
+      transform:scale(1.055);
+      opacity:.995;
       filter:
-        drop-shadow(0 0 10px rgba(0,0,0,.95))
-        drop-shadow(0 0 28px rgba(0,0,0,.95))
-        drop-shadow(0 0 44px rgba(0,0,0,.90))
-        drop-shadow(0 0 8px rgba(255,42,42,.20))
-        drop-shadow(0 0 18px rgba(255,42,42,.12));
+        drop-shadow(0 0 12px rgba(0,0,0,.95))
+        drop-shadow(0 0 34px rgba(0,0,0,.92))
+        drop-shadow(0 0 55px rgba(0,0,0,.85))
+        drop-shadow(0 0 4px rgba(255,0,0,.24))
+        drop-shadow(0 0 12px rgba(255,0,0,.14));
+      animation-play-state:paused;
     }
 
     .enter-link{
       display:inline-block;
-      margin-top:2px;
-      padding:10px 14px 0;
+      margin-top:8px;
+      text-decoration:none;
+      text-align:center;
     }
 
     .enter-text{
-      font-family:"Oswald", Arial, sans-serif;
-      font-size:1.06rem;
-      font-weight:600;
-      letter-spacing:.22em;
-      text-transform:uppercase;
       color:#ff2a2a;
-      opacity:.92;
-      transition:transform .22s ease, opacity .22s ease, text-shadow .22s ease;
-      animation:softBlink 2.6s ease-in-out infinite;
+      font-family:"Oswald", Arial, sans-serif;
+      font-size:18px;
+      font-weight:600;
+      letter-spacing:4px;
+      text-transform:uppercase;
+      opacity:.95;
+      animation:softFade 2s ease-in-out infinite;
+      transition:transform .2s ease, opacity .2s ease;
+      text-align:center;
       text-shadow:
         0 0 8px rgba(255,42,42,.10),
         0 0 18px rgba(255,42,42,.05);
     }
 
     .enter-link:hover .enter-text{
-      transform:scale(1.04);
+      transform:scale(1.06);
       opacity:1;
-      text-shadow:
-        0 0 10px rgba(255,42,42,.18),
-        0 0 24px rgba(255,42,42,.08);
     }
 
-    @keyframes logoFloat{
-      0%, 100%{ transform:translateY(0) scale(1); }
-      50%{ transform:translateY(-4px) scale(1.012); }
+    @keyframes subtlePulse{
+      0%,100%{
+        transform:scale(1);
+      }
+      50%{
+        transform:scale(1.025);
+      }
     }
 
-    @keyframes softBlink{
-      0%, 100%{ opacity:.62; }
-      50%{ opacity:1; }
+    @keyframes softFade{
+      0%,100%{
+        opacity:.6;
+      }
+      50%{
+        opacity:1;
+      }
     }
 
-    @media (max-width: 900px){
-      .wrap{
-        padding:12px 12px 20px;
+    @media (max-width: 768px){
+      body{
+        overflow:auto;
+      }
+
+      .content{
+        padding:10px 8px 14px;
       }
 
       .hero{
@@ -249,41 +238,26 @@
         max-height:none;
       }
 
-      .logo-shell{
-        padding:10px;
-      }
-
       .enter-link{
-        margin-top:8px;
+        margin-top:10px;
       }
 
       .enter-text{
-        font-size:.95rem;
-        letter-spacing:.16em;
-      }
-    }
-
-    @media (max-width: 560px){
-      .logo{
-        width:94vw;
-      }
-
-      .enter-text{
-        font-size:.88rem;
-        letter-spacing:.12em;
+        font-size:15px;
+        letter-spacing:2px;
       }
     }
   </style>
 </head>
 <body>
-  <main class="stage" id="stage">
-    <canvas class="grid-canvas" id="gridCanvas"></canvas>
+  <main class="stage" id="indexStage">
+    <canvas class="web-canvas" id="webCanvas"></canvas>
 
-    <div class="wrap">
+    <div class="content">
       <div class="hero">
         <a href="home.html" class="logo-link" aria-label="Enter Website">
-          <span class="logo-shell">
-            <img src="updated logo.PNG" alt="All Season Pest Control" class="logo" />
+          <span class="logo-wrap">
+            <img src="updated logo.PNG" alt="All Season Pest Control" class="logo">
           </span>
         </a>
 
@@ -295,21 +269,22 @@
   </main>
 
   <script>
-    const stage = document.getElementById("stage");
-    const canvas = document.getElementById("gridCanvas");
+    const stage = document.getElementById("indexStage");
+    const canvas = document.getElementById("webCanvas");
     const ctx = canvas.getContext("2d");
 
     let w = 0;
     let h = 0;
     let dpr = Math.min(window.devicePixelRatio || 1, 2);
-    let time = 0;
-    let verticalPush = 0;
-    let lastScrollY = window.scrollY;
+    let tick = 0;
 
     let webs = [];
-    let bridges = [];
-    let filaments = [];
-    let strands = [];
+    let crossThreads = [];
+    let microThreads = [];
+    let overlapWeave = [];
+
+    let scrollTarget = 0;
+    let scrollEase = 0;
 
     function rand(min, max) {
       return Math.random() * (max - min) + min;
@@ -341,46 +316,90 @@
       canvas.style.height = `${h}px`;
 
       ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+
       buildScene();
     }
 
-    function buildWeb(cx, cy, radius, options = {}) {
+    function buildWeb(cx, cy, radius, theme = "red", layer = "mid", custom = {}) {
       const mobile = window.innerWidth < 768;
-      const spokeCount = options.spokeCount ?? (mobile ? 10 : 12);
-      const ringCount = options.ringCount ?? (mobile ? 11 : 13);
-      const tilt = options.tilt ?? rand(-0.14, 0.14);
+
+      const spokeCount =
+        custom.spokeCount ??
+        (
+          layer === "back"
+            ? (mobile ? Math.floor(rand(8, 10)) : Math.floor(rand(8, 11)))
+            : layer === "front"
+            ? (mobile ? Math.floor(rand(9, 11)) : Math.floor(rand(9, 12)))
+            : (mobile ? Math.floor(rand(9, 11)) : Math.floor(rand(9, 12)))
+        );
+
+      const ringCount =
+        custom.ringCount ??
+        (
+          layer === "back"
+            ? (mobile ? Math.floor(rand(7, 9)) : Math.floor(rand(7, 10)))
+            : layer === "front"
+            ? (mobile ? Math.floor(rand(10, 12)) : Math.floor(rand(10, 13)))
+            : (mobile ? Math.floor(rand(9, 11)) : Math.floor(rand(9, 12)))
+        );
 
       const spokes = [];
-      let angle = -Math.PI * 0.55 + tilt;
+      let angle = rand(0, Math.PI * 2);
 
       for (let i = 0; i < spokeCount; i++) {
-        angle += (Math.PI * 1.12 / spokeCount) + rand(-0.05, 0.05);
+        angle += (Math.PI * 2 / spokeCount) + rand(-0.22, 0.22);
+
+        const shouldShorten = Math.random() < 0.58;
+        const shouldBreakHard = Math.random() < 0.22;
+
+        const baseThickness =
+          theme === "red"
+            ? layer === "front" ? rand(1.05, 1.85) : layer === "back" ? rand(0.55, 0.90) : rand(0.82, 1.28)
+            : layer === "front" ? rand(0.88, 1.45) : layer === "back" ? rand(0.50, 0.80) : rand(0.68, 1.05);
+
+        const baseAlpha =
+          theme === "red"
+            ? layer === "front" ? rand(0.16, 0.28) : layer === "back" ? rand(0.03, 0.06) : rand(0.08, 0.16)
+            : layer === "front" ? rand(0.08, 0.14) : layer === "back" ? rand(0.02, 0.05) : rand(0.05, 0.10);
 
         spokes.push({
           angle,
-          reach: radius * rand(0.70, 1.02),
-          curve: rand(-26, 26),
-          wobble: rand(1.0, 2.6),
+          reach: radius * (shouldShorten ? rand(0.38, 0.62) : rand(0.62, 0.84)),
+          thickness: baseThickness,
+          alpha: baseAlpha,
+          curve: rand(-54, 54),
+          wobble: layer === "back" ? rand(0.8, 2.0) : layer === "front" ? rand(1.0, 3.6) : rand(1.0, 3.0),
           phase: rand(0, Math.PI * 2),
-          thickness: rand(0.7, 1.35),
-          alpha: rand(0.06, 0.16),
-          gapStart: Math.random() < 0.24 ? rand(0.34, 0.70) : null,
-          gapLength: rand(0.04, 0.12)
+          breakStart: shouldBreakHard ? rand(0.26, 0.68) : (Math.random() < 0.10 ? rand(0.54, 0.80) : null),
+          breakLen: shouldBreakHard ? rand(0.12, 0.24) : rand(0.03, 0.08),
+          fadeEarly: Math.random() < 0.50 ? rand(0.36, 0.72) : null
         });
       }
 
       const rings = [];
-      let ratio = 0.12;
+      let ratio = 0.16;
       for (let i = 0; i < ringCount; i++) {
-        ratio += rand(0.055, 0.090);
+        ratio += rand(0.055, 0.092);
+
+        const ringThickness =
+          layer === "front" ? rand(0.85, 1.40) :
+          layer === "back" ? rand(0.42, 0.72) :
+          rand(0.65, 1.02);
+
+        const ringAlpha =
+          theme === "red"
+            ? layer === "front" ? rand(0.08, 0.15) : layer === "back" ? rand(0.018, 0.036) : rand(0.05, 0.09)
+            : layer === "front" ? rand(0.05, 0.10) : layer === "back" ? rand(0.014, 0.03) : rand(0.035, 0.07);
+
         rings.push({
           ratio,
-          thickness: rand(0.48, 1.0),
-          alpha: rand(0.032, 0.090),
-          sway: rand(0.6, 1.8),
-          phase: rand(0, Math.PI * 2),
-          startCut: rand(0.04, 0.12),
-          endCut: rand(0.88, 0.98)
+          thickness: ringThickness,
+          alpha: ringAlpha,
+          sag: rand(-18, 20),
+          jitter: layer === "back" ? rand(0.5, 1.0) : layer === "front" ? rand(0.7, 1.8) : rand(0.7, 1.5),
+          partialStart: rand(0.06, 0.22),
+          partialEnd: rand(0.76, 0.98),
+          dropout: rand(0.10, 0.26)
         });
       }
 
@@ -388,179 +407,196 @@
         cx,
         cy,
         radius,
+        theme,
+        layer,
         spokes,
         rings,
-        driftX: rand(-10, 10),
-        driftY: rand(-18, -8),
-        motion: rand(0.00055, 0.0011),
-        glow: rand(0.018, 0.040)
+        glow: theme === "red" ? "255,72,72" : "255,255,255",
+        motion: layer === "back" ? rand(0.0008, 0.0014) : layer === "front" ? rand(0.0015, 0.0022) : rand(0.0011, 0.0018),
+        scrollFactor:
+          layer === "back" ? rand(0.10, 0.18) :
+          layer === "front" ? rand(0.22, 0.32) :
+          rand(0.16, 0.24)
       };
     }
 
     function buildScene() {
       webs = [];
-      bridges = [];
-      filaments = [];
-      strands = [];
+      crossThreads = [];
+      microThreads = [];
+      overlapWeave = [];
 
       const mobile = window.innerWidth < 768;
-      const maxDim = Math.max(w, h);
 
-      const leftWeb = buildWeb(
-        w * (mobile ? 0.20 : 0.18),
-        h * (mobile ? 0.86 : 0.84),
-        maxDim * (mobile ? 0.52 : 0.56),
-        { spokeCount: mobile ? 9 : 11, ringCount: mobile ? 10 : 12, tilt: -0.05 }
+      const redMain = {
+        x: w * (mobile ? 0.14 : 0.16),
+        y: h * (mobile ? 0.44 : 0.42),
+        r: Math.max(w, h) * (mobile ? 0.58 : 0.60)
+      };
+
+      const whiteMain = {
+        x: w * (mobile ? 0.88 : 0.88),
+        y: h * (mobile ? 0.66 : 0.68),
+        r: Math.max(w, h) * (mobile ? 0.48 : 0.52)
+      };
+
+      const whiteTop = {
+        x: w * (mobile ? 0.56 : 0.56),
+        y: h * (mobile ? 0.08 : 0.08),
+        r: Math.max(w, h) * (mobile ? 0.28 : 0.30)
+      };
+
+      webs.push(
+        buildWeb(redMain.x, redMain.y, redMain.r * 1.02, "red", "back"),
+        buildWeb(whiteMain.x, whiteMain.y, whiteMain.r * 1.00, "white", "back", { spokeCount: mobile ? 7 : 8 }),
+
+        buildWeb(redMain.x, redMain.y, redMain.r, "red", "mid", { spokeCount: mobile ? 9 : 10 }),
+        buildWeb(whiteMain.x, whiteMain.y, whiteMain.r, "white", "mid", { spokeCount: mobile ? 7 : 8 }),
+        buildWeb(whiteTop.x, whiteTop.y, whiteTop.r, "white", "mid", { spokeCount: mobile ? 7 : 8 }),
+
+        buildWeb(redMain.x, redMain.y, redMain.r * 0.96, "red", "front", { spokeCount: mobile ? 9 : 10 }),
+        buildWeb(whiteMain.x, whiteMain.y, whiteMain.r * 0.92, "white", "front", { spokeCount: mobile ? 7 : 8 })
       );
 
-      const rightWeb = buildWeb(
-        w * (mobile ? 0.82 : 0.84),
-        h * (mobile ? 0.80 : 0.78),
-        maxDim * (mobile ? 0.46 : 0.50),
-        { spokeCount: mobile ? 8 : 10, ringCount: mobile ? 9 : 11, tilt: 0.08 }
-      );
+      const mainA = webs[2];
+      const mainB = webs[3];
 
-      const topWeb = buildWeb(
-        w * 0.50,
-        h * (mobile ? 0.22 : 0.16),
-        maxDim * (mobile ? 0.20 : 0.24),
-        { spokeCount: mobile ? 6 : 7, ringCount: mobile ? 7 : 8, tilt: 0.00 }
-      );
-
-      webs.push(leftWeb, rightWeb, topWeb);
-
-      for (let i = 0; i < 18; i++) {
-        bridges.push({
-          wa: leftWeb,
-          wb: rightWeb,
-          sa: i % leftWeb.spokes.length,
-          sb: (i * 2 + 1) % rightWeb.spokes.length,
-          ta: rand(0.22, 0.78),
-          tb: rand(0.18, 0.74),
-          bend: rand(-18, 18),
-          alpha: rand(0.014, 0.040),
-          width: rand(0.35, 0.85),
+      for (let i = 0; i < 12; i++) {
+        crossThreads.push({
+          aWeb: mainA,
+          bWeb: mainB,
+          aSpoke: i % mainA.spokes.length,
+          bSpoke: (i * 2 + 3) % mainB.spokes.length,
+          ta: rand(0.28, 0.66),
+          tb: rand(0.26, 0.62),
+          bend: rand(-10, 10),
+          alpha: rand(0.014, 0.030),
+          width: rand(0.45, 0.75),
           phase: rand(0, Math.PI * 2)
         });
       }
 
-      for (let i = 0; i < (mobile ? 85 : 130); i++) {
+      const microCount = mobile ? 110 : 160;
+      for (let i = 0; i < microCount; i++) {
         const wa = webs[Math.floor(rand(0, webs.length))];
         const wb = webs[Math.floor(rand(0, webs.length))];
-        filaments.push({
+        microThreads.push({
           wa,
           wb,
           sa: Math.floor(rand(0, wa.spokes.length)),
           sb: Math.floor(rand(0, wb.spokes.length)),
-          ta: rand(0.16, 0.90),
-          tb: rand(0.16, 0.90),
-          bend: rand(-7, 7),
-          alpha: rand(0.008, 0.026),
-          width: rand(0.18, 0.42),
+          ta: rand(0.22, 0.84),
+          tb: rand(0.22, 0.84),
+          bend: rand(-6, 6),
+          alpha: rand(0.008, 0.022),
+          width: rand(0.24, 0.46),
           phase: rand(0, Math.PI * 2)
         });
       }
 
-      for (let i = 0; i < (mobile ? 60 : 90); i++) {
-        strands.push({
-          x1: rand(w * 0.08, w * 0.92),
-          y1: rand(h * 0.05, h * 0.95),
-          x2: rand(w * 0.08, w * 0.92),
-          y2: rand(h * 0.05, h * 0.95),
-          alpha: rand(0.005, 0.018),
-          width: rand(0.18, 0.36),
-          bend: rand(-10, 10),
+      const overlapCount = mobile ? 48 : 72;
+      for (let i = 0; i < overlapCount; i++) {
+        overlapWeave.push({
+          x1: rand(w * 0.30, w * 0.70),
+          y1: rand(h * 0.22, h * 0.82),
+          x2: rand(w * 0.36, w * 0.82),
+          y2: rand(h * 0.28, h * 0.88),
+          alpha: rand(0.010, 0.030),
+          width: rand(0.28, 0.55),
+          bend: rand(-8, 8),
           phase: rand(0, Math.PI * 2)
         });
       }
     }
 
-    function pointOnSpoke(web, spoke, p, ringShift = 0) {
-      const motion = time * web.motion;
-      const r = spoke.reach * p;
+    function getMixedColor(x, y, alphaBase) {
+      const redSource = webs.find(wb => wb.theme === "red" && wb.layer === "mid");
+      const whiteSource = webs.find(wb => wb.theme === "white" && wb.layer === "mid");
 
-      const nx = Math.cos(spoke.angle + Math.PI / 2);
-      const ny = Math.sin(spoke.angle + Math.PI / 2);
+      const dRed = dist(x, y, redSource.cx, redSource.cy);
+      const dWhite = dist(x, y, whiteSource.cx, whiteSource.cy);
+
+      const redInf = clamp(1 - dRed / redSource.radius, 0, 1);
+      const whiteInf = clamp(1 - dWhite / whiteSource.radius, 0, 1);
+
+      const total = Math.max(0.0001, redInf + whiteInf);
+      const mix = whiteInf / total;
+
+      const r = 255;
+      const g = lerp(88, 255, mix);
+      const b = lerp(88, 255, mix);
+      const a = alphaBase * (0.76 + Math.max(redInf, whiteInf) * 0.26);
+
+      return `rgba(${r.toFixed(0)},${g.toFixed(0)},${b.toFixed(0)},${a})`;
+    }
+
+    function pointOnSpoke(web, spoke, p, extraSag = 0) {
+      const baseR = spoke.reach * p;
+      const normalX = Math.cos(spoke.angle + Math.PI / 2);
+      const normalY = Math.sin(spoke.angle + Math.PI / 2);
+
+      const motionBlend = tick * web.motion + scrollEase * web.scrollFactor;
+
+      const wiggle =
+        Math.sin(motionBlend + spoke.phase + p * 2.1) *
+        spoke.wobble *
+        (0.16 + p * 0.16);
 
       const curve =
-        Math.sin(motion + spoke.phase + p * 2.6) *
+        Math.sin((p * Math.PI * 0.82) + spoke.phase * 0.28 + motionBlend * 0.55) *
         spoke.curve *
-        (0.20 + p * 0.34);
-
-      const wobble =
-        Math.sin(motion * 1.3 + spoke.phase * 1.2 + p * 4.0) *
-        spoke.wobble *
-        (0.10 + p * 0.16);
-
-      const lift =
-        Math.sin(motion * 0.8 + spoke.phase) * web.driftY +
-        verticalPush * (0.24 + p * 0.12);
-
-      const drift =
-        Math.cos(motion * 0.7 + spoke.phase) * web.driftX;
+        (0.34 + p * 0.46);
 
       return {
-        x: web.cx + Math.cos(spoke.angle) * r + nx * (curve * 0.22 + wobble + ringShift) + drift * 0.12,
-        y: web.cy + Math.sin(spoke.angle) * r + ny * (curve * 0.22 + wobble) + lift * 0.10
+        x: web.cx + Math.cos(spoke.angle) * baseR + normalX * (wiggle + curve * 0.36),
+        y: web.cy + Math.sin(spoke.angle) * baseR + normalY * (wiggle + extraSag + curve * 0.36)
       };
     }
 
-    function broken(spoke, p) {
-      if (spoke.gapStart === null) return false;
-      return p >= spoke.gapStart && p <= spoke.gapStart + spoke.gapLength;
+    function isBroken(spoke, p) {
+      if (spoke.breakStart === null) return false;
+      return p >= spoke.breakStart && p <= (spoke.breakStart + spoke.breakLen);
     }
 
-    function colorAt(x, y, alpha) {
-      const left = webs[0];
-      const right = webs[1];
-      const top = webs[2];
+    function drawGlow(web) {
+      const g = ctx.createRadialGradient(web.cx, web.cy, 0, web.cx, web.cy, web.radius * 1.02);
+      const baseA =
+        web.theme === "red"
+          ? (web.layer === "front" ? 0.028 : web.layer === "mid" ? 0.016 : 0.008)
+          : (web.layer === "front" ? 0.014 : web.layer === "mid" ? 0.009 : 0.005);
 
-      const dl = clamp(1 - dist(x, y, left.cx, left.cy) / left.radius, 0, 1);
-      const dr = clamp(1 - dist(x, y, right.cx, right.cy) / right.radius, 0, 1);
-      const dt = clamp(1 - dist(x, y, top.cx, top.cy) / top.radius, 0, 1);
-
-      const redStrength = clamp(dl * 0.82 + dr * 0.52 + dt * 0.30, 0, 1);
-      const whiteStrength = clamp(dr * 0.34 + dt * 0.26, 0, 0.38);
-
-      const r = 255;
-      const g = lerp(34, 86, whiteStrength);
-      const b = lerp(34, 86, whiteStrength);
-      const finalAlpha = alpha * (0.72 + redStrength * 0.42);
-
-      return `rgba(${r},${g.toFixed(0)},${b.toFixed(0)},${finalAlpha})`;
-    }
-
-    function drawWebGlow(web) {
-      const g = ctx.createRadialGradient(web.cx, web.cy, 0, web.cx, web.cy, web.radius);
-      g.addColorStop(0, `rgba(255,42,42,${web.glow})`);
-      g.addColorStop(0.25, `rgba(255,42,42,${web.glow * 0.28})`);
-      g.addColorStop(0.55, `rgba(255,42,42,${web.glow * 0.08})`);
-      g.addColorStop(1, `rgba(255,42,42,0)`);
+      g.addColorStop(0, `rgba(${web.glow},${baseA})`);
+      g.addColorStop(0.24, `rgba(${web.glow},${baseA * 0.34})`);
+      g.addColorStop(0.50, `rgba(${web.glow},${baseA * 0.08})`);
+      g.addColorStop(1, `rgba(${web.glow},0)`);
       ctx.fillStyle = g;
       ctx.fillRect(0, 0, w, h);
     }
 
     function drawSpokes(web) {
       web.spokes.forEach((spoke) => {
-        const steps = 34;
-        let drawing = false;
+        const steps = 30;
+        let started = false;
         let prev = null;
 
         ctx.beginPath();
 
         for (let i = 0; i <= steps; i++) {
           const p = i / steps;
-          if (broken(spoke, p)) {
-            drawing = false;
+
+          if (spoke.fadeEarly !== null && p > spoke.fadeEarly) break;
+
+          if (isBroken(spoke, p)) {
+            started = false;
             prev = null;
             continue;
           }
 
           const pt = pointOnSpoke(web, spoke, p);
 
-          if (!drawing) {
+          if (!started) {
             ctx.moveTo(pt.x, pt.y);
-            drawing = true;
+            started = true;
           } else if (prev) {
             const mx = (prev.x + pt.x) * 0.5;
             const my = (prev.y + pt.y) * 0.5;
@@ -570,8 +606,8 @@
           prev = pt;
         }
 
-        const sample = pointOnSpoke(web, spoke, 0.58);
-        ctx.strokeStyle = colorAt(sample.x, sample.y, spoke.alpha);
+        const sample = pointOnSpoke(web, spoke, 0.48);
+        ctx.strokeStyle = getMixedColor(sample.x, sample.y, spoke.alpha);
         ctx.lineWidth = spoke.thickness;
         ctx.lineCap = "round";
         ctx.lineJoin = "round";
@@ -582,36 +618,41 @@
     function drawRings(web) {
       const sorted = [...web.spokes].sort((a, b) => a.angle - b.angle);
 
-      web.rings.forEach((ring) => {
-        const pts = [];
+      web.rings.forEach((ring, ringIndex) => {
+        const points = [];
 
         sorted.forEach((spoke, i) => {
           const p = ring.ratio;
-          if (p < ring.startCut || p > ring.endCut) return;
-          if (broken(spoke, p)) return;
+          if (p < ring.partialStart || p > ring.partialEnd) return;
+          if (Math.random() < ring.dropout * 0.06) return;
+          if (isBroken(spoke, p)) return;
 
-          const shift =
-            Math.sin(time * web.motion * 1.2 + ring.phase + i * 0.45) *
-            ring.sway;
+          const pt = pointOnSpoke(
+            web,
+            spoke,
+            p,
+            Math.sin((tick * web.motion * 0.7) + scrollEase * 0.10 + i + ringIndex) * ring.jitter +
+            ring.sag * 0.09
+          );
 
-          pts.push(pointOnSpoke(web, spoke, p, shift));
+          points.push(pt);
         });
 
-        if (pts.length < 4) return;
+        if (points.length < 4) return;
 
         ctx.beginPath();
-        ctx.moveTo(pts[0].x, pts[0].y);
+        ctx.moveTo(points[0].x, points[0].y);
 
-        for (let i = 1; i < pts.length - 1; i++) {
-          const mx = (pts[i].x + pts[i + 1].x) * 0.5;
-          const my = (pts[i].y + pts[i + 1].y) * 0.5;
-          ctx.quadraticCurveTo(pts[i].x, pts[i].y, mx, my);
+        for (let i = 1; i < points.length - 1; i++) {
+          const mx = (points[i].x + points[i + 1].x) * 0.5;
+          const my = (points[i].y + points[i + 1].y) * 0.5;
+          ctx.quadraticCurveTo(points[i].x, points[i].y, mx, my);
         }
 
-        ctx.lineTo(pts[pts.length - 1].x, pts[pts.length - 1].y);
+        ctx.lineTo(points[points.length - 1].x, points[points.length - 1].y);
 
-        const cp = pts[Math.floor(pts.length / 2)];
-        ctx.strokeStyle = colorAt(cp.x, cp.y, ring.alpha);
+        const cp = points[Math.floor(points.length / 2)];
+        ctx.strokeStyle = getMixedColor(cp.x, cp.y, ring.alpha);
         ctx.lineWidth = ring.thickness;
         ctx.lineCap = "round";
         ctx.lineJoin = "round";
@@ -619,107 +660,126 @@
       });
     }
 
-    function drawBridges() {
-      bridges.forEach((b) => {
-        const sa = b.wa.spokes[b.sa];
-        const sb = b.wb.spokes[b.sb];
-        if (!sa || !sb) return;
-        if (broken(sa, b.ta) || broken(sb, b.tb)) return;
+    function drawCrossThreads() {
+      crossThreads.forEach((thread) => {
+        const spokeA = thread.aWeb.spokes[thread.aSpoke];
+        const spokeB = thread.bWeb.spokes[thread.bSpoke];
 
-        const p1 = pointOnSpoke(b.wa, sa, b.ta);
-        const p2 = pointOnSpoke(b.wb, sb, b.tb);
+        if (isBroken(spokeA, thread.ta) || isBroken(spokeB, thread.tb)) return;
 
-        const mx = (p1.x + p2.x) * 0.5 + Math.sin(time * 0.0012 + b.phase) * b.bend;
-        const my = (p1.y + p2.y) * 0.5 + Math.cos(time * 0.0011 + b.phase) * (b.bend * 0.55);
+        const p1 = pointOnSpoke(thread.aWeb, spokeA, thread.ta);
+        const p2 = pointOnSpoke(thread.bWeb, spokeB, thread.tb);
 
-        ctx.beginPath();
-        ctx.moveTo(p1.x, p1.y);
-        ctx.quadraticCurveTo(mx, my, p2.x, p2.y);
-        ctx.strokeStyle = colorAt(mx, my, b.alpha);
-        ctx.lineWidth = b.width;
-        ctx.stroke();
-      });
-    }
-
-    function drawFilaments() {
-      filaments.forEach((f) => {
-        const sa = f.wa.spokes[f.sa];
-        const sb = f.wb.spokes[f.sb];
-        if (!sa || !sb) return;
-        if (broken(sa, f.ta) || broken(sb, f.tb)) return;
-
-        const p1 = pointOnSpoke(f.wa, sa, f.ta);
-        const p2 = pointOnSpoke(f.wb, sb, f.tb);
-
-        if (dist(p1.x, p1.y, p2.x, p2.y) > Math.min(w, h) * 0.26) return;
-
-        const mx = (p1.x + p2.x) * 0.5 + Math.sin(time * 0.0013 + f.phase) * f.bend;
-        const my = (p1.y + p2.y) * 0.5 + Math.cos(time * 0.0011 + f.phase) * (f.bend * 0.6);
+        const mx = (p1.x + p2.x) * 0.5 + Math.sin(tick * 0.0018 + scrollEase * 0.08 + thread.phase) * thread.bend;
+        const my = (p1.y + p2.y) * 0.5 + Math.cos(tick * 0.0018 + scrollEase * 0.08 + thread.phase) * (thread.bend * 0.65);
 
         ctx.beginPath();
         ctx.moveTo(p1.x, p1.y);
         ctx.quadraticCurveTo(mx, my, p2.x, p2.y);
-        ctx.strokeStyle = colorAt(mx, my, f.alpha);
-        ctx.lineWidth = f.width;
+        ctx.strokeStyle = getMixedColor(mx, my, thread.alpha);
+        ctx.lineWidth = thread.width;
         ctx.stroke();
       });
     }
 
-    function drawLooseStrands() {
-      strands.forEach((s) => {
-        const x1 = s.x1 + Math.sin(time * 0.0008 + s.phase) * 4;
-        const y1 = s.y1 + Math.cos(time * 0.0007 + s.phase) * 6 + verticalPush * 0.14;
-        const x2 = s.x2 + Math.cos(time * 0.0008 + s.phase) * 4;
-        const y2 = s.y2 + Math.sin(time * 0.0007 + s.phase) * 6 + verticalPush * 0.12;
+    function drawMicroThreads() {
+      microThreads.forEach((thread) => {
+        const spokeA = thread.wa.spokes[thread.sa];
+        const spokeB = thread.wb.spokes[thread.sb];
+        if (!spokeA || !spokeB) return;
+        if (isBroken(spokeA, thread.ta) || isBroken(spokeB, thread.tb)) return;
 
-        const mx = (x1 + x2) * 0.5 + Math.sin(time * 0.0010 + s.phase) * s.bend;
-        const my = (y1 + y2) * 0.5 + Math.cos(time * 0.0010 + s.phase) * (s.bend * 0.7);
+        const p1 = pointOnSpoke(thread.wa, spokeA, thread.ta);
+        const p2 = pointOnSpoke(thread.wb, spokeB, thread.tb);
+
+        if (dist(p1.x, p1.y, p2.x, p2.y) > Math.min(w, h) * 0.24) return;
+
+        const mx = (p1.x + p2.x) * 0.5 + Math.sin(tick * 0.0014 + scrollEase * 0.06 + thread.phase) * thread.bend;
+        const my = (p1.y + p2.y) * 0.5 + Math.cos(tick * 0.0014 + scrollEase * 0.06 + thread.phase) * (thread.bend * 0.65);
+
+        ctx.beginPath();
+        ctx.moveTo(p1.x, p1.y);
+        ctx.quadraticCurveTo(mx, my, p2.x, p2.y);
+        ctx.strokeStyle = getMixedColor(mx, my, thread.alpha);
+        ctx.lineWidth = thread.width;
+        ctx.stroke();
+      });
+    }
+
+    function drawOverlapWeave() {
+      overlapWeave.forEach((thread) => {
+        const x1 = thread.x1 + Math.sin(tick * 0.0012 + scrollEase * 0.05 + thread.phase) * 3;
+        const y1 = thread.y1 + Math.cos(tick * 0.0011 + scrollEase * 0.05 + thread.phase) * 3;
+        const x2 = thread.x2 + Math.cos(tick * 0.0011 + scrollEase * 0.05 + thread.phase) * 3;
+        const y2 = thread.y2 + Math.sin(tick * 0.0013 + scrollEase * 0.05 + thread.phase) * 3;
+
+        const mx = (x1 + x2) * 0.5 + Math.sin(tick * 0.0012 + scrollEase * 0.05 + thread.phase) * thread.bend;
+        const my = (y1 + y2) * 0.5 + Math.cos(tick * 0.0011 + scrollEase * 0.05 + thread.phase) * (thread.bend * 0.7);
 
         ctx.beginPath();
         ctx.moveTo(x1, y1);
         ctx.quadraticCurveTo(mx, my, x2, y2);
-        ctx.strokeStyle = `rgba(255,42,42,${s.alpha})`;
-        ctx.lineWidth = s.width;
+        ctx.strokeStyle = getMixedColor(mx, my, thread.alpha);
+        ctx.lineWidth = thread.width;
         ctx.stroke();
       });
     }
 
-    function drawCenterFalloff() {
-      const g = ctx.createRadialGradient(w * 0.5, h * 0.5, 0, w * 0.5, h * 0.5, Math.min(w, h) * 0.42);
-      g.addColorStop(0, "rgba(0,0,0,0.00)");
-      g.addColorStop(0.38, "rgba(0,0,0,0.08)");
-      g.addColorStop(0.72, "rgba(0,0,0,0.34)");
-      g.addColorStop(1, "rgba(0,0,0,0.00)");
-      ctx.fillStyle = g;
-      ctx.fillRect(0, 0, w, h);
+    function drawCoreDim(web) {
+      const coreAlpha = web.theme === "red" ? 0.14 : 0.10;
+      const coreRadius = web.layer === "front" ? 1.7 : 1.3;
+
+      ctx.beginPath();
+      ctx.arc(web.cx, web.cy, coreRadius, 0, Math.PI * 2);
+      ctx.fillStyle = getMixedColor(web.cx, web.cy, coreAlpha);
+      ctx.fill();
+    }
+
+    function updateScrollInfluence() {
+      scrollEase += (scrollTarget - scrollEase) * 0.06;
+      scrollTarget *= 0.94;
     }
 
     function render() {
       ctx.clearRect(0, 0, w, h);
 
-      verticalPush *= 0.95;
+      updateScrollInfluence();
 
-      webs.forEach(drawWebGlow);
-      drawLooseStrands();
-      webs.forEach(drawRings);
-      webs.forEach(drawSpokes);
-      drawFilaments();
-      drawBridges();
-      drawCenterFalloff();
+      webs.forEach(drawGlow);
 
-      time += 1;
+      webs.filter(wb => wb.layer === "back").forEach(drawRings);
+      webs.filter(wb => wb.layer === "back").forEach(drawSpokes);
+
+      drawMicroThreads();
+
+      webs.filter(wb => wb.layer === "mid").forEach(drawRings);
+      webs.filter(wb => wb.layer === "mid").forEach(drawSpokes);
+
+      drawCrossThreads();
+      drawOverlapWeave();
+
+      webs.filter(wb => wb.layer === "front").forEach(drawRings);
+      webs.filter(wb => wb.layer === "front").forEach(drawSpokes);
+
+      webs.filter(wb => wb.layer !== "back").forEach(drawCoreDim);
+
+      tick += 1;
       requestAnimationFrame(render);
     }
+
+    let lastScrollY = window.scrollY;
 
     function handleScroll() {
       const currentY = window.scrollY;
       const delta = currentY - lastScrollY;
       lastScrollY = currentY;
-      verticalPush += clamp(delta * 0.05, -2.8, 2.8);
+
+      scrollTarget += delta * 0.025;
+      scrollTarget = clamp(scrollTarget, -8, 8);
     }
 
-    window.addEventListener("resize", resizeCanvas, { passive: true });
     window.addEventListener("scroll", handleScroll, { passive: true });
+    window.addEventListener("resize", resizeCanvas, { passive: true });
 
     resizeCanvas();
     render();
