@@ -72,7 +72,6 @@
       background:
         radial-gradient(circle at 50% 50%, rgba(0,0,0,0) 0%, rgba(0,0,0,.04) 58%, rgba(0,0,0,.12) 100%),
         linear-gradient(180deg, rgba(0,0,0,.02), rgba(0,0,0,.05));
-      transition:opacity .35s ease;
     }
 
     .web-canvas{
@@ -88,11 +87,6 @@
         drop-shadow(0 0 4px rgba(255,80,80,.12))
         drop-shadow(0 0 8px rgba(255,80,80,.09))
         drop-shadow(0 0 10px rgba(255,255,255,.03));
-      transition:
-        transform 1s cubic-bezier(.12,.8,.16,1),
-        opacity .45s ease,
-        filter .45s ease;
-      will-change:transform, opacity;
     }
 
     .content{
@@ -113,10 +107,6 @@
       justify-content:center;
       text-align:center;
       transform:translateY(-18px);
-      transition:
-        transform 1s cubic-bezier(.12,.8,.16,1),
-        opacity .32s ease;
-      will-change:transform, opacity;
     }
 
     .logo-link{
@@ -125,7 +115,6 @@
       justify-content:center;
       position:relative;
       line-height:0;
-      cursor:pointer;
     }
 
     .logo-wrap{
@@ -134,12 +123,6 @@
       align-items:center;
       justify-content:center;
       padding:12px;
-      transition:
-        transform 1.05s cubic-bezier(.08,.82,.14,1),
-        opacity .3s ease,
-        filter .3s ease;
-      transform-origin:58% 44%;
-      will-change:transform;
     }
 
     .logo-wrap::before{
@@ -196,11 +179,6 @@
       margin-top:2px;
       text-decoration:none;
       text-align:center;
-      cursor:pointer;
-      transition:
-        opacity .22s ease,
-        transform .22s ease;
-      will-change:opacity, transform;
     }
 
     .enter-text{
@@ -222,74 +200,6 @@
     .enter-link:hover .enter-text{
       transform:scale(1.06);
       opacity:1;
-    }
-
-    .transition-overlay{
-      position:fixed;
-      inset:0;
-      z-index:20;
-      pointer-events:none;
-      opacity:0;
-      background:
-        radial-gradient(circle at 50% 50%,
-          rgba(255,0,0,.16) 0%,
-          rgba(255,0,0,.08) 3%,
-          rgba(0,0,0,0) 8%,
-          rgba(0,0,0,.18) 18%,
-          rgba(0,0,0,.82) 44%,
-          rgba(0,0,0,1) 72%);
-      transform:scale(1);
-      transition:
-        opacity .25s ease,
-        transform 1s cubic-bezier(.12,.8,.16,1),
-        background-position 1s cubic-bezier(.12,.8,.16,1);
-      background-position:50% 50%;
-      will-change:opacity, transform, background-position;
-    }
-
-    body.zooming{
-      overflow:hidden;
-    }
-
-    body.zooming .logo-link,
-    body.zooming .enter-link{
-      pointer-events:none;
-    }
-
-    body.zooming .enter-link{
-      opacity:0;
-      transform:translateY(10px);
-    }
-
-    body.zooming .hero{
-      transform:translate(-2vw, -1vh) scale(1.04);
-    }
-
-    body.zooming .logo-wrap{
-      transform:translate(9vw, -13vh) scale(20);
-    }
-
-    body.zooming .logo{
-      animation-play-state:paused;
-    }
-
-    body.zooming .web-canvas{
-      transform:scale(1.55) translate(2vw, -1vh);
-      opacity:1;
-      filter:
-        drop-shadow(0 0 6px rgba(255,80,80,.20))
-        drop-shadow(0 0 12px rgba(255,80,80,.16))
-        drop-shadow(0 0 12px rgba(255,255,255,.05));
-    }
-
-    body.zooming .stage::after{
-      opacity:.08;
-    }
-
-    body.zooming .transition-overlay{
-      opacity:1;
-      transform:scale(3.6);
-      background-position:60% 38%;
     }
 
     @keyframes subtlePulse{
@@ -337,23 +247,6 @@
         font-size:15px;
         letter-spacing:2px;
       }
-
-      body.zooming .hero{
-        transform:translate(-2vw, -1vh) scale(1.03);
-      }
-
-      body.zooming .logo-wrap{
-        transform:translate(10vw, -16vh) scale(23);
-      }
-
-      body.zooming .web-canvas{
-        transform:scale(1.65) translate(2vw, -1vh);
-      }
-
-      body.zooming .transition-overlay{
-        transform:scale(4.2);
-        background-position:60% 37%;
-      }
     }
   </style>
 </head>
@@ -375,8 +268,6 @@
       </div>
     </div>
   </main>
-
-  <div class="transition-overlay" aria-hidden="true"></div>
 
   <script>
     const stage = document.getElementById("indexStage");
@@ -426,6 +317,7 @@
       canvas.style.height = `${h}px`;
 
       ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+
       buildScene();
     }
 
@@ -892,23 +784,6 @@
 
     resizeCanvas();
     render();
-
-    const enterLinks = document.querySelectorAll(".logo-link, .enter-link");
-    let isEntering = false;
-
-    enterLinks.forEach((link) => {
-      link.addEventListener("click", (e) => {
-        e.preventDefault();
-        if (isEntering) return;
-        isEntering = true;
-
-        document.body.classList.add("zooming");
-
-        setTimeout(() => {
-          window.location.href = "home.html";
-        }, 980);
-      });
-    });
   </script>
 </body>
 </html>
