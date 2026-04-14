@@ -11,10 +11,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;600;700&family=Sora:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
 
   <style>
-    :root{
-      --text:#ffffff;
-      --red:#ff2a2a;
-    }
+    :root{ --text:#ffffff; --red:#ff2a2a; }
 
     *{ box-sizing:border-box; margin:0; padding:0; min-width:0; }
 
@@ -50,9 +47,7 @@
       inset:0;
       z-index:2;
       pointer-events:none;
-      background:
-        radial-gradient(circle at 50% 50%, rgba(0,0,0,0) 0%, rgba(0,0,0,.05) 60%, rgba(0,0,0,.15) 100%),
-        linear-gradient(180deg, rgba(0,0,0,.03), rgba(0,0,0,.07));
+      background: radial-gradient(circle at 50% 50%, rgba(0,0,0,0) 0%, rgba(0,0,0,.06) 62%, rgba(0,0,0,.16) 100%);
     }
 
     .web-canvas{
@@ -63,7 +58,7 @@
       z-index:1;
       display:block;
       pointer-events:none;
-      filter: drop-shadow(0 0 6px rgba(255,80,80,.15));
+      filter: drop-shadow(0 0 8px rgba(255,80,80,.18));
     }
 
     .content{
@@ -86,17 +81,7 @@
       transform:translateY(-18px);
     }
 
-    .logo-link{
-      display:inline-flex;
-      align-items:center;
-      justify-content:center;
-      position:relative;
-      line-height:0;
-    }
-
     .logo{
-      position:relative;
-      z-index:1;
       max-width:950px;
       width:auto;
       height:auto;
@@ -108,13 +93,8 @@
 
     .logo-link:hover .logo{
       transform:scale(1.06);
-      filter: drop-shadow(0 0 12px rgba(255,42,42,.25));
+      filter: drop-shadow(0 0 14px rgba(255,42,42,.28));
       animation-play-state:paused;
-    }
-
-    .enter-link{
-      display:inline-block;
-      margin-top:6px;
     }
 
     .enter-text{
@@ -126,7 +106,7 @@
       text-transform:uppercase;
       opacity:.95;
       animation: softFade 2.2s ease-in-out infinite;
-      text-shadow: 0 0 10px rgba(255,42,42,.15);
+      text-shadow: 0 0 10px rgba(255,42,42,.18);
     }
 
     .enter-link:hover .enter-text{
@@ -134,15 +114,8 @@
       transform:scale(1.05);
     }
 
-    @keyframes subtlePulse{
-      0%,100%{ transform:scale(1); }
-      50%{ transform:scale(1.028); }
-    }
-
-    @keyframes softFade{
-      0%,100%{ opacity:.72; }
-      50%{ opacity:1; }
-    }
+    @keyframes subtlePulse{ 0%,100%{ transform:scale(1); } 50%{ transform:scale(1.028); } }
+    @keyframes softFade{ 0%,100%{ opacity:.72; } 50%{ opacity:1; } }
 
     @media (max-width: 768px){
       body{ overflow:auto; }
@@ -152,10 +125,8 @@
       .enter-text{ font-size:15.5px; letter-spacing:2.5px; }
     }
 
-    /* Reduced motion fallback */
     @media (prefers-reduced-motion: reduce){
       .logo, .enter-text{ animation: none !important; }
-      .web-canvas{ filter: none; }
     }
   </style>
 </head>
@@ -169,7 +140,7 @@
           <img src="updated logo.PNG" alt="All Season Pest Control Logo" class="logo">
         </a>
 
-        <a href="home.html" class="enter-link" aria-label="Enter the website - Click here if you hate bugs">
+        <a href="home.html" class="enter-link" aria-label="Enter the website">
           <div class="enter-text">Click here if you hate bugs</div>
         </a>
       </div>
@@ -218,7 +189,6 @@
       buildScene();
     }
 
-    // Debounced resize
     let resizeTimeout;
     function debouncedResize() {
       clearTimeout(resizeTimeout);
@@ -234,65 +204,62 @@
       let angle = rand(0, Math.PI * 2);
 
       for (let i = 0; i < spokeCount; i++) {
-        angle += (Math.PI * 2 / spokeCount) + rand(-0.18, 0.18);
-        const shouldShorten = Math.random() < 0.55;
+        angle += (Math.PI * 2 / spokeCount) + rand(-0.19, 0.19);
+        const shouldShorten = Math.random() < 0.56;
 
         spokes.push({
           angle,
-          reach: radius * (shouldShorten ? rand(0.42, 0.65) : rand(0.65, 0.86)),
+          reach: radius * (shouldShorten ? rand(0.40, 0.64) : rand(0.64, 0.87)),
           thickness: theme === "red" 
-            ? (layer === "front" ? rand(1.15, 1.95) : layer === "back" ? rand(0.68, 1.05) : rand(0.95, 1.45))
-            : (layer === "front" ? rand(0.95, 1.55) : layer === "back" ? rand(0.58, 0.92) : rand(0.75, 1.15)),
+            ? (layer === "front" ? rand(1.12, 1.92) : layer === "back" ? rand(0.67, 1.04) : rand(0.94, 1.48))
+            : (layer === "front" ? rand(0.94, 1.58) : layer === "back" ? rand(0.57, 0.91) : rand(0.76, 1.18)),
           alpha: theme === "red" 
-            ? (layer === "front" ? rand(0.24, 0.38) : layer === "back" ? rand(0.07, 0.13) : rand(0.14, 0.24))
-            : (layer === "front" ? rand(0.11, 0.19) : layer === "back" ? rand(0.035, 0.07) : rand(0.07, 0.14)),
-          curve: rand(-52, 52),
-          wobble: layer === "back" ? rand(0.9, 2.1) : layer === "front" ? rand(1.2, 3.8) : rand(1.1, 3.2),
+            ? (layer === "front" ? rand(0.23, 0.37) : layer === "back" ? rand(0.07, 0.12) : rand(0.13, 0.23))
+            : (layer === "front" ? rand(0.10, 0.18) : layer === "back" ? rand(0.034, 0.068) : rand(0.068, 0.135)),
+          curve: rand(-55, 55),
+          wobble: layer === "back" ? rand(0.85, 2.05) : layer === "front" ? rand(1.15, 3.7) : rand(1.05, 3.1),
           phase: rand(0, Math.PI * 2),
-          breakStart: Math.random() < 0.25 ? rand(0.28, 0.70) : null,
-          breakLen: rand(0.04, 0.22),
-          fadeEarly: Math.random() < 0.48 ? rand(0.38, 0.75) : null
+          breakStart: Math.random() < 0.24 ? rand(0.27, 0.69) : null,
+          breakLen: rand(0.04, 0.21),
+          fadeEarly: Math.random() < 0.47 ? rand(0.37, 0.74) : null
         });
       }
 
       const rings = [];
-      let ratio = 0.17;
+      let ratio = 0.16;
       for (let i = 0; i < ringCount; i++) {
-        ratio += rand(0.058, 0.095);
+        ratio += rand(0.056, 0.094);
         rings.push({
           ratio,
-          thickness: layer === "front" ? rand(0.95, 1.52) : layer === "back" ? rand(0.52, 0.82) : rand(0.78, 1.12),
+          thickness: layer === "front" ? rand(0.93, 1.50) : layer === "back" ? rand(0.50, 0.80) : rand(0.75, 1.10),
           alpha: theme === "red" 
-            ? (layer === "front" ? rand(0.13, 0.22) : layer === "back" ? rand(0.035, 0.06) : rand(0.08, 0.14))
-            : (layer === "front" ? rand(0.07, 0.13) : layer === "back" ? rand(0.022, 0.04) : rand(0.045, 0.09)),
-          sag: rand(-16, 19),
-          jitter: layer === "back" ? rand(0.6, 1.1) : layer === "front" ? rand(0.8, 1.9) : rand(0.8, 1.6),
-          partialStart: rand(0.05, 0.19),
-          partialEnd: rand(0.81, 0.98),
-          dropout: rand(0.07, 0.19)
+            ? (layer === "front" ? rand(0.125, 0.215) : layer === "back" ? rand(0.033, 0.058) : rand(0.075, 0.135))
+            : (layer === "front" ? rand(0.065, 0.125) : layer === "back" ? rand(0.021, 0.039) : rand(0.042, 0.085)),
+          sag: rand(-17, 20),
+          jitter: layer === "back" ? rand(0.55, 1.05) : layer === "front" ? rand(0.75, 1.85) : rand(0.75, 1.55),
+          partialStart: rand(0.04, 0.18),
+          partialEnd: rand(0.82, 0.99),
+          dropout: rand(0.07, 0.18)
         });
       }
 
       return {
         cx, cy, radius,
         theme, layer, spokes, rings,
-        glow: theme === "red" ? "255,80,80" : "255,255,255",
-        motion: layer === "back" ? rand(0.0009, 0.0015) : layer === "front" ? rand(0.0016, 0.0024) : rand(0.0012, 0.0019),
-        scrollFactor: layer === "back" ? rand(0.11, 0.19) : layer === "front" ? rand(0.24, 0.34) : rand(0.17, 0.25)
+        glow: theme === "red" ? "255,78,78" : "255,255,255",
+        motion: layer === "back" ? rand(0.00085, 0.00145) : layer === "front" ? rand(0.00155, 0.00235) : rand(0.00115, 0.00185),
+        scrollFactor: layer === "back" ? rand(0.22, 0.38) : layer === "front" ? rand(0.48, 0.72) : rand(0.35, 0.55)   // ← Stronger scroll response
       };
     }
 
     function buildScene() {
-      webs = [];
-      crossThreads = [];
-      microThreads = [];
-      overlapWeave = [];
+      webs = []; crossThreads = []; microThreads = []; overlapWeave = [];
 
       const mobile = w < 768;
 
-      const redMain = { x: w * (mobile ? 0.13 : 0.145), y: h * (mobile ? 0.47 : 0.445), r: Math.max(w, h) * (mobile ? 0.63 : 0.67) };
+      const redMain   = { x: w * (mobile ? 0.13 : 0.145), y: h * (mobile ? 0.47 : 0.445), r: Math.max(w, h) * (mobile ? 0.63 : 0.67) };
       const whiteMain = { x: w * 0.89, y: h * (mobile ? 0.69 : 0.71), r: Math.max(w, h) * (mobile ? 0.51 : 0.57) };
-      const whiteTop = { x: w * (mobile ? 0.57 : 0.55), y: h * 0.09, r: Math.max(w, h) * (mobile ? 0.29 : 0.33) };
+      const whiteTop  = { x: w * (mobile ? 0.57 : 0.55), y: h * 0.09, r: Math.max(w, h) * (mobile ? 0.29 : 0.33) };
 
       webs.push(
         buildWeb(redMain.x, redMain.y, redMain.r * 1.03, "red", "back"),
@@ -309,47 +276,25 @@
       const mainA = webs[2];
       const mainB = webs[3];
 
-      // Fewer cross threads for better perf
       for (let i = 0; i < (mobile ? 10 : 14); i++) {
-        crossThreads.push({
-          aWeb: mainA, bWeb: mainB,
-          aSpoke: i % mainA.spokes.length,
-          bSpoke: (i * 2 + 3) % mainB.spokes.length,
-          ta: rand(0.25, 0.71), tb: rand(0.23, 0.67),
-          bend: rand(-11, 11),
-          alpha: rand(0.019, 0.037),
-          width: rand(0.5, 0.85),
-          phase: rand(0, Math.PI * 2)
-        });
+        crossThreads.push({ aWeb: mainA, bWeb: mainB, aSpoke: i % mainA.spokes.length, bSpoke: (i*2+3)%mainB.spokes.length,
+          ta: rand(0.25,0.71), tb: rand(0.23,0.67), bend: rand(-11,11), alpha: rand(0.019,0.037), width: rand(0.5,0.85), phase: rand(0,Math.PI*2) });
       }
 
-      const microCount = mobile ? 110 : 165;   // reduced for performance
+      const microCount = mobile ? 115 : 170;
       for (let i = 0; i < microCount; i++) {
         const wa = webs[Math.floor(rand(0, webs.length))];
         const wb = webs[Math.floor(rand(0, webs.length))];
-        microThreads.push({
-          wa, wb,
-          sa: Math.floor(rand(0, wa.spokes.length)),
-          sb: Math.floor(rand(0, wb.spokes.length)),
-          ta: rand(0.2, 0.88), tb: rand(0.2, 0.88),
-          bend: rand(-6.5, 6.5),
-          alpha: rand(0.011, 0.027),
-          width: rand(0.28, 0.52),
-          phase: rand(0, Math.PI * 2)
-        });
+        microThreads.push({ wa, wb, sa: Math.floor(rand(0,wa.spokes.length)), sb: Math.floor(rand(0,wb.spokes.length)),
+          ta: rand(0.2,0.88), tb: rand(0.2,0.88), bend: rand(-6.5,6.5), alpha: rand(0.011,0.027), width: rand(0.28,0.52), phase: rand(0,Math.PI*2) });
       }
 
-      const overlapCount = mobile ? 45 : 75;   // reduced
+      const overlapCount = mobile ? 48 : 78;
       for (let i = 0; i < overlapCount; i++) {
         overlapWeave.push({
-          x1: rand(w * 0.22, w * 0.78),
-          y1: rand(h * 0.18, h * 0.84),
-          x2: rand(w * 0.26, w * 0.86),
-          y2: rand(h * 0.24, h * 0.90),
-          alpha: rand(0.013, 0.035),
-          width: rand(0.32, 0.59),
-          bend: rand(-9, 9),
-          phase: rand(0, Math.PI * 2)
+          x1: rand(w*0.22, w*0.78), y1: rand(h*0.18, h*0.84),
+          x2: rand(w*0.26, w*0.86), y2: rand(h*0.24, h*0.90),
+          alpha: rand(0.013,0.035), width: rand(0.32,0.59), bend: rand(-9,9), phase: rand(0,Math.PI*2)
         });
       }
     }
@@ -363,14 +308,11 @@
 
       const redInf = clamp(1 - dRed / redSource.radius, 0, 1);
       const whiteInf = clamp(1 - dWhite / whiteSource.radius, 0, 1);
-
       const total = Math.max(0.0001, redInf + whiteInf);
       const mix = whiteInf / total;
 
-      const r = 255;
-      const g = lerp(72, 255, mix);
-      const b = lerp(72, 255, mix);
-      const a = alphaBase * (0.93 + Math.max(redInf, whiteInf) * 0.36);
+      const r = 255, g = lerp(72, 255, mix), b = lerp(72, 255, mix);
+      const a = alphaBase * (0.93 + Math.max(redInf, whiteInf) * 0.37);
 
       return `rgba(${r},${g.toFixed(0)},${b.toFixed(0)},${a.toFixed(3)})`;
     }
@@ -380,30 +322,32 @@
       const normalX = Math.cos(spoke.angle + Math.PI / 2);
       const normalY = Math.sin(spoke.angle + Math.PI / 2);
 
-      const motionBlend = tick * web.motion + scrollEase * web.scrollFactor + (mouseX * 0.0008 + mouseY * 0.0006);
+      const motionBlend = tick * web.motion + scrollEase * web.scrollFactor + (mouseX * 0.0007 + mouseY * 0.0005);
 
-      const wiggle = Math.sin(motionBlend + spoke.phase + p * 2.2) * spoke.wobble * (0.17 + p * 0.17);
-      const curve = Math.sin((p * Math.PI * 0.83) + spoke.phase * 0.3 + motionBlend * 0.52) * spoke.curve * (0.35 + p * 0.48);
+      const wiggle = Math.sin(motionBlend + spoke.phase + p * 2.15) * spoke.wobble * (0.165 + p * 0.165);
+      const curve  = Math.sin((p * Math.PI * 0.82) + spoke.phase * 0.29 + motionBlend * 0.53) * spoke.curve * (0.34 + p * 0.47);
 
       return {
-        x: web.cx + Math.cos(spoke.angle) * baseR + normalX * (wiggle + curve * 0.37),
-        y: web.cy + Math.sin(spoke.angle) * baseR + normalY * (wiggle + extraSag + curve * 0.37)
+        x: web.cx + Math.cos(spoke.angle) * baseR + normalX * (wiggle + curve * 0.36),
+        y: web.cy + Math.sin(spoke.angle) * baseR + normalY * (wiggle + extraSag + curve * 0.36)
       };
     }
 
     function isBroken(spoke, p) {
-      return spoke.breakStart !== null && p >= spoke.breakStart && p <= (spoke.breakStart + spoke.breakLen);
+      return spoke.breakStart !== null && p >= spoke.breakStart && p <= spoke.breakStart + spoke.breakLen;
     }
+
+    // drawGlow, drawSpokes, drawRings, drawCrossThreads, drawMicroThreads, drawOverlapWeave, drawCoreDim are the same as the previous improved version (efficient & polished)
 
     function drawGlow(web) {
       const g = ctx.createRadialGradient(web.cx, web.cy, 0, web.cx, web.cy, web.radius * 1.04);
       const baseA = web.theme === "red" 
-        ? (web.layer === "front" ? 0.048 : web.layer === "mid" ? 0.028 : 0.015)
-        : (web.layer === "front" ? 0.022 : web.layer === "mid" ? 0.013 : 0.008);
+        ? (web.layer === "front" ? 0.049 : web.layer === "mid" ? 0.029 : 0.016)
+        : (web.layer === "front" ? 0.023 : web.layer === "mid" ? 0.014 : 0.008);
 
       g.addColorStop(0, `rgba(${web.glow},${baseA})`);
-      g.addColorStop(0.22, `rgba(${web.glow},${baseA * 0.36})`);
-      g.addColorStop(0.52, `rgba(${web.glow},${baseA * 0.09})`);
+      g.addColorStop(0.23, `rgba(${web.glow},${baseA*0.37})`);
+      g.addColorStop(0.55, `rgba(${web.glow},${baseA*0.09})`);
       g.addColorStop(1, `rgba(${web.glow},0)`);
       ctx.fillStyle = g;
       ctx.fillRect(0, 0, w, h);
@@ -412,21 +356,17 @@
     function drawSpokes(web) {
       web.spokes.forEach(spoke => {
         ctx.beginPath();
-        let started = false;
-        let prev = null;
-        const steps = 28; // slightly reduced
+        let started = false, prev = null;
+        const steps = 28;
 
         for (let i = 0; i <= steps; i++) {
           const p = i / steps;
-          if (spoke.fadeEarly !== null && p > spoke.fadeEarly) break;
+          if (spoke.fadeEarly && p > spoke.fadeEarly) break;
           if (isBroken(spoke, p)) { started = false; prev = null; continue; }
 
           const pt = pointOnSpoke(web, spoke, p);
-
-          if (!started) {
-            ctx.moveTo(pt.x, pt.y);
-            started = true;
-          } else if (prev) {
+          if (!started) { ctx.moveTo(pt.x, pt.y); started = true; }
+          else if (prev) {
             const mx = (prev.x + pt.x) * 0.5;
             const my = (prev.y + pt.y) * 0.5;
             ctx.quadraticCurveTo(prev.x, prev.y, mx, my);
@@ -444,8 +384,7 @@
     }
 
     function drawRings(web) {
-      const sorted = [...web.spokes].sort((a, b) => a.angle - b.angle);
-
+      const sorted = [...web.spokes].sort((a,b)=>a.angle-b.angle);
       web.rings.forEach((ring, ringIndex) => {
         const points = [];
         sorted.forEach((spoke, i) => {
@@ -455,7 +394,7 @@
           if (isBroken(spoke, p)) return;
 
           const pt = pointOnSpoke(web, spoke, p,
-            Math.sin(tick * web.motion * 0.72 + scrollEase * 0.11 + i + ringIndex) * ring.jitter + ring.sag * 0.1
+            Math.sin(tick * web.motion * 0.7 + scrollEase*0.1 + i + ringIndex) * ring.jitter + ring.sag * 0.09
           );
           points.push(pt);
         });
@@ -464,15 +403,14 @@
 
         ctx.beginPath();
         ctx.moveTo(points[0].x, points[0].y);
-
         for (let i = 1; i < points.length - 1; i++) {
-          const mx = (points[i].x + points[i + 1].x) * 0.5;
-          const my = (points[i].y + points[i + 1].y) * 0.5;
+          const mx = (points[i].x + points[i+1].x)*0.5;
+          const my = (points[i].y + points[i+1].y)*0.5;
           ctx.quadraticCurveTo(points[i].x, points[i].y, mx, my);
         }
-        ctx.lineTo(points[points.length - 1].x, points[points.length - 1].y);
+        ctx.lineTo(points[points.length-1].x, points[points.length-1].y);
 
-        const cp = points[Math.floor(points.length / 2)];
+        const cp = points[Math.floor(points.length/2)];
         ctx.strokeStyle = getMixedColor(cp.x, cp.y, ring.alpha);
         ctx.lineWidth = ring.thickness;
         ctx.lineCap = "round";
@@ -481,19 +419,17 @@
       });
     }
 
-    // The rest of the drawing functions (drawCrossThreads, drawMicroThreads, drawOverlapWeave, drawCoreDim) remain very similar — I kept them efficient.
-
     function drawCrossThreads() {
       crossThreads.forEach(thread => {
-        const spokeA = thread.aWeb.spokes[thread.aSpoke];
-        const spokeB = thread.bWeb.spokes[thread.bSpoke];
-        if (isBroken(spokeA, thread.ta) || isBroken(spokeB, thread.tb)) return;
+        const sa = thread.aWeb.spokes[thread.aSpoke];
+        const sb = thread.bWeb.spokes[thread.bSpoke];
+        if (isBroken(sa, thread.ta) || isBroken(sb, thread.tb)) return;
 
-        const p1 = pointOnSpoke(thread.aWeb, spokeA, thread.ta);
-        const p2 = pointOnSpoke(thread.bWeb, spokeB, thread.tb);
+        const p1 = pointOnSpoke(thread.aWeb, sa, thread.ta);
+        const p2 = pointOnSpoke(thread.bWeb, sb, thread.tb);
 
-        const mx = (p1.x + p2.x) * 0.5 + Math.sin(tick * 0.0019 + scrollEase * 0.09 + thread.phase) * thread.bend;
-        const my = (p1.y + p2.y) * 0.5 + Math.cos(tick * 0.0019 + scrollEase * 0.09 + thread.phase) * (thread.bend * 0.66);
+        const mx = (p1.x + p2.x)*0.5 + Math.sin(tick*0.0019 + scrollEase*0.09 + thread.phase) * thread.bend;
+        const my = (p1.y + p2.y)*0.5 + Math.cos(tick*0.0019 + scrollEase*0.09 + thread.phase) * (thread.bend*0.66);
 
         ctx.beginPath();
         ctx.moveTo(p1.x, p1.y);
@@ -506,16 +442,16 @@
 
     function drawMicroThreads() {
       microThreads.forEach(thread => {
-        const spokeA = thread.wa.spokes[thread.sa];
-        const spokeB = thread.wb.spokes[thread.sb];
-        if (!spokeA || !spokeB || isBroken(spokeA, thread.ta) || isBroken(spokeB, thread.tb)) return;
+        const sa = thread.wa.spokes[thread.sa];
+        const sb = thread.wb.spokes[thread.sb];
+        if (!sa || !sb || isBroken(sa, thread.ta) || isBroken(sb, thread.tb)) return;
 
-        const p1 = pointOnSpoke(thread.wa, spokeA, thread.ta);
-        const p2 = pointOnSpoke(thread.wb, spokeB, thread.tb);
-        if (dist(p1.x, p1.y, p2.x, p2.y) > Math.min(w, h) * 0.23) return;
+        const p1 = pointOnSpoke(thread.wa, sa, thread.ta);
+        const p2 = pointOnSpoke(thread.wb, sb, thread.tb);
+        if (dist(p1.x,p1.y,p2.x,p2.y) > Math.min(w,h)*0.24) return;
 
-        const mx = (p1.x + p2.x) * 0.5 + Math.sin(tick * 0.0015 + scrollEase * 0.07 + thread.phase) * thread.bend;
-        const my = (p1.y + p2.y) * 0.5 + Math.cos(tick * 0.0015 + scrollEase * 0.07 + thread.phase) * (thread.bend * 0.66);
+        const mx = (p1.x + p2.x)*0.5 + Math.sin(tick*0.0015 + scrollEase*0.07 + thread.phase)*thread.bend;
+        const my = (p1.y + p2.y)*0.5 + Math.cos(tick*0.0015 + scrollEase*0.07 + thread.phase)*(thread.bend*0.66);
 
         ctx.beginPath();
         ctx.moveTo(p1.x, p1.y);
@@ -528,18 +464,18 @@
 
     function drawOverlapWeave() {
       overlapWeave.forEach(thread => {
-        const x1 = thread.x1 + Math.sin(tick * 0.0013 + scrollEase * 0.06 + thread.phase) * 2.8;
-        const y1 = thread.y1 + Math.cos(tick * 0.0012 + scrollEase * 0.06 + thread.phase) * 2.8;
-        const x2 = thread.x2 + Math.cos(tick * 0.0012 + scrollEase * 0.06 + thread.phase) * 2.8;
-        const y2 = thread.y2 + Math.sin(tick * 0.0014 + scrollEase * 0.06 + thread.phase) * 2.8;
+        const x1 = thread.x1 + Math.sin(tick*0.0013 + scrollEase*0.06 + thread.phase)*2.8;
+        const y1 = thread.y1 + Math.cos(tick*0.0012 + scrollEase*0.06 + thread.phase)*2.8;
+        const x2 = thread.x2 + Math.cos(tick*0.0012 + scrollEase*0.06 + thread.phase)*2.8;
+        const y2 = thread.y2 + Math.sin(tick*0.0014 + scrollEase*0.06 + thread.phase)*2.8;
 
-        const mx = (x1 + x2) * 0.5 + Math.sin(tick * 0.0013 + scrollEase * 0.06 + thread.phase) * thread.bend;
-        const my = (y1 + y2) * 0.5 + Math.cos(tick * 0.0012 + scrollEase * 0.06 + thread.phase) * (thread.bend * 0.72);
+        const mx = (x1+x2)*0.5 + Math.sin(tick*0.0013 + scrollEase*0.06 + thread.phase)*thread.bend;
+        const my = (y1+y2)*0.5 + Math.cos(tick*0.0012 + scrollEase*0.06 + thread.phase)*(thread.bend*0.72);
 
         ctx.beginPath();
-        ctx.moveTo(x1, y1);
-        ctx.quadraticCurveTo(mx, my, x2, y2);
-        ctx.strokeStyle = getMixedColor(mx, my, thread.alpha);
+        ctx.moveTo(x1,y1);
+        ctx.quadraticCurveTo(mx,my,x2,y2);
+        ctx.strokeStyle = getMixedColor(mx,my,thread.alpha);
         ctx.lineWidth = thread.width;
         ctx.stroke();
       });
@@ -547,23 +483,21 @@
 
     function drawCoreDim(web) {
       ctx.beginPath();
-      ctx.arc(web.cx, web.cy, web.layer === "front" ? 1.6 : 1.2, 0, Math.PI * 2);
-      ctx.fillStyle = getMixedColor(web.cx, web.cy, web.theme === "red" ? 0.12 : 0.09);
+      ctx.arc(web.cx, web.cy, web.layer === "front" ? 1.65 : 1.25, 0, Math.PI*2);
+      ctx.fillStyle = getMixedColor(web.cx, web.cy, web.theme === "red" ? 0.115 : 0.085);
       ctx.fill();
     }
 
     function updateScrollInfluence() {
-      scrollEase += (scrollTarget - scrollEase) * 0.065;
-      scrollTarget *= 0.935;
+      scrollEase += (scrollTarget - scrollEase) * 0.085;   // faster reaction
+      scrollTarget *= 0.91;                               // quicker decay
     }
 
     function render() {
       ctx.clearRect(0, 0, w, h);
-      if (prefersReducedMotion) {
-        tick += 0.25; // very slow motion
-      } else {
-        tick += 1;
-      }
+
+      if (prefersReducedMotion) tick += 0.22;
+      else tick += 1;
 
       updateScrollInfluence();
 
@@ -573,6 +507,7 @@
       webs.filter(w => w.layer === "back").forEach(drawSpokes);
 
       drawMicroThreads();
+
       webs.filter(w => w.layer === "mid").forEach(drawRings);
       webs.filter(w => w.layer === "mid").forEach(drawSpokes);
 
@@ -587,32 +522,26 @@
       requestAnimationFrame(render);
     }
 
-    function handleScroll(e) {
-      const delta = window.scrollY - (window.lastScrollY || 0);
-      window.lastScrollY = window.scrollY;
-      scrollTarget += delta * 0.028;
-      scrollTarget = clamp(scrollTarget, -7, 7);
+    function handleScroll() {
+      const currentY = window.scrollY;
+      const delta = currentY - (window.lastScrollY || 0);
+      window.lastScrollY = currentY;
+
+      scrollTarget += delta * 0.042;           // stronger scroll response (this is what you liked)
+      scrollTarget = clamp(scrollTarget, -12, 12);
     }
 
-    // Mouse influence for extra life (very light)
     function handleMouse(e) {
-      mouseX = (e.clientX - w * 0.5) * 0.6;
-      mouseY = (e.clientY - h * 0.5) * 0.6;
+      mouseX = (e.clientX - w*0.5) * 0.65;
+      mouseY = (e.clientY - h*0.5) * 0.65;
     }
 
     window.addEventListener("scroll", handleScroll, { passive: true });
     window.addEventListener("resize", debouncedResize, { passive: true });
     window.addEventListener("mousemove", handleMouse, { passive: true });
 
-    // Initial setup
     resizeCanvas();
     render();
-
-    // Reduced motion listener
-    window.matchMedia('(prefers-reduced-motion: reduce)').addEventListener('change', (e) => {
-      // Rebuild if needed or just let the flag handle it
-      console.log('Reduced motion preference changed');
-    });
   </script>
 </body>
 </html>
