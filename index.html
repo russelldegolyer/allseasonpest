@@ -67,22 +67,11 @@
       content:"";
       position:absolute;
       inset:0;
-      z-index:4;
+      z-index:2;
       pointer-events:none;
       background:
         radial-gradient(circle at 50% 50%, rgba(0,0,0,0) 0%, rgba(0,0,0,.04) 58%, rgba(0,0,0,.12) 100%),
         linear-gradient(180deg, rgba(0,0,0,.02), rgba(0,0,0,.05));
-      transition:opacity 1.35s cubic-bezier(.16,.78,.14,1);
-    }
-
-    .camera{
-      position:absolute;
-      inset:0;
-      z-index:1;
-      transform:translate3d(0,0,0) scale(1);
-      transform-origin:center center;
-      transition:transform 1.55s cubic-bezier(.12,.76,.16,1);
-      will-change:transform;
     }
 
     .web-canvas{
@@ -101,11 +90,10 @@
     }
 
     .content{
-      position:absolute;
-      inset:0;
+      position:relative;
       z-index:3;
       width:100%;
-      max-width:none;
+      max-width:1200px;
       padding:24px 20px 18px;
       display:flex;
       justify-content:center;
@@ -127,7 +115,6 @@
       justify-content:center;
       position:relative;
       line-height:0;
-      cursor:pointer;
     }
 
     .logo-wrap{
@@ -136,12 +123,6 @@
       align-items:center;
       justify-content:center;
       padding:12px;
-      transform:scale(1);
-      transition:
-        transform 1.55s cubic-bezier(.12,.76,.16,1),
-        opacity .35s ease,
-        filter .35s ease;
-      will-change:transform, opacity;
     }
 
     .logo-wrap::before{
@@ -198,10 +179,6 @@
       margin-top:2px;
       text-decoration:none;
       text-align:center;
-      transition:
-        opacity .35s ease,
-        transform .35s ease;
-      cursor:pointer;
     }
 
     .enter-text{
@@ -223,108 +200,6 @@
     .enter-link:hover .enter-text{
       transform:scale(1.06);
       opacity:1;
-    }
-
-    .flight-overlay{
-      position:fixed;
-      inset:0;
-      z-index:10;
-      pointer-events:none;
-      opacity:0;
-      transition:opacity .28s ease;
-      background:
-        radial-gradient(circle at var(--eye-screen-x, 50%) var(--eye-screen-y, 50%),
-          rgba(255,0,0,.12) 0%,
-          rgba(255,0,0,.07) 2.5%,
-          rgba(0,0,0,0) 6%,
-          rgba(0,0,0,.18) 11%,
-          rgba(0,0,0,.50) 22%,
-          rgba(0,0,0,.86) 46%,
-          rgba(0,0,0,1) 74%);
-    }
-
-    .flight-overlay::before{
-      content:"";
-      position:absolute;
-      width:32vmax;
-      height:32vmax;
-      left:50%;
-      top:50%;
-      border-radius:50%;
-      transform:
-        translate(-50%, -50%)
-        translate(var(--tunnel-x, 0px), var(--tunnel-y, 0px))
-        scale(.12);
-      transform-origin:center center;
-      opacity:0;
-      background:
-        radial-gradient(circle,
-          rgba(255,255,255,.16) 0%,
-          rgba(255,0,0,.10) 3%,
-          rgba(255,0,0,.05) 7%,
-          rgba(0,0,0,0) 16%,
-          rgba(0,0,0,.15) 28%,
-          rgba(0,0,0,.74) 62%,
-          rgba(0,0,0,1) 100%);
-      filter:blur(8px);
-      transition:
-        transform 1.55s cubic-bezier(.12,.76,.16,1),
-        opacity 1.55s cubic-bezier(.12,.76,.16,1);
-      will-change:transform, opacity;
-    }
-
-    .flight-overlay::after{
-      content:"";
-      position:absolute;
-      inset:0;
-      opacity:0;
-      background:
-        radial-gradient(circle at var(--eye-screen-x, 50%) var(--eye-screen-y, 50%),
-          rgba(255,255,255,.08) 0%,
-          rgba(255,0,0,.05) 1.2%,
-          rgba(0,0,0,0) 4.2%,
-          rgba(0,0,0,.12) 8%,
-          rgba(0,0,0,.38) 18%,
-          rgba(0,0,0,.72) 34%,
-          rgba(0,0,0,.96) 58%,
-          rgba(0,0,0,1) 100%);
-      transition:
-        opacity 1.55s cubic-bezier(.12,.76,.16,1);
-    }
-
-    body.entering .flight-overlay{
-      opacity:1;
-    }
-
-    body.entering .flight-overlay::before{
-      opacity:1;
-      transform:
-        translate(-50%, -50%)
-        translate(var(--tunnel-x, 0px), var(--tunnel-y, 0px))
-        scale(4.6);
-    }
-
-    body.entering .flight-overlay::after{
-      opacity:1;
-    }
-
-    body.entering .camera{
-      transform:
-        translate3d(var(--cam-x, 0px), var(--cam-y, 0px), 0)
-        scale(1.26);
-    }
-
-    body.entering .logo-wrap{
-      transform:scale(1.07);
-    }
-
-    body.entering .enter-link{
-      opacity:0;
-      transform:translateY(8px);
-    }
-
-    body.entering .stage::after{
-      opacity:.08;
     }
 
     @keyframes subtlePulse{
@@ -377,33 +252,27 @@
 </head>
 <body>
   <main class="stage" id="indexStage">
-    <div class="camera" id="camera">
-      <canvas class="web-canvas" id="webCanvas"></canvas>
+    <canvas class="web-canvas" id="webCanvas"></canvas>
 
-      <div class="content">
-        <div class="hero">
-          <a href="home.html" class="logo-link" aria-label="Enter Website">
-            <span class="logo-wrap">
-              <img src="updated logo.PNG" alt="All Season Pest Control" class="logo" id="logoImage">
-            </span>
-          </a>
+    <div class="content">
+      <div class="hero">
+        <a href="home.html" class="logo-link" aria-label="Enter Website">
+          <span class="logo-wrap">
+            <img src="updated logo.PNG" alt="All Season Pest Control" class="logo">
+          </span>
+        </a>
 
-          <a href="home.html" class="enter-link" aria-label="Enter Site">
-            <div class="enter-text">Click here if you hate bugs</div>
-          </a>
-        </div>
+        <a href="home.html" class="enter-link" aria-label="Enter Site">
+          <div class="enter-text">Click here if you hate bugs</div>
+        </a>
       </div>
     </div>
   </main>
 
-  <div class="flight-overlay" id="flightOverlay" aria-hidden="true"></div>
-
   <script>
     const stage = document.getElementById("indexStage");
-    const camera = document.getElementById("camera");
     const canvas = document.getElementById("webCanvas");
     const ctx = canvas.getContext("2d");
-    const logoImage = document.getElementById("logoImage");
 
     let w = 0;
     let h = 0;
@@ -417,7 +286,6 @@
 
     let scrollTarget = 0;
     let scrollEase = 0;
-    let entering = false;
 
     function rand(min, max) {
       return Math.random() * (max - min) + min;
@@ -916,54 +784,6 @@
 
     resizeCanvas();
     render();
-
-    function getEyePoint() {
-      const rect = logoImage.getBoundingClientRect();
-
-      /* tweak only these if needed */
-      const eyeXPercent = 0.582;
-      const eyeYPercent = 0.438;
-
-      return {
-        x: rect.left + rect.width * eyeXPercent,
-        y: rect.top + rect.height * eyeYPercent
-      };
-    }
-
-    function startEnterTransition(e) {
-      e.preventDefault();
-      if (entering) return;
-      entering = true;
-
-      const eye = getEyePoint();
-      const centerX = window.innerWidth * 0.5;
-      const centerY = window.innerHeight * 0.5;
-
-      /* smaller, smoother camera drift */
-      const camX = (centerX - eye.x) * 0.82;
-      const camY = (centerY - eye.y) * 0.82;
-
-      /* tunnel sits right over the eye */
-      const tunnelX = eye.x - centerX;
-      const tunnelY = eye.y - centerY;
-
-      document.documentElement.style.setProperty("--cam-x", `${camX}px`);
-      document.documentElement.style.setProperty("--cam-y", `${camY}px`);
-      document.documentElement.style.setProperty("--tunnel-x", `${tunnelX}px`);
-      document.documentElement.style.setProperty("--tunnel-y", `${tunnelY}px`);
-      document.documentElement.style.setProperty("--eye-screen-x", `${eye.x}px`);
-      document.documentElement.style.setProperty("--eye-screen-y", `${eye.y}px`);
-
-      document.body.classList.add("entering");
-
-      setTimeout(() => {
-        window.location.href = "home.html";
-      }, 1520);
-    }
-
-    document.querySelectorAll(".logo-link, .enter-link").forEach((el) => {
-      el.addEventListener("click", startEnterTransition);
-    });
   </script>
 </body>
 </html>
